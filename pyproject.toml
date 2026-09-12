@@ -1,0 +1,10 @@
+[project]
+name = "pair-aware-pun-detection"
+version = "0.1.0"
+description = "Pair-aware learning for Portuguese pun detection using the Puntuguese corpus"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "ipykernel==6.30.1",
+    "ipython==9.5.0",
+    "pandas==2.3.2",
+]
