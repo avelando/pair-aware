@@ -1,4 +1,5 @@
 MODEL_NAME = "neuralmind/bert-large-portuguese-cased"
+MODEL_REVISION = "aa302f6ea73b759f7df9cad58bd272127b67ec28"
 
 SPLIT_SEEDS = (13, 21, 40, 42, 73, 101)
 MODEL_SEEDS = (13, 21, 40, 42, 73, 101)

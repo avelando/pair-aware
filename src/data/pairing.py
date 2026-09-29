@@ -30,23 +30,37 @@ def _prepare_instances(split_df):
     return data
 
 
-def _sattolo_derangement(values, seed):
+def _random_derangement(values, seed):
+    values = list(values)
+
     if len(values) < 2:
         raise ValueError(
             "At least two pairs are required to create a derangement."
         )
 
-    shuffled = list(values)
-    rng = random.Random(seed)
-
-    for index in range(len(shuffled) - 1, 0, -1):
-        swap_index = rng.randrange(index)
-        shuffled[index], shuffled[swap_index] = (
-            shuffled[swap_index],
-            shuffled[index],
+    if len(set(values)) != len(values):
+        raise ValueError(
+            "Derangement values must be unique."
         )
 
-    return shuffled
+    rng = random.Random(seed)
+
+    for _ in range(10000):
+        shuffled = values.copy()
+        rng.shuffle(shuffled)
+
+        if all(
+            original != replacement
+            for original, replacement in zip(
+                values,
+                shuffled,
+            )
+        ):
+            return shuffled
+
+    raise RuntimeError(
+        "Could not generate a derangement after 10000 attempts."
+    )
 
 
 def build_true_pairs(split_df):
@@ -99,7 +113,7 @@ def build_shuffled_pairs(split_df, seed):
     true_pairs = build_true_pairs(split_df)
 
     h_pair_ids = true_pairs["h_pair_id"].tolist()
-    shuffled_n_pair_ids = _sattolo_derangement(
+    shuffled_n_pair_ids = _random_derangement(
         h_pair_ids,
         seed,
     )

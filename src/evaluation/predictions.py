@@ -62,7 +62,10 @@ def build_instance_predictions(
     dataframe,
     logits,
 ):
-    logits = _to_numpy(logits)
+    logits = _to_numpy(logits).astype(
+        np.float32,
+        copy=False,
+    )
 
     if logits.ndim != 2 or logits.shape[1] != 2:
         raise ValueError(

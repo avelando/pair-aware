@@ -132,16 +132,16 @@ def compute_pair_aware_loss(
         )
 
     classification_loss = (
-        outputs.loss
+        outputs.loss.float()
     )
 
     h_logits = logits[
         :pair_batch_size
-    ]
+    ].float()
 
     n_logits = logits[
         pair_batch_size:
-    ]
+    ].float()
 
     h_scores = (
         h_logits[:, 1]

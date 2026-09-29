@@ -1,9 +1,7 @@
 import argparse
-from datetime import datetime, timezone
 from time import perf_counter
 
 import torch
-import transformers
 
 from src.config import (
     AMP_GROWTH_INTERVAL,
@@ -13,10 +11,12 @@ from src.config import (
     INSTANCE_TRAIN_BATCH_SIZE,
     KEEP_CHECKPOINTS,
     LEARNING_RATE,
+    LR_SCHEDULER_TYPE,
     MAX_GRAD_NORM,
     MAX_LENGTH,
     METRIC_FOR_BEST_MODEL,
     MODEL_NAME,
+    MODEL_REVISION,
     MODEL_SEEDS,
     NUM_EPOCHS,
     SKIP_COMPLETED_RUNS,
@@ -38,13 +38,17 @@ from src.evaluation.predictions import (
     build_instance_predictions,
     build_pair_predictions,
 )
+from src.experiments.provenance import (
+    get_environment_metadata,
+    get_git_provenance,
+    utc_now,
+)
 from src.models.factory import (
     create_sequence_classifier,
     create_tokenizer,
 )
 from src.paths import get_run_dir
 from src.results.io import (
-    get_run_artifact_paths,
     is_run_completed,
     mark_run_completed,
     prepare_run_directory,
@@ -66,12 +70,6 @@ from src.training.reproducibility import set_model_seed
 
 
 METHOD = "instance_level"
-
-
-def utc_now():
-    return datetime.now(
-        timezone.utc
-    ).isoformat()
 
 
 def validate_run_seeds(
@@ -105,6 +103,7 @@ def create_run_metadata(
         "started_at_utc": utc_now(),
         "model": {
             "name": MODEL_NAME,
+            "revision": MODEL_REVISION,
             "max_length": MAX_LENGTH,
         },
         "training": {
@@ -114,21 +113,28 @@ def create_run_metadata(
             "eval_batch_size": EVAL_BATCH_SIZE,
             "weight_decay": WEIGHT_DECAY,
             "warmup_ratio": WARMUP_RATIO,
+            "lr_scheduler_type": LR_SCHEDULER_TYPE,
             "max_grad_norm": MAX_GRAD_NORM,
             "early_stopping_patience": EARLY_STOPPING_PATIENCE,
             "metric_for_best_model": METRIC_FOR_BEST_MODEL,
             "amp_init_scale": AMP_INIT_SCALE,
             "amp_growth_interval": AMP_GROWTH_INTERVAL,
         },
-        "environment": {
-            "device": str(device),
-            "gpu": torch.cuda.get_device_name(
-                device
-            ),
-            "torch_version": torch.__version__,
-            "transformers_version": transformers.__version__,
-            "cuda_version": torch.version.cuda,
+        "seed_control": {
+            "seed": model_seed,
+            "controls": [
+                "python_rng",
+                "numpy_rng",
+                "torch_rng",
+                "model_initialization",
+                "training_stochasticity",
+                "train_dataloader_order",
+            ],
         },
+        "code": get_git_provenance(),
+        "environment": get_environment_metadata(
+            device
+        ),
         "split_metadata": split_metadata,
     }
 

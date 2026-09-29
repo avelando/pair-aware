@@ -2,12 +2,13 @@ import gc
 
 import torch
 from torch.utils.data import DataLoader
-from transformers import get_linear_schedule_with_warmup
+from transformers import get_scheduler
 
 from src.config import (
     AMP_GROWTH_INTERVAL,
     AMP_INIT_SCALE,
     LEARNING_RATE,
+    LR_SCHEDULER_TYPE,
     MAX_GRAD_NORM,
     NUM_EPOCHS,
     WARMUP_RATIO,
@@ -148,8 +149,9 @@ def create_optimizer_and_scheduler(
         * WARMUP_RATIO
     )
 
-    scheduler = get_linear_schedule_with_warmup(
-        optimizer,
+    scheduler = get_scheduler(
+        name=LR_SCHEDULER_TYPE,
+        optimizer=optimizer,
         num_warmup_steps=warmup_steps,
         num_training_steps=total_steps,
     )
@@ -263,6 +265,7 @@ def predict_instances(
             all_logits.append(
                 outputs.logits
                 .detach()
+                .float()
                 .cpu()
             )
 
