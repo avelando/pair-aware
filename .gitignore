@@ -1,6 +1,13 @@
 .venv/
 __pycache__/
-*.pyc
+*.py[cod]
 .ipynb_checkpoints/
 .vscode/
 .DS_Store
+
+results/
+logs/
+
+*.pt
+*.pth
+*.log
