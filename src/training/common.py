@@ -6,6 +6,7 @@ from transformers import get_linear_schedule_with_warmup
 
 from src.config import (
     LEARNING_RATE,
+    MAX_GRAD_NORM,
     NUM_EPOCHS,
     WARMUP_RATIO,
     WEIGHT_DECAY,
@@ -172,6 +173,62 @@ def autocast_context(device):
         dtype=torch.float16,
         enabled=uses_amp(device),
     )
+
+
+def backward_and_step(
+    loss,
+    model,
+    optimizer,
+    scheduler,
+    scaler,
+):
+    scale_before = float(
+        scaler.get_scale()
+    )
+
+    scaler.scale(
+        loss
+    ).backward()
+
+    scaler.unscale_(
+        optimizer
+    )
+
+    gradient_norm = (
+        torch.nn.utils.clip_grad_norm_(
+            model.parameters(),
+            MAX_GRAD_NORM,
+        )
+    )
+
+    scaler.step(
+        optimizer
+    )
+
+    scaler.update()
+
+    scale_after = float(
+        scaler.get_scale()
+    )
+
+    step_skipped = (
+        scale_after
+        < scale_before
+    )
+
+    if not step_skipped:
+        scheduler.step()
+
+    return {
+        "gradient_norm": float(
+            gradient_norm.detach().cpu()
+        ),
+        "scale_before": scale_before,
+        "scale_after": scale_after,
+        "step_skipped": bool(
+            step_skipped
+        ),
+    }
 
 
 def predict_instances(
