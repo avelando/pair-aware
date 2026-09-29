@@ -5,6 +5,7 @@ from torch.utils.data import DataLoader
 from transformers import get_linear_schedule_with_warmup
 
 from src.config import (
+    AMP_GROWTH_INTERVAL,
     AMP_INIT_SCALE,
     LEARNING_RATE,
     MAX_GRAD_NORM,
@@ -165,6 +166,7 @@ def create_grad_scaler(device):
     return torch.amp.GradScaler(
         device.type,
         init_scale=AMP_INIT_SCALE,
+        growth_interval=AMP_GROWTH_INTERVAL,
         enabled=uses_amp(device),
     )
 
