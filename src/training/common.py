@@ -73,6 +73,20 @@ def move_batch_to_device(
 
 
 def _create_optimizer_parameter_groups(model):
+    no_decay_parameter_ids = set()
+
+    for module in model.modules():
+        if isinstance(
+            module,
+            torch.nn.LayerNorm,
+        ):
+            for parameter in module.parameters(
+                recurse=False
+            ):
+                no_decay_parameter_ids.add(
+                    id(parameter)
+                )
+
     decay_parameters = []
     no_decay_parameters = []
 
@@ -80,12 +94,10 @@ def _create_optimizer_parameter_groups(model):
         if not parameter.requires_grad:
             continue
 
-        normalized_name = name.lower()
-
         if (
             name.endswith("bias")
-            or "layernorm.weight" in normalized_name
-            or "layer_norm.weight" in normalized_name
+            or id(parameter)
+            in no_decay_parameter_ids
         ):
             no_decay_parameters.append(
                 parameter
