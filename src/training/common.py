@@ -72,6 +72,41 @@ def move_batch_to_device(
     }
 
 
+def _create_optimizer_parameter_groups(model):
+    decay_parameters = []
+    no_decay_parameters = []
+
+    for name, parameter in model.named_parameters():
+        if not parameter.requires_grad:
+            continue
+
+        normalized_name = name.lower()
+
+        if (
+            name.endswith("bias")
+            or "layernorm.weight" in normalized_name
+            or "layer_norm.weight" in normalized_name
+        ):
+            no_decay_parameters.append(
+                parameter
+            )
+        else:
+            decay_parameters.append(
+                parameter
+            )
+
+    return [
+        {
+            "params": decay_parameters,
+            "weight_decay": WEIGHT_DECAY,
+        },
+        {
+            "params": no_decay_parameters,
+            "weight_decay": 0.0,
+        },
+    ]
+
+
 def create_optimizer_and_scheduler(
     model,
     steps_per_epoch,
@@ -82,9 +117,10 @@ def create_optimizer_and_scheduler(
         )
 
     optimizer = torch.optim.AdamW(
-        model.parameters(),
+        _create_optimizer_parameter_groups(
+            model
+        ),
         lr=LEARNING_RATE,
-        weight_decay=WEIGHT_DECAY,
     )
 
     total_steps = (
