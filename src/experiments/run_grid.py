@@ -2,10 +2,16 @@ import argparse
 from time import perf_counter
 
 from src.config import (
+    DEFAULT_MAX_PARALLEL,
     METHODS,
     MODEL_SEEDS,
     PAIRING_STRATEGIES,
     SPLIT_SEEDS,
+)
+from src.experiments.gpu_scheduler import (
+    DEFAULT_GPU_POLL_SECONDS,
+    DEFAULT_GPU_VRAM_SAFETY_MARGIN_GB,
+    run_parallel_grid,
 )
 from src.experiments.run_instance_level import run_instance_level
 from src.experiments.run_pair_aware import run_pair_aware
@@ -149,6 +155,10 @@ def run_grid(
     force=False,
     fail_fast=False,
     dry_run=False,
+    max_parallel=DEFAULT_MAX_PARALLEL,
+    vram_per_run_gb=None,
+    vram_safety_margin_gb=DEFAULT_GPU_VRAM_SAFETY_MARGIN_GB,
+    poll_seconds=DEFAULT_GPU_POLL_SECONDS,
 ):
     tasks = build_grid(
         methods=methods,
@@ -168,6 +178,26 @@ def run_grid(
             "tasks": tasks,
             "results": [],
         }
+
+    if max_parallel > 1:
+        return run_parallel_grid(
+            tasks=tasks,
+            force=force,
+            fail_fast=fail_fast,
+            max_parallel=max_parallel,
+            vram_per_run_gb=(
+                vram_per_run_gb
+            ),
+            vram_safety_margin_gb=(
+                vram_safety_margin_gb
+            ),
+            poll_seconds=poll_seconds,
+        )
+
+    if max_parallel != 1:
+        raise ValueError(
+            "max_parallel must be greater than zero."
+        )
 
     grid_start_time = (
         perf_counter()
@@ -357,6 +387,29 @@ def parse_args():
         action="store_true",
     )
 
+    parser.add_argument(
+        "--max-parallel",
+        type=int,
+        default=DEFAULT_MAX_PARALLEL,
+    )
+
+    parser.add_argument(
+        "--vram-per-run-gb",
+        type=float,
+    )
+
+    parser.add_argument(
+        "--vram-safety-margin-gb",
+        type=float,
+        default=DEFAULT_GPU_VRAM_SAFETY_MARGIN_GB,
+    )
+
+    parser.add_argument(
+        "--poll-seconds",
+        type=float,
+        default=DEFAULT_GPU_POLL_SECONDS,
+    )
+
     return parser.parse_args()
 
 
@@ -368,10 +421,18 @@ def main():
         split_seeds=args.split_seeds,
         model_seeds=args.model_seeds,
         force=args.force,
-        fail_fast=args.fail_fast,
+                fail_fast=args.fail_fast,
         dry_run=args.dry_run,
+        max_parallel=args.max_parallel,
+        vram_per_run_gb=(
+            args.vram_per_run_gb
+        ),
+        vram_safety_margin_gb=(
+            args.vram_safety_margin_gb
+        ),
+        poll_seconds=args.poll_seconds,
     )
-
+    
     print(
         f"Planned runs: "
         f"{result['planned_runs']}"

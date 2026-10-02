@@ -354,6 +354,68 @@ class GridTest(unittest.TestCase):
                     fail_fast=True,
                 )
 
+    def test_parallel_grid_delegates_to_gpu_scheduler(self):
+        expected = {
+            "planned_runs": 2,
+            "completed_runs": 2,
+            "skipped_runs": 0,
+            "failed_runs": 0,
+            "duration_seconds": 5.0,
+            "tasks": [],
+            "results": [],
+        }
+
+        with patch.object(
+            grid_module,
+            "run_parallel_grid",
+            return_value=expected,
+        ) as parallel_mock, patch.object(
+            grid_module,
+            "execute_grid_run",
+        ) as execute_mock:
+            result = grid_module.run_grid(
+                methods=(
+                    "instance_level",
+                ),
+                split_seeds=(
+                    13,
+                ),
+                model_seeds=(
+                    13,
+                    21,
+                ),
+                max_parallel=2,
+                vram_per_run_gb=10.0,
+                vram_safety_margin_gb=2.0,
+                poll_seconds=3.0,
+            )
+
+        self.assertIs(
+            result,
+            expected,
+        )
+
+        parallel_mock.assert_called_once()
+
+        execute_mock.assert_not_called()
+
+    def test_non_positive_max_parallel_is_rejected(self):
+        with self.assertRaisesRegex(
+            ValueError,
+            "max_parallel must be greater than zero",
+        ):
+            grid_module.run_grid(
+                methods=(
+                    "instance_level",
+                ),
+                split_seeds=(
+                    13,
+                ),
+                model_seeds=(
+                    13,
+                ),
+                max_parallel=0,
+            )
 
 if __name__ == "__main__":
     unittest.main()
