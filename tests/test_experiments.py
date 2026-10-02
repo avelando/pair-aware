@@ -210,6 +210,26 @@ class ExperimentsTest(unittest.TestCase):
         )
 
         self.assertEqual(
+            metadata["experiment_id"],
+            "experiment-id",
+        )
+
+        self.assertEqual(
+            metadata["fingerprint"]["config_hash"],
+            "config-hash",
+        )
+
+        self.assertEqual(
+            metadata["fingerprint"]["dataset_hash"],
+            "dataset-hash",
+        )
+
+        self.assertEqual(
+            metadata["fingerprint"]["source_hash"],
+            "source-hash",
+        )
+
+        self.assertEqual(
             metadata["model"]["name"],
             instance_module.MODEL_NAME,
         )
@@ -379,9 +399,13 @@ class ExperimentsTest(unittest.TestCase):
             return_value=run_dir,
         ), patch.object(
             instance_module,
+            "build_experiment_fingerprint",
+            return_value=self.experiment_fingerprint,
+        ), patch.object(
+            instance_module,
             "is_run_completed",
             return_value=True,
-        ), patch.object(
+        ) as completed_mock, patch.object(
             instance_module,
             "prepare_run_directory",
         ) as prepare_mock:
@@ -398,7 +422,13 @@ class ExperimentsTest(unittest.TestCase):
                 "split_seed": 13,
                 "model_seed": 13,
                 "run_dir": str(run_dir),
+                "experiment_id": "experiment-id",
             },
+        )
+
+        completed_mock.assert_called_once_with(
+            run_dir,
+            expected_experiment_id="experiment-id",
         )
 
         prepare_mock.assert_not_called()
@@ -418,9 +448,13 @@ class ExperimentsTest(unittest.TestCase):
             return_value=run_dir,
         ), patch.object(
             pair_module,
+            "build_experiment_fingerprint",
+            return_value=self.experiment_fingerprint,
+        ), patch.object(
+            pair_module,
             "is_run_completed",
             return_value=True,
-        ), patch.object(
+        ) as completed_mock, patch.object(
             pair_module,
             "prepare_run_directory",
         ) as prepare_mock:
@@ -438,7 +472,13 @@ class ExperimentsTest(unittest.TestCase):
                 "split_seed": 13,
                 "model_seed": 13,
                 "run_dir": str(run_dir),
+                "experiment_id": "experiment-id",
             },
+        )
+
+        completed_mock.assert_called_once_with(
+            run_dir,
+            expected_experiment_id="experiment-id",
         )
 
         prepare_mock.assert_not_called()
@@ -458,9 +498,13 @@ class ExperimentsTest(unittest.TestCase):
             return_value=run_dir,
         ), patch.object(
             instance_module,
+            "build_experiment_fingerprint",
+            return_value=self.experiment_fingerprint,
+        ), patch.object(
+            instance_module,
             "is_run_completed",
             return_value=True,
-        ), patch.object(
+        ) as completed_mock, patch.object(
             instance_module,
             "prepare_run_directory",
             return_value={},
@@ -480,6 +524,11 @@ class ExperimentsTest(unittest.TestCase):
                     model_seed=13,
                     force=True,
                 )
+
+        completed_mock.assert_called_once_with(
+            run_dir,
+            expected_experiment_id="experiment-id",
+        )
 
         prepare_mock.assert_called_once_with(
             run_dir
