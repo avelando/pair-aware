@@ -699,6 +699,10 @@ def run_parallel_grid(
 
                     continue
 
+                memory = (
+                    query_gpu_memory()
+                )
+
                 if (
                     baseline_free_gb is None
                     or not running
