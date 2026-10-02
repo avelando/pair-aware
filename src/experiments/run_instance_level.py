@@ -509,12 +509,12 @@ def _execute_instance_level(
             "duration_seconds": duration_seconds,
         }
 
-    except Exception as error:
+    except BaseException as error:
         if progress_tracker is not None:
             progress_tracker.fail(
                 error
             )
-            
+
         duration_seconds = float(
             perf_counter()
             - start_time

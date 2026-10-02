@@ -594,7 +594,7 @@ def _execute_pair_aware(
             "duration_seconds": duration_seconds,
         }
 
-    except Exception as error:
+    except BaseException as error:
         if progress_tracker is not None:
             progress_tracker.fail(
                 error

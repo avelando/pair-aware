@@ -15,6 +15,10 @@ from src.experiments.gpu_scheduler import (
     run_parallel_grid,
 )
 from src.experiments.run_instance_level import run_instance_level
+from src.experiments.retry import (
+    DEFAULT_MAX_RETRIES,
+    validate_max_retries,
+)
 from src.experiments.run_pair_aware import run_pair_aware
 
 
@@ -120,6 +124,7 @@ def _build_result_record(
     task,
     result,
     duration_seconds,
+    retry_count=0,
 ):
     status = result.get(
         "status"
@@ -136,6 +141,9 @@ def _build_result_record(
         "duration_seconds": float(
             duration_seconds
         ),
+        "retry_count": int(
+            retry_count
+        ),
     }
 
     for key in (
@@ -149,6 +157,94 @@ def _build_result_record(
     return record
 
 
+def execute_grid_task_with_retries(
+    task,
+    force=False,
+    max_retries=DEFAULT_MAX_RETRIES,
+):
+    validate_max_retries(
+        max_retries
+    )
+
+    task_start_time = (
+        perf_counter()
+    )
+
+    retry_count = 0
+
+    while True:
+        try:
+            result = execute_grid_run(
+                method=task["method"],
+                split_seed=task[
+                    "split_seed"
+                ],
+                model_seed=task[
+                    "model_seed"
+                ],
+                force=force,
+            )
+
+            duration_seconds = float(
+                perf_counter()
+                - task_start_time
+            )
+
+            return (
+                _build_result_record(
+                    task=task,
+                    result=result,
+                    duration_seconds=(
+                        duration_seconds
+                    ),
+                    retry_count=retry_count,
+                ),
+                None,
+            )
+
+        except Exception as error:
+            if retry_count < max_retries:
+                retry_count += 1
+
+                print(
+                    f"Retrying "
+                    f"method={task['method']} "
+                    f"split_seed={task['split_seed']} "
+                    f"model_seed={task['model_seed']} "
+                    f"retry={retry_count}/{max_retries} "
+                    f"after={type(error).__name__}: "
+                    f"{error}",
+                    flush=True,
+                )
+
+                continue
+
+            duration_seconds = float(
+                perf_counter()
+                - task_start_time
+            )
+
+            return (
+                {
+                    **task,
+                    "status": "failed",
+                    "duration_seconds": (
+                        duration_seconds
+                    ),
+                    "retry_count": int(
+                        retry_count
+                    ),
+                    "error_type": type(
+                        error
+                    ).__name__,
+                    "error_message": str(
+                        error
+                    ),
+                },
+                error,
+            )
+
+        
 def run_grid(
     methods=METHODS,
     split_seeds=SPLIT_SEEDS,
@@ -161,11 +257,16 @@ def run_grid(
     vram_safety_margin_gb=DEFAULT_GPU_VRAM_SAFETY_MARGIN_GB,
     poll_seconds=DEFAULT_GPU_POLL_SECONDS,
     progress_report_seconds=DEFAULT_PROGRESS_REPORT_SECONDS,
+    max_retries=DEFAULT_MAX_RETRIES,
 ):
     tasks = build_grid(
         methods=methods,
         split_seeds=split_seeds,
         model_seeds=model_seeds,
+    )
+
+    validate_max_retries(
+        max_retries
     )
 
     if dry_run:
@@ -176,12 +277,19 @@ def run_grid(
             "completed_runs": 0,
             "skipped_runs": 0,
             "failed_runs": 0,
+            "retried_runs": 0,
+            "retry_attempts": 0,
             "duration_seconds": 0.0,
             "tasks": tasks,
             "results": [],
         }
 
     if max_parallel > 1:
+        if max_retries > 0:
+            raise ValueError(
+                "Parallel retries are not available yet."
+            )
+        
         return run_parallel_grid(
             tasks=tasks,
             force=force,
@@ -234,78 +342,43 @@ def run_grid(
             flush=True,
         )
 
-        run_start_time = (
-            perf_counter()
+        (
+            record,
+            final_error,
+        ) = execute_grid_task_with_retries(
+            task=task,
+            force=force,
+            max_retries=max_retries,
         )
 
-        try:
-            result = execute_grid_run(
-                method=method,
-                split_seed=split_seed,
-                model_seed=model_seed,
-                force=force,
-            )
+        results.append(
+            record
+        )
 
-            duration_seconds = float(
-                perf_counter()
-                - run_start_time
-            )
-
-            record = _build_result_record(
-                task,
-                result,
-                duration_seconds,
-            )
-
-        except Exception as error:
-            duration_seconds = float(
-                perf_counter()
-                - run_start_time
-            )
-
-            record = {
-                **task,
-                "status": "failed",
-                "duration_seconds": (
-                    duration_seconds
-                ),
-                "error_type": type(
-                    error
-                ).__name__,
-                "error_message": str(
-                    error
-                ),
-            }
-
-            results.append(
-                record
-            )
-
+        if record["status"] == "failed":
             print(
                 f"[{index}/{total_runs}] "
                 f"Failed "
                 f"method={method} "
                 f"split_seed={split_seed} "
                 f"model_seed={model_seed} "
-                f"error={type(error).__name__}: "
-                f"{error}",
+                f"retries={record['retry_count']} "
+                f"error={record['error_type']}: "
+                f"{record['error_message']}",
                 flush=True,
             )
 
             if fail_fast:
-                raise
+                raise final_error
 
             continue
-
-        results.append(
-            record
-        )
 
         print(
             f"[{index}/{total_runs}] "
             f"Finished "
             f"status={record['status']} "
-            f"duration={duration_seconds:.2f}s",
+            f"retries={record['retry_count']} "
+            f"duration={record['duration_seconds']:.2f}s",
             flush=True,
         )
 
@@ -332,6 +405,25 @@ def run_grid(
         for result in results
     )
 
+    retried_runs = sum(
+        result.get(
+            "retry_count",
+            0,
+        )
+        > 0
+        for result in results
+    )
+
+    retry_attempts = sum(
+        int(
+            result.get(
+                "retry_count",
+                0,
+            )
+        )
+        for result in results
+    )
+
     return {
         "planned_runs": total_runs,
         "completed_runs": int(
@@ -342,6 +434,12 @@ def run_grid(
         ),
         "failed_runs": int(
             failed_runs
+        ),
+        "retried_runs": int(
+            retried_runs
+        ),
+        "retry_attempts": int(
+            retry_attempts
         ),
         "duration_seconds": (
             duration_seconds
@@ -421,6 +519,12 @@ def parse_args():
         default=DEFAULT_PROGRESS_REPORT_SECONDS,
     )
 
+    parser.add_argument(
+        "--max-retries",
+        type=int,
+        default=DEFAULT_MAX_RETRIES,
+    )
+
     return parser.parse_args()
 
 
@@ -445,6 +549,7 @@ def main():
         progress_report_seconds=(
             args.progress_seconds
         ),
+        max_retries=args.max_retries,
     )
 
     print(
@@ -482,6 +587,16 @@ def main():
     print(
         f"Failed runs: "
         f"{result['failed_runs']}"
+    )
+
+    print(
+        f"Retried runs: "
+        f"{result['retried_runs']}"
+    )
+
+    print(
+        f"Retry attempts: "
+        f"{result['retry_attempts']}"
     )
 
     print(

@@ -417,5 +417,137 @@ class GridTest(unittest.TestCase):
                 max_parallel=0,
             )
 
+    def test_sequential_grid_retries_failed_run_then_completes(self):
+        with patch.object(
+            grid_module,
+            "execute_grid_run",
+            side_effect=[
+                RuntimeError(
+                    "transient failure"
+                ),
+                {
+                    "status": "completed",
+                    "run_dir": "run-1",
+                    "experiment_id": "id-1",
+                    "attempt": 2,
+                },
+            ],
+        ) as execute_mock:
+            result = grid_module.run_grid(
+                methods=(
+                    "instance_level",
+                ),
+                split_seeds=(
+                    13,
+                ),
+                model_seeds=(
+                    13,
+                ),
+                max_retries=1,
+            )
+
+        self.assertEqual(
+            execute_mock.call_count,
+            2,
+        )
+
+        self.assertEqual(
+            result["completed_runs"],
+            1,
+        )
+
+        self.assertEqual(
+            result["failed_runs"],
+            0,
+        )
+
+        self.assertEqual(
+            result["retried_runs"],
+            1,
+        )
+
+        self.assertEqual(
+            result["retry_attempts"],
+            1,
+        )
+
+        self.assertEqual(
+            result["results"][0][
+                "retry_count"
+            ],
+            1,
+        )
+
+    def test_sequential_grid_stops_after_retry_budget(self):
+        with patch.object(
+            grid_module,
+            "execute_grid_run",
+            side_effect=[
+                RuntimeError(
+                    "first failure"
+                ),
+                RuntimeError(
+                    "second failure"
+                ),
+            ],
+        ) as execute_mock:
+            result = grid_module.run_grid(
+                methods=(
+                    "instance_level",
+                ),
+                split_seeds=(
+                    13,
+                ),
+                model_seeds=(
+                    13,
+                ),
+                max_retries=1,
+            )
+
+        self.assertEqual(
+            execute_mock.call_count,
+            2,
+        )
+
+        self.assertEqual(
+            result["completed_runs"],
+            0,
+        )
+
+        self.assertEqual(
+            result["failed_runs"],
+            1,
+        )
+
+        self.assertEqual(
+            result["retry_attempts"],
+            1,
+        )
+
+        self.assertEqual(
+            result["results"][0][
+                "error_message"
+            ],
+            "second failure",
+        )
+
+    def test_negative_max_retries_is_rejected(self):
+        with self.assertRaisesRegex(
+            ValueError,
+            "max_retries must be a non-negative integer",
+        ):
+            grid_module.run_grid(
+                methods=(
+                    "instance_level",
+                ),
+                split_seeds=(
+                    13,
+                ),
+                model_seeds=(
+                    13,
+                ),
+                max_retries=-1,
+            )
+            
 if __name__ == "__main__":
     unittest.main()
