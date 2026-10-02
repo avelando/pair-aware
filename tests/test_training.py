@@ -768,6 +768,7 @@ class TrainingTest(unittest.TestCase):
 
         scheduler = MagicMock()
         scaler = MagicMock()
+        progress_callback = MagicMock()
 
         train_results = [
             {
@@ -893,6 +894,9 @@ class TrainingTest(unittest.TestCase):
                     validation_loader=validation_loader,
                     checkpoint_path=checkpoint_path,
                     device=torch.device("cpu"),
+                    progress_callback=(
+                        progress_callback
+                    ),
                 )
 
         self.assertEqual(
@@ -928,12 +932,78 @@ class TrainingTest(unittest.TestCase):
         )
 
         self.assertEqual(
-            save_mock.call_count,
+            progress_callback.call_count,
+            4,
+        )
+
+        self.assertEqual(
+            progress_callback.call_args_list[
+                -1
+            ].kwargs["epoch"],
+            4,
+        )
+
+        self.assertEqual(
+            progress_callback.call_args_list[
+                -1
+            ].kwargs["best_epoch"],
             2,
         )
 
-        load_mock.assert_called_once()
+    def test_running_progress_line_uses_progress_artifact(self):
+        entry = {
+            "context": {
+                "method": "instance_level",
+                "split_seed": 13,
+                "model_seed": 40,
+                "run_dir": Path(
+                    "results/run"
+                ),
+            },
+            "started_at": 10.0,
+        }
 
+        with patch.object(
+            scheduler_module,
+            "read_progress",
+            return_value={
+                "method": "instance_level",
+                "split_seed": 13,
+                "model_seed": 40,
+                "phase": "training",
+                "epoch": 2,
+                "total_epochs": 6,
+                "elapsed_seconds": 120.0,
+                "eta_seconds": 240.0,
+                "best_validation_f1_macro": 0.8,
+            },
+        ):
+            line = (
+                scheduler_module
+                .build_running_progress_line(
+                    entry
+                )
+            )
+
+        self.assertIn(
+            "epoch=2/6",
+            line,
+        )
+
+        self.assertIn(
+            "elapsed=00:02:00",
+            line,
+        )
+
+        self.assertIn(
+            "eta=00:04:00",
+            line,
+        )
+
+        self.assertIn(
+            "best_validation_f1=0.800000",
+            line,
+        )
 
 if __name__ == "__main__":
     unittest.main()

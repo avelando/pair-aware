@@ -432,7 +432,7 @@ def main():
         split_seeds=args.split_seeds,
         model_seeds=args.model_seeds,
         force=args.force,
-                fail_fast=args.fail_fast,
+        fail_fast=args.fail_fast,
         dry_run=args.dry_run,
         max_parallel=args.max_parallel,
         vram_per_run_gb=(

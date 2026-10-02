@@ -351,6 +351,26 @@ def _execute_pair_aware(
             .to(device)
         )
 
+        progress_tracker = (
+            RunProgressTracker(
+                path=artifact_paths[
+                    "progress"
+                ],
+                method=method,
+                split_seed=split_seed,
+                model_seed=model_seed,
+                experiment_id=(
+                    experiment_fingerprint[
+                        "experiment_id"
+                    ]
+                ),
+                attempt=attempt,
+                total_epochs=NUM_EPOCHS,
+            )
+        )
+
+        progress_tracker.start()
+
         training_result = (
             train_pair_aware_model(
                 model=model,
@@ -364,6 +384,10 @@ def _execute_pair_aware(
                     progress_tracker.update_epoch
                 ),
             )
+        )
+
+        progress_tracker.set_phase(
+            "evaluation"
         )
 
         (
@@ -538,6 +562,8 @@ def _execute_pair_aware(
             run_dir
         )
 
+        progress_tracker.complete()
+
         return {
             "status": "completed",
             "method": method,
@@ -569,6 +595,11 @@ def _execute_pair_aware(
         }
 
     except Exception as error:
+        if progress_tracker is not None:
+            progress_tracker.fail(
+                error
+            )
+
         duration_seconds = float(
             perf_counter()
             - start_time
