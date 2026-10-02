@@ -11,6 +11,7 @@ from src.config import (
 from src.experiments.gpu_scheduler import (
     DEFAULT_GPU_POLL_SECONDS,
     DEFAULT_GPU_VRAM_SAFETY_MARGIN_GB,
+    DEFAULT_PROGRESS_REPORT_SECONDS,
     run_parallel_grid,
 )
 from src.experiments.run_instance_level import run_instance_level
@@ -159,6 +160,7 @@ def run_grid(
     vram_per_run_gb=None,
     vram_safety_margin_gb=DEFAULT_GPU_VRAM_SAFETY_MARGIN_GB,
     poll_seconds=DEFAULT_GPU_POLL_SECONDS,
+    progress_report_seconds=DEFAULT_PROGRESS_REPORT_SECONDS,
 ):
     tasks = build_grid(
         methods=methods,
@@ -192,6 +194,9 @@ def run_grid(
                 vram_safety_margin_gb
             ),
             poll_seconds=poll_seconds,
+            progress_report_seconds=(
+                progress_report_seconds
+            ),
         )
 
     if max_parallel != 1:
@@ -410,6 +415,12 @@ def parse_args():
         default=DEFAULT_GPU_POLL_SECONDS,
     )
 
+    parser.add_argument(
+        "--progress-seconds",
+        type=float,
+        default=DEFAULT_PROGRESS_REPORT_SECONDS,
+    )
+
     return parser.parse_args()
 
 
@@ -431,8 +442,11 @@ def main():
             args.vram_safety_margin_gb
         ),
         poll_seconds=args.poll_seconds,
+        progress_report_seconds=(
+            args.progress_seconds
+        ),
     )
-    
+
     print(
         f"Planned runs: "
         f"{result['planned_runs']}"

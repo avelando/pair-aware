@@ -37,6 +37,7 @@ from src.evaluation.predictions import (
     build_instance_predictions,
     build_pair_predictions,
 )
+from src.experiments.progress import RunProgressTracker
 from src.experiments.runner import (
     run_experiment,
     validate_seeds,
@@ -218,6 +219,7 @@ def _execute_instance_level(
     )
 
     model = None
+    progress_tracker = None
     start_time = perf_counter()
 
     try:
@@ -265,6 +267,26 @@ def _execute_instance_level(
             .to(device)
         )
 
+        progress_tracker = (
+            RunProgressTracker(
+                path=artifact_paths[
+                    "progress"
+                ],
+                method=METHOD,
+                split_seed=split_seed,
+                model_seed=model_seed,
+                experiment_id=(
+                    experiment_fingerprint[
+                        "experiment_id"
+                    ]
+                ),
+                attempt=attempt,
+                total_epochs=NUM_EPOCHS,
+            )
+        )
+
+        progress_tracker.start()
+
         training_result = (
             train_instance_level_model(
                 model=model,
@@ -274,7 +296,14 @@ def _execute_instance_level(
                     "checkpoint"
                 ],
                 device=device,
+                progress_callback=(
+                    progress_tracker.update_epoch
+                ),
             )
+        )
+
+        progress_tracker.set_phase(
+            "evaluation"
         )
 
         (
@@ -448,6 +477,8 @@ def _execute_instance_level(
             run_dir
         )
 
+        progress_tracker.complete()
+
         return {
             "status": "completed",
             "method": METHOD,
@@ -479,6 +510,11 @@ def _execute_instance_level(
         }
 
     except Exception as error:
+        if progress_tracker is not None:
+            progress_tracker.fail(
+                error
+            )
+            
         duration_seconds = float(
             perf_counter()
             - start_time

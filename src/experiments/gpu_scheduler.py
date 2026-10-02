@@ -2,10 +2,16 @@ import os
 import signal
 import subprocess
 import sys
+from math import ceil
 from pathlib import Path
 from time import perf_counter, sleep
 
 from src.experiments.fingerprint import build_experiment_fingerprint
+from src.experiments.progress import (
+    format_duration,
+    format_progress_line,
+    read_progress,
+)
 from src.paths import (
     PROJECT_ROOT,
     get_log_path,
@@ -16,6 +22,7 @@ from src.results.io import is_run_completed
 
 DEFAULT_GPU_VRAM_SAFETY_MARGIN_GB = 2.0
 DEFAULT_GPU_POLL_SECONDS = 5.0
+DEFAULT_PROGRESS_REPORT_SECONDS = 30.0
 
 
 def query_gpu_memory():
@@ -531,6 +538,56 @@ def summarize_parallel_results(
     }
 
 
+def build_running_progress_line(
+    running_entry,
+):
+    context = running_entry[
+        "context"
+    ]
+
+    progress = read_progress(
+        context[
+            "run_dir"
+        ]
+    )
+
+    if progress is not None:
+        return format_progress_line(
+            progress
+        )
+
+    elapsed_seconds = float(
+        perf_counter()
+        - running_entry[
+            "started_at"
+        ]
+    )
+
+    return (
+        f"method={context['method']} "
+        f"split_seed={context['split_seed']} "
+        f"model_seed={context['model_seed']} "
+        f"phase=starting "
+        f"epoch=0/? "
+        f"elapsed="
+        f"{format_duration(elapsed_seconds)} "
+        f"eta=--:--:--"
+    )
+
+
+def report_running_progress(
+    running,
+):
+    for entry in running:
+        print(
+            "[ACTIVE] "
+            + build_running_progress_line(
+                entry
+            ),
+            flush=True,
+        )
+
+
 def run_parallel_grid(
     tasks,
     force,
@@ -539,6 +596,7 @@ def run_parallel_grid(
     vram_per_run_gb,
     vram_safety_margin_gb=DEFAULT_GPU_VRAM_SAFETY_MARGIN_GB,
     poll_seconds=DEFAULT_GPU_POLL_SECONDS,
+    progress_report_seconds=DEFAULT_PROGRESS_REPORT_SECONDS,
 ):
     validate_parallel_settings(
         max_parallel=max_parallel,
@@ -549,6 +607,21 @@ def run_parallel_grid(
             vram_safety_margin_gb
         ),
         poll_seconds=poll_seconds,
+    )
+
+    if progress_report_seconds <= 0:
+        raise ValueError(
+            "progress_report_seconds must be greater than zero."
+        )
+
+    report_every_polls = max(
+        1,
+        int(
+            ceil(
+                progress_report_seconds
+                / poll_seconds
+            )
+        ),
     )
 
     pending = [
@@ -566,6 +639,7 @@ def run_parallel_grid(
     running = []
     results = []
     baseline_free_gb = None
+    poll_count = 0
 
     grid_start_time = (
         perf_counter()
@@ -787,6 +861,18 @@ def run_parallel_grid(
                 sleep(
                     poll_seconds
                 )
+
+                poll_count += 1
+
+                if (
+                    running
+                    and poll_count
+                    % report_every_polls
+                    == 0
+                ):
+                    report_running_progress(
+                        running
+                    )
 
     except BaseException:
         for entry in running:

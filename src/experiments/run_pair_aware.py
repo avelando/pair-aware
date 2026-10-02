@@ -44,6 +44,7 @@ from src.evaluation.predictions import (
     build_instance_predictions,
     build_pair_predictions,
 )
+from src.experiments.progress import RunProgressTracker
 from src.experiments.runner import (
     run_experiment,
     validate_seeds,
@@ -296,6 +297,7 @@ def _execute_pair_aware(
     )
 
     model = None
+    progress_tracker = None
     start_time = perf_counter()
 
     try:
@@ -358,6 +360,9 @@ def _execute_pair_aware(
                     "checkpoint"
                 ],
                 device=device,
+                progress_callback=(
+                    progress_tracker.update_epoch
+                ),
             )
         )
 

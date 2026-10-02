@@ -16,6 +16,7 @@ RUN_ARTIFACT_NAMES = {
     "predictions": "predictions.csv",
     "pair_predictions": "pair_predictions.csv",
     "checkpoint": "checkpoint.pt",
+    "progress": "progress.json",
     "completed": "completed",
 }
 

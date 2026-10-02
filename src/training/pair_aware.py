@@ -335,6 +335,7 @@ def train_pair_aware_model(
     validation_loader,
     checkpoint_path,
     device,
+    progress_callback=None,
 ):
     checkpoint_path = Path(
         checkpoint_path
@@ -491,6 +492,19 @@ def train_pair_aware_model(
             )
         else:
             epochs_without_improvement += 1
+
+        if progress_callback is not None:
+            progress_callback(
+                epoch=epoch,
+                epoch_metrics=history[-1],
+                best_epoch=best_epoch,
+                best_validation_f1_macro=float(
+                    best_validation_score
+                ),
+                epochs_without_improvement=(
+                    epochs_without_improvement
+                ),
+            )
 
         if (
             epochs_without_improvement

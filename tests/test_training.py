@@ -644,6 +644,8 @@ class TrainingTest(unittest.TestCase):
             ),
         ]
 
+        progress_callback = MagicMock()
+
         with tempfile.TemporaryDirectory() as directory:
             checkpoint_path = (
                 Path(directory)
@@ -690,6 +692,7 @@ class TrainingTest(unittest.TestCase):
                     validation_loader=validation_loader,
                     checkpoint_path=checkpoint_path,
                     device=torch.device("cpu"),
+                    progress_callback=progress_callback,
                 )
 
         self.assertEqual(
@@ -727,6 +730,25 @@ class TrainingTest(unittest.TestCase):
                 "best_validation_f1_macro"
             ],
             0.80,
+        )
+
+        self.assertEqual(
+            progress_callback.call_count,
+            3,
+        )
+
+        self.assertEqual(
+            progress_callback.call_args_list[
+                -1
+            ].kwargs["epoch"],
+            3,
+        )
+
+        self.assertEqual(
+            progress_callback.call_args_list[
+                -1
+            ].kwargs["best_epoch"],
+            1,
         )
 
         save_mock.assert_called_once()
