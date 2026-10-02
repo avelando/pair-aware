@@ -360,6 +360,8 @@ class GridTest(unittest.TestCase):
             "completed_runs": 2,
             "skipped_runs": 0,
             "failed_runs": 0,
+            "retried_runs": 0,
+            "retry_attempts": 0,
             "duration_seconds": 5.0,
             "tasks": [],
             "results": [],
@@ -388,6 +390,7 @@ class GridTest(unittest.TestCase):
                 vram_per_run_gb=10.0,
                 vram_safety_margin_gb=2.0,
                 poll_seconds=3.0,
+                max_retries=2,
             )
 
         self.assertIs(
@@ -396,6 +399,17 @@ class GridTest(unittest.TestCase):
         )
 
         parallel_mock.assert_called_once()
+
+        call_kwargs = (
+            parallel_mock.call_args.kwargs
+        )
+
+        self.assertEqual(
+            call_kwargs[
+                "max_retries"
+            ],
+            2,
+        )
 
         execute_mock.assert_not_called()
 
@@ -548,6 +562,6 @@ class GridTest(unittest.TestCase):
                 ),
                 max_retries=-1,
             )
-            
+
 if __name__ == "__main__":
     unittest.main()

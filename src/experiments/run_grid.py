@@ -285,11 +285,6 @@ def run_grid(
         }
 
     if max_parallel > 1:
-        if max_retries > 0:
-            raise ValueError(
-                "Parallel retries are not available yet."
-            )
-        
         return run_parallel_grid(
             tasks=tasks,
             force=force,
@@ -305,6 +300,7 @@ def run_grid(
             progress_report_seconds=(
                 progress_report_seconds
             ),
+            max_retries=max_retries,
         )
 
     if max_parallel != 1:

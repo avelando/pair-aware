@@ -607,6 +607,289 @@ class GpuSchedulerTest(unittest.TestCase):
             "best_validation_f1=0.800000",
             line,
         )
-        
+
+    def test_parallel_grid_retries_failed_process_then_completes(self):
+        task = {
+            "method": "instance_level",
+            "split_seed": 13,
+            "model_seed": 13,
+        }
+
+        context = {
+            **task,
+            "run_dir": Path(
+                "results/run"
+            ),
+            "log_path": Path(
+                "logs/run.log"
+            ),
+            "experiment_id": "experiment-id",
+        }
+
+        first_entry = {
+            "process": FakeProcess(
+                returncode=1
+            ),
+            "context": context,
+            "log_file": io.StringIO(),
+            "started_at": 1.0,
+        }
+
+        second_entry = {
+            "process": FakeProcess(
+                returncode=0
+            ),
+            "context": context,
+            "log_file": io.StringIO(),
+            "started_at": 2.0,
+        }
+
+        with patch.object(
+            scheduler_module,
+            "build_task_context",
+            return_value=context,
+        ), patch.object(
+            scheduler_module,
+            "is_run_completed",
+            return_value=False,
+        ), patch.object(
+            scheduler_module,
+            "query_gpu_memory",
+            return_value={
+                "total_gb": 32.0,
+                "free_gb": 30.0,
+            },
+        ), patch.object(
+            scheduler_module,
+            "has_vram_capacity",
+            return_value=True,
+        ), patch.object(
+            scheduler_module,
+            "launch_run_process",
+            side_effect=[
+                first_entry,
+                second_entry,
+            ],
+        ) as launch_mock, patch.object(
+            scheduler_module,
+            "finalize_run_process",
+            side_effect=[
+                {
+                    **task,
+                    "status": "failed",
+                    "duration_seconds": 2.0,
+                    "error_type": "SubprocessError",
+                    "error_message": "first failure",
+                },
+                {
+                    **task,
+                    "status": "completed",
+                    "duration_seconds": 3.0,
+                },
+            ],
+        ), patch.object(
+            scheduler_module,
+            "sleep",
+        ), patch.object(
+            scheduler_module,
+            "perf_counter",
+            side_effect=[
+                1.0,
+                10.0,
+            ],
+        ):
+            result = (
+                scheduler_module.run_parallel_grid(
+                    tasks=[
+                        task
+                    ],
+                    force=False,
+                    fail_fast=False,
+                    max_parallel=2,
+                    vram_per_run_gb=10.0,
+                    poll_seconds=0.01,
+                    max_retries=1,
+                )
+            )
+
+        self.assertEqual(
+            launch_mock.call_count,
+            2,
+        )
+
+        self.assertEqual(
+            result["completed_runs"],
+            1,
+        )
+
+        self.assertEqual(
+            result["failed_runs"],
+            0,
+        )
+
+        self.assertEqual(
+            result["retried_runs"],
+            1,
+        )
+
+        self.assertEqual(
+            result["retry_attempts"],
+            1,
+        )
+
+        self.assertEqual(
+            result["results"][0][
+                "retry_count"
+            ],
+            1,
+        )
+
+        self.assertEqual(
+            result["results"][0][
+                "duration_seconds"
+            ],
+            5.0,
+        )
+
+    def test_parallel_grid_stops_retrying_after_budget(self):
+        task = {
+            "method": "instance_level",
+            "split_seed": 13,
+            "model_seed": 13,
+        }
+
+        context = {
+            **task,
+            "run_dir": Path(
+                "results/run"
+            ),
+            "log_path": Path(
+                "logs/run.log"
+            ),
+            "experiment_id": "experiment-id",
+        }
+
+        first_entry = {
+            "process": FakeProcess(
+                returncode=1
+            ),
+            "context": context,
+            "log_file": io.StringIO(),
+            "started_at": 1.0,
+        }
+
+        second_entry = {
+            "process": FakeProcess(
+                returncode=1
+            ),
+            "context": context,
+            "log_file": io.StringIO(),
+            "started_at": 2.0,
+        }
+
+        with patch.object(
+            scheduler_module,
+            "build_task_context",
+            return_value=context,
+        ), patch.object(
+            scheduler_module,
+            "is_run_completed",
+            return_value=False,
+        ), patch.object(
+            scheduler_module,
+            "query_gpu_memory",
+            return_value={
+                "total_gb": 32.0,
+                "free_gb": 30.0,
+            },
+        ), patch.object(
+            scheduler_module,
+            "has_vram_capacity",
+            return_value=True,
+        ), patch.object(
+            scheduler_module,
+            "launch_run_process",
+            side_effect=[
+                first_entry,
+                second_entry,
+            ],
+        ), patch.object(
+            scheduler_module,
+            "finalize_run_process",
+            side_effect=[
+                {
+                    **task,
+                    "status": "failed",
+                    "duration_seconds": 2.0,
+                    "error_type": "SubprocessError",
+                    "error_message": "first failure",
+                },
+                {
+                    **task,
+                    "status": "failed",
+                    "duration_seconds": 3.0,
+                    "error_type": "SubprocessError",
+                    "error_message": "second failure",
+                },
+            ],
+        ), patch.object(
+            scheduler_module,
+            "sleep",
+        ), patch.object(
+            scheduler_module,
+            "perf_counter",
+            side_effect=[
+                1.0,
+                10.0,
+            ],
+        ):
+            result = (
+                scheduler_module.run_parallel_grid(
+                    tasks=[
+                        task
+                    ],
+                    force=False,
+                    fail_fast=False,
+                    max_parallel=2,
+                    vram_per_run_gb=10.0,
+                    poll_seconds=0.01,
+                    max_retries=1,
+                )
+            )
+
+        self.assertEqual(
+            result["completed_runs"],
+            0,
+        )
+
+        self.assertEqual(
+            result["failed_runs"],
+            1,
+        )
+
+        self.assertEqual(
+            result["retried_runs"],
+            1,
+        )
+
+        self.assertEqual(
+            result["retry_attempts"],
+            1,
+        )
+
+        self.assertEqual(
+            result["results"][0][
+                "retry_count"
+            ],
+            1,
+        )
+
+        self.assertEqual(
+            result["results"][0][
+                "error_message"
+            ],
+            "second failure",
+        )
+
 if __name__ == "__main__":
     unittest.main()

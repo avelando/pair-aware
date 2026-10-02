@@ -12,6 +12,10 @@ from src.experiments.progress import (
     format_progress_line,
     read_progress,
 )
+from src.experiments.retry import (
+    DEFAULT_MAX_RETRIES,
+    validate_max_retries,
+)
 from src.paths import (
     PROJECT_ROOT,
     get_log_path,
@@ -243,6 +247,8 @@ def build_task_context(
 
 def build_skipped_record(
     context,
+    retry_count=0,
+    duration_seconds=0.0,
 ):
     return {
         "method": context[
@@ -255,7 +261,12 @@ def build_skipped_record(
             "model_seed"
         ],
         "status": "skipped",
-        "duration_seconds": 0.0,
+        "duration_seconds": float(
+            duration_seconds
+        ),
+        "retry_count": int(
+            retry_count
+        ),
         "run_dir": str(
             context[
                 "run_dir"
@@ -505,30 +516,61 @@ def summarize_parallel_results(
             None,
         )
 
+    completed_runs = sum(
+        result["status"]
+        == "completed"
+        for result in results
+    )
+
+    skipped_runs = sum(
+        result["status"]
+        == "skipped"
+        for result in results
+    )
+
+    failed_runs = sum(
+        result["status"]
+        == "failed"
+        for result in results
+    )
+
+    retried_runs = sum(
+        result.get(
+            "retry_count",
+            0,
+        )
+        > 0
+        for result in results
+    )
+
+    retry_attempts = sum(
+        int(
+            result.get(
+                "retry_count",
+                0,
+            )
+        )
+        for result in results
+    )
+
     return {
         "planned_runs": len(
             tasks
         ),
         "completed_runs": int(
-            sum(
-                result["status"]
-                == "completed"
-                for result in results
-            )
+            completed_runs
         ),
         "skipped_runs": int(
-            sum(
-                result["status"]
-                == "skipped"
-                for result in results
-            )
+            skipped_runs
         ),
         "failed_runs": int(
-            sum(
-                result["status"]
-                == "failed"
-                for result in results
-            )
+            failed_runs
+        ),
+        "retried_runs": int(
+            retried_runs
+        ),
+        "retry_attempts": int(
+            retry_attempts
         ),
         "duration_seconds": float(
             duration_seconds
@@ -597,6 +639,7 @@ def run_parallel_grid(
     vram_safety_margin_gb=DEFAULT_GPU_VRAM_SAFETY_MARGIN_GB,
     poll_seconds=DEFAULT_GPU_POLL_SECONDS,
     progress_report_seconds=DEFAULT_PROGRESS_REPORT_SECONDS,
+    max_retries=DEFAULT_MAX_RETRIES,
 ):
     validate_parallel_settings(
         max_parallel=max_parallel,
@@ -607,6 +650,10 @@ def run_parallel_grid(
             vram_safety_margin_gb
         ),
         poll_seconds=poll_seconds,
+    )
+
+    validate_max_retries(
+        max_retries
     )
 
     if progress_report_seconds <= 0:
@@ -630,6 +677,8 @@ def run_parallel_grid(
             "context": build_task_context(
                 task
             ),
+            "retry_count": 0,
+            "accumulated_duration_seconds": 0.0,
         }
         for index, task in enumerate(
             tasks
@@ -673,6 +722,81 @@ def run_parallel_grid(
                     )
                 )
 
+                retry_count = int(
+                    entry.get(
+                        "retry_count",
+                        0,
+                    )
+                )
+
+                accumulated_duration_seconds = float(
+                    entry.get(
+                        "accumulated_duration_seconds",
+                        0.0,
+                    )
+                )
+
+                result[
+                    "duration_seconds"
+                ] = float(
+                    accumulated_duration_seconds
+                    + result[
+                        "duration_seconds"
+                    ]
+                )
+
+                result[
+                    "retry_count"
+                ] = retry_count
+
+                context = entry[
+                    "context"
+                ]
+
+                if (
+                    result[
+                        "status"
+                    ]
+                    == "failed"
+                    and retry_count
+                    < max_retries
+                ):
+                    next_retry_count = (
+                        retry_count
+                        + 1
+                    )
+
+                    pending.append(
+                        {
+                            "task_index": entry[
+                                "task_index"
+                            ],
+                            "context": context,
+                            "retry_count": (
+                                next_retry_count
+                            ),
+                            "accumulated_duration_seconds": (
+                                result[
+                                    "duration_seconds"
+                                ]
+                            ),
+                        }
+                    )
+
+                    print(
+                        f"[{entry['task_index'] + 1}/{len(tasks)}] "
+                        f"Retrying "
+                        f"method={context['method']} "
+                        f"split_seed={context['split_seed']} "
+                        f"model_seed={context['model_seed']} "
+                        f"retry={next_retry_count}/{max_retries} "
+                        f"after={result['error_type']}: "
+                        f"{result['error_message']}",
+                        flush=True,
+                    )
+
+                    continue
+
                 result[
                     "task_index"
                 ] = entry[
@@ -682,10 +806,6 @@ def run_parallel_grid(
                 results.append(
                     result
                 )
-
-                context = entry[
-                    "context"
-                ]
 
                 print(
                     f"[{entry['task_index'] + 1}/{len(tasks)}] "
@@ -746,7 +866,17 @@ def run_parallel_grid(
                 ):
                     result = (
                         build_skipped_record(
-                            context
+                            context=context,
+                            retry_count=(
+                                pending_entry[
+                                    "retry_count"
+                                ]
+                            ),
+                            duration_seconds=(
+                                pending_entry[
+                                    "accumulated_duration_seconds"
+                                ]
+                            ),
                         )
                     )
 
@@ -834,9 +964,15 @@ def run_parallel_grid(
                     )
 
                     running_entry[
-                        "task_index"
+                        "retry_count"
                     ] = pending_entry[
-                        "task_index"
+                        "retry_count"
+                    ]
+
+                    running_entry[
+                        "accumulated_duration_seconds"
+                    ] = pending_entry[
+                        "accumulated_duration_seconds"
                     ]
 
                     running.append(
@@ -851,6 +987,7 @@ def run_parallel_grid(
                         f"method={context['method']} "
                         f"split_seed={context['split_seed']} "
                         f"model_seed={context['model_seed']} "
+                        f"retry={pending_entry['retry_count']}/{max_retries} "
                         f"free_vram={memory['free_gb']:.2f}GB "
                         f"reserved="
                         f"{reserved_by_scheduler_gb + float(vram_per_run_gb):.2f}GB",
