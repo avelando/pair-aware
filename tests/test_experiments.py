@@ -181,6 +181,7 @@ class ExperimentsTest(unittest.TestCase):
                 experiment_fingerprint=(
                     self.experiment_fingerprint
                 ),
+                attempt=1,
                 device=torch.device("cuda"),
             )
 
@@ -212,6 +213,11 @@ class ExperimentsTest(unittest.TestCase):
         self.assertEqual(
             metadata["experiment_id"],
             "experiment-id",
+        )
+
+        self.assertEqual(
+            metadata["attempt"],
+            1,
         )
 
         self.assertEqual(
@@ -284,6 +290,7 @@ class ExperimentsTest(unittest.TestCase):
                 experiment_fingerprint=(
                     self.experiment_fingerprint
                 ),
+                attempt=1,
                 device=torch.device("cuda"),
             )
 
@@ -359,6 +366,7 @@ class ExperimentsTest(unittest.TestCase):
                 experiment_fingerprint=(
                     self.experiment_fingerprint
                 ),
+                attempt=1,
                 device=torch.device("cuda"),
             )
 
@@ -483,6 +491,201 @@ class ExperimentsTest(unittest.TestCase):
 
         prepare_mock.assert_not_called()
 
+    def test_instance_run_rechecks_completion_after_lock(self):
+        run_dir = Path(
+            "results/instance_level/split_13/model_seed_13"
+        )
+
+        with patch.object(
+            instance_module,
+            "SKIP_COMPLETED_RUNS",
+            True,
+        ), patch.object(
+            instance_module,
+            "get_run_dir",
+            return_value=run_dir,
+        ), patch.object(
+            instance_module,
+            "build_experiment_fingerprint",
+            return_value=self.experiment_fingerprint,
+        ), patch.object(
+            instance_module,
+            "is_run_completed",
+            side_effect=[
+                False,
+                True,
+            ],
+        ) as completed_mock, patch.object(
+            instance_module,
+            "run_lock",
+        ) as lock_mock, patch.object(
+            instance_module,
+            "start_run_attempt",
+        ) as start_mock, patch.object(
+            instance_module,
+            "_execute_instance_level",
+        ) as execute_mock:
+            result = instance_module.run_instance_level(
+                split_seed=13,
+                model_seed=13,
+            )
+
+        self.assertEqual(
+            result["status"],
+            "skipped",
+        )
+
+        self.assertEqual(
+            completed_mock.call_count,
+            2,
+        )
+
+        lock_mock.assert_called_once_with(
+            run_dir,
+            "experiment-id",
+        )
+
+        start_mock.assert_not_called()
+        execute_mock.assert_not_called()
+
+    def test_instance_run_records_completed_attempt(self):
+        run_dir = Path(
+            "results/instance_level/split_13/model_seed_13"
+        )
+
+        execution_result = {
+            "status": "completed",
+            "method": "instance_level",
+            "run_dir": str(run_dir),
+        }
+
+        with patch.object(
+            instance_module,
+            "SKIP_COMPLETED_RUNS",
+            True,
+        ), patch.object(
+            instance_module,
+            "get_run_dir",
+            return_value=run_dir,
+        ), patch.object(
+            instance_module,
+            "build_experiment_fingerprint",
+            return_value=self.experiment_fingerprint,
+        ), patch.object(
+            instance_module,
+            "is_run_completed",
+            return_value=False,
+        ), patch.object(
+            instance_module,
+            "run_lock",
+        ), patch.object(
+            instance_module,
+            "start_run_attempt",
+            return_value=3,
+        ), patch.object(
+            instance_module,
+            "complete_run_attempt",
+        ) as complete_mock, patch.object(
+            instance_module,
+            "fail_run_attempt",
+        ) as fail_mock, patch.object(
+            instance_module,
+            "_execute_instance_level",
+            return_value=execution_result,
+        ) as execute_mock:
+            result = instance_module.run_instance_level(
+                split_seed=13,
+                model_seed=13,
+            )
+
+        self.assertEqual(
+            result["attempt"],
+            3,
+        )
+
+        execute_mock.assert_called_once_with(
+            split_seed=13,
+            model_seed=13,
+            run_dir=run_dir,
+            experiment_fingerprint=(
+                self.experiment_fingerprint
+            ),
+            attempt=3,
+        )
+
+        complete_mock.assert_called_once()
+        fail_mock.assert_not_called()
+
+    def test_pair_run_records_completed_attempt(self):
+        run_dir = Path(
+            "results/true_pair/split_13/model_seed_13"
+        )
+
+        execution_result = {
+            "status": "completed",
+            "method": "true_pair",
+            "run_dir": str(run_dir),
+        }
+
+        with patch.object(
+            pair_module,
+            "SKIP_COMPLETED_RUNS",
+            True,
+        ), patch.object(
+            pair_module,
+            "get_run_dir",
+            return_value=run_dir,
+        ), patch.object(
+            pair_module,
+            "build_experiment_fingerprint",
+            return_value=self.experiment_fingerprint,
+        ), patch.object(
+            pair_module,
+            "is_run_completed",
+            return_value=False,
+        ), patch.object(
+            pair_module,
+            "run_lock",
+        ), patch.object(
+            pair_module,
+            "start_run_attempt",
+            return_value=4,
+        ), patch.object(
+            pair_module,
+            "complete_run_attempt",
+        ) as complete_mock, patch.object(
+            pair_module,
+            "fail_run_attempt",
+        ) as fail_mock, patch.object(
+            pair_module,
+            "_execute_pair_aware",
+            return_value=execution_result,
+        ) as execute_mock:
+            result = pair_module.run_pair_aware(
+                method="true_pair",
+                split_seed=13,
+                model_seed=13,
+            )
+
+        self.assertEqual(
+            result["attempt"],
+            4,
+        )
+
+        execute_mock.assert_called_once_with(
+            method="true_pair",
+            split_seed=13,
+            model_seed=13,
+            run_dir=run_dir,
+            experiment_fingerprint=(
+                self.experiment_fingerprint
+            ),
+            attempt=4,
+        )
+
+        complete_mock.assert_called_once()
+        fail_mock.assert_not_called()
+
     def test_force_bypasses_instance_completed_run_skip(self):
         run_dir = Path(
             "results/instance_level/split_13/model_seed_13"
@@ -506,11 +709,17 @@ class ExperimentsTest(unittest.TestCase):
             return_value=True,
         ) as completed_mock, patch.object(
             instance_module,
-            "prepare_run_directory",
-            return_value={},
-        ) as prepare_mock, patch.object(
+            "run_lock",
+        ) as lock_mock, patch.object(
             instance_module,
-            "load_split_directory",
+            "start_run_attempt",
+            return_value=2,
+        ) as start_mock, patch.object(
+            instance_module,
+            "fail_run_attempt",
+        ) as fail_mock, patch.object(
+            instance_module,
+            "_execute_instance_level",
             side_effect=RuntimeError(
                 "forced execution"
             ),
@@ -525,13 +734,32 @@ class ExperimentsTest(unittest.TestCase):
                     force=True,
                 )
 
-        completed_mock.assert_called_once_with(
+        completed_mock.assert_not_called()
+
+        lock_mock.assert_called_once_with(
             run_dir,
-            expected_experiment_id="experiment-id",
+            "experiment-id",
         )
 
-        prepare_mock.assert_called_once_with(
-            run_dir
+        start_mock.assert_called_once_with(
+            run_dir,
+            "experiment-id",
+        )
+
+        fail_mock.assert_called_once()
+
+        self.assertEqual(
+            fail_mock.call_args.kwargs[
+                "experiment_id"
+            ],
+            "experiment-id",
+        )
+
+        self.assertEqual(
+            fail_mock.call_args.kwargs[
+                "attempt"
+            ],
+            2,
         )
 
 

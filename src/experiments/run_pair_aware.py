@@ -45,6 +45,12 @@ from src.evaluation.predictions import (
     build_pair_predictions,
 )
 from src.experiments.fingerprint import build_experiment_fingerprint
+from src.experiments.lifecycle import (
+    complete_run_attempt,
+    fail_run_attempt,
+    run_lock,
+    start_run_attempt,
+)
 from src.experiments.provenance import (
     get_environment_metadata,
     get_git_provenance,
@@ -123,6 +129,7 @@ def create_run_metadata(
     split_metadata,
     train_pair_count,
     experiment_fingerprint,
+    attempt,
     device,
 ):
     pairing_metadata = {
@@ -164,6 +171,7 @@ def create_run_metadata(
         "experiment_id": experiment_fingerprint[
             "experiment_id"
         ],
+        "attempt": attempt,
         "fingerprint": {
             "version": experiment_fingerprint[
                 "fingerprint_version"
@@ -225,55 +233,14 @@ def create_run_metadata(
     }
 
 
-def run_pair_aware(
+def _execute_pair_aware(
     method,
     split_seed,
     model_seed,
-    force=False,
+    run_dir,
+    experiment_fingerprint,
+    attempt,
 ):
-    validate_run_arguments(
-        method,
-        split_seed,
-        model_seed,
-    )
-
-    run_dir = get_run_dir(
-        method,
-        split_seed,
-        model_seed,
-    )
-
-    experiment_fingerprint = (
-        build_experiment_fingerprint(
-            method,
-            split_seed,
-            model_seed,
-        )
-    )
-
-    if (
-        is_run_completed(
-            run_dir,
-            expected_experiment_id=(
-                experiment_fingerprint[
-                    "experiment_id"
-                ]
-            ),
-        )
-        and SKIP_COMPLETED_RUNS
-        and not force
-    ):
-        return {
-            "status": "skipped",
-            "method": method,
-            "split_seed": split_seed,
-            "model_seed": model_seed,
-            "run_dir": str(run_dir),
-            "experiment_id": experiment_fingerprint[
-                "experiment_id"
-            ],
-        }
-
     artifact_paths = prepare_run_directory(
         run_dir
     )
@@ -329,6 +296,7 @@ def run_pair_aware(
         experiment_fingerprint=(
             experiment_fingerprint
         ),
+        attempt=attempt,
         device=device,
     )
 
@@ -644,6 +612,146 @@ def run_pair_aware(
         clear_memory()
 
 
+def _build_skipped_result(
+    method,
+    split_seed,
+    model_seed,
+    run_dir,
+    experiment_id,
+):
+    return {
+        "status": "skipped",
+        "method": method,
+        "split_seed": split_seed,
+        "model_seed": model_seed,
+        "run_dir": str(run_dir),
+        "experiment_id": experiment_id,
+    }
+
+
+def run_pair_aware(
+    method,
+    split_seed,
+    model_seed,
+    force=False,
+):
+    validate_run_arguments(
+        method,
+        split_seed,
+        model_seed,
+    )
+
+    run_dir = get_run_dir(
+        method,
+        split_seed,
+        model_seed,
+    )
+
+    experiment_fingerprint = (
+        build_experiment_fingerprint(
+            method,
+            split_seed,
+            model_seed,
+        )
+    )
+
+    experiment_id = (
+        experiment_fingerprint[
+            "experiment_id"
+        ]
+    )
+
+    if (
+        not force
+        and SKIP_COMPLETED_RUNS
+        and is_run_completed(
+            run_dir,
+            expected_experiment_id=experiment_id,
+        )
+    ):
+        return _build_skipped_result(
+            method,
+            split_seed,
+            model_seed,
+            run_dir,
+            experiment_id,
+        )
+
+    with run_lock(
+        run_dir,
+        experiment_id,
+    ):
+        if (
+            not force
+            and SKIP_COMPLETED_RUNS
+            and is_run_completed(
+                run_dir,
+                expected_experiment_id=experiment_id,
+            )
+        ):
+            return _build_skipped_result(
+                method,
+                split_seed,
+                model_seed,
+                run_dir,
+                experiment_id,
+            )
+
+        attempt = start_run_attempt(
+            run_dir,
+            experiment_id,
+        )
+
+        lifecycle_start_time = (
+            perf_counter()
+        )
+
+        try:
+            result = (
+                _execute_pair_aware(
+                    method=method,
+                    split_seed=split_seed,
+                    model_seed=model_seed,
+                    run_dir=run_dir,
+                    experiment_fingerprint=(
+                        experiment_fingerprint
+                    ),
+                    attempt=attempt,
+                )
+            )
+        except BaseException as error:
+            duration_seconds = float(
+                perf_counter()
+                - lifecycle_start_time
+            )
+
+            fail_run_attempt(
+                run_dir=run_dir,
+                experiment_id=experiment_id,
+                attempt=attempt,
+                duration_seconds=duration_seconds,
+                error=error,
+            )
+
+            raise
+
+        duration_seconds = float(
+            perf_counter()
+            - lifecycle_start_time
+        )
+
+        complete_run_attempt(
+            run_dir=run_dir,
+            experiment_id=experiment_id,
+            attempt=attempt,
+            duration_seconds=duration_seconds,
+        )
+
+        result["attempt"] = attempt
+
+        return result
+
+    
 def parse_args():
     parser = argparse.ArgumentParser()
 
