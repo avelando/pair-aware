@@ -1,4 +1,5 @@
 import argparse
+from functools import partial
 from time import perf_counter
 
 import torch
@@ -21,7 +22,6 @@ from src.config import (
     PAIR_BATCH_SIZE,
     PAIR_LOSS_WEIGHT,
     PAIRING_STRATEGIES,
-    SKIP_COMPLETED_RUNS,
     SPLIT_SEEDS,
     WARMUP_RATIO,
     WEIGHT_DECAY,
@@ -44,12 +44,9 @@ from src.evaluation.predictions import (
     build_instance_predictions,
     build_pair_predictions,
 )
-from src.experiments.fingerprint import build_experiment_fingerprint
-from src.experiments.lifecycle import (
-    complete_run_attempt,
-    fail_run_attempt,
-    run_lock,
-    start_run_attempt,
+from src.experiments.runner import (
+    run_experiment,
+    validate_seeds,
 )
 from src.experiments.provenance import (
     get_environment_metadata,
@@ -60,9 +57,7 @@ from src.models.factory import (
     create_sequence_classifier,
     create_tokenizer,
 )
-from src.paths import get_run_dir
 from src.results.io import (
-    is_run_completed,
     mark_run_completed,
     prepare_run_directory,
     remove_checkpoint,
@@ -92,15 +87,10 @@ def validate_run_arguments(
             f"Invalid pair-aware method: {method}."
         )
 
-    if split_seed not in SPLIT_SEEDS:
-        raise ValueError(
-            f"Invalid split seed: {split_seed}."
-        )
-
-    if model_seed not in MODEL_SEEDS:
-        raise ValueError(
-            f"Invalid model seed: {model_seed}."
-        )
+    validate_seeds(
+        split_seed,
+        model_seed,
+    )
 
 
 def build_training_pairs(
@@ -612,23 +602,6 @@ def _execute_pair_aware(
         clear_memory()
 
 
-def _build_skipped_result(
-    method,
-    split_seed,
-    model_seed,
-    run_dir,
-    experiment_id,
-):
-    return {
-        "status": "skipped",
-        "method": method,
-        "split_seed": split_seed,
-        "model_seed": model_seed,
-        "run_dir": str(run_dir),
-        "experiment_id": experiment_id,
-    }
-
-
 def run_pair_aware(
     method,
     split_seed,
@@ -641,206 +614,18 @@ def run_pair_aware(
         model_seed,
     )
 
-    run_dir = get_run_dir(
-        method,
-        split_seed,
-        model_seed,
+    execute = partial(
+        _execute_pair_aware,
+        method=method,
     )
 
-    experiment_fingerprint = (
-        build_experiment_fingerprint(
-            method,
-            split_seed,
-            model_seed,
-        )
+    return run_experiment(
+        method=method,
+        split_seed=split_seed,
+        model_seed=model_seed,
+        execute=execute,
+        force=force,
     )
-
-    experiment_id = (
-        experiment_fingerprint[
-            "experiment_id"
-        ]
-    )
-
-    if (
-        not force
-        and SKIP_COMPLETED_RUNS
-        and is_run_completed(
-            run_dir,
-            expected_experiment_id=experiment_id,
-        )
-    ):
-        return _build_skipped_result(
-            method,
-            split_seed,
-            model_seed,
-            run_dir,
-            experiment_id,
-        )
-
-    with run_lock(
-        run_dir,
-        experiment_id,
-    ):
-        if (
-            not force
-            and SKIP_COMPLETED_RUNS
-            and is_run_completed(
-                run_dir,
-                expected_experiment_id=experiment_id,
-            )
-        ):
-            return _build_skipped_result(
-                method,
-                split_seed,
-                model_seed,
-                run_dir,
-                experiment_id,
-            )
-
-        attempt = start_run_attempt(
-            run_dir,
-            experiment_id,
-        )
-
-        lifecycle_start_time = (
-            perf_counter()
-        )
-
-        try:
-            result = (
-                _execute_pair_aware(
-                    method=method,
-                    split_seed=split_seed,
-                    model_seed=model_seed,
-                    run_dir=run_dir,
-                    experiment_fingerprint=(
-                        experiment_fingerprint
-                    ),
-                    attempt=attempt,
-                )
-            )
-        except BaseException as error:
-            duration_seconds = float(
-                perf_counter()
-                - lifecycle_start_time
-            )
-
-            fail_run_attempt(
-                run_dir=run_dir,
-                experiment_id=experiment_id,
-                attempt=attempt,
-                duration_seconds=duration_seconds,
-                error=error,
-            )
-
-            raise
-
-        duration_seconds = float(
-            perf_counter()
-            - lifecycle_start_time
-        )
-
-        complete_run_attempt(
-            run_dir=run_dir,
-            experiment_id=experiment_id,
-            attempt=attempt,
-            duration_seconds=duration_seconds,
-        )
-
-        result["attempt"] = attempt
-
-        return result
-
-    
-def parse_args():
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument(
-        "--method",
-        required=True,
-        choices=PAIRING_STRATEGIES,
-    )
-
-    parser.add_argument(
-        "--split-seed",
-        type=int,
-        required=True,
-        choices=SPLIT_SEEDS,
-    )
-
-    parser.add_argument(
-        "--model-seed",
-        type=int,
-        required=True,
-        choices=MODEL_SEEDS,
-    )
-
-    parser.add_argument(
-        "--force",
-        action="store_true",
-    )
-
-    return parser.parse_args()
-
-
-def main():
-    args = parse_args()
-
-    result = run_pair_aware(
-        method=args.method,
-        split_seed=args.split_seed,
-        model_seed=args.model_seed,
-        force=args.force,
-    )
-
-    print(
-        f"Status: {result['status']}"
-    )
-
-    print(
-        f"Method: {result['method']}"
-    )
-
-    print(
-        f"Run directory: "
-        f"{result['run_dir']}"
-    )
-
-    if result["status"] == "completed":
-        print(
-            f"Best epoch: "
-            f"{result['best_epoch']}"
-        )
-
-        print(
-            f"Best validation F1: "
-            f"{result['best_validation_f1_macro']:.6f}"
-        )
-
-        print(
-            f"Test accuracy: "
-            f"{result['test_accuracy']:.6f}"
-        )
-
-        print(
-            f"Test macro F1: "
-            f"{result['test_f1_macro']:.6f}"
-        )
-
-        print(
-            f"Pair ranking accuracy: "
-            f"{result['pair_ranking_accuracy']:.6f}"
-        )
-
-        print(
-            f"Pair exact match: "
-            f"{result['pair_exact_match']:.6f}"
-        )
-
-        print(
-            f"Duration seconds: "
-            f"{result['duration_seconds']:.2f}"
-        )
 
 
 if __name__ == "__main__":

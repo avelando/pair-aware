@@ -19,7 +19,6 @@ from src.config import (
     MODEL_REVISION,
     MODEL_SEEDS,
     NUM_EPOCHS,
-    SKIP_COMPLETED_RUNS,
     SPLIT_SEEDS,
     WARMUP_RATIO,
     WEIGHT_DECAY,
@@ -38,12 +37,9 @@ from src.evaluation.predictions import (
     build_instance_predictions,
     build_pair_predictions,
 )
-from src.experiments.fingerprint import build_experiment_fingerprint
-from src.experiments.lifecycle import (
-    complete_run_attempt,
-    fail_run_attempt,
-    run_lock,
-    start_run_attempt,
+from src.experiments.runner import (
+    run_experiment,
+    validate_seeds,
 )
 from src.experiments.provenance import (
     get_environment_metadata,
@@ -54,9 +50,7 @@ from src.models.factory import (
     create_sequence_classifier,
     create_tokenizer,
 )
-from src.paths import get_run_dir
 from src.results.io import (
-    is_run_completed,
     mark_run_completed,
     prepare_run_directory,
     remove_checkpoint,
@@ -83,15 +77,10 @@ def validate_run_seeds(
     split_seed,
     model_seed,
 ):
-    if split_seed not in SPLIT_SEEDS:
-        raise ValueError(
-            f"Invalid split seed: {split_seed}."
-        )
-
-    if model_seed not in MODEL_SEEDS:
-        raise ValueError(
-            f"Invalid model seed: {model_seed}."
-        )
+    validate_seeds(
+        split_seed,
+        model_seed,
+    )
 
 
 def create_run_metadata(
@@ -528,22 +517,6 @@ def _execute_instance_level(
         clear_memory()
 
 
-def _build_skipped_result(
-    split_seed,
-    model_seed,
-    run_dir,
-    experiment_id,
-):
-    return {
-        "status": "skipped",
-        "method": METHOD,
-        "split_seed": split_seed,
-        "model_seed": model_seed,
-        "run_dir": str(run_dir),
-        "experiment_id": experiment_id,
-    }
-
-
 def run_instance_level(
     split_seed,
     model_seed,
@@ -554,112 +527,13 @@ def run_instance_level(
         model_seed,
     )
 
-    run_dir = get_run_dir(
-        METHOD,
-        split_seed,
-        model_seed,
+    return run_experiment(
+        method=METHOD,
+        split_seed=split_seed,
+        model_seed=model_seed,
+        execute=_execute_instance_level,
+        force=force,
     )
-
-    experiment_fingerprint = (
-        build_experiment_fingerprint(
-            METHOD,
-            split_seed,
-            model_seed,
-        )
-    )
-
-    experiment_id = (
-        experiment_fingerprint[
-            "experiment_id"
-        ]
-    )
-
-    if (
-        not force
-        and SKIP_COMPLETED_RUNS
-        and is_run_completed(
-            run_dir,
-            expected_experiment_id=experiment_id,
-        )
-    ):
-        return _build_skipped_result(
-            split_seed,
-            model_seed,
-            run_dir,
-            experiment_id,
-        )
-
-    with run_lock(
-        run_dir,
-        experiment_id,
-    ):
-        if (
-            not force
-            and SKIP_COMPLETED_RUNS
-            and is_run_completed(
-                run_dir,
-                expected_experiment_id=experiment_id,
-            )
-        ):
-            return _build_skipped_result(
-                split_seed,
-                model_seed,
-                run_dir,
-                experiment_id,
-            )
-
-        attempt = start_run_attempt(
-            run_dir,
-            experiment_id,
-        )
-
-        lifecycle_start_time = (
-            perf_counter()
-        )
-
-        try:
-            result = (
-                _execute_instance_level(
-                    split_seed=split_seed,
-                    model_seed=model_seed,
-                    run_dir=run_dir,
-                    experiment_fingerprint=(
-                        experiment_fingerprint
-                    ),
-                    attempt=attempt,
-                )
-            )
-        except BaseException as error:
-            duration_seconds = float(
-                perf_counter()
-                - lifecycle_start_time
-            )
-
-            fail_run_attempt(
-                run_dir=run_dir,
-                experiment_id=experiment_id,
-                attempt=attempt,
-                duration_seconds=duration_seconds,
-                error=error,
-            )
-
-            raise
-
-        duration_seconds = float(
-            perf_counter()
-            - lifecycle_start_time
-        )
-
-        complete_run_attempt(
-            run_dir=run_dir,
-            experiment_id=experiment_id,
-            attempt=attempt,
-            duration_seconds=duration_seconds,
-        )
-
-        result["attempt"] = attempt
-
-        return result
 
     
 def parse_args():

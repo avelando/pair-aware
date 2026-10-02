@@ -207,6 +207,33 @@ class FingerprintTest(unittest.TestCase):
             second,
         )
 
+
+    def test_source_paths_include_shared_execution_modules(self):
+        paths = {
+            path.relative_to(
+                fingerprint_module.PROJECT_ROOT
+            ).as_posix()
+            for path in fingerprint_module._source_paths(
+                "instance_level"
+            )
+        }
+
+        self.assertIn(
+            "src/experiments/lifecycle.py",
+            paths,
+        )
+
+        self.assertIn(
+            "src/experiments/runner.py",
+            paths,
+        )
+
+        self.assertIn(
+            "src/results/io.py",
+            paths,
+        )
+
+
     def test_experiment_id_is_deterministic_and_seed_sensitive(self):
         with patch.object(
             fingerprint_module,

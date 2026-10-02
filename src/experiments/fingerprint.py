@@ -160,7 +160,10 @@ def _source_paths(method):
         "data/validation.py",
         "evaluation/metrics.py",
         "evaluation/predictions.py",
+        "experiments/lifecycle.py",
+        "experiments/runner.py",
         "models/factory.py",
+        "results/io.py",
         "training/common.py",
         "training/reproducibility.py",
     ]
