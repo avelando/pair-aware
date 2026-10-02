@@ -391,7 +391,79 @@ class ExperimentsTest(unittest.TestCase):
             metadata["seed_control"]["seed"],
             101,
         )
-        
+
+    def test_pair_parse_args_accepts_valid_cli_arguments(self):
+        with patch(
+            "sys.argv",
+            [
+                "run_pair_aware",
+                "--method",
+                "true_pair",
+                "--split-seed",
+                "13",
+                "--model-seed",
+                "21",
+                "--force",
+            ],
+        ):
+            args = pair_module.parse_args()
+
+        self.assertEqual(
+            args.method,
+            "true_pair",
+        )
+
+        self.assertEqual(
+            args.split_seed,
+            13,
+        )
+
+        self.assertEqual(
+            args.model_seed,
+            21,
+        )
+
+        self.assertTrue(
+            args.force
+        )
+
+    def test_pair_main_dispatches_to_runner(self):
+        args = type(
+            "Args",
+            (),
+            {
+                "method": "true_pair",
+                "split_seed": 13,
+                "model_seed": 21,
+                "force": True,
+            },
+        )()
+
+        result = {
+            "status": "skipped",
+            "method": "true_pair",
+            "run_dir": "results/run",
+        }
+
+        with patch.object(
+            pair_module,
+            "parse_args",
+            return_value=args,
+        ), patch.object(
+            pair_module,
+            "run_pair_aware",
+            return_value=result,
+        ) as run_mock, patch(
+            "builtins.print"
+        ):
+            pair_module.main()
+
+        run_mock.assert_called_once_with(
+            method="true_pair",
+            split_seed=13,
+            model_seed=21,
+            force=True,
+        )
 
 if __name__ == "__main__":
     unittest.main()

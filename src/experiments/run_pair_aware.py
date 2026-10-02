@@ -628,5 +628,96 @@ def run_pair_aware(
     )
 
 
+def parse_args():
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        "--method",
+        required=True,
+        choices=PAIRING_STRATEGIES,
+    )
+
+    parser.add_argument(
+        "--split-seed",
+        type=int,
+        required=True,
+        choices=SPLIT_SEEDS,
+    )
+
+    parser.add_argument(
+        "--model-seed",
+        type=int,
+        required=True,
+        choices=MODEL_SEEDS,
+    )
+
+    parser.add_argument(
+        "--force",
+        action="store_true",
+    )
+
+    return parser.parse_args()
+
+
+def main():
+    args = parse_args()
+
+    result = run_pair_aware(
+        method=args.method,
+        split_seed=args.split_seed,
+        model_seed=args.model_seed,
+        force=args.force,
+    )
+
+    print(
+        f"Status: {result['status']}"
+    )
+
+    print(
+        f"Method: {result['method']}"
+    )
+
+    print(
+        f"Run directory: "
+        f"{result['run_dir']}"
+    )
+
+    if result["status"] == "completed":
+        print(
+            f"Best epoch: "
+            f"{result['best_epoch']}"
+        )
+
+        print(
+            f"Best validation F1: "
+            f"{result['best_validation_f1_macro']:.6f}"
+        )
+
+        print(
+            f"Test accuracy: "
+            f"{result['test_accuracy']:.6f}"
+        )
+
+        print(
+            f"Test macro F1: "
+            f"{result['test_f1_macro']:.6f}"
+        )
+
+        print(
+            f"Pair ranking accuracy: "
+            f"{result['pair_ranking_accuracy']:.6f}"
+        )
+
+        print(
+            f"Pair exact match: "
+            f"{result['pair_exact_match']:.6f}"
+        )
+
+        print(
+            f"Duration seconds: "
+            f"{result['duration_seconds']:.2f}"
+        )
+
+
 if __name__ == "__main__":
     main()
