@@ -44,6 +44,7 @@ from src.evaluation.predictions import (
     build_instance_predictions,
     build_pair_predictions,
 )
+from src.experiments.fingerprint import build_experiment_fingerprint
 from src.experiments.provenance import (
     get_environment_metadata,
     get_git_provenance,
@@ -121,6 +122,7 @@ def create_run_metadata(
     run_dir,
     split_metadata,
     train_pair_count,
+    experiment_fingerprint,
     device,
 ):
     pairing_metadata = {
@@ -159,6 +161,26 @@ def create_run_metadata(
         "split_seed": split_seed,
         "model_seed": model_seed,
         "run_dir": str(run_dir),
+        "experiment_id": experiment_fingerprint[
+            "experiment_id"
+        ],
+        "fingerprint": {
+            "version": experiment_fingerprint[
+                "fingerprint_version"
+            ],
+            "config_hash": experiment_fingerprint[
+                "config_hash"
+            ],
+            "dataset_hash": experiment_fingerprint[
+                "dataset_hash"
+            ],
+            "source_hash": experiment_fingerprint[
+                "source_hash"
+            ],
+            "config": experiment_fingerprint[
+                "config"
+            ],
+        },
         "started_at_utc": utc_now(),
         "model": {
             "name": MODEL_NAME,
@@ -221,8 +243,23 @@ def run_pair_aware(
         model_seed,
     )
 
+    experiment_fingerprint = (
+        build_experiment_fingerprint(
+            method,
+            split_seed,
+            model_seed,
+        )
+    )
+
     if (
-        is_run_completed(run_dir)
+        is_run_completed(
+            run_dir,
+            expected_experiment_id=(
+                experiment_fingerprint[
+                    "experiment_id"
+                ]
+            ),
+        )
         and SKIP_COMPLETED_RUNS
         and not force
     ):
@@ -232,6 +269,9 @@ def run_pair_aware(
             "split_seed": split_seed,
             "model_seed": model_seed,
             "run_dir": str(run_dir),
+            "experiment_id": experiment_fingerprint[
+                "experiment_id"
+            ],
         }
 
     artifact_paths = prepare_run_directory(
@@ -285,6 +325,9 @@ def run_pair_aware(
         split_metadata=split_metadata,
         train_pair_count=len(
             train_pairs
+        ),
+        experiment_fingerprint=(
+            experiment_fingerprint
         ),
         device=device,
     )
@@ -538,6 +581,9 @@ def run_pair_aware(
             "split_seed": split_seed,
             "model_seed": model_seed,
             "run_dir": str(run_dir),
+            "experiment_id": experiment_fingerprint[
+                "experiment_id"
+            ],
             "best_epoch": training_result[
                 "best_epoch"
             ],

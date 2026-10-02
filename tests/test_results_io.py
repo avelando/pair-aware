@@ -40,7 +40,11 @@ class ResultsIOTest(unittest.TestCase):
             self.config_patcher.stop
         )
 
-    def create_completed_run(self, run_dir):
+    def create_completed_run(
+        self,
+        run_dir,
+        experiment_id="experiment-1",
+    ):
         paths = prepare_run_directory(
             run_dir
         )
@@ -48,6 +52,7 @@ class ResultsIOTest(unittest.TestCase):
         write_json(
             {
                 "status": "completed",
+                "experiment_id": experiment_id,
             },
             paths["metadata"],
         )
@@ -258,6 +263,59 @@ class ResultsIOTest(unittest.TestCase):
             self.assertTrue(
                 is_run_completed(
                     run_dir
+                )
+            )
+
+    def test_completed_run_with_matching_experiment_id_is_accepted(self):
+        with tempfile.TemporaryDirectory() as directory:
+            run_dir = Path(directory)
+
+            self.create_completed_run(
+                run_dir,
+                experiment_id="expected-id",
+            )
+
+            self.assertTrue(
+                is_run_completed(
+                    run_dir,
+                    expected_experiment_id="expected-id",
+                )
+            )
+
+    def test_completed_run_with_mismatched_experiment_id_is_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            run_dir = Path(directory)
+
+            self.create_completed_run(
+                run_dir,
+                experiment_id="old-id",
+            )
+
+            self.assertFalse(
+                is_run_completed(
+                    run_dir,
+                    expected_experiment_id="new-id",
+                )
+            )
+
+    def test_completed_run_without_experiment_id_is_rejected_when_expected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            run_dir = Path(directory)
+            paths = self.create_completed_run(
+                run_dir
+            )
+
+            write_json(
+                {
+                    "status": "completed",
+                },
+                paths["metadata"],
+            )
+
+            self.assertFalse(
+                is_run_completed(
+                    run_dir,
+                    expected_experiment_id="expected-id",
                 )
             )
 

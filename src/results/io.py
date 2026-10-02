@@ -193,7 +193,10 @@ def _read_json(path):
         return json.load(file)
 
 
-def is_run_completed(run_dir):
+def is_run_completed(
+    run_dir,
+    expected_experiment_id=None,
+):
     paths = get_run_artifact_paths(
         run_dir
     )
@@ -227,6 +230,13 @@ def is_run_completed(run_dir):
         )
 
         if metadata.get("status") != "completed":
+            return False
+
+        if (
+            expected_experiment_id is not None
+            and metadata.get("experiment_id")
+            != expected_experiment_id
+        ):
             return False
 
         if not {

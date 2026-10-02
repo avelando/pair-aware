@@ -10,6 +10,18 @@ import src.experiments.run_pair_aware as pair_module
 
 
 class ExperimentsTest(unittest.TestCase):
+    def setUp(self):
+        self.experiment_fingerprint = {
+            "experiment_id": "experiment-id",
+            "fingerprint_version": 1,
+            "config_hash": "config-hash",
+            "dataset_hash": "dataset-hash",
+            "source_hash": "source-hash",
+            "config": {
+                "method": "test",
+            },
+        }
+
     def test_instance_run_seeds_accept_configured_values(self):
         instance_module.validate_run_seeds(
             13,
@@ -166,6 +178,9 @@ class ExperimentsTest(unittest.TestCase):
                 model_seed=40,
                 run_dir=Path("results/run"),
                 split_metadata=split_metadata,
+                experiment_fingerprint=(
+                    self.experiment_fingerprint
+                ),
                 device=torch.device("cuda"),
             )
 
@@ -246,6 +261,9 @@ class ExperimentsTest(unittest.TestCase):
                     "dataset": "test",
                 },
                 train_pair_count=1995,
+                experiment_fingerprint=(
+                    self.experiment_fingerprint
+                ),
                 device=torch.device("cuda"),
             )
 
@@ -318,6 +336,9 @@ class ExperimentsTest(unittest.TestCase):
                     "dataset": "test",
                 },
                 train_pair_count=1995,
+                experiment_fingerprint=(
+                    self.experiment_fingerprint
+                ),
                 device=torch.device("cuda"),
             )
 
