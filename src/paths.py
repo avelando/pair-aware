@@ -6,6 +6,10 @@ DATA_ROOT = PROJECT_ROOT / "data"
 PAIR_CONTROLLED_DATA_ROOT = DATA_ROOT / "pair_controlled"
 
 RESULTS_ROOT = PROJECT_ROOT / "results"
+SUMMARY_PATH = RESULTS_ROOT / "summary.csv"
+SUMMARY_BY_SPLIT_PATH = RESULTS_ROOT / "summary_by_split.csv"
+SUMMARY_BY_METHOD_PATH = RESULTS_ROOT / "summary_by_method.csv"
+
 LOGS_ROOT = PROJECT_ROOT / "logs"
 
 NOTEBOOKS_ROOT = PROJECT_ROOT / "notebooks"
