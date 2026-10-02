@@ -106,15 +106,28 @@ def has_vram_capacity(
     vram_per_run_gb,
     vram_safety_margin_gb,
     reserved_by_scheduler_gb=0.0,
+    baseline_free_gb=None,
 ):
-    effective_free_gb = max(
+    observed_free_gb = float(
+        memory["free_gb"]
+    )
+
+    if baseline_free_gb is None:
+        baseline_free_gb = observed_free_gb
+
+    logical_free_gb = max(
         0.0,
         float(
-            memory["free_gb"]
+            baseline_free_gb
         )
         - float(
             reserved_by_scheduler_gb
         ),
+    )
+
+    effective_free_gb = min(
+        observed_free_gb,
+        logical_free_gb,
     )
 
     required_free_gb = (
@@ -552,7 +565,7 @@ def run_parallel_grid(
 
     running = []
     results = []
-    failure = None
+    baseline_free_gb = None
 
     grid_start_time = (
         perf_counter()
@@ -616,10 +629,13 @@ def run_parallel_grid(
                         "status"
                     ]
                     == "failed"
-                    and failure is None
                 ):
-                    failure = (
-                        result
+                    raise RuntimeError(
+                        "Parallel grid stopped after failure: "
+                        f"{result['method']} "
+                        f"split_seed={result['split_seed']} "
+                        f"model_seed={result['model_seed']}: "
+                        f"{result['error_message']}"
                     )
 
             running = (
@@ -627,8 +643,7 @@ def run_parallel_grid(
             )
 
             if (
-                failure is None
-                and pending
+                pending
                 and len(running)
                 < max_parallel
             ):
@@ -684,9 +699,13 @@ def run_parallel_grid(
 
                     continue
 
-                memory = (
-                    query_gpu_memory()
-                )
+                if (
+                    baseline_free_gb is None
+                    or not running
+                ):
+                    baseline_free_gb = float(
+                        memory["free_gb"]
+                    )
 
                 required_free_gb = (
                     float(
@@ -725,6 +744,9 @@ def run_parallel_grid(
                     reserved_by_scheduler_gb=(
                         reserved_by_scheduler_gb
                     ),
+                    baseline_free_gb=(
+                        baseline_free_gb
+                    ),
                 ):
                     running_entry = (
                         launch_run_process(
@@ -756,18 +778,6 @@ def run_parallel_grid(
                         f"{reserved_by_scheduler_gb + float(vram_per_run_gb):.2f}GB",
                         flush=True,
                     )
-
-            if (
-                failure is not None
-                and not running
-            ):
-                raise RuntimeError(
-                    "Parallel grid stopped after failure: "
-                    f"{failure['method']} "
-                    f"split_seed={failure['split_seed']} "
-                    f"model_seed={failure['model_seed']}: "
-                    f"{failure['error_message']}"
-                )
 
             if pending or running:
                 sleep(

@@ -3,7 +3,7 @@ import sys
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 import src.experiments.gpu_scheduler as scheduler_module
 
@@ -300,6 +300,258 @@ class GpuSchedulerTest(unittest.TestCase):
         memory_mock.assert_not_called()
         launch_mock.assert_not_called()
 
+    def test_vram_capacity_does_not_double_count_materialized_usage(self):
+        memory = {
+            "total_gb": 32.0,
+            "free_gb": 20.0,
+        }
+
+        self.assertTrue(
+            scheduler_module.has_vram_capacity(
+                memory=memory,
+                vram_per_run_gb=10.0,
+                vram_safety_margin_gb=2.0,
+                reserved_by_scheduler_gb=10.0,
+                baseline_free_gb=30.0,
+            )
+        )
+
+        self.assertFalse(
+            scheduler_module.has_vram_capacity(
+                memory=memory,
+                vram_per_run_gb=10.0,
+                vram_safety_margin_gb=2.0,
+                reserved_by_scheduler_gb=20.0,
+                baseline_free_gb=30.0,
+            )
+        )
+
+    def test_parallel_grid_uses_initial_free_vram_as_reservation_baseline(self):
+        task = {
+            "method": "instance_level",
+            "split_seed": 13,
+            "model_seed": 13,
+        }
+
+        context = {
+            **task,
+            "run_dir": Path(
+                "results/run"
+            ),
+            "log_path": Path(
+                "logs/run.log"
+            ),
+            "experiment_id": "experiment-id",
+        }
+
+        running_entry = {
+            "process": FakeProcess(
+                returncode=0
+            ),
+            "context": context,
+            "log_file": io.StringIO(),
+            "started_at": 1.0,
+        }
+
+        with patch.object(
+            scheduler_module,
+            "build_task_context",
+            return_value=context,
+        ), patch.object(
+            scheduler_module,
+            "is_run_completed",
+            return_value=False,
+        ), patch.object(
+            scheduler_module,
+            "query_gpu_memory",
+            return_value={
+                "total_gb": 32.0,
+                "free_gb": 30.0,
+            },
+        ), patch.object(
+            scheduler_module,
+            "has_vram_capacity",
+            return_value=True,
+        ) as capacity_mock, patch.object(
+            scheduler_module,
+            "launch_run_process",
+            return_value=running_entry,
+        ), patch.object(
+            scheduler_module,
+            "finalize_run_process",
+            return_value={
+                **task,
+                "status": "completed",
+                "duration_seconds": 1.0,
+            },
+        ), patch.object(
+            scheduler_module,
+            "sleep",
+        ), patch.object(
+            scheduler_module,
+            "perf_counter",
+            side_effect=[
+                1.0,
+                2.0,
+            ],
+        ):
+            scheduler_module.run_parallel_grid(
+                tasks=[task],
+                force=False,
+                fail_fast=False,
+                max_parallel=2,
+                vram_per_run_gb=10.0,
+                vram_safety_margin_gb=2.0,
+                poll_seconds=0.01,
+            )
+
+        capacity_mock.assert_called_once_with(
+            memory={
+                "total_gb": 32.0,
+                "free_gb": 30.0,
+            },
+            vram_per_run_gb=10.0,
+            vram_safety_margin_gb=2.0,
+            reserved_by_scheduler_gb=0.0,
+            baseline_free_gb=30.0,
+        )
+
+    def test_fail_fast_stops_other_running_processes(self):
+        first_task = {
+            "method": "instance_level",
+            "split_seed": 13,
+            "model_seed": 13,
+        }
+
+        second_task = {
+            "method": "instance_level",
+            "split_seed": 13,
+            "model_seed": 21,
+        }
+
+        first_context = {
+            **first_task,
+            "run_dir": Path(
+                "results/run-1"
+            ),
+            "log_path": Path(
+                "logs/run-1.log"
+            ),
+            "experiment_id": "experiment-1",
+        }
+
+        second_context = {
+            **second_task,
+            "run_dir": Path(
+                "results/run-2"
+            ),
+            "log_path": Path(
+                "logs/run-2.log"
+            ),
+            "experiment_id": "experiment-2",
+        }
+
+        first_process = MagicMock()
+
+        first_process.poll.side_effect = [
+            None,
+            1,
+        ]
+
+        second_process = MagicMock()
+
+        second_process.poll.return_value = (
+            None
+        )
+
+        first_entry = {
+            "process": first_process,
+            "context": first_context,
+            "log_file": io.StringIO(),
+            "started_at": 1.0,
+        }
+
+        second_entry = {
+            "process": second_process,
+            "context": second_context,
+            "log_file": io.StringIO(),
+            "started_at": 1.0,
+        }
+
+        with patch.object(
+            scheduler_module,
+            "build_task_context",
+            side_effect=[
+                first_context,
+                second_context,
+            ],
+        ), patch.object(
+            scheduler_module,
+            "is_run_completed",
+            return_value=False,
+        ), patch.object(
+            scheduler_module,
+            "query_gpu_memory",
+            return_value={
+                "total_gb": 32.0,
+                "free_gb": 30.0,
+            },
+        ), patch.object(
+            scheduler_module,
+            "has_vram_capacity",
+            return_value=True,
+        ), patch.object(
+            scheduler_module,
+            "launch_run_process",
+            side_effect=[
+                first_entry,
+                second_entry,
+            ],
+        ), patch.object(
+            scheduler_module,
+            "finalize_run_process",
+            return_value={
+                **first_task,
+                "status": "failed",
+                "duration_seconds": 1.0,
+                "error_message": "training failed",
+            },
+        ), patch.object(
+            scheduler_module,
+            "stop_run_process",
+        ) as stop_mock, patch.object(
+            scheduler_module,
+            "sleep",
+        ), patch.object(
+            scheduler_module,
+            "perf_counter",
+            return_value=1.0,
+        ):
+            with self.assertRaisesRegex(
+                RuntimeError,
+                "Parallel grid stopped after failure",
+            ):
+                scheduler_module.run_parallel_grid(
+                    tasks=[
+                        first_task,
+                        second_task,
+                    ],
+                    force=False,
+                    fail_fast=True,
+                    max_parallel=2,
+                    vram_per_run_gb=10.0,
+                    vram_safety_margin_gb=2.0,
+                    poll_seconds=0.01,
+                )
+
+        self.assertEqual(
+            stop_mock.call_count,
+            2,
+        )
+
+        stop_mock.assert_any_call(
+            second_entry
+        )
 
 if __name__ == "__main__":
     unittest.main()
