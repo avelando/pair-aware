@@ -964,6 +964,12 @@ def run_parallel_grid(
                     )
 
                     running_entry[
+                        "task_index"
+                    ] = pending_entry[
+                        "task_index"
+                    ]
+
+                    running_entry[
                         "retry_count"
                     ] = pending_entry[
                         "retry_count"
