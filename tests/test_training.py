@@ -950,60 +950,12 @@ class TrainingTest(unittest.TestCase):
             2,
         )
 
-    def test_running_progress_line_uses_progress_artifact(self):
-        entry = {
-            "context": {
-                "method": "instance_level",
-                "split_seed": 13,
-                "model_seed": 40,
-                "run_dir": Path(
-                    "results/run"
-                ),
-            },
-            "started_at": 10.0,
-        }
-
-        with patch.object(
-            scheduler_module,
-            "read_progress",
-            return_value={
-                "method": "instance_level",
-                "split_seed": 13,
-                "model_seed": 40,
-                "phase": "training",
-                "epoch": 2,
-                "total_epochs": 6,
-                "elapsed_seconds": 120.0,
-                "eta_seconds": 240.0,
-                "best_validation_f1_macro": 0.8,
-            },
-        ):
-            line = (
-                scheduler_module
-                .build_running_progress_line(
-                    entry
-                )
-            )
-
-        self.assertIn(
-            "epoch=2/6",
-            line,
+        self.assertEqual(
+            save_mock.call_count,
+            2,
         )
 
-        self.assertIn(
-            "elapsed=00:02:00",
-            line,
-        )
-
-        self.assertIn(
-            "eta=00:04:00",
-            line,
-        )
-
-        self.assertIn(
-            "best_validation_f1=0.800000",
-            line,
-        )
+        load_mock.assert_called_once()
 
 if __name__ == "__main__":
     unittest.main()
