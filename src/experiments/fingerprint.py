@@ -7,6 +7,7 @@ from src.config import (
     AMP_INIT_SCALE,
     EARLY_STOPPING_PATIENCE,
     EVAL_BATCH_SIZE,
+    EXPERIMENT_VERSION,
     ID2LABEL,
     INSTANCE_TRAIN_BATCH_SIZE,
     LABEL2ID,
@@ -80,6 +81,7 @@ def _hash_files(paths, root):
 
 def get_config_snapshot(method):
     common = {
+        "experiment_version": EXPERIMENT_VERSION,
         "method": method,
         "model_name": MODEL_NAME,
         "model_revision": MODEL_REVISION,

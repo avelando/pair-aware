@@ -3,10 +3,12 @@ import os
 MODEL_NAME = "neuralmind/bert-large-portuguese-cased"
 MODEL_REVISION = "aa302f6ea73b759f7df9cad58bd272127b67ec28"
 
+EXPERIMENT_VERSION = "v2"
+
 PRECISIONS = ("fp16", "bf16", "fp32")
 TRAINING_PRECISION = os.environ.get(
     "PAIR_AWARE_PRECISION",
-    "fp16",
+    "bf16",
 ).lower()
 
 if TRAINING_PRECISION not in PRECISIONS:
