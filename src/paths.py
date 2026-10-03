@@ -10,6 +10,26 @@ SUMMARY_PATH = RESULTS_ROOT / "summary.csv"
 SUMMARY_BY_SPLIT_PATH = RESULTS_ROOT / "summary_by_split.csv"
 SUMMARY_BY_METHOD_PATH = RESULTS_ROOT / "summary_by_method.csv"
 
+STATISTICS_DESCRIPTIVE_PATH = (
+    RESULTS_ROOT
+    / "statistics_descriptive.csv"
+)
+
+STATISTICS_OMNIBUS_PATH = (
+    RESULTS_ROOT
+    / "statistics_omnibus.csv"
+)
+
+STATISTICS_PAIRWISE_PATH = (
+    RESULTS_ROOT
+    / "statistics_pairwise.csv"
+)
+
+STATISTICS_METADATA_PATH = (
+    RESULTS_ROOT
+    / "statistics_metadata.json"
+)
+
 LOGS_ROOT = PROJECT_ROOT / "logs"
 
 NOTEBOOKS_ROOT = PROJECT_ROOT / "notebooks"
