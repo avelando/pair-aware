@@ -1,0 +1,43 @@
+{
+  "alpha": 0.05,
+  "analysis_version": 1,
+  "completed_runs": 108,
+  "expected_runs": 108,
+  "inferential_unit": "split_seed",
+  "methods": [
+    "instance_level",
+    "true_pair",
+    "shuffled_pair"
+  ],
+  "metrics": [
+    "f1_macro",
+    "pair_ranking_accuracy",
+    "pair_exact_match"
+  ],
+  "model_seed_aggregation": "arithmetic_mean_within_split_seed",
+  "model_seeds": [
+    13,
+    21,
+    40,
+    42,
+    73,
+    101
+  ],
+  "multiple_testing_correction": "holm_within_metric",
+  "numpy_version": "2.5.3",
+  "omnibus_effect_size": "kendalls_w",
+  "omnibus_test": "friedman",
+  "pairwise_effect_direction": "positive_means_method_a_higher",
+  "pairwise_effect_size": "paired_rank_biserial",
+  "pandas_version": "2.3.2",
+  "post_hoc_test": "two_sided_wilcoxon_signed_rank",
+  "scipy_version": "1.17.0",
+  "split_seeds": [
+    13,
+    21,
+    40,
+    42,
+    73,
+    101
+  ]
+}

@@ -1,0 +1,1141 @@
+id,pair_id,suffix,text,true_label,predicted_label,logit_non_pun,logit_pun,pun_score,probability_non_pun,probability_pun,correct
+4.103.H,4.103,H,Qual é a única coisa que se faz sempre em numeração romana? XI XI.,1,1,-3.302734375,3.23828125,6.541015625,0.0014409428695216775,0.9985590577125549,True
+5.28.N,5.28,N,Qual é a modelo mais bela que existe? Gisele Bündchen.,0,0,4.96484375,-4.24609375,-9.2109375,0.9999001026153564,9.99303229036741e-05,True
+4.600.H,4.600,H,O que são quatro pontos pretos no chão? Fourmigas.,1,1,-2.345703125,2.83984375,5.185546875,0.005565723869949579,0.9944342970848083,True
+5.1378.N,5.1378,N,Por que eu não faço esporte? Porque é a maior furada.,0,0,3.890625,-2.927734375,-6.818359375,0.9989076852798462,0.001092319143936038,True
+5.1777.N,5.1777,N,Qual é o contrário de Otorrinolaringologista? atsigologniralonirroto.,0,1,-4.0390625,4.05078125,8.08984375,0.0003065436612814665,0.9996935129165649,False
+5.1772.H,5.1772,H,O que um diretor da Ubisoft foi fazer na África? Um SaFari Cry.,1,1,-3.6171875,3.814453125,7.431640625,0.0005918645765632391,0.9994081258773804,True
+5.1714.H,5.1714,H,Você gosta de Katy Perry? Katy perguntou?,1,0,4.29296875,-3.76953125,-8.0625,0.9996849298477173,0.00031503866193816066,False
+4.264.N,4.264,N,Porque é que na escola as meninas desenham sempre florzinhas e coraçõezinhos no caderno? Porque assim decoram o caderno.,0,0,4.98046875,-4.12109375,-9.1015625,0.99988853931427,0.00011147904297104105,True
+5.1205.N,5.1205,N,Por que o pessoal do Nordeste se orgulha do GPS? Porque ele fala: Você chegou no destino.,0,0,4.40625,-3.72265625,-8.12890625,0.9997051358222961,0.00029480361263267696,True
+5.1050.N,5.1050,N,Qual a serie de anime que louva o tabaco? One Piece.,0,0,4.875,-3.8046875,-8.6796875,0.9998300075531006,0.00016997529019135982,True
+5.2882.N,5.2882,N,Personagem que adora Leite? Pernalonga,0,1,-4.05859375,4.0625,8.12109375,0.0002971151261590421,0.9997028708457947,False
+5.3127.N,5.3127,N,Qual programa onde você fala com um carro? O assistente pessoal.,0,0,4.98046875,-4.0859375,-9.06640625,0.9998844861984253,0.00011546746827661991,True
+5.16.H,5.16,H,Para onde as pulgas vão quando morrem? Para o pulgatório.,1,0,0.92724609375,-0.48193359375,-1.4091796875,0.8036365509033203,0.19636347889900208,False
+5.2393.H,5.2393,H,Qual é o canal infantil que só transmite batida de carro? Car Tum Network.,1,1,-3.423828125,3.546875,6.970703125,0.0009381115669384599,0.9990618824958801,True
+5.4014.N,5.4014,N,Por que no interiorzão não dá pra ouvir música? Porque lá o silêncio impera.,0,0,4.3828125,-3.611328125,-7.994140625,0.9996626377105713,0.0003373201470822096,True
+5.3741.N,5.3741,N,Qual comentarista esportivo se gaba da reforma em seu domicílio? Galvão Bueno.,0,0,5.22265625,-4.2890625,-9.51171875,0.999925971031189,7.397429726552218e-05,True
+5.3523.N,5.3523,N,Em qual brincadeira eu só aceito gente inteligente? Tiro ao alvo.,0,0,4.20703125,-3.6015625,-7.80859375,0.9995939135551453,0.0004060639475937933,True
+4.633.N,4.633,N,Vira-se uma secretária para outra: Esta folha é tua ou é impressão minha?,0,0,4.3203125,-3.537109375,-7.857421875,0.999613344669342,0.0003867203777190298,True
+4.644.H,4.644,H,"Para quem não viu o eclipse ontem à noite, no fim o Edward fica com a Bella.",1,0,3.556640625,-2.95703125,-6.513671875,0.9985191226005554,0.0014808279229328036,False
+5.26.N,5.26,N,Qual grupo de pagode odeia o final dos parabéns? Só pra Contrariar.,0,0,4.23046875,-3.365234375,-7.595703125,0.999497652053833,0.0005023539415560663,True
+5.56.H,5.56,H,Qual creme de barbear parece um esperma? Gozzano.,1,0,4.60546875,-4.0078125,-8.61328125,0.9998183846473694,0.00018164378707297146,False
+5.3625.H,5.3625,H,Qual a banda que ajuda as pessoas a alcançar a seu destino?  Owazes.,1,0,3.876953125,-3.16796875,-7.044921875,0.9991289973258972,0.0008710656547918916,False
+5.850.N,5.850,N,Qual o X-Men que morre de vontade de conhecer o Inri Cristo? Charles Xavier.,0,0,4.4296875,-3.7578125,-8.1875,0.9997219443321228,0.0002780309587251395,True
+5.26.H,5.26,H,Qual grupo de pagode odeia o final dos parabéns? Sopra Contrariado.,1,1,-3.443359375,3.572265625,7.015625,0.0008969393093138933,0.9991030693054199,True
+5.2760.N,5.2760,N,Qual o grupo musical favorito dos leões? Queen.,0,0,4.203125,-3.30078125,-7.50390625,0.9994493126869202,0.000550624739844352,True
+4.287.N,4.287,N,O que diz uma pessoa quando entra na casa de banho? Que cheiro!,0,0,5.25,-4.296875,-9.546875,0.9999285936355591,7.141901733120903e-05,True
+5.2679.H,5.2679,H,Qual padre é um cavalo? Marcelo Horse.,1,1,-3.48046875,3.697265625,7.177734375,0.000762813026085496,0.9992371797561646,True
+5.3508.H,5.3508,H,Qual rapper é também um ótimo detetive? Marcelo Deduz.,1,1,-2.689453125,3.107421875,5.796875,0.003027834929525852,0.9969722032546997,True
+5.3530.N,5.3530,N,Como se chama a tatuagem feita num velho? Tatuagem no vô.,0,1,-2.693359375,3.025390625,5.71875,0.0032730645034462214,0.9967268705368042,False
+4.253.H,4.253,H,Porque é que os polícias não gostam de sabão? Porque preferem deter gente.,1,1,-3.4453125,3.552734375,6.998046875,0.0009128306992352009,0.9990872144699097,True
+5.2675.N,5.2675,N,Qual cantor sempre manda uma jogada boa no baralho? Nando Reis.,0,0,4.33984375,-3.634765625,-7.974609375,0.999656081199646,0.0003439709544181824,True
+5.1980.H,5.1980,H,Qual o dispositivo usado pra enxergar melhor uma determinada nota musical? Óculos de Sol ,1,0,4.9140625,-4.19140625,-9.10546875,0.9998888969421387,0.0001110444645746611,False
+4.544.N,4.544,N,"A Érica e a Ester decidiram adotar uma jovem . Quando ela soube, ficou feliz.",0,0,4.55078125,-4.015625,-8.56640625,0.9998096823692322,0.00019035942386835814,True
+5.420.N,5.420,N,Qual fruta nasce às margens do Rio Negro? Maçãs.,0,0,4.92578125,-4.0390625,-8.96484375,0.9998722076416016,0.0001278092822758481,True
+5.1837.H,5.1837,H,Qual é o apresentador que me dá tesão? Otávio me Excita,1,1,-3.181640625,3.263671875,6.4453125,0.0015854306984692812,0.9984145164489746,True
+5.1602.H,5.1602,H,Qual é a novela em que Antônio Fagundes faz uso de entorpecentes? O Rei Dro Gado.,1,0,3.486328125,-2.900390625,-6.38671875,0.9983189702033997,0.001680941553786397,False
+4.573.H,4.573,H,Porque é que os cemitérios têm paredes? Porque as pessoas estão mortinhas por entrar lá dentro.,1,0,2.185546875,-1.240234375,-3.42578125,0.9685006141662598,0.031499382108449936,False
+5.2189.N,5.2189,N,Quem é a cantora que trabalha com transporte público nos Estados Unidos?  Beyoncé,0,0,5.13671875,-4.1171875,-9.25390625,0.9999042749404907,9.572778799338266e-05,True
+4.360.N,4.360,N,Porque é que o Pedro se divorciou? Porque a mulher não servia para nada.,0,0,4.98828125,-4.2578125,-9.24609375,0.9999035596847534,9.647852130001411e-05,True
+5.1303.H,5.1303,H,Qual o chá preferido dos britânicos para se acalmar? C'mon Mila.,1,1,-2.95703125,3.03515625,5.9921875,0.002491967985406518,0.9975080490112305,True
+5.2415.H,5.2415,H,Qual é a cidade que quer ser um instrumento musical?  Itaquaquecetuba.,1,0,3.28125,-2.23828125,-5.51953125,0.9960082769393921,0.0039917281828820705,False
+4.630.H,4.630,H,Por que é que os surfistas comem a comida fria? Porque detestam micro ondas.,1,0,2.564453125,-1.716796875,-4.28125,0.9863631129264832,0.013636834919452667,False
+5.85.N,5.85,N,Qual é a tartaruga ninja que vive na Disney? O Miquelângelo.,0,1,-3.08984375,3.40234375,6.4921875,0.0015129382954910398,0.9984869956970215,False
+5.976.N,5.976,N,Qual passarinho adora televisão? Pardal.,0,0,4.671875,-3.97265625,-8.64453125,0.9998239874839783,0.00017605620087124407,True
+5.3987.N,5.3987,N,"Qual artista pop era porco gordo, mas era irresistível? Baicon Jackson.",0,0,4.046875,-3.25390625,-7.30078125,0.9993255138397217,0.0006745559512637556,True
+5.848.H,5.848,H,Qual personagem da Disney que ninguém gosta? Amarga Rida.,1,1,-3.099609375,2.890625,5.990234375,0.002496827859431505,0.9975032210350037,True
+5.1981.H,5.1981,H,Como se chama o ato de um ministro comer a primeira dama? Uma metida provisória ,1,1,-3.951171875,3.732421875,7.68359375,0.00046010586083866656,0.9995399713516235,True
+5.933.H,5.933,H,Qual é o nome do especialista em temperar carnes que não se esquecia do passado?  O Sal Dosista.,1,1,-3.3828125,3.35546875,6.73828125,0.0011832797899842262,0.998816728591919,True
+5.3610.H,5.3610,H,Qual é a série em que todo mundo que é policial tem que sair? C.S.I.,1,0,4.57421875,-3.623046875,-8.197265625,0.9997246861457825,0.0002753298031166196,False
+5.167.H,5.167,H,"O que o padrinho da faca disse?  ""Oi, afiado"".",1,1,-2.984375,2.6953125,5.6796875,0.003403005190193653,0.9965969920158386,True
+5.489.N,5.489,N,Qual piloto tem pacto com o Diabo? Barrichello.,0,0,4.64453125,-3.9453125,-8.58984375,0.9998140931129456,0.0001859505573520437,True
+5.2012.H,5.2012,H,Que apresentador vive tomando Dramin? Rodri Gorfaro ,1,1,-3.9921875,3.630859375,7.623046875,0.0004888104740530252,0.9995112419128418,True
+5.1381.N,5.1381,N,Por que colocaram uma cama elástica no Polo Norte? Para o urso brincar.,0,0,3.646484375,-3.193359375,-6.83984375,0.9989308714866638,0.0010691264178603888,True
+4.95.N,4.95,N,Qual é a única profissão que necessita de verniz de unhas para trabalhar? É a manicure.,0,0,4.83984375,-4.11328125,-8.953125,0.9998706579208374,0.00012931563833262771,True
+5.823.N,5.823,N,Qual a banda que não deve nada pra ninguém? Skank.,0,0,3.44921875,-2.84765625,-6.296875,0.9981613755226135,0.001838665222749114,True
+5.1116.H,5.1116,H,Por que os jacarés só andavam em dois? Porque são reptildos.,1,1,-3.189453125,3.673828125,6.86328125,0.0010443860664963722,0.9989556074142456,True
+5.3119.N,5.3119,N,Qual o nome da mãe do super-herói que nunca vai em praia com águas geladas? Martha Wayne.,0,0,0.191162109375,-0.02056884765625,-0.21173095703125,0.5527358651161194,0.4472641050815582,True
+5.415.H,5.415,H,Qual é o restaurante favorito dos maconheiros? O Outbeck.,1,1,-2.869140625,3.2421875,6.111328125,0.002212696708738804,0.9977872371673584,True
+4.11.H,4.11,H,Qual é o animal mais romântico? É a amêijoa. Porque dorme em conchinha.,1,1,-3.8828125,3.888671875,7.771484375,0.00042140932055190206,0.9995785355567932,True
+5.594.H,5.594,H,O que um irmão siamês falou pro outro? Tamo Junto!,1,0,3.6953125,-3.23046875,-6.92578125,0.9990187883377075,0.0009811718482524157,False
+4.678.N,4.678,N,Acabei de abrir a conta da água e a conta da luz ao mesmo tempo . Fiquei em pânico .,0,0,4.6953125,-3.79296875,-8.48828125,0.9997941851615906,0.00020582442812155932,True
+4.645.N,4.645,N,"Se um dia te oferecerem uns óculos sem lentes, tem cuidado! Pode ser engano.",0,0,4.91796875,-3.95703125,-8.875,0.9998601675033569,0.0001398220774717629,True
+5.728.N,5.728,N,"Qual é o nome da doença que acomete vítimas de sequestro que não têm espelho no cativeiro? Síndrome de "" Estocolmo? """,0,1,-1.439453125,1.96875,3.408203125,0.032040078192949295,0.9679599404335022,False
+5.1049.H,5.1049,H,Qual bebiba te dá superpoder? Chá zam.,1,1,-3.814453125,3.9765625,7.791015625,0.0004132619360461831,0.9995867609977722,True
+5.3578.N,5.3578,N,O que o advogado deixou para os filhos? Seu carro.,0,0,4.79296875,-4.1328125,-8.92578125,0.9998670816421509,0.00013289992057252675,True
+5.62.N,5.62,N,Qual é a atriz que só usa roupa da Zara? Taís Araújo.,0,0,4.6640625,-3.888671875,-8.552734375,0.9998070597648621,0.00019297936523798853,True
+5.591.N,5.591,N,Qual cerveja é do Rio de Janeiro? Schincarioca.,0,1,-3.51171875,3.623046875,7.134765625,0.0007962778909131885,0.9992037415504456,False
+5.2985.N,5.2985,N,Qual animal é coach? O homem.,0,0,4.90625,-4.09765625,-9.00390625,0.9998770952224731,0.0001229135668836534,True
+5.3569.N,5.3569,N,Em que momento do dia seus segredos são revelados? No amanhecer do sol.,0,0,3.935546875,-3.111328125,-7.046875,0.9991306662559509,0.0008693673880770802,True
+5.2974.N,5.2974,N,Qual banda que sempre usa tenis? Oasics.,0,1,-0.443359375,1.55078125,1.994140625,0.11981949210166931,0.8801805377006531,False
+5.2046.H,5.2046,H,Por que o vegano não compra nas Casas Bahia? Porque não gasta dinheiro em carnês ,1,0,3.27734375,-2.861328125,-6.138671875,0.9978468418121338,0.002153141191229224,False
+5.2312.N,5.2312,N,Qual é o nome da banda favorita das pessoas cansadas? Capital Inicial,0,0,4.3203125,-3.515625,-7.8359375,0.9996048808097839,0.00039511534851044416,True
+4.381.N,4.381,N,O que acontece quando metes um tomate no micro-ondas? Estraga o molho.,0,0,2.326171875,-1.6884765625,-4.0146484375,0.9822707772254944,0.017729297280311584,True
+5.4098.H,5.4098,H,Qual molho é sempre servido em proporções exageradas? De Too Much.,1,1,-3.353515625,3.671875,7.025390625,0.000888230511918664,0.9991117119789124,True
+5.1486.N,5.1486,N,Qual gata que entrou e logo depois saiu do chat? Bola de Neve.,0,0,4.39453125,-3.880859375,-8.275390625,0.9997453093528748,0.00025464367354288697,True
+4.564.H,4.564,H,"Como é que se diz ""peido"" em árabe? Al-bufeira.",1,1,-4.08984375,4.2734375,8.36328125,0.0002332232252229005,0.9997667670249939,True
+4.633.H,4.633,H,Vira-se uma impressora para outra: Esta folha é tua ou é impressão minha?,1,0,4.203125,-3.365234375,-7.568359375,0.9994837045669556,0.0005162725574336946,False
+4.400.H,4.400,H,Que nome se dá a um professor com os dentes grandes? Ca-stor.,1,1,-4.046875,4.28515625,8.33203125,0.00024062473676167428,0.9997593760490417,True
+5.1317.N,5.1317,N,Qual cantora sempre se desculpa? Simone.,0,0,4.9375,-4.07421875,-9.01171875,0.9998780488967896,0.00012195716408314183,True
+5.3353.N,5.3353,N,Qual a música mais ouvida nas cordilheiras? O canto dos pássaros.,0,0,4.51953125,-3.97265625,-8.4921875,0.9997950196266174,0.00020502213737927377,True
+4.367.N,4.367,N,Porque é que a Branca de Neve desmaiou ao comer a maçã? Apanhou uma indigestão.,0,0,4.8203125,-3.869140625,-8.689453125,0.9998316764831543,0.00016832373512443155,True
+5.639.N,5.639,N,Qual é o caranguejo que só sai à noite? O real.,0,0,2.544921875,-2.61328125,-5.158203125,0.9942809343338013,0.005719129927456379,True
+5.2506.N,5.2506,N,Qual é o biscoito mais temido da mitologia? Maria e Maisena.,0,0,3.201171875,-2.615234375,-5.81640625,0.99703049659729,0.00296944472938776,True
+5.1872.H,5.1872,H,Que ator gringo deixa a cidade limpa? Denzel wash town ,1,1,-4.17578125,4.02734375,8.203125,0.00027372167096473277,0.9997262358665466,True
+5.3530.H,5.3530,H,Como se chama a tatuagem feita num velho? Art no vô.,1,1,-3.990234375,3.94140625,7.931640625,0.0003590676642488688,0.999640941619873,True
+5.2083.N,5.2083,N,Qual figura do carnaval que dá em cima das mulheres? Boneco de Olinda!,0,0,3.58203125,-3.056640625,-6.638671875,0.9986929297447205,0.0013070536078885198,True
+5.4014.H,5.4014,H,Por que no interiorzão não dá pra ouvir música? Porque lá o spotifaia.,1,1,-3.81640625,3.85546875,7.671875,0.0004655269149225205,0.9995344877243042,True
+5.2014.N,5.2014,N,Em que parte do casa todos se encontram? Na área de lazer,0,0,5.1875,-4.45703125,-9.64453125,0.9999352693557739,6.477467104559764e-05,True
+5.823.H,5.823,H,Qual a banda que não deve nada pra ninguém? Jaquitou 5.,1,1,-3.5859375,3.958984375,7.544921875,0.0005285091465339065,0.9994714856147766,True
+5.1.N,5.1,N,Qual X-Men nunca falta ao trabalho? Ciclops.,0,0,2.15625,-1.318359375,-3.474609375,0.969956636428833,0.03004337102174759,True
+5.1297.N,5.1297,N,Qual candidato é doador de órgãos? Cabo Daciolo.,0,0,3.0859375,-2.658203125,-5.744140625,0.9968087077140808,0.003191267605870962,True
+4.529.H,4.529,H,O que são oito Hobbits? Um Hobbyte.,1,1,-3.708984375,3.94921875,7.658203125,0.0004719322023447603,0.9995280504226685,True
+5.1736.H,5.1736,H,O que o ciclista disse logo após terminar o namoro em cima da linha de largada? Tô na pista! ,1,0,4.5078125,-3.853515625,-8.361328125,0.9997662901878357,0.00023367909307125956,False
+5.1972.H,5.1972,H,Qual o item que se encontra em pior estado na sua casa? All Mofada,1,1,-3.875,3.87109375,7.74609375,0.00043224156252108514,0.9995678067207336,True
+5.148.N,5.148,N,Qual é o cantor favorito dos brasileiros? Toquinho.,0,0,5.17578125,-4.125,-9.30078125,0.9999086856842041,9.134449646808207e-05,True
+4.32.N,4.32,N,"Era uma vez duas pizzas . Uma estava triste, então a outra vira-se: sorri.",0,0,4.27734375,-3.576171875,-7.853515625,0.9996117949485779,0.0003882333403453231,True
+5.217.N,5.217,N,O que usam para fazer as bonecas Barbie? Aparelho de moldar.,0,0,5.21875,-4.1640625,-9.3828125,0.9999158382415771,8.415109186898917e-05,True
+4.287.H,4.287,H,O que diz um ouriço quando entra na casa de banho? Cacheiro!,1,0,1.099609375,-0.1983642578125,-1.2979736328125,0.7854937314987183,0.21450622379779816,False
+4.67.H,4.67,H,Porque é que as galinhas não gostam de ralis? Porque não vêem nada capoeira.,1,1,-4.28515625,3.958984375,8.244140625,0.00026272484683431685,0.9997373223304749,True
+5.2047.N,5.2047,N,"Qual conto mostra a história de alguém que acha a esposa linda, mas quando ela o procura de noite, ele nega? A pequena sereia.",0,0,3.421875,-3.046875,-6.46875,0.9984512329101562,0.001548761036247015,True
+5.1782.N,5.1782,N,Por que o alfaiate foi expulso da balada? Porque ele faltou com respeito.,0,0,4.73046875,-3.990234375,-8.720703125,0.999836802482605,0.0001631457853363827,True
+5.137.H,5.137,H,"Se o Kid Bengala fosse um personagem da Caverna do Dragão, quem o ajudaria a voltar para casa? Mestre dos Bagos.",1,1,-2.728515625,3.193359375,5.921875,0.0026730059180408716,0.9973269701004028,True
+5.1545.N,5.1545,N,Qual comida que tá sempre faminta? Far ofa.,0,1,-4.0078125,4.078125,8.0859375,0.0003077430883422494,0.9996923208236694,False
+5.1998.N,5.1998,N,Qual é o animal que mais suja crianças? Gambá,0,0,4.76953125,-3.98046875,-8.75,0.999841570854187,0.0001584362325957045,True
+4.638.N,4.638,N,"O amor é como um jogo de sueca . Ou se tem um bom parceiro, ou o melhor mesmo é ter uma boa carta.",0,1,-2.29296875,2.3359375,4.62890625,0.009670993313193321,0.9903290271759033,False
+5.3666.N,5.3666,N,Qual dublador que não toma banho? Mário Jorge.,0,0,4.3671875,-3.6875,-8.0546875,0.9996825456619263,0.000317508791340515,True
+4.129.H,4.129,H,Que nome se dá a uma freira no casino? Católica apostólica.,1,0,0.62939453125,-0.309326171875,-0.938720703125,0.7188411951065063,0.28115883469581604,False
+4.280.N,4.280,N,Qual é o animal mais estranho? É o Papa-formigas.,0,0,0.900390625,0.11871337890625,-0.78167724609375,0.6860414743423462,0.3139584958553314,True
+5.1098.H,5.1098,H,Qual a sobremesa oficial da Marvel?  A THORta.,1,1,-3.5546875,3.505859375,7.060546875,0.0008575725369155407,0.9991424083709717,True
+4.277.H,4.277,H,Como é que os alpinistas se cumprimentam? Cume é que é!,1,1,-2.07421875,2.37109375,4.4453125,0.011597362346947193,0.9884026646614075,True
+5.2012.N,5.2012,N,Que apresentador vive tomando Dramin? Rodrigo Faro,0,0,5.04296875,-4.08984375,-9.1328125,0.999891996383667,0.00010804956400534138,True
+5.1982.N,5.1982,N,Quem cuida da documentação na floresta? O cartório,0,0,4.66015625,-3.947265625,-8.607421875,0.9998173117637634,0.00018271103908773512,True
+5.2751.H,5.2751,H,Qual aviamento não para quieto? Os Zíper Ativos,1,1,-3.69140625,3.701171875,7.392578125,0.0006154273287393153,0.9993845224380493,True
+5.1549.H,5.1549,H,Qual site de relacionamento só para menores de 18 anos? Teender.,1,0,3.5625,-2.7578125,-6.3203125,0.9982038736343384,0.0017961491830646992,False
+4.290.N,4.290,N,Como é que o menino ficou zarolho? A mãe estava a cozinhar e disse-lhe: Luís vou ali à loja . Deita-me aí um alho na comida.,0,1,-0.80322265625,1.4423828125,2.24560546875,0.09572920203208923,0.9042707681655884,False
+5.2538.H,5.2538,H,Qual atriz da Globo tem o olho torto? Marieta Serveró.,1,1,-0.93603515625,1.4423828125,2.37841796875,0.0848333090543747,0.9151666760444641,True
+4.436.H,4.436,H,Sementes. Deus castiga.,1,0,2.978515625,-2.064453125,-5.04296875,0.9935867786407471,0.0064131636172533035,False
+5.1158.N,5.1158,N,Qual o presidente que foi beber água e não achou nada? Collor.,0,0,4.3984375,-3.779296875,-8.177734375,0.9997192025184631,0.0002807586279232055,True
+4.565.H,4.565,H,Qual é o chocolate que só tem duas semanas de validade? O Twix.,1,1,-1.1787109375,1.451171875,2.6298828125,0.06723979860544205,0.9327601790428162,True
+4.32.H,4.32,H,"Era uma vez duas pizzas. Uma estava triste, então a outra vira-se: pizza-ria.",1,1,-4.3984375,4.40234375,8.80078125,0.00015059269207995385,0.9998494386672974,True
+4.183.H,4.183,H,Como é que o António se chama quando anda de autocarro? Tony Carreira.,1,1,-3.05859375,2.748046875,5.806640625,0.0029984985012561083,0.9970014691352844,True
+5.202.N,5.202,N,Por que o Sílvio Santos só entra em casa depois que o olho dele é escaneado? Porque a porta só abre com reconhecimento de Íris.,0,1,-2.82421875,2.904296875,5.728515625,0.003241359954699874,0.9967586398124695,False
+5.1492.H,5.1492,H,Por que o cowboy largou tudo para trabalhar na KGB? Porque ele era um ex-pião.,1,1,-3.5625,3.890625,7.453125,0.0005792917218059301,0.9994207620620728,True
+4.106.H,4.106,H,Qual é a flor que os homens mais gostam de oferecer às mulheres? Tulimpas.,1,0,0.2568359375,-0.05401611328125,-0.31085205078125,0.577093243598938,0.4229067862033844,False
+4.753.H,4.753,H,O meu pai tem uma loja de material elétrico. É por isso que tenho pilhas de graça.,1,1,-1.5888671875,1.921875,3.5107421875,0.029008125886321068,0.9709919095039368,True
+5.3610.N,5.3610,N,Qual é a série em que todo mundo que é policial tem que sair? Dr. House,0,0,4.77734375,-3.927734375,-8.705078125,0.9998342990875244,0.00016571454762015492,True
+4.58.H,4.58,H,O que são cinco pontos coloridos num jardim? São os Flower Rangers.,1,0,3.396484375,-2.68359375,-6.080078125,0.9977172613143921,0.00228277500718832,False
+5.1088.H,5.1088,H,Qual cidade vive resfriada? Atchimbaia,1,1,-3.69140625,3.521484375,7.212890625,0.000736480753403157,0.9992634654045105,True
+5.555.N,5.555,N,Qual o sanduíche preferido da turma do Chaves? Misto.,0,0,4.984375,-4.23046875,-9.21484375,0.9999004602432251,9.95407608570531e-05,True
+4.521.H,4.521,H,Eu não sou supersticioso. Sou só um pouco sticioso.,1,0,3.041015625,-2.55078125,-5.591796875,0.9962855577468872,0.00371447391808033,False
+4.158.N,4.158,N,Uma mulher estava indecisa entre comprar uma blusa azul e uma vermelha . Acabou por levar a vermelha . Qual é o filme? Lagoa azul.,0,0,1.267578125,-0.63623046875,-1.90380859375,0.8703219890594482,0.12967801094055176,True
+5.1673.H,5.1673,H,Qual é o nome para se colocar na filha do salva-vidas? Socorro.,1,0,5.05859375,-4.2109375,-9.26953125,0.9999057054519653,9.424380550626665e-05,False
+5.1549.N,5.1549,N,Qual site de relacionamento só para maiores de 18 anos? Tinder.,0,0,4.7734375,-4.01171875,-8.78515625,0.9998470544815063,0.0001529638102510944,True
+4.56.N,4.56,N,Porque é que os contabilistas são bons a fazer contas? Porque tabuada é com eles.,0,0,3.58984375,-2.84375,-6.43359375,0.9983958601951599,0.0016040890477597713,True
+5.263.H,5.263,H,Qual é o nome do filme protagonizado por duas motos bem nervosas? Fúria de titãs.,1,0,2.875,-2.671875,-5.546875,0.9961155652999878,0.0038844766095280647,False
+5.872.N,5.872,N,Qual comediante vive com calor? Renato Aragão.,0,0,5.25390625,-4.26171875,-9.515625,0.9999263286590576,7.368592923739925e-05,True
+4.505.H,4.505,H,"O casamento é muito bonito e tal, mas se casares com a pessoa errada, é como a COVID-19. Todo os dias novos casos.",1,1,-3.896484375,4.0546875,7.951171875,0.0003521250910125673,0.999647855758667,True
+5.3736.H,5.3736,H,Qual clube campeão da Libertadores consegue segurar bebês gêmeos? Colo-Colo.,1,0,3.56640625,-2.314453125,-5.880859375,0.9972153902053833,0.002784608630463481,False
+5.1613.N,5.1613,N,"Como se faz para uma laranja virar uma cobra? Faz cosquinha nela, aí nada acontece.",0,0,3.564453125,-2.91015625,-6.474609375,0.9984602928161621,0.0015397267416119576,True
+5.85.H,5.85,H,Qual é a tartaruga ninja que vive na Disney?  O Mickeylângelo.,1,1,-3.982421875,4.0,7.982421875,0.00034129503183066845,0.9996587038040161,True
+4.637.N,4.637,N,O que faz uma pessoa surda? Finge que ouve.,0,0,5.15234375,-4.22265625,-9.375,0.9999151229858398,8.481103577651083e-05,True
+4.201.N,4.201,N,Era uma vez uma cidade onde quase todas as motos eram Yamaha . Qual é o filme? Pocahontas.,0,1,-3.728515625,4.0703125,7.798828125,0.0004100472142454237,0.9995899796485901,False
+5.2647.N,5.2647,N,Qual apresentador é o mais duas caras? Luciano Huck.,0,0,4.8359375,-4.0390625,-8.875,0.9998601675033569,0.0001398220774717629,True
+5.3546.H,5.3546,H,"Qual o seriado de tv do cara que sempre quer um pouco da comida dos outros? Hum, maluco, dá um pedaço!",1,1,-3.30078125,3.513671875,6.814453125,0.0010965894907712936,0.9989033937454224,True
+5.1849.N,5.1849,N,Qual é o cantor que tá sempre na cena de um crime? Zeca baleiro.,0,1,-3.3828125,3.330078125,6.712890625,0.001213671755976975,0.9987863898277283,False
+5.1182.H,5.1182,H,Por que o Chico Buarque foi preso na saída do Santander? Por Assaltimbanco.,1,1,-3.935546875,3.98046875,7.916015625,0.0003647200355771929,0.9996352195739746,True
+4.696.N,4.696,N,"Acabei de comprar um livro chamado "" Caminhadas para Totós "" . É um guia para passear a pé.",0,0,1.9140625,-1.1904296875,-3.1044921875,0.95707768201828,0.04292233660817146,True
+4.678.H,4.678,H,Acabei de abrir a conta da água e a conta da luz ao mesmo tempo. Fiquei em choque.,1,0,4.5703125,-3.59375,-8.1640625,0.9997153878211975,0.000284622423350811,False
+5.793.H,5.793,H,Qual a rede social mais usada pelas mulheres no Oriente Médio? Faceburca.,1,1,-3.7265625,3.724609375,7.451171875,0.0005804235697723925,0.9994195699691772,True
+4.63.H,4.63,H,O que é que se faz num velório de lésbicas? Um minete de silêncio.,1,0,3.072265625,-2.48046875,-5.552734375,0.9961381554603577,0.003861870151013136,False
+4.17.N,4.17,N,Em que local do planeta se encontram mais leprosos? Na Ilha Sorokdo.,0,1,-1.517578125,1.7109375,3.228515625,0.03810662031173706,0.9618934392929077,False
+5.3651.H,5.3651,H,Qual anime foi baseado na versao brasileira de um futebolista mediamente famoso? Drogba o zé.,1,1,-3.984375,3.80078125,7.78515625,0.00041568942833691835,0.9995842576026917,True
+4.281.N,4.281,N,Porque é que a galinha fez um striptease na capoeira? Para chocar os galos.,0,1,-3.263671875,3.18359375,6.447265625,0.001582341967150569,0.9984176158905029,False
+5.148.H,5.148,H,Qual é o cantor favorito dos anões? Toquinho.,1,0,4.52734375,-3.658203125,-8.185546875,0.999721348285675,0.0002785743563435972,False
+5.569.H,5.569,H,"Qual personagem histórico sempre pede um sorvetão? Alesundae, o Grande.",1,1,-3.181640625,3.515625,6.697265625,0.0012327608419582248,0.9987672567367554,True
+5.3825.N,5.3825,N,Qual o mês do Popó? Agosto.,0,0,0.63671875,0.599609375,-0.037109375,0.509276270866394,0.49072372913360596,True
+5.1093.H,5.1093,H,Qual doença que todos filósofos têm? Tendi Nietzsche.,1,1,-3.73046875,3.798828125,7.529296875,0.0005368274287320673,0.9994631409645081,True
+5.850.H,5.850,H,Qual o X-Men que morre de vontade de conhecer o Inri Cristo? Vou ver Inri.,1,1,-1.5166015625,2.22265625,3.7392578125,0.023219766095280647,0.9767802357673645,True
+4.264.H,4.264,H,Porque é que na escola as loiras desenham sempre florzinhas e coraçõezinhos no caderno? Porque assim decoram a matéria.,1,0,4.8671875,-3.9765625,-8.84375,0.9998557567596436,0.00014425987319555134,False
+4.28.H,4.28,H,Voltei a dizer à minha mãe que queria ser pianista. Ela diz que estou sempre a bater na mesma tecla.,1,0,4.0625,-3.3828125,-7.4453125,0.9994162321090698,0.0005838325014337897,False
+5.3726.N,5.3726,N,Qual humorista não usa microfone de mão? Helio de La Peña,0,0,4.67578125,-3.884765625,-8.560546875,0.9998084902763367,0.0001914778258651495,True
+5.1545.H,5.1545,H,Qual comida que tá sempre distante? Far ofa.,1,1,-4.08203125,4.14453125,8.2265625,0.00026738259475678205,0.9997325539588928,True
+5.285.H,5.285,H,Qual personagem carnavalesco não é stereo? Rei Mono,1,0,4.21875,-3.169921875,-7.388671875,0.9993821382522583,0.0006178345065563917,False
+1.4.N,1.4,N,O que uma impressora falou para a outra? Essa folha é sua ou é alguma minha?,0,0,3.9765625,-3.375,-7.3515625,0.9993588328361511,0.0006411777576431632,True
+5.910.H,5.910,H,Qual é a reta que canta muito? A Reta Franklin.,1,1,-3.365234375,3.447265625,6.8125,0.001098731067031622,0.9989012479782104,True
+5.1981.N,5.1981,N,Como se chama o ato de um ministro alterar a primeira emenda? Uma medida provisória,0,0,4.7734375,-4.32421875,-9.09765625,0.9998880624771118,0.00011191529483767226,True
+5.283.H,5.283,H,O que o coveiro disse quando pediram a ele para gerenciar o cemitério? Isso não é da minha ossada.,1,1,-2.3125,2.708984375,5.021484375,0.0065515246242284775,0.9934484362602234,True
+5.317.H,5.317,H,Qual banda é formada por um padre? É o Tchan! Com Padre Washington.,1,0,1.845703125,-1.1298828125,-2.9755859375,0.9514589309692383,0.04854108765721321,False
+4.158.H,4.158,H,Uma mulher estava indecisa entre comprar uma blusa azul e uma vermelha. Acabou por levar a vermelha. Qual é o filme? Largou a azul.,1,1,-1.9560546875,2.236328125,4.1923828125,0.014885316602885723,0.9851146936416626,True
+5.1050.H,5.1050,H,Qual a serie de anime que louva o tabaco? Charuto.,1,0,4.3671875,-3.640625,-8.0078125,0.9996672868728638,0.00033274127054028213,False
+5.1000.H,5.1000,H,Qual cantora tentou adotar Jesus Cristo? Dê-me o Louvado.,1,1,-0.291748046875,0.9677734375,1.259521484375,0.2210562825202942,0.7789437174797058,True
+5.1475.H,5.1475,H,Qual pico mais gelado que existe? O pico lé.,1,0,0.32763671875,-0.297119140625,-0.624755859375,0.6512994766235352,0.3487005829811096,False
+4.51.N,4.51,N,Como se encontra um cego numa praia de nudistas? Está vestido.,0,0,4.82421875,-3.794921875,-8.619140625,0.9998194575309753,0.00018058277782984078,True
+4.90.H,4.90,H,"Como é que se diz ""copia bem"" em inglês? Copyright.",1,0,3.30859375,-2.560546875,-5.869140625,0.9971827268600464,0.0028173401951789856,False
+5.782.N,5.782,N,Qual a tartaruga ninja que mais gosta de dormir? O Leonardo.,0,0,3.26953125,-2.9140625,-6.18359375,0.9979411959648132,0.002058753278106451,True
+5.3008.H,5.3008,H,O que o cara gripado faz quando está perto de um grupo de mulheres? Contamina.,1,0,0.93310546875,-0.03729248046875,-0.97039794921875,0.7251988053321838,0.27480119466781616,False
+5.1403.H,5.1403,H,Por que o próximo técnico da seleção ficará contra a parede? Porque ele é Pós-Tite.,1,1,-3.306640625,3.2890625,6.595703125,0.001364361960440874,0.9986355900764465,True
+5.1279.N,5.1279,N,Qual ator mirim não lava os dentes? MaCarie Culkin.,0,0,4.71484375,-3.79296875,-8.5078125,0.9997981190681458,0.00020184418826829642,True
+5.806.N,5.806,N,"Em qual época o Brasileiro foi mais magro? Na época do movimento "" Caras Pintadas "".",0,0,4.42578125,-3.66796875,-8.09375,0.9996947050094604,0.00030534894904121757,True
+5.2896.H,5.2896,H,Qual cantor só pode ser visto pela internet? Carlinhos Browser ,1,1,-0.226318359375,1.0009765625,1.227294921875,0.22665521502494812,0.7733447551727295,True
+5.2507.N,5.2507,N,Qual é o aparelho que nunca para de mexer? A biruta.,0,0,0.20703125,-0.0924072265625,-0.2994384765625,0.5743052363395691,0.4256947636604309,True
+5.1974.H,5.1974,H,Por que o cara entrou com seu veículo no mar? Porque era car naval ,1,1,-4.3671875,4.0625,8.4296875,0.0002182420575991273,0.9997817873954773,True
+4.594.H,4.594,H,Porque é que o livro de matemática se suicidou? Tinha muitos problemas.,1,0,5.015625,-3.953125,-8.96875,0.9998726844787598,0.00012731103925034404,False
+4.121.N,4.121,N,"Como é que se diz "" fim "" em japonês? Fimu.",0,0,4.09375,-3.3359375,-7.4296875,0.9994069337844849,0.000593020929954946,True
+5.2269.N,5.2269,N,Qual país em que todo mundo ta sempre na academia? Itália,0,0,4.921875,-4.1015625,-9.0234375,0.9998794794082642,0.00012053649697918445,True
+5.1001.N,5.1001,N,"O filho pediu para o pai levá-lo para ver boosa nova e o pai concordou . Qual é o nome da música? "" Eu sei que vou te amar...""",0,0,4.55078125,-3.857421875,-8.408203125,0.9997770190238953,0.00022298052499536425,True
+4.159.H,4.159,H,Qual é o elemento químico mais comum nas discotecas? É o TUNGS! TUNGS! ténio.,1,1,-3.900390625,3.701171875,7.6015625,0.0004994204500690103,0.9995005130767822,True
+4.318.H,4.318,H,Vira-se um guitarrista para um baixista: Então o que fazes aqui por estas bandas?,1,0,4.7734375,-3.9609375,-8.734375,0.9998390674591064,0.00016093082376755774,False
+5.1370.N,5.1370,N,Por que o marido e a esposa foram ao psicólogo? Porque estavam passando por uma fase difícil.,0,0,5.08984375,-4.359375,-9.44921875,0.9999212026596069,7.87448589107953e-05,True
+5.358.N,5.358,N,Qual cidade incentiva o uso do tato? Curitiba.,0,0,4.98046875,-4.1796875,-9.16015625,0.9998948574066162,0.00010513541201362386,True
+5.1620.H,5.1620,H,Qual é a comida que quase tirou nota dez? Strogonove.,1,0,4.828125,-4.2578125,-9.0859375,0.9998867511749268,0.00011323438229737803,False
+5.1001.H,5.1001,H,"O filho pediu para o pai levá-lo para ver tartarugas e o pai concordou. Qual é o nome da música? ""Eu sei que vou Tamar...""",1,1,-3.0,3.533203125,6.533203125,0.001452227937988937,0.9985477328300476,True
+4.480.H,4.480,H,"Como é que se diz ""surpresa"" em chinês? Chan-chan-chan-chan!",1,0,0.62744140625,-0.20849609375,-0.8359375,0.6976089477539062,0.30239108204841614,False
+5.1570.H,5.1570,H,"Uma pessoa com o apelido Lu, foi para a padaria com suas duas irmãs Ana. Qual o nome da pessoa? Lu sem Anas",1,1,-3.591796875,3.541015625,7.1328125,0.0007978335488587618,0.9992021918296814,True
+4.565.N,4.565,N,Qual é o chocolate que só tem duas semanas de validade? O Kinder.,0,1,-0.09796142578125,0.273681640625,0.37164306640625,0.4081440567970276,0.5918559432029724,False
+5.2351.H,5.2351,H,Qual é o árbitro que expulsa as pessoas e elas nunca mais podem voltar? O BANdeirinha.,1,1,-3.783203125,3.841796875,7.625,0.000487857119878754,0.9995121955871582,True
+4.324.H,4.324,H,Quais são as escadas que demoram mais a subir? São as escadas em caracol.,1,0,2.078125,-1.66796875,-3.74609375,0.9769347906112671,0.023065226152539253,False
+5.2938.H,5.2938,H,Qual é a comida do pássaro gigante que toca trompete? O alpistão.,1,1,-4.01953125,4.00390625,8.0234375,0.0003275842755101621,0.9996724128723145,True
+5.240.H,5.240,H,O Continente nao estava se sentindo bem. O que ele tinha? Ásia.,1,0,4.1796875,-3.580078125,-7.759765625,0.9995736479759216,0.00042637469596229494,False
+5.2912.H,5.2912,H,Qual é o prato de carne branca que nenhum cozinheiro acerta? Fracassei de Frango ,1,1,-3.90234375,3.890625,7.79296875,0.0004124559345655143,0.9995875954627991,True
+5.1314.N,5.1314,N,Por que a manicure foi demitida? Porque ela estava chengando atrasada.,0,1,-0.6689453125,1.2451171875,1.9140625,0.12852515280246735,0.8714748620986938,False
+5.2056.N,5.2056,N,Qual é o jogo da pessoa gripada? Overcooked,0,1,-1.4375,1.7314453125,3.1689453125,0.04035123437643051,0.9596487283706665,False
+5.1849.H,5.1849,H,Qual a parte do corpo mais atrai senhoras? O umbingo.,1,1,0.06365966796875,0.1541748046875,0.09051513671875,0.47738662362098694,0.5226133465766907,True
+5.3651.N,5.3651,N,Qual anime foi baseado na versao brasileira de um futebolista mediamente famoso? Dragon Ball Z.,0,0,4.77734375,-3.869140625,-8.646484375,0.9998243451118469,0.0001757127174641937,True
+4.695.N,4.695,N,"Qual é o contrário de "" extraordinário ""? Banal.",0,1,-1.923828125,2.595703125,4.51953125,0.010776725597679615,0.9892232418060303,False
+5.2609.N,5.2609,N,O que o anão estava fazendo com a bola de futebol? Chutes.,0,0,4.8515625,-4.0078125,-8.859375,0.9998579025268555,0.00014202363672666252,True
+5.2895.H,5.2895,H,Qual cantor só vê notícias pela internet? Ig Pop ,1,0,3.619140625,-2.87109375,-6.490234375,0.9984840750694275,0.0015158916357904673,False
+5.1335.N,5.1335,N,Qual é o youtuber que mais economiza na luz? O Whindersson Nunes.,0,1,-3.197265625,3.40234375,6.599609375,0.0013590500457212329,0.9986409544944763,False
+5.2751.N,5.2751,N,Qual aviamento não para quieto? Os botões,0,0,4.15625,-3.646484375,-7.802734375,0.9995915293693542,0.00040844923933036625,True
+5.2009.N,5.2009,N,Nome do cara que não joga na linha? O goleiro,0,0,4.41015625,-3.830078125,-8.240234375,0.9997362494468689,0.00026375282322987914,True
+5.793.N,5.793,N,Qual a rede social mais usada pelas mulheres no Oriente Médio? Instagram.,0,0,5.1015625,-4.12890625,-9.23046875,0.9999020099639893,9.799767576623708e-05,True
+5.2210.H,5.2210,H,Qual é o filme dirigido por Jordan Peele e Sérgio Mallandro? CoRRÁ!,1,1,-3.94921875,4.0234375,7.97265625,0.00034464316559024155,0.9996553659439087,True
+5.4025.H,5.4025,H,Nome de cervejaria em homenagem a um grande cantor brasileiro? CauBEER PeiCHOPPS.,1,1,-4.390625,4.2265625,8.6171875,0.00018093576363753527,0.9998190999031067,True
+5.604.N,5.604,N,Qual é a loja que no ENEM só chutava a terceira e primeira alternativas? Renner.,0,0,4.7265625,-4.14453125,-8.87109375,0.9998595714569092,0.00014036924403626472,True
+5.2259.N,5.2259,N,Qual a semelhança entre o trovão e a privada? Os dois vem sempre acompanhado de calor,0,1,-1.669921875,1.970703125,3.640625,0.025565214455127716,0.9744347929954529,False
+5.1393.H,5.1393,H,Qual é a banda de pagode mais famosa no mundo dos animes? Sorriso Naruto.,1,1,-3.05859375,3.5,6.55859375,0.0014158703852444887,0.9985841512680054,True
+4.477.N,4.477,N,"Perguntei a um francês se jogava videojogos . "" Oui "".",0,0,4.3984375,-3.56640625,-7.96484375,0.999652624130249,0.00034734528162516654,True
+5.3119.H,5.3119,H,Qual o nome da mãe do super-herói que nunca vai em praia com águas geladas? Martha Kent.,1,0,3.333984375,-2.91796875,-6.251953125,0.9980770349502563,0.0019229825120419264,False
+5.806.H,5.806,H,"Em qual época o Brasileiro foi mais magro? Na época do movimento ""Dietas Já"".",1,0,4.23828125,-3.751953125,-7.990234375,0.9996613264083862,0.000338639976689592,False
+5.232.H,5.232,H,Qual é o perfume do zagueiro ruim? Mal beque.,1,1,-4.078125,4.20703125,8.28515625,0.0002521696442272514,0.9997478127479553,True
+5.3511.N,5.3511,N,Qual ex-piloto era um índio pronto pro ataque? Nenhum.,0,0,4.46875,-3.818359375,-8.287109375,0.9997482895851135,0.0002516777312848717,True
+4.283.N,4.283,N,Qual é o carro que consegue transportar mais porcos? É o Nissan Qashqai.,0,0,1.8935546875,-1.5869140625,-3.48046875,0.9701269268989563,0.029873093590140343,True
+5.3537.N,5.3537,N,Qual rockeiro não come? É o Regime Hendrix.,0,1,-2.45703125,2.81640625,5.2734375,0.005099817644804716,0.9949001669883728,False
+5.3385.H,5.3385,H,Qual atriz tá com o demônio no corpo? Zezé Possessa.,1,0,4.73046875,-3.958984375,-8.689453125,0.9998316764831543,0.00016832373512443155,False
+5.489.H,5.489,H,Qual piloto tem pacto com o Diabo? Exumacher.,1,1,-3.4609375,3.73828125,7.19921875,0.0007466113893315196,0.9992533326148987,True
+5.3231.H,5.3231,H,Por que o rapaz não mostrou os slides em sua apresentação na empresa? Porque ele Esxcel de levar.,1,1,-2.58984375,2.76171875,5.3515625,0.004718369338661432,0.9952816367149353,True
+5.1837.N,5.1837,N,"O que o cachorro falou pro dono depois que tomou um esporro? Desculpa, você tem toda a razão.",0,0,5.2265625,-4.41796875,-9.64453125,0.9999352693557739,6.477467104559764e-05,True
+5.2362.H,5.2362,H,Qual é o tipo de gol que vale uma fortuna no mercado? Gold Letra.,1,1,-3.2421875,3.2734375,6.515625,0.0014779429184272885,0.9985221028327942,True
+5.150.N,5.150,N,"Qual a expressão que hora é de uma pessoa, hora é de todo mundo? Meu Deus.",0,0,4.97265625,-4.09765625,-9.0703125,0.9998849630355835,0.0001150173629866913,True
+5.3526.H,5.3526,H,O que fez o garçom militar? Serviu o exército.,1,0,4.26953125,-3.31640625,-7.5859375,0.9994926452636719,0.0005072812200523913,False
+4.489.H,4.489,H,Hoje de manhã consegui empilhar catorze panquecas. Aquilo é que foi um pequeno-almoço equilibrado.,1,0,3.322265625,-2.9140625,-6.236328125,0.9980467557907104,0.0019532055594027042,False
+4.203.N,4.203,N,Comprei uns sapatos com lâmpadas LED na sola . Pode-se dizer que emitem luz led.,0,0,3.94140625,-3.19140625,-7.1328125,0.9992021918296814,0.0007978335488587618,True
+4.277.N,4.277,N,Como é que os alpinistas se cumprimentam? Como é que é!,0,0,4.7890625,-3.875,-8.6640625,0.9998273253440857,0.000172651547472924,True
+5.3670.H,5.3670,H,Qual país que as pessoas não tem o dedo polegar? SenLegal.s,1,1,-3.970703125,4.08984375,8.060546875,0.0003156543825753033,0.9996843338012695,True
+4.51.H,4.51,H,Como se encontra um cego numa praia de nudistas? Não é duro.,1,1,-0.72998046875,1.1748046875,1.90478515625,0.12956784665584564,0.8704321384429932,True
+5.1387.H,5.1387,H,Qual cantora escreveu Sitio do Picapau Amarelo? A Demi Lobato.,1,1,-3.494140625,3.615234375,7.109375,0.0008167380001395941,0.9991832375526428,True
+4.58.N,4.58,N,O que são cinco heróis coloridos num jardim? São os Flower Rangers.,0,0,3.65625,-2.974609375,-6.630859375,0.9986826777458191,0.001317291520535946,True
+5.2977.N,5.2977,N,Qual escola só tem negão criança? Negro é tudo júnior.,0,1,-2.861328125,2.662109375,5.5234375,0.003976228181272745,0.9960237741470337,False
+4.100.N,4.100,N,A Anabela estava com prisão de ventre mas mesmo assim foi à sanita . Qual é o filme? Tentação.,0,0,4.5546875,-3.833984375,-8.388671875,0.9997726082801819,0.00022737741528544575,True
+4.663.N,4.663,N,Por que é que a professora usa óculos escuros na aula? Porque os seus olhos são sensiveis.,0,0,4.078125,-2.9765625,-7.0546875,0.9991374015808105,0.0008626078488305211,True
+5.3509.H,5.3509,H,Qual é o cantor que tem problemas respiratórios? Erasma Carlos.,1,0,4.6640625,-3.642578125,-8.306640625,0.9997531771659851,0.0002468110469635576,False
+5.3058.N,5.3058,N,Qual assassino possui um vasto conhecimento? John Wick.,0,0,4.94140625,-4.140625,-9.08203125,0.9998862743377686,0.00011367750266799703,True
+4.151.N,4.151,N,Qual é a sobremesa que nunca sai direita? É a pavlova.,0,0,4.28515625,-3.712890625,-7.998046875,0.9996639490127563,0.0003360055270604789,True
+3.14.N,3.14,N,Por que as plantas pequenas não falam? Porque elas são plantas.,0,0,4.3671875,-3.359375,-7.7265625,0.999559223651886,0.0004407629603520036,True
+5.3664.H,5.3664,H,Em qual faculdade o negão só entrava pelado? Nutição.,1,1,-3.7421875,3.677734375,7.419921875,0.0005988371558487415,0.9994012117385864,True
+5.2362.N,5.2362,N,Qual é o tipo de gol que vale uma fortuna no mercado? Gol de letra.,0,0,0.84716796875,-0.09698486328125,-0.94415283203125,0.7199377417564392,0.2800622582435608,True
+5.724.H,5.724,H,Por que o 14 é melhor que o 15? Porque ele é fortinho.,1,1,-3.21875,3.287109375,6.505859375,0.001492425100877881,0.998507559299469,True
+5.2014.H,5.2014,H,Em que parte do casa todos se encontram? Na área de ser visto ,1,0,4.8671875,-4.1796875,-9.046875,0.9998822212219238,0.00011774458835134283,False
+5.1009.H,5.1009,H,O que o 7 perguntou pro amigo dele? Cê vem?,1,0,4.7109375,-4.16796875,-8.87890625,0.9998606443405151,0.0001392770209349692,False
+5.3010.N,5.3010,N,Qual cantor é fera em matemática? Carlos Drummond de Andrade.,0,0,5.01171875,-4.31640625,-9.328125,0.9999110698699951,8.888084266800433e-05,True
+5.912.H,5.912,H,Qual é a parte do computador que não é do bem? O mouse.,1,0,4.75390625,-4.09375,-8.84765625,0.9998562335968018,0.0001436975144315511,False
+5.1593.N,5.1593,N,Qual é o filme da Xuxa que se passa em um bosque? Xuxa e os Duendes.,0,0,4.72265625,-3.9140625,-8.63671875,0.9998225569725037,0.0001774367701727897,True
+5.3703.N,5.3703,N,Que atriz trabalha como lixeira? Mia Goth.,0,1,-2.6640625,3.224609375,5.888671875,0.002762998454272747,0.997236967086792,False
+5.2951.N,5.2951,N,Qual é o personagem de Chaves que gosta de ficar rodando bolas? O Professor Gira Falos.,0,1,-3.8203125,3.84765625,7.66796875,0.00046734808711335063,0.9995326995849609,False
+5.3169.H,5.3169,H,Que rainha rosna como música? Queen Lati Fa.,1,1,-3.26171875,3.189453125,6.451171875,0.0015761827817186713,0.9984238147735596,True
+5.2468.N,5.2468,N,Qual é o Rapper que toca sempre as mesmas músicas? Soulja Boy.,0,1,-2.9375,3.3671875,6.3046875,0.0018243828089907765,0.9981756210327148,False
+5.184.H,5.184,H,Qual é o cantor que acha tudo um exagero? Agnaldo Too Much.,1,1,-3.93359375,4.12890625,8.0625,0.00031503866193816066,0.9996849298477173,True
+4.318.N,4.318,N,Vira-se um guitarrista para um baixista: Então o que fazes aqui por estas paragens?,0,0,4.63671875,-3.90625,-8.54296875,0.9998051524162292,0.00019487277313601226,True
+4.528.N,4.528,N,Como é que os professores de matemática se mantêm em forma? Com exercício.,0,0,5.13671875,-4.23046875,-9.3671875,0.9999145269393921,8.547616744181141e-05,True
+5.663.N,5.663,N,Por que tem eleição no mundo das aves? Porque a águia.,0,0,0.744140625,-0.447998046875,-1.192138671875,0.7671233415603638,0.23287665843963623,True
+5.3300.N,5.3300,N,Qual é o animal que regurgita muito? Mosca.,0,0,5.171875,-4.34765625,-9.51953125,0.9999265670776367,7.339867443079129e-05,True
+5.808.H,5.808,H,Por que o caminhão pipa só andava com as rodas de trás?  Porque ele gostava de empinar.,1,0,2.087890625,-1.7294921875,-3.8173828125,0.9784876704216003,0.021512312814593315,False
+5.2595.H,5.2595,H,Qual animal que gosta muito de você? Lheama.,1,1,-3.87109375,3.947265625,7.818359375,0.0004021193308290094,0.9995978474617004,True
+5.1595.H,5.1595,H,O que acontece quando uma turma de cegos se forma? Um braille de formatura,1,1,-3.771484375,3.763671875,7.53515625,0.0005336928297765553,0.9994663596153259,True
+5.2366.N,5.2366,N,Qual é o esporte não recomendado a quem tem pressão alta? Futebol.,0,0,5.0546875,-4.12109375,-9.17578125,0.9998965263366699,0.000103505612059962,True
+5.3492.H,5.3492,H,"Qual a banda que, quando nasceu, era alimentada por criminosas? Mamou nas assassinas.",1,1,-4.0546875,3.873046875,7.927734375,0.00036047250614501536,0.9996395111083984,True
+5.2412.H,5.2412,H,"Qual é o doce que luta artes marciais? A ""iá!"" Benta",1,1,-3.005859375,2.962890625,5.96875,0.0025509123224765062,0.9974491000175476,True
+4.245.N,4.245,N,Que se diz a um homem que via mas agora já não vê? Tu vias.,0,0,2.10546875,-1.2822265625,-3.3876953125,0.9673178195953369,0.03268223628401756,True
+5.3597.N,5.3597,N,Qual atriz cômica tem mania de reparar do pescoço das pessoas? Tara ver neck.,0,1,-3.8515625,3.77734375,7.62890625,0.00048595608677715063,0.999514102935791,False
+5.3145.H,5.3145,H,Qual a comida preferida do paciente com Ebola? É bolacha.,1,0,4.77734375,-4.046875,-8.82421875,0.9998528957366943,0.00014710471441503614,False
+4.150.H,4.150,H,Qual é a temperatura de um leão morto? 360º. Porque ele é uma ex-fera.,1,1,-2.044921875,2.63671875,4.681640625,0.009178773500025272,0.9908213019371033,True
+4.103.N,4.103,N,Qual é a única coisa que se faz sempre em numeração romana? MCLXIV.,0,1,-2.29296875,2.828125,5.12109375,0.005934066604822874,0.9940658807754517,False
+5.2952.N,5.2952,N,Qual é o nome do programa que o Sílvio Santos passou a fazer no parque? Roda a Roda Jetski.,0,1,-2.7265625,3.197265625,5.923828125,0.0026678042486310005,0.9973322153091431,False
+5.3154.H,5.3154,H,Qual carro não pode faltar no feijão? Fiat Paio.,1,1,-1.6708984375,1.8466796875,3.517578125,0.02881619706749916,0.9711838364601135,True
+5.3494.H,5.3494,H,Qual o programa favorito do proctologista? Programa do Retinho.,1,1,-0.62060546875,0.9404296875,1.56103515625,0.17349815368652344,0.8265018463134766,True
+5.71.N,5.71,N,Qual é o cachorro que mergulha muito? Setter Irlandês.,0,1,-2.189453125,2.783203125,4.97265625,0.006877107545733452,0.9931228756904602,False
+4.611.H,4.611,H,"Como se diz ""tripa de boi"" em espanhol? Intestino del gado.",1,1,-3.724609375,3.681640625,7.40625,0.0006070755771361291,0.9993928670883179,True
+5.1158.H,5.1158,H,Qual o presidente que foi beber água e não achou nada? Marechal Deodoro da Fonte Seca.,1,1,-3.83203125,4.11328125,7.9453125,0.00035419364576227963,0.9996458292007446,True
+5.1220.N,5.1220,N,Por que só vou à restaurante Self Service? Porque tem tudo aquilo que eu gosto.,0,0,4.953125,-4.078125,-9.03125,0.9998804330825806,0.00011959858966292813,True
+5.2166.N,5.2166,N,Qual cantor era lobisomem? O Wando,0,0,4.70703125,-4.00390625,-8.7109375,0.9998352527618408,0.00016474655421916395,True
+5.1783.H,5.1783,H,Por que os Vikings em Far Cry não andam de taxi? Porque viking vai por uber.,1,1,-4.203125,4.3515625,8.5546875,0.000192602863535285,0.9998074173927307,True
+4.71.N,4.71,N,Porque é que uma mulher pediu a noz-moscada ao filho na cozinha? Porque não tinha canela para pôr no bolo.,0,0,3.796875,-3.12109375,-6.91796875,0.9990111589431763,0.0009888596832752228,True
+5.555.H,5.555,H,Qual o sanduíche preferido da turma do Chaves? X-pirito.,1,0,5.09375,-4.40625,-9.5,0.9999251365661621,7.484622619813308e-05,False
+4.356.H,4.356,H,O Rodolfo adoeceu e o Pai Natal não vai conseguir entregar as prendas. Teve uma insuficiência renal.,1,0,4.2734375,-3.78125,-8.0546875,0.9996825456619263,0.000317508791340515,False
+4.733.H,4.733,H,Há anos que procurava um cavalo que bebesse vinho. Para encontrar um foi preciso ir a cascos de rolha.,1,1,-3.91796875,3.7734375,7.69140625,0.00045652693370357156,0.9995434880256653,True
+5.1344.N,5.1344,N,Qual herói ajudou Frodo em sua jornada? O Aragorn.,0,0,4.2734375,-3.755859375,-8.029296875,0.9996743202209473,0.0003256710770074278,True
+5.3586.N,5.3586,N,Por que quando chove pedra elas caem todas certinhas? Porque é bonito.,0,0,4.30859375,-3.623046875,-7.931640625,0.999640941619873,0.0003590676642488688,True
+4.276.H,4.276,H,Uma mulher tropeça e cai em cima de um cão. Qual é o filme? Senta em um dálmata.,1,1,-4.26171875,3.947265625,8.208984375,0.0002721229684539139,0.9997279047966003,True
+5.3060.H,5.3060,H,Qual o nome do assassino voador? Alexandre Nadrone.,1,0,3.15234375,-2.205078125,-5.357421875,0.995309054851532,0.00469093257561326,False
+5.1870.N,5.1870,N,O que você precisa fazer quando perde a senha? Recorrer a recuperação de senha.,0,0,4.16796875,-3.564453125,-7.732421875,0.9995618462562561,0.0004381890466902405,True
+5.418.H,5.418,H,Quantos chocolates são necessários para voar? 14 bis,1,1,-0.019500732421875,0.255126953125,0.274627685546875,0.4317713677883148,0.5682286024093628,True
+4.193.N,4.193,N,"Hoje, vinte mulheres convidaram-me a sair do WC . Nunca mais entro no WC das mulheres.",0,0,4.2734375,-3.53515625,-7.80859375,0.9995939135551453,0.0004060639475937933,True
+1.5.H,1.5,H,Por que a galinha bateu a cabeça contra a parede? Para ficar com um galo.,1,1,-3.66015625,3.22265625,6.8828125,0.0010242064017802477,0.9989758729934692,True
+5.239.N,5.239,N,O que o cantor sertanejo foi fazer no RH? Foi ser demitido por incompetência.,0,0,4.58203125,-3.767578125,-8.349609375,0.999763548374176,0.00023643295571673661,True
+5.2142.H,5.2142,H,Por que os jogadores de vôlei estão sempre no foco da notícia? Porque eles são bons na manchete ,1,1,-2.21875,2.416015625,4.634765625,0.009615035727620125,0.9903849363327026,True
+4.531.H,4.531,H,Porque é que a Lassie ganiu? Porque estava cheia de collie-cas.,1,1,-4.37890625,4.39453125,8.7734375,0.0001547666179249063,0.9998452663421631,True
+4.261.N,4.261,N,Porque é que os meninos não jogam voleibol? Porque têm medo da rede.,0,0,3.4921875,-2.470703125,-5.962890625,0.9974341988563538,0.0025658647064119577,True
+4.96.H,4.96,H,Que nome se dá a um cacto engraçado? Ri-cardo.,1,1,-4.2421875,4.2109375,8.453125,0.00021318755170796067,0.9997867941856384,True
+5.2294.H,5.2294,H,Qual o astrônomo que tinha muita espinha? IsaAC NEwton,1,1,-3.630859375,3.5546875,7.185546875,0.000756881374400109,0.9992431402206421,True
+4.125.N,4.125,N,O que é que os russos dizem quando mandam uma bola ao cão? Vai!,0,0,3.734375,-2.81640625,-6.55078125,0.9985730648040771,0.0014269596431404352,True
+5.704.H,5.704,H,Qual cerveja é comum nos navios? Skol Tilha.,1,1,-3.1640625,2.99609375,6.16015625,0.0021074723917990923,0.9978925585746765,True
+5.2779.H,5.2779,H,Qual inseto toma muito chá? Marimboldo,1,1,-3.939453125,3.7734375,7.712890625,0.00044682767475023866,0.9995531439781189,True
+5.2226.N,5.2226,N,Por que se ouvia uma nota quando neandertal batia em suas presas? Porque usava uma pedra,0,0,5.11328125,-4.04296875,-9.15625,0.9998944997787476,0.00010554686741670594,True
+4.198.H,4.198,H,"Porque é que a febre tifóide é tão perigosa? Porque ou tu a curas, ou ela tifóide mesmo.",1,1,-4.0390625,3.94140625,7.98046875,0.00034196203341707587,0.9996579885482788,True
+4.370.H,4.370,H,"É boa ideia comprar um relógio em forma de peixe? Não, é uma perca de tempo.",1,0,4.5546875,-3.673828125,-8.228515625,0.9997331500053406,0.0002668610541149974,False
+5.1049.N,5.1049,N,Qual bebiba te dá superpoder? Energético.,0,0,0.370849609375,0.0261077880859375,-0.3447418212890625,0.5853419303894043,0.4146580994129181,True
+4.696.H,4.696,H,"Acabei de comprar um livro chamado ""Caminhadas para Totós"". É um guia passo a passo.",1,1,-2.451171875,2.94140625,5.392578125,0.004529616329818964,0.995470404624939,True
+5.2597.H,5.2597,H,Qual seria a profissão perfeita para o Tony Tornado? Promotor de eVENTOS.,1,0,3.490234375,-2.94140625,-6.431640625,0.9983927607536316,0.0016072202706709504,False
+5.3224.N,5.3224,N,Qual comediante comentou sobre a Páscoa em seu texto? Leandro Hassum.,0,0,4.83203125,-4.21484375,-9.046875,0.9998822212219238,0.00011774458835134283,True
+5.636.H,5.636,H,Qual a parte do corpo favorita do Muralha? Es toma gol.,1,1,-4.1015625,4.04296875,8.14453125,0.00029023445677012205,0.9997097849845886,True
+5.2225.H,5.2225,H,Por que a mulher chorou muito quando roubaram uma de suas joias? Porque foi uma Perda Preciosa,1,1,-1.955078125,1.9697265625,3.9248046875,0.0193636417388916,0.9806364178657532,True
+5.1335.H,5.1335,H,Qual é o youtuber que mais economiza na luz? O Jovem Led.,1,1,-2.732421875,3.375,6.107421875,0.00222133775241673,0.9977787137031555,True
+4.457.H,4.457,H,Ontem fui ao zoo e vi a minha empregada doméstica numa jaula. O gajo do zoo disse-me que era criada em cativeiro.,1,0,3.845703125,-3.203125,-7.048828125,0.9991323351860046,0.0008676724974066019,False
+5.2603.H,5.2603,H,Qual cantor enxergava tudo o que o professor escreve em sala de aula? Caetano Vê Lousa.,1,1,-3.111328125,3.193359375,6.3046875,0.0018243828089907765,0.9981756210327148,True
+5.3434.N,5.3434,N,Por que o Faustão quer que você coloque o Plinio no seu devido lugar? Pra que tu reclames do Plinio.,0,0,3.146484375,-2.4296875,-5.576171875,0.9962272644042969,0.0037727474700659513,True
+4.615.N,4.615,N,"A eletricidade está tão cara, tão cara, que a EDP decidiu mudar o nome para Luz de Ouro.",0,1,-1.375,1.6494140625,3.0244140625,0.04633503779768944,0.953665018081665,False
+5.53.H,5.53,H,Como são classificados os gatos e cachorros no México? Animais do México.,1,0,4.6875,-4.0546875,-8.7421875,0.999840259552002,0.000159678646014072,False
+5.2155.H,5.2155,H,"Qual o filme preferido do Kiko? Harry Potter e o Cálice Cálice Cálice, você me deixa looouco! ",1,1,-3.833984375,3.794921875,7.62890625,0.00048595608677715063,0.999514102935791,True
+4.698.N,4.698,N,Qual é a semelhança entre o sol e um avô? Ambos fazem qualquer coisa bonita.,0,0,1.5107421875,-0.994140625,-2.5048828125,0.9244834184646606,0.07551658153533936,True
+5.1220.H,5.1220,H,Por que só vou à restaurante Self Service? Porque tem tudo a Kilo que eu gosto.,1,1,-2.33984375,2.54296875,4.8828125,0.007518718484789133,0.9924813508987427,True
+5.572.N,5.572,N,Qual escritor tem vitiligo? Jorge Amado.,0,0,5.2265625,-4.30859375,-9.53515625,0.9999277591705322,7.226082379929721e-05,True
+5.3164.H,5.3164,H,Qual pintor estava sempre bêbado? Van Grogue.,1,0,4.2890625,-3.767578125,-8.056640625,0.999683141708374,0.0003168894618283957,False
+5.2410.H,5.2410,H,"Como os cachorros chineses dizem ""oi""? ""NihAU"".",1,1,-1.525390625,2.119140625,3.64453125,0.02546808123588562,0.974531888961792,True
+4.327.H,4.327,H,Qual é a panela que se usa quando se está triste? Depressão.,1,0,4.6171875,-3.525390625,-8.142578125,0.9997091889381409,0.00029080171952955425,False
+4.296.N,4.296,N,O que diz um actor para outro? Tens um andar tão lindo ...,0,0,4.671875,-3.923828125,-8.595703125,0.9998151659965515,0.00018486437329556793,True
+5.1222.N,5.1222,N,Qual o jornalista esportivo mais inteligente? Galvão Bueno.,0,0,5.1953125,-4.35546875,-9.55078125,0.9999288320541382,7.114059553714469e-05,True
+4.425.N,4.425,N,"Qual é o cão mais fixe? O pastor alemão, porque tem muita pinta.",0,0,4.05859375,-3.30859375,-7.3671875,0.9993687272071838,0.0006312434561550617,True
+5.3586.H,5.3586,H,Por que quando chove pedra elas caem todas certinhas? Porque eu organizo.,1,0,4.3203125,-3.2421875,-7.5625,0.999480664730072,0.0005193048855289817,False
+5.1616.N,5.1616,N,Qual é a pacifista que é um gênio da matemática? Sophie Germain.,0,0,4.19140625,-3.53125,-7.72265625,0.9995575547218323,0.0004424872749950737,True
+5.3154.N,5.3154,N,Qual carro não pode faltar no feijão? Fusca.,0,0,4.44140625,-3.728515625,-8.169921875,0.9997170567512512,0.0002829600707627833,True
+5.1361.H,5.1361,H,Qual é o melhor legume que existe? A Better raba.,1,1,-4.2109375,4.09375,8.3046875,0.00024729344295337796,0.9997527003288269,True
+5.3911.N,5.3911,N,Qual a cidade as pessoas rezam e fazem artesanato? Em Budas Artes.,0,1,-3.25390625,3.515625,6.76953125,0.0011469158343970776,0.9988530874252319,False
+5.2760.H,5.2760,H,Qual o grupo musical favorito dos leões? Ruge.,1,0,0.9736328125,-0.029205322265625,-1.002838134765625,0.7316162586212158,0.2683837413787842,False
+4.733.N,4.733,N,Há anos que procurava um Homem  que bebesse vinho . Para encontrar um foi preciso Ir perguntar .,0,0,2.943359375,-2.216796875,-5.16015625,0.9942920207977295,0.005708033684641123,True
+4.708.H,4.708,H,Qual é a cantora preferida dos cirurgiões? É a Anastasia.,1,0,4.27734375,-3.607421875,-7.884765625,0.9996236562728882,0.00037629317375831306,False
+4.253.N,4.253,N,Porque é que os polícias não gostam de sabão? Porque preferem sabonete.,0,0,3.52734375,-2.41796875,-5.9453125,0.9973887801170349,0.0026112475898116827,True
+5.2789.H,5.2789,H,por que o beta não avança no relacionamento? porque se não ele gama. ,1,1,-3.126953125,3.005859375,6.1328125,0.00216576736420393,0.9978342652320862,True
+5.2343.H,5.2343,H,Qual jornalista esportivo é ainda adolescente? TEENo Marcos.,1,1,-3.859375,3.76953125,7.62890625,0.00048595608677715063,0.999514102935791,True
+5.3511.H,5.3511,H,Qual ex-piloto era um índio pronto pro ataque? Mim Ka Salo.,1,1,-3.609375,3.662109375,7.271484375,0.0006945965578779578,0.9993053674697876,True
+5.3997.H,5.3997,H,Qual a primeira menstruação bíblica? A Menarca de Noé.,1,1,-3.658203125,3.6875,7.345703125,0.0006449432112276554,0.9993550181388855,True
+5.3668.N,5.3668,N,Por que o frango caipira não tem problemas jurídicos de identidade? Porque ele não tem hormônios.,0,0,4.1171875,-3.583984375,-7.701171875,0.9995478987693787,0.00045209232484921813,True
+5.429.H,5.429,H,Qual o chocolate que dá mais energia? Choquito.,1,1,-4.06640625,4.015625,8.08203125,0.00030894720111973584,0.9996911287307739,True
+4.362.H,4.362,H,"Uma família estava perdida no deserto há mais de dois meses, até que encontraram um rio onde todos tomaram banho, exceto a avó. Qual é o filme? A avó tá imunda há 80 dias.",1,1,-1.2900390625,1.3193359375,2.609375,0.06853749603033066,0.9314625263214111,True
+5.426.H,5.426,H,Qual criatura mitológica criou um calendário só com 11 signos? Menostouro.,1,0,1.3603515625,-0.72265625,-2.0830078125,0.8892406225204468,0.11075937747955322,False
+5.591.H,5.591,H,Qual cerveja é exclusiva do Rio de Janeiro? Schincarioca.,1,1,-1.078125,1.5986328125,2.6767578125,0.06435883790254593,0.9356411695480347,True
+5.3529.N,5.3529,N,Que estilo de filme tem dois atores se esfregando? Pornô.,0,0,3.92578125,-3.544921875,-7.470703125,0.9994307160377502,0.0005692035192623734,True
+5.3431.N,5.3431,N,Qual cidade espanhola preferida pelo Faustão? Barcelona nos Trinta.,0,1,-3.578125,3.212890625,6.791015625,0.0011225653579458594,0.9988774657249451,False
+4.151.H,4.151,H,Qual é a sobremesa que nunca sai direita? É a torta.,1,0,4.73046875,-4.13671875,-8.8671875,0.999859094619751,0.00014091856428422034,False
+5.3958.N,5.3958,N,Qual o sorvete favorito dos escoceses? Whisky na neve.,0,0,2.46484375,-2.18359375,-4.6484375,0.9905142784118652,0.00948571227490902,True
+4.543.H,4.543,H,Em que unidades se medem os cães? Em pulgadas.,1,1,-3.376953125,3.556640625,6.93359375,0.0009735437924973667,0.9990264177322388,True
+5.848.N,5.848,N,Qual personagem da Disney que ninguém gosta? Jafar.,0,0,5.1875,-4.31640625,-9.50390625,0.9999254941940308,7.455446029780433e-05,True
+4.724.H,4.724,H,"Como é que se diz ""abacate"" no Brasil? Abacaxi.",1,0,5.0234375,-4.45703125,-9.48046875,0.9999237060546875,7.632232882315293e-05,False
+5.3379.H,5.3379,H,"Qual atriz que mesmo sem companhia, nunca anda sozinha? Uma Thurman.",1,0,4.52734375,-4.0078125,-8.53515625,0.9998036026954651,0.0001964008843060583,False
+5.3834.N,5.3834,N,Qual o ex desgraçado que se empanturra na fazenda? Ex Como um Gado.,0,1,-3.888671875,3.931640625,7.8203125,0.00040133504080586135,0.9995986819267273,False
+5.30.H,5.30,H,Por que o elefante não pega fogo? Porque ele é cinza.,1,0,4.5390625,-3.81640625,-8.35546875,0.9997649788856506,0.00023505199351347983,False
+4.464.H,4.464,H,Onde se encontram os piores restaurantes italianos? Massamá.,1,1,-0.168212890625,1.0732421875,1.241455078125,0.2241828292608261,0.7758172154426575,True
+5.2687.N,5.2687,N,Qual é a banda que não toca em bares nem em praças? Incubus,0,0,3.025390625,-2.310546875,-5.3359375,0.9952077269554138,0.004792316816747189,True
+4.229.H,4.229,H,A minha amiga asiática ficou doente. Mas eu Coreia.,1,0,2.98828125,-2.15234375,-5.140625,0.9941800832748413,0.005819959565997124,False
+5.2294.N,5.2294,N,Qual o astrônomo que tinha muita espinha? Newton,0,0,4.203125,-3.58203125,-7.78515625,0.9995842576026917,0.00041568942833691835,True
+4.485.H,4.485,H,Há duas formas de os deputados saírem do parlamento: Há com boleia e Assembleia.,1,1,-3.873046875,3.919921875,7.79296875,0.0004124559345655143,0.9995875954627991,True
+5.4006.N,5.4006,N,Por que Caim matou Abel? Porque Abel era obediente.,0,0,4.44921875,-3.72265625,-8.171875,0.9997175335884094,0.0002824080875143409,True
+4.290.H,4.290,H,Como é que o Camões ficou zarolho? A mãe estava a cozinhar e disse-lhe: Luís vou ali à loja. Deita-me aí um olho na comida.,1,0,2.427734375,-1.7138671875,-4.1416015625,0.984351396560669,0.015648599714040756,False
+5.2824.N,5.2824,N,Como o Batman dorme? De lado,0,0,4.17578125,-3.763671875,-7.939453125,0.9996436834335327,0.00035627433680929244,True
+5.1370.H,5.1370,H,Por que o Mario e o Luigi foram ao psicólogo? Porque estavam passando por uma fase difícil.,1,0,4.890625,-4.3125,-9.203125,0.9998992681503296,0.00010071400174638256,False
+5.3997.N,5.3997,N,Qual a primeira menstruação bíblica? A de Eva.,0,0,4.28515625,-3.53515625,-7.8203125,0.9995986819267273,0.00040133504080586135,True
+4.646.N,4.646,N,Qual é a rocha preferida nos relógios . O quartzo.,0,0,4.38671875,-3.580078125,-7.966796875,0.9996533393859863,0.00034666777355596423,True
+4.741.H,4.741,H,Por que é que os pugilistas não conseguem pescar? Porque têm a cana partida.,1,1,-3.91796875,3.87890625,7.796875,0.0004108485591132194,0.9995891451835632,True
+5.1591.H,5.1591,H,Qual é o filme em que um salgado lidera um exército em busca da vitória? Croissant Valente.,1,1,-3.951171875,3.814453125,7.765625,0.00042388474685139954,0.9995761513710022,True
+5.4025.N,5.4025,N,Nome de cervejaria em homenagem a um grande cantor brasileiro? Capitão Bock.,0,1,-3.697265625,3.765625,7.462890625,0.0005736653110943735,0.9994263648986816,False
+5.3103.H,5.3103,H,Doença comum nos detergentes? Sapólio mielite.,1,1,-3.892578125,4.05078125,7.943359375,0.0003548858512658626,0.9996451139450073,True
+5.3010.H,5.3010,H,Qual cantor é fera em matemática? Carlos Kumon de Andrade.,1,1,-3.189453125,3.263671875,6.453125,0.0015731120947748423,0.9984269142150879,True
+5.999.H,5.999,H,Qual desodorante ajuda a ir para o céu? Is pray.,1,1,-2.849609375,3.44140625,6.291015625,0.0018494504038244486,0.9981505274772644,True
+5.3355.H,5.3355,H,O que mais excita o fazendeiro ? EmpôlGado no Pasto.,1,1,-4.1640625,4.08984375,8.25390625,0.0002601723244879395,0.9997398257255554,True
+5.3601.N,5.3601,N,Qual cantora que mais tem acnes? Britney.,0,0,4.63671875,-3.587890625,-8.224609375,0.9997320771217346,0.0002679052122402936,True
+4.500.H,4.500,H,Porque é que o Voldemort tem Instagram mas não tem Facebook? Porque ele prefere ter seguidores em vez de amigos.,1,0,4.58203125,-3.984375,-8.56640625,0.9998096823692322,0.00019035942386835814,False
+5.537.N,5.537,N,Onde se guardam as pequenas coisas? No armário do banheiro.,0,0,5.1328125,-4.37109375,-9.50390625,0.9999254941940308,7.455446029780433e-05,True
+5.350.H,5.350,H,Qual o dinossauro que faz sequestros rápidos? O Velocirapto.,1,1,-3.921875,3.771484375,7.693359375,0.00045563653111457825,0.9995443224906921,True
+4.397.H,4.397,H,Porque é que os portugueses emigram para o Canadá? Porque cánadá.,1,1,-3.765625,3.94140625,7.70703125,0.00044945228728465736,0.9995505213737488,True
+1.2.H,1.2,H,Nós chamamos de meio ambiente porque já destruímos metade?,1,0,3.232421875,-2.482421875,-5.71484375,0.9967142343521118,0.003285833168774843,False
+5.2366.H,5.2366,H,Qual é o esporte não recomendado a quem tem pressão alta? FutSAL.,1,1,-3.69921875,3.88671875,7.5859375,0.0005072812200523913,0.9994926452636719,True
+5.2059.N,5.2059,N,Qual é o vírus baixa renda? Corona vírus,0,1,-2.94921875,3.208984375,6.158203125,0.002111583948135376,0.9978883862495422,False
+5.1107.N,5.1107,N,Qual filósofo sofreu de um exorcismo? O Demócrito.,0,0,5.09765625,-4.0703125,-9.16796875,0.9998956918716431,0.00010431732516735792,True
+5.2196.H,5.2196,H,Qual é o Personagem histórico favorito do bode? Pedro Álvares Cabral ,1,0,3.734375,-3.080078125,-6.814453125,0.9989033937454224,0.0010965894907712936,False
+4.531.N,4.531,N,Porque é que a Lassie ganiu? Porque estava cheia de dores.,0,0,5.015625,-4.02734375,-9.04296875,0.9998817443847656,0.00011820536747109145,True
+4.457.N,4.457,N,Ontem fui ao zoo e vi a minha cobra doméstica numa jaula . O gajo do zoo disse-me que era criada em cativeiro.,0,0,3.6953125,-3.05859375,-6.75390625,0.998835027217865,0.0011649561347439885,True
+5.30.N,5.30,N,Por que o elefante não pega fogo? Porque ele é branco.,0,0,4.7421875,-4.015625,-8.7578125,0.9998427629470825,0.00015720343799330294,True
+5.56.N,5.56,N,Qual creme de barbear parece um esperma? Nivea.,0,0,4.578125,-3.67578125,-8.25390625,0.9997398257255554,0.0002601723244879395,True
+1.2.N,1.2,N,Nós chamamos de meio ambiente porque já destruímos os lados?,0,1,-1.05859375,1.7958984375,2.8544921875,0.05444957688450813,0.9455505013465881,False
+4.201.H,4.201,H,Era uma vez uma cidade onde quase todas as motos eram Yamaha. Qual é o filme? Poca Hondas.,1,1,-3.708984375,3.806640625,7.515625,0.0005442132824100554,0.9994557499885559,True
+5.3211.H,5.3211,H,Qual o ator favorito do Thor? Odin Carrey.,1,1,-3.5859375,3.544921875,7.130859375,0.0007993920589797199,0.9992006421089172,True
+4.288.H,4.288,H,Um homem foi apanhado a roubar um calendário. Apanhou 12 meses.,1,0,2.89453125,-2.369140625,-5.263671875,0.9948503375053406,0.0051496075466275215,False
+4.539.N,4.539,N,"Será que os meus amigos vão passar férias a países do médio oriente? Uns, sim . Os outros, não .",0,0,4.8515625,-4.0703125,-8.921875,0.9998666048049927,0.00013342000602278858,True
+5.2689.H,5.2689,H,Renata voltou do médico com o braço furado. Qual é o acontecimento histórico? Rê volta da Vacina.,1,1,-3.13671875,3.244140625,6.380859375,0.0016908030956983566,0.9983091354370117,True
+5.2789.N,5.2789,N,por que o beta não avança no relacionamento? porque se não ele se machuca.,0,0,4.39453125,-3.392578125,-7.787109375,0.9995850920677185,0.0004148786829318851,True
+5.1673.N,5.1673,N,Qual é o nome para se colocar na filha do salva-vidas? Maria.,0,0,4.71484375,-4.109375,-8.82421875,0.9998528957366943,0.00014710471441503614,True
+5.2938.N,5.2938,N,Qual é a comida do pássaro gigante que toca trompete? O alpiste.,0,1,-3.560546875,3.71875,7.279296875,0.0006891950615681708,0.9993108510971069,False
+4.117.H,4.117,H,O que é que é de graça mas tem que se pagar? Os serviços de um palhaço.,1,0,5.046875,-4.359375,-9.40625,0.99991774559021,8.220189192797989e-05,False
+5.3922.H,5.3922,H,Qual o peido mais assustador? Poltergases.,1,1,-1.373046875,1.8876953125,3.2607421875,0.036942798644304276,0.9630572199821472,True
+5.250.H,5.250,H,"Por que sempre depois que eu durmo à tarde, eu acordo com 1kg de arroz, de feijão, macarrão, açúcar e etc.? Porque foi uma siesta básica.",1,1,-3.23046875,3.6328125,6.86328125,0.0010443860664963722,0.9989556074142456,True
+5.1046.H,5.1046,H,Qual o canal para fumantes infantis? Carlton Network.,1,0,3.859375,-2.892578125,-6.751953125,0.9988327622413635,0.0011672310065478086,False
+5.2896.N,5.2896,N,Qual cantor só pode ser visto pela internet? Lucas Inutilismo,0,1,-1.33984375,2.181640625,3.521484375,0.028707077726721764,0.9712929129600525,False
+4.428.N,4.428,N,Eu sempre quis comprar um cavalo . Por isso fui a uma quinta e pedi um orçamento.,0,0,3.88671875,-3.439453125,-7.326171875,0.9993423819541931,0.0006576552405022085,True
+5.405.N,5.405,N,Onde ficam as maiores dúvidas dos dentistas? Na cabeça.,0,0,4.66796875,-4.0859375,-8.75390625,0.9998421669006348,0.00015781863476149738,True
+4.398.N,4.398,N,"Era um vez um esquilo tão pequeno, tão pequeno, que em vez de chamar esquilo, chamava-se esquilinho.",0,0,4.08203125,-3.634765625,-7.716796875,0.9995549321174622,0.0004450864507816732,True
+5.780.N,5.780,N,Qual a mulher que mais gostava de andar de avião? Simone de É Souza.,0,1,-2.521484375,2.37890625,4.900390625,0.007388675585389137,0.9926113486289978,False
+4.98.N,4.98,N,O que é um carro amarelo no trânsito? É um táxi.,0,0,4.43359375,-4.1953125,-8.62890625,0.9998212456703186,0.00017882816609926522,True
+4.433.N,4.433,N,Hoje descobri que a minha torradeira não é à prova de água . Fiquei surpreendido.,0,0,4.4921875,-3.794921875,-8.287109375,0.9997482895851135,0.0002516777312848717,True
+5.2458.N,5.2458,N,"Qual é a semelhança entre uma carta de amor de um ex-goleiro brasileiro e uma luta do Mike Tyson? Ambas podem acabar "" fim "".",0,1,-2.357421875,2.671875,5.029296875,0.006500872317701578,0.9934991598129272,False
+5.3379.N,5.3379,N,"Qual atriz que mesmo sem companhia, nunca anda sozinha? Fernanda Montenegro.",0,0,4.734375,-4.05078125,-8.78515625,0.9998470544815063,0.0001529638102510944,True
+5.3460.H,5.3460,H,"Qual feriado religioso que não é nem pra preto, nem pra branco? Quarta freira de cinzas.",1,1,-3.7421875,3.75390625,7.49609375,0.0005549409543164074,0.9994450211524963,True
+5.567.H,5.567,H,Que cantor caiu de cara na calçada? Milton No Cimento.,1,1,-3.638671875,3.81640625,7.455078125,0.0005781620275229216,0.9994218349456787,True
+5.3008.N,5.3008,N,O que o cara gripado faz quando está perto de um grupo de doutoras? Contamina.,0,1,-0.125244140625,1.1171875,1.242431640625,0.22401300072669983,0.7759869694709778,False
+5.2238.H,5.2238,H,Qual o programa musical favorito da turma do Chaves? Pops Star ,1,1,-3.056640625,3.52734375,6.583984375,0.0013804222689941525,0.998619556427002,True
+5.2679.N,5.2679,N,Qual padre é um cavalo? Marcelo Rossi.,0,0,4.44921875,-3.71484375,-8.1640625,0.9997153878211975,0.000284622423350811,True
+5.3768.H,5.3768,H,Onde o Jabba come? No pizza hutt ,1,0,2.115234375,-1.5673828125,-3.6826171875,0.9754602313041687,0.024539699777960777,False
+5.2987.N,5.2987,N,Qual microorganismo é viciado em drogas? Bactérias.,0,0,4.50390625,-3.755859375,-8.259765625,0.9997413754463196,0.0002586526970844716,True
+5.248.H,5.248,H,Qual foi o dinossauro mais zoeiro que existiu? Tirando Sarro Rex.,1,1,-3.69140625,3.75390625,7.4453125,0.0005838325014337897,0.9994162321090698,True
+5.3789.N,5.3789,N,Qual o vinho caro do Lamartine Babo? Merlô.,0,1,-3.755859375,3.90625,7.662109375,0.00047009321860969067,0.9995299577713013,False
+5.2974.H,5.2974,H,Qual banda que só usa tenis? Oasics.,1,1,-0.06951904296875,1.1767578125,1.24627685546875,0.2233453094959259,0.7766547203063965,True
+4.266.H,4.266,H,Porque é que os cangurus não pagam propinas? Porque têm bolsa.,1,1,-3.6015625,3.62109375,7.22265625,0.0007293287781067193,0.9992706179618835,True
+5.573.H,5.573,H,Por que o Mickey não precisa ser bem dotado? Porque a Minnie-atura.,1,1,-2.248046875,2.5,4.748046875,0.008594110608100891,0.9914058446884155,True
+5.868.H,5.868,H,Por que o oftamologista anão foi pra Disney? Pra comprar minnie eye-pads.,1,1,-3.896484375,4.20703125,8.103515625,0.0003023824538104236,0.9996976852416992,True
+5.3581.H,5.3581,H,Qual artista gosta de pintar os personagens de Toy Story usando cores bem vivas? O Andy Warhol.,1,0,5.265625,-4.23828125,-9.50390625,0.9999254941940308,7.455446029780433e-05,False
+5.3108.N,5.3108,N,Qual sanduíche do McDonalds te faz sair de qualquer enrascada? Quarteirão.,0,1,-1.1552734375,1.455078125,2.6103515625,0.06847517937421799,0.9315248131752014,False
+5.317.N,5.317,N,Qual banda é formada por um padre? É o Tchan! Com Alexandre Pires.,0,0,4.09765625,-3.32421875,-7.421875,0.9994022846221924,0.0005976693355478346,True
+5.2216.N,5.2216,N,Por que o astronauta desistiu de fazer mingau com farinha de trigo? Porque não havia gravidade,0,0,3.73828125,-3.255859375,-6.994140625,0.9990836381912231,0.0009164001676253974,True
+5.2083.H,5.2083,H,"Qual figura do carnaval que dá em cima das mulheres? Boneco de Oi, linda! ",1,1,-3.03125,3.107421875,6.138671875,0.002153141191229224,0.9978468418121338,True
+5.481.H,5.481,H,Por que a jogadora de baseball foi internada no hospício?  Porque ela não estava batendo bem.,1,1,-1.4814453125,1.6328125,3.1142578125,0.04252294450998306,0.9574770927429199,True
+4.742.N,4.742,N,O que teria acontecido se Adão e Eva fossem canibais? A Eva teria comido Adão.,0,0,4.79296875,-3.869140625,-8.662109375,0.9998270869255066,0.00017298902093898505,True
+5.2496.H,5.2496,H,"O que o médico disse para o homem que entrou gemendo de dor no hospital? ""Seja paciente"".",1,0,4.4375,-3.791015625,-8.228515625,0.9997331500053406,0.0002668610541149974,False
+5.1000.N,5.1000,N,Qual cantora tentou adotar Jesus Cristo? Vanusa.,0,0,5.0078125,-4.25390625,-9.26171875,0.999904990196228,9.49828972807154e-05,True
+5.3145.N,5.3145,N,Qual a comida preferida do paciente com Ebola? É biscoito.,0,0,4.91015625,-4.05859375,-8.96875,0.9998726844787598,0.00012731103925034404,True
+5.3353.H,5.3353,H,Qual a música mais ouvida nas cordilheiras? Snow or neve.,1,1,-3.583984375,3.439453125,7.0234375,0.0008899655658751726,0.9991100430488586,True
+2.21.N,2.21,N,"Eu não esperei, mas o ônibus esperou.",0,0,4.35546875,-3.646484375,-8.001953125,0.9996652603149414,0.0003346960002090782,True
+5.100.H,5.100,H,Qual a data mais importante do calendário grego? Dia de Ação de Grécias.,1,1,-2.068359375,2.5,4.568359375,0.010268432088196278,0.98973149061203,True
+5.1286.N,5.1286,N,Qual o nome do piloto do dirigível? Feodor Nenov.,0,0,0.2705078125,0.0963134765625,-0.1741943359375,0.5434387922286987,0.4565611779689789,True
+5.1343.N,5.1343,N,O Batman vestiu seu Batblazer e seu Batsapato social . Para onde ele foi? Para o casamento.,0,0,0.81787109375,-0.60546875,-1.42333984375,0.8058614134788513,0.1941385418176651,True
+5.263.N,5.263,N,Qual é o nome do filme protagonizado por duas motos bem nervosas? A parede.,0,0,4.3828125,-3.798828125,-8.181640625,0.9997202754020691,0.00027966435300186276,True
+4.141.N,4.141,N,Qual é a sobremesa mais popular na Rússia? O Pudim flan.,0,0,4.0703125,-3.46484375,-7.53515625,0.9994663596153259,0.0005336928297765553,True
+5.117.H,5.117,H,Qual peixe viveu uma aventura digna dos contos de fadas? Aliche no país das Maravilhas.,1,1,-3.72265625,3.771484375,7.494140625,0.0005560253630392253,0.9994439482688904,True
+5.1009.N,5.1009,N,O que o 7 perguntou pro amigo dele? Tu vens?,0,0,4.8984375,-4.234375,-9.1328125,0.999891996383667,0.00010804956400534138,True
+5.4098.N,5.4098,N,Qual molho é sempre servido em proporções exageradas? De tomate.,0,0,5.05859375,-4.4453125,-9.50390625,0.9999254941940308,7.455446029780433e-05,True
+5.3625.N,5.3625,N,Qual a banda que ajuda as pessoas a alcançar a seu destino? U2.,0,0,4.6953125,-3.763671875,-8.458984375,0.9997881054878235,0.00021194234432186931,True
+5.3548.H,5.3548,H,Qual a banda especializada na remoção de carpetes? Revela chão.,1,1,-3.240234375,3.48828125,6.728515625,0.0011948780156672,0.9988051652908325,True
+5.2060.H,5.2060,H,Qual o personagem de star wars que vive espirrando? An atchim skywalker ,1,1,-3.603515625,3.830078125,7.43359375,0.0005907104350626469,0.9994093179702759,True
+5.2778.N,5.2778,N,Qual jogo do Windows só funciona se você fizer tudo o que ele quer? O Campo Minado,0,0,4.4765625,-3.73828125,-8.21484375,0.9997294545173645,0.00027053357916884124,True
+2.21.H,2.21,H,"Eu não esperei, mas o Jack Sparrow.",1,1,-3.099609375,3.43359375,6.533203125,0.001452227937988937,0.9985477328300476,True
+5.3101.N,5.3101,N,Qual herói do cinema é o melhor em fuxicar as redes sociais de seus inimigos? Luke Skywalker.,0,0,4.484375,-3.951171875,-8.435546875,0.9997830986976624,0.00021696732437703758,True
+4.657.H,4.657,H,O Aníbal foi ao Campeonato do Mundo e apareceu na TV. Ficou conhecido Aníbal Mundial.,1,1,-3.44140625,3.56640625,7.0078125,0.0009039677097462118,0.9990960359573364,True
+5.3058.H,5.3058,H,Qual assassino possui um vasto conhecimento? John Wick Pédia.,1,1,-3.91796875,3.833984375,7.751953125,0.00042971738730557263,0.9995703101158142,True
+5.1043.H,5.1043,H,Qual é o pokémon da umbanda? O pikaEXU,1,1,-3.40625,3.66796875,7.07421875,0.0008459375239908695,0.9991540908813477,True
+4.505.N,4.505,N,"O casamento é muito bonito e tal, mas se casares com a pessoa errada, é como a COVID-19 . Todo os dias novos sintomas.",0,1,-3.064453125,3.62890625,6.693359375,0.001237579737789929,0.9987624883651733,False
+5.872.H,5.872,H,Qual comediante vive com calor? Renato Abane.,1,0,4.3515625,-3.796875,-8.1484375,0.9997108578681946,0.0002891032490879297,False
+5.250.N,5.250,N,"Por que sempre depois que eu durmo à tarde, eu acordo com 1 kg de arroz, de feijão, macarrão, açúcar e etc.? Porque foi uma doação.",0,0,4.4375,-3.654296875,-8.091796875,0.9996941089630127,0.00030594569398090243,True
+5.3045.H,5.3045,H,"""Por que a pessoa não paga pelo absorvente? Porque """"quer free"""".""",1,1,-2.798828125,3.0859375,5.884765625,0.0027737824711948633,0.9972261786460876,True
+5.1449.H,5.1449,H,Po rque o carteiro foi à feira? Porque tinha uma carta na manga.,1,1,-4.11328125,3.8359375,7.94921875,0.0003528132219798863,0.9996471405029297,True
+5.3103.N,5.3103,N,Doença comum nos detergentes? Póliomielite.,0,0,3.20703125,-2.73046875,-5.9375,0.997368335723877,0.0026316740550100803,True
+5.1858.H,5.1858,H,Que cantora faz pequenas transmissões na internet? Avril Livinha.,1,0,1.728515625,-1.365234375,-3.09375,0.9566342234611511,0.043365802615880966,False
+5.567.N,5.567,N,Que cantor caiu de cara na calçada? Milton Nascimento.,0,0,5.359375,-4.33203125,-9.69140625,0.9999381303787231,6.180859782034531e-05,True
+5.1237.N,5.1237,N,Qual o tio que faz pesquisa sobre o câncer? O Oncologista.,0,0,4.15625,-3.748046875,-7.904296875,0.9996309280395508,0.00036901768180541694,True
+5.771.H,5.771,H,Por que a ideia ficou cansada depois da reforma? Porque perdeu o assento.,1,0,3.505859375,-3.19921875,-6.705078125,0.9987768530845642,0.001223179162479937,False
+5.3618.H,5.3618,H,Qual os piores inimigos dos MINIons??? MAXIoffs,1,1,-3.25390625,3.482421875,6.736328125,0.001185590517707169,0.9988144636154175,True
+4.319.H,4.319,H,A camaleoa vira-se para o marido: Volta para a camaleão...,1,1,-3.40234375,3.29296875,6.6953125,0.0012351678451523185,0.9987648725509644,True
+4.326.N,4.326,N,Porque é que os homens são mais burros ao pé das mulheres? Porque passam de homo sapiens para homo australopitecos.,0,1,-2.26953125,2.89453125,5.1640625,0.005685906857252121,0.9943140745162964,False
+5.633.H,5.633,H,Quais heróis se preocupam mais com as poses para foto do que com o destino do seu planeta? Os Tumblrcats.,1,1,-3.369140625,3.716796875,7.0859375,0.0008360902429558337,0.9991638660430908,True
+5.3537.H,5.3537,H,Qual rockeiro não engorda? É o Regime Hendrix.,1,1,-3.203125,3.2734375,6.4765625,0.001536726951599121,0.9984632730484009,True
+5.1858.N,5.1858,N,Qual é o cigarro que todos os comediantes gostam? Malboro.,0,1,0.2039794921875,0.385498046875,0.1815185546875,0.4547445476055145,0.5452554821968079,False
+5.2538.N,5.2538,N,Qual atriz da Globo tem o olho torto? Cristiana Oliveira.,0,0,4.77734375,-3.974609375,-8.751953125,0.9998418092727661,0.0001581271062605083,True
+4.598.N,4.598,N,Estou a pensar começar uma relação com a minha amiga . Ao menos ela sabe dar-me o devido valor.,0,0,4.296875,-3.861328125,-8.158203125,0.9997137188911438,0.0002862945257220417,True
+5.569.N,5.569,N,"Qual personagem histórico sempre pede um império? Alexandre, o Grande.",0,0,3.7578125,-3.16015625,-6.91796875,0.9990111589431763,0.0009888596832752228,True
+5.2197.N,5.2197,N,Porque o frango usava smoking? Porque era elegante no último!,0,0,3.33984375,-2.5859375,-5.92578125,0.9973374009132385,0.00266261282376945,True
+5.94.H,5.94,H,Qual o material bélico mais carente? Miss you.,1,1,-3.7578125,3.9296875,7.6875,0.0004583129193633795,0.9995417594909668,True
+4.741.N,4.741,N,Por que é que os pescadores não conseguem pescar? Porque têm a cana partida.,0,1,-3.8203125,3.64453125,7.46484375,0.0005725466180592775,0.9994274377822876,False
+5.1524.H,5.1524,H,Como se chamava o cara que roubava discos do Eric Clapton? Claptonmaníaco.,1,1,-3.94140625,3.89453125,7.8359375,0.00039511534851044416,0.9996048808097839,True
+3.14.H,3.14,H,Por que as plantas pequenas não falam? Porque elas são mudas.,1,0,4.140625,-3.216796875,-7.357421875,0.9993625283241272,0.0006374341319315135,False
+5.2603.N,5.2603,N,Qual cantor enxergava tudo o que o professor escreve em sala de aula? Caetano Veloso.,0,0,5.46875,-4.43359375,-9.90234375,0.9999499320983887,5.0054717576131225e-05,True
+4.744.H,4.744,H,Onde nasceu o Harry Potter? Salvaterra de Magos.,1,1,-3.826171875,3.376953125,7.203125,0.0007437028107233346,0.9992563128471375,True
+5.782.H,5.782,H,Qual a tartaruga ninja que mais gosta de dormir? O Fronhatelo.,1,1,-3.68359375,3.8125,7.49609375,0.0005549409543164074,0.9994450211524963,True
+5.2300.H,5.2300,H,Por que as pessoas estavam testando comidas dentro do ônibus? Porque era um teste do Busfeed.,1,1,-3.77734375,4.12109375,7.8984375,0.00037118542240932584,0.9996287822723389,True
+5.336.N,5.336,N,Qual o meio de transporte mais barato na Bahia? Uber imbau,0,1,-4.23046875,4.22265625,8.453125,0.00021318755170796067,0.9997867941856384,False
+4.744.N,4.744,N,Onde nasceu o Gregório Fernandes? Salvaterra de Magos.,0,1,-3.916015625,3.658203125,7.57421875,0.0005132578662596643,0.9994866847991943,False
+5.3165.H,5.3165,H,Qual pintor ganhou mais dinheiro com sua arte? Ricasso.,1,1,-3.376953125,3.373046875,6.75,0.0011695101857185364,0.9988304972648621,True
+5.1237.H,5.1237,H,Qual o tio que faz pesquisa sobre o câncer? O Uncle Logista.,1,1,-3.935546875,3.94140625,7.876953125,0.0003792433417402208,0.9996206760406494,True
+5.1061.N,5.1061,N,Qual doença temos que coletar esperma? Prostatite.,0,0,2.49609375,-2.05859375,-4.5546875,0.989591658115387,0.010408313944935799,True
+4.433.H,4.433,H,Hoje descobri que a minha torradeira não é à prova de água. Fiquei chocado.,1,0,4.41015625,-3.626953125,-8.037109375,0.9996768236160278,0.00032313750125467777,False
+5.999.N,5.999,N,Qual desodorante ajuda a ir para o céu? Rexona.,0,1,-1.8828125,2.798828125,4.681640625,0.009178773500025272,0.9908213019371033,False
+5.1627.N,5.1627,N,Qual é a atriz menos dramática do mundo? A tristeza,0,0,4.6875,-4.0078125,-8.6953125,0.9998326301574707,0.00016734049131628126,True
+4.183.N,4.183,N,Como é que o António se chama quando anda de autocarro? António.,0,0,4.9921875,-4.234375,-9.2265625,0.9999016523361206,9.838119149208069e-05,True
+4.627.N,4.627,N,Um homem viu um filme nos Estados Unidos . Qual é o filme? American Pie.,0,0,4.859375,-4.0703125,-8.9296875,0.9998675584793091,0.00013238185783848166,True
+5.3765.N,5.3765,N,Qual é o jogo favorito da Ivete Sangalo? Imagem e Ação,0,0,2.47265625,-1.767578125,-4.240234375,0.9858003854751587,0.014199681580066681,True
+5.122.N,5.122,N,Como chama a cerveja que você só toma de 2 em 2 anos? Skoll.,0,0,2.591796875,-1.951171875,-4.54296875,0.9894702434539795,0.010529712773859501,True
+4.169.H,4.169,H,O que diz um gato comunista? Mao.,1,0,0.455322265625,0.258056640625,-0.197265625,0.5491571426391602,0.4508429169654846,False
+5.2743.H,5.2743,H,Qual o animal que sempre tá de brinks? Tira no Sarro,1,1,-3.873046875,3.869140625,7.7421875,0.00043393249507062137,0.9995660185813904,True
+4.61.H,4.61,H,Uma mulher manda-se dum prédio e acerta num homem que ia a passar. Qual é o filme? A cusada de morte.,1,1,-3.626953125,3.63671875,7.263671875,0.0007000406621955335,0.9993000030517578,True
+4.482.N,4.482,N,"O homem já vivei no período Paleolítico, no Mesolítico, no Neolítico...Ao período atual chamamos Idade Contemporânea que veio depois da Idade Moderna e da Idade Média.",0,0,3.8359375,-3.103515625,-6.939453125,0.9990321397781372,0.0009678616188466549,True
+5.636.N,5.636,N,Qual a parte do corpo favorita do Muralha? Cabelo.,0,0,4.21484375,-3.517578125,-7.732421875,0.9995618462562561,0.0004381890466902405,True
+5.2385.H,5.2385,H,Por que o atrito e a resistência do ar foram ao psicólogo? Porque eles são muito desprezados,1,0,3.44140625,-2.55859375,-6.0,0.9975274205207825,0.0024726230185478926,False
+5.2216.H,5.2216,H,Por que o astronauta desistiu de fazer mingau com farinha de trigo? Porque havia lactea ,1,1,-4.1953125,4.07421875,8.26953125,0.00025613975594751537,0.9997438788414001,True
+5.956.N,5.956,N,Como o ciclista reage a uma notícia ruim? Ele fica triste.,0,0,5.0546875,-4.34375,-9.3984375,0.9999171495437622,8.284656360046938e-05,True
+5.1772.N,5.1772,N,Qual é o colunista de fofoca preferido do Mufasa? Zazu.,0,0,4.4921875,-3.943359375,-8.435546875,0.9997830986976624,0.00021696732437703758,True
+4.235.N,4.235,N,"Era uma vez um homem tão pequeno, tão pequeno, que em vez de praticar natação, praticava pesca desportiva.",0,0,2.341796875,-1.90234375,-4.244140625,0.9858549237251282,0.014145104214549065,True
+5.261.H,5.261,H,Qual é o cantor que se suicidou? Frank Simata.,1,1,-2.376953125,2.61328125,4.990234375,0.00675808684900403,0.9932418465614319,True
+5.2675.H,5.2675,H,Qual cantor sempre manda uma jogada boa no baralho? Mando Reis.,1,1,-3.31640625,3.51953125,6.8359375,0.0010733063099905849,0.9989266991615295,True
+5.766.N,5.766,N,Qual o bairro de SP favorito do Schwarzenegger?   A Bela Vista.,0,0,4.47265625,-3.892578125,-8.365234375,0.9997672438621521,0.00023276825959328562,True
+5.2009.H,5.2009,H,Nome do cara que não joga na linha? Hugo Leiro ,1,1,-2.470703125,2.58984375,5.060546875,0.006302121561020613,0.9936979413032532,True
+5.2325.H,5.2325,H,"O que a mãe religiosa disse para o pai agnóstico sobre o filho deles? ""Cuida, que o filho é ateu"".",1,0,4.53125,-3.85546875,-8.38671875,0.9997721314430237,0.0002278218453284353,False
+4.266.N,4.266,N,Porque é que os cangurus não querem bolsas? Porque já  têm bolsa.,0,0,1.8662109375,-1.494140625,-3.3603515625,0.9664421677589417,0.033557821065187454,True
+5.3300.H,5.3300,H,Qual é o animal que regurgita muito? Gorfinho.,1,1,-3.552734375,3.423828125,6.9765625,0.0009326359140686691,0.9990673661231995,True
+5.3529.H,5.3529,H,Que estilo de filme tem dois microscópios se esfregando? Fricção Científica.,1,1,-3.904296875,3.935546875,7.83984375,0.00039357561036013067,0.9996064305305481,True
+4.56.H,4.56,H,Porque é que os carpinteiros são bons a fazer contas? Porque tabuada é com eles.,1,0,3.91015625,-3.130859375,-7.041015625,0.9991255402565002,0.000874471792485565,False
+5.1182.N,5.1182,N,Por que o Chico Buarque foi preso na saída do Santander? Por quebrar o banco.,0,1,-1.7998046875,1.9228515625,3.72265625,0.02359929494559765,0.9764007329940796,False
+5.933.N,5.933,N,Qual é o nome do especialista em temperar carnes que não se esquecia do passado? Olívio.,0,0,3.765625,-3.267578125,-7.033203125,0.9991186261177063,0.0008813242893666029,True
+5.1073.N,5.1073,N,"Qual filme conta a história do casal mais perdido do mundo em beira-mar? "" Procurando; né, mô? """,0,1,-2.048828125,2.375,4.423828125,0.01184623409062624,0.9881537556648254,False
+5.184.N,5.184,N,Qual é o cantor que acha tudo um exagero? Jão.,0,0,4.8984375,-4.109375,-9.0078125,0.9998775720596313,0.0001224344305228442,True
+5.3741.H,5.3741,H,Qual comentarista esportivo se gaba da reforma em seu domicílio? Vaiter Casagrande.,1,1,-3.693359375,3.78515625,7.478515625,0.0005647764774039388,0.9994352459907532,True
+4.740.N,4.740,N,O que diz um mineiro antes de usar a picareta? Cá vai disto!,0,1,-1.8056640625,1.7041015625,3.509765625,0.029035642743110657,0.9709643721580505,False
+5.1286.H,5.1286,H,Qual o nome do piloto do dirigível? José Pelin.,1,0,4.7109375,-4.01953125,-8.73046875,0.9998384714126587,0.000161560601554811,False
+4.724.N,4.724,N,"Como é que se diz "" abacate "" no Brasil? Abacate.",0,0,5.0859375,-4.3984375,-9.484375,0.9999239444732666,7.602479308843613e-05,True
+4.667.H,4.667,H,Que tipo de música ouvem os mortos-vivos? Kizombie.,1,0,0.97412109375,-0.431396484375,-1.405517578125,0.8030579686164856,0.19694200158119202,False
+4.436.N,4.436,N,Se mentes . Deus castiga.,0,1,-1.244140625,2.26953125,3.513671875,0.02892572060227394,0.9710743427276611,False
+4.232.H,4.232,H,Qual é a banda preferida dos desempregados? LinkedIn Park.,1,1,-4.18359375,4.34765625,8.53125,0.00019716942915692925,0.9998028874397278,True
+5.177.N,5.177,N,Qual cantor faz shows em Spa? Belo.,0,0,4.984375,-4.015625,-9.0,0.9998766183853149,0.00012339458044152707,True
+5.2977.H,5.2977,H,Qual grupo só tem negão criança? Negro é tudo júnior.,1,1,-1.66015625,1.861328125,3.521484375,0.028707077726721764,0.9712929129600525,True
+5.587.H,5.587,H,Por que não fico bronzeado em casa? Porque uso protetor só lar.,1,1,-3.5546875,3.689453125,7.244140625,0.0007138378568924963,0.9992862343788147,True
+5.2578.H,5.2578,H,Qual o programa favorito dos gaúchos? The Noitchê.,1,1,-3.65234375,4.03515625,7.6875,0.0004583129193633795,0.9995417594909668,True
+5.1360.N,5.1360,N,Por que o anão foi surfar na cozinha? Porque lá tem fogão.,0,0,4.48828125,-3.728515625,-8.216796875,0.9997299313545227,0.0002700058394111693,True
+5.573.N,5.573,N,Por que o Mickey não precisa ser bem dotado? Porque a miniatura.,0,1,-3.220703125,3.283203125,6.50390625,0.0014953382778912783,0.998504638671875,False
+4.529.N,4.529,N,O que são oito Hobbits? Um grupo de Hobbits.,0,0,4.1875,-3.68359375,-7.87109375,0.9996185302734375,0.0003814711526501924,True
+5.2446.N,5.2446,N,Qual é a cantora favorita do Tony Hawk? Shakira.,0,0,4.4296875,-3.611328125,-8.041015625,0.9996781349182129,0.000321878120303154,True
+5.984.N,5.984,N,Levei meu carro na feira ao invés de levar para a oficina . Qual é o nome do filme? Em Ritmo de Fuga.,0,0,3.654296875,-2.9765625,-6.630859375,0.9986826777458191,0.001317291520535946,True
+5.1311.N,5.1311,N,Qual cantor sertanejo faliu? Leonardo.,0,0,5.08203125,-4.1328125,-9.21484375,0.9999004602432251,9.95407608570531e-05,True
+4.71.H,4.71,H,Porque é que uma mulher partiu a perna ao filho na cozinha? Porque não tinha canela para pôr no bolo.,1,0,0.6201171875,-0.048919677734375,-0.669036865234375,0.6612874865531921,0.33871254324913025,False
+5.3569.H,5.3569,H,Em que momento do dia seus segredos são revelados? No expor do sol.,1,0,2.708984375,-2.033203125,-4.7421875,0.991355836391449,0.008644177578389645,False
+5.1766.N,5.1766,N,"O que o Mickey disse quando pôs a mão no fogo? "" Ai! quente "".",0,1,-1.1767578125,1.66015625,2.8369140625,0.05536169931292534,0.9446382522583008,False
+5.152.N,5.152,N,Por que antigamente o Brasil era mais cheiroso? Porque era perfumado.,0,0,4.89453125,-3.982421875,-8.876953125,0.999860405921936,0.0001395492727169767,True
+5.2056.H,5.2056,H,Qual é o jogo da pessoa gripada? Over atchim ,1,1,-3.94140625,3.83203125,7.7734375,0.0004205874283798039,0.9995793700218201,True
+5.3355.N,5.3355,N,O que mais excita o fazendeiro? Lucros no Pasto.,0,1,0.2406005859375,0.2481689453125,0.007568359375,0.49810791015625,0.50189208984375,False
+5.1025.N,5.1025,N,Quem financiou o Ben 10? O Cartoon Network,0,0,4.7890625,-4.109375,-8.8984375,0.9998633861541748,0.00013658353418577462,True
+5.3595.H,5.3595,H,Qual o chinelo mais vendido em Salvador? Há baianas.,1,1,-2.20703125,2.609375,4.81640625,0.008030813187360764,0.9919691681861877,True
+5.1358.N,5.1358,N,Qual é o trabalho que você se vê fazendo? Limpar banheiros.,0,0,5.1171875,-4.08984375,-9.20703125,0.9998996257781982,0.00010032138379756361,True
+5.1381.H,5.1381,H,Por que colocaram uma cama elástica no Polo Norte? Para o urso polar.,1,1,0.0054168701171875,0.2315673828125,0.2261505126953125,0.4437021017074585,0.5562978386878967,True
+5.691.H,5.691,H,Qual é o nome da hiena que se aposentou? Hiena SS.,1,1,-3.24609375,3.5,6.74609375,0.0011740822810679674,0.9988259673118591,True
+4.296.H,4.296,H,O que diz um prédio para outro? Tens um andar tão lindo...,1,0,4.515625,-3.626953125,-8.142578125,0.9997091889381409,0.00029080171952955425,False
+5.3834.H,5.3834,H,Qual o ex desgraçado que se empanturra na churrascaria? Ex Como um Gado.,1,1,-3.869140625,3.919921875,7.7890625,0.00041406950913369656,0.9995859265327454,True
+5.3108.H,5.3108,H,Qual sanduíche do McDonalds te faz sair de qualquer enrascada? McGuyver.,1,1,-1.623046875,2.255859375,3.87890625,0.020254692062735558,0.9797453284263611,True
+4.753.N,4.753,N,O meu pai tem uma loja de material elétrico . É por isso que tenho material elétrico de graça.,0,0,4.07421875,-3.11328125,-7.1875,0.9992445707321167,0.0007554055191576481,True
+4.169.N,4.169,N,O que diz um gato comunista? Miau.,0,0,0.88671875,-0.01318359375,-0.89990234375,0.7109294533729553,0.28907057642936707,True
+5.1980.N,5.1980,N,Qual o dispositivo usado pra enxergar melhor uma determinada nota musical? Lente,0,0,5.171875,-4.44140625,-9.61328125,0.999933123588562,6.683069659629837e-05,True
+5.1314.H,5.1314,H,Por que a manicure foi demitida? Porque ela estava pouco se lixando.,1,0,4.328125,-3.6640625,-7.9921875,0.9996620416641235,0.000337979436153546,False
+4.664.H,4.664,H,Nunca morei em Hollywood. Mas a Marilyn Monroe.,1,1,-2.314453125,2.7734375,5.087890625,0.006133175455033779,0.9938668608665466,True
+4.352.N,4.352,N,Qual é a diferença entre um boneco de neve e uma boneca de neve? As roupas de neve.,0,0,4.9453125,-4.0859375,-9.03125,0.9998804330825806,0.00011959858966292813,True
+4.536.H,4.536,H,Porque é que o espantalho recebeu um prémio Nobel? Porque foi o que mais se destacou no seu campo.,1,0,1.7255859375,-0.84619140625,-2.57177734375,0.9290229678153992,0.07097700983285904,False
+5.1361.N,5.1361,N,Qual é o melhor legume que existe? A beterraba.,0,0,4.89453125,-4.2578125,-9.15234375,0.9998940229415894,0.00010595991625450552,True
+5.2779.N,5.2779,N,Qual inseto toma muito chá? Marimbondo,0,0,4.48828125,-3.490234375,-7.978515625,0.999657392501831,0.0003426303737796843,True
+5.572.H,5.572,H,Qual escritor tem vitiligo? Manchado de Assis.,1,1,-3.703125,3.798828125,7.501953125,0.0005517006502486765,0.9994482398033142,True
+5.420.H,5.420,H,Qual fruta nasce às margens do Rio Negro? Só-limões.,1,1,-3.60546875,3.7265625,7.33203125,0.0006538155139423907,0.9993461966514587,True
+4.392.N,4.392,N,NOTÍCIA DE ÚLTIMA HORA: Um camião carregado de tijolos despistou-se no IC19 . A fila não pára de crescer.,0,0,1.9443359375,-1.30078125,-3.2451171875,0.9624972343444824,0.03750273957848549,True
+5.405.H,5.405,H,Onde ficam as maiores dúvidas dos dentistas? In the ciso.,1,1,-3.9609375,4.0078125,7.96875,0.00034599160426296294,0.9996540546417236,True
+5.350.N,5.350,N,Qual o dinossauro que faz sequestros rápidos? O estegossauro.,0,0,4.546875,-3.890625,-8.4375,0.999783456325531,0.00021654405281879008,True
+5.3944.H,5.3944,H,Por que o cara resolveu dormir no bueiro? Porque ele tava esgotado.,1,0,3.9375,-3.28515625,-7.22265625,0.9992706179618835,0.0007293287781067193,False
+4.622.N,4.622,N,Que tamanho de roupa vestem as altas? Tamanho grande.,0,0,5.2734375,-4.5,-9.7734375,0.9999430179595947,5.6941025832202286e-05,True
+5.2238.N,5.2238,N,Qual o programa musical favorito da turma do Chaves? The Voice Kids,0,0,4.8984375,-3.939453125,-8.837890625,0.9998549222946167,0.00014510749315377325,True
+5.594.N,5.594,N,O que um irmão apoiador falou pro outro? Tamo Junto!,0,0,3.416015625,-2.880859375,-6.296875,0.9981613755226135,0.001838665222749114,True
+4.117.N,4.117,N,O que é que é de graça mas tem que se registar? Os serviços de um produto digital.,0,0,4.29296875,-3.548828125,-7.841796875,0.999607264995575,0.0003928079386241734,True
+5.129.N,5.129,N,Qual cantora ganhou uma patente em 2018? Marjorie Estiano.,0,0,4.69921875,-3.982421875,-8.681640625,0.9998303651809692,0.00016964369569905102,True
+5.3922.N,5.3922,N,Qual o peido mais fedido? Poltergases.,0,1,-1.5,2.08203125,3.58203125,0.027066176757216454,0.972933828830719,False
+5.3115.N,5.3115,N,Por que o fazendeiro ficou pobre depois de ir ao banheiro? Porque o intestino delgado.,0,1,-3.572265625,3.685546875,7.2578125,0.0007041515200398862,0.9992958307266235,False
+2.8.N,2.8,N,Sabe por que o argumento do Dumbo foi completamente ignorado? Porque era incongruente.,0,0,4.62109375,-3.958984375,-8.580078125,0.9998123049736023,0.00018777504737954587,True
+5.2895.N,5.2895,N,Qual cantor só vê notícias pela internet? Latino,0,0,4.69140625,-3.94140625,-8.6328125,0.9998218417167664,0.00017813108570408076,True
+5.3763.N,5.3763,N,Qual é a profissão mais feia que existe? Deputado,0,0,4.1953125,-3.66796875,-7.86328125,0.9996155500411987,0.0003844619495794177,True
+5.2074.N,5.2074,N,Qual o ator que nunca deixa a mulher sair sozinha? Milton Naciumento,0,1,-3.544921875,3.91015625,7.455078125,0.0005781620275229216,0.9994218349456787,False
+5.4035.N,5.4035,N,"Por que o nariz, às vezes, sente cheiro de arrogância? Por causa da humildade do ar.",0,1,-0.1402587890625,0.564453125,0.7047119140625,0.330768346786499,0.6692315936088562,False
+5.1288.N,5.1288,N,Qual atriz gosta de chocolate? Fernanda Lima.,0,0,5.02734375,-4.21875,-9.24609375,0.9999035596847534,9.647852130001411e-05,True
+5.1056.N,5.1056,N,Por que a cachorra modernista não latiu? Porque ela morreu.,0,0,4.01953125,-3.3671875,-7.38671875,0.9993809461593628,0.000619041733443737,True
+5.2820.N,5.2820,N,Cantora que sempre fez dieta? Elis Regina,0,0,4.9375,-4.078125,-9.015625,0.9998785257339478,0.00012148175301263109,True
+4.643.N,4.643,N,O que é que a Adele gosta de barrar no pão? Queijo.,0,0,3.91015625,-3.470703125,-7.380859375,0.9993773102760315,0.0006226772093214095,True
+4.695.H,4.695,H,"Qual é o contrário de ""extraordinário""? Extra ordinário.",1,1,-3.38671875,3.6015625,6.98828125,0.0009217804181389511,0.9990781545639038,True
+4.643.H,4.643,H,O que é que a Adele gosta de barrar no pão? Queijo Phil-Adele-phia.,1,1,-4.18359375,4.234375,8.41796875,0.000220814035856165,0.9997791647911072,True
+5.3597.H,5.3597,H,Qual atriz cômica que tem mania de reparar do pescoço das pessoas? Tara ver neck.,1,1,-3.818359375,3.7109375,7.529296875,0.0005368274287320673,0.9994631409645081,True
+5.2368.N,5.2368,N,Qual rockeiro não usa drogas e nem sacaneia os outros? O Gene Simmons,0,0,3.84765625,-2.984375,-6.83203125,0.9989225268363953,0.0010775026166811585,True
+5.3460.N,5.3460,N,"Qual feriado religioso que não é nem pra preto, nem pra branco? Sexta feira Santa.",0,0,4.5546875,-3.755859375,-8.310546875,0.9997541308403015,0.0002458490780554712,True
+4.567.N,4.567,N,"O que é que a mulher do senhor diz quando o viagra perde o efeito? Foi-se o martelo, camarada.",0,0,2.654296875,-2.1875,-4.841796875,0.9921689629554749,0.007831049151718616,True
+4.667.N,4.667,N,Que tipo de música ouvem os mortos-vivos? Kizomba.,0,0,3.8203125,-3.35546875,-7.17578125,0.9992357492446899,0.0007643033750355244,True
+5.3001.H,5.3001,H,Qual microorganismo sofre bullying? Protozoado.,1,0,3.4375,-2.658203125,-6.095703125,0.9977524876594543,0.0022474629804491997,False
+4.480.N,4.480,N,"Como é que se diz "" surpresa "" em onomatopeias? Chan-chan-chan-chan!",0,1,-3.0078125,2.8828125,5.890625,0.0027576221618801355,0.9972423315048218,False
+5.1449.N,5.1449,N,Po rque o carteiro foi à feira? Porque tinha uma carta para entregar.,0,0,2.458984375,-2.16015625,-4.619140625,0.9902350902557373,0.009764972142875195,True
+5.3364.N,5.3364,N,O que os homens em Rio Branco costumam beber? Pinga.,0,0,4.7265625,-3.603515625,-8.330078125,0.9997588992118835,0.00024109506921377033,True
+4.206.N,4.206,N,O que diz um castor excitado? Bate os dentes,0,0,4.9140625,-4.26171875,-9.17578125,0.9998965263366699,0.000103505612059962,True
+5.3736.N,5.3736,N,Qual clube campeão da Libertadores consegue segurar bebês gêmeos? Lanus.,0,1,-2.81640625,3.294921875,6.111328125,0.002212696708738804,0.9977872371673584,False
+5.1807.N,5.1807,N,Qual herói da literatura atirava em patos? Jack.,0,0,5.3125,-4.46484375,-9.77734375,0.9999432563781738,5.671904364135116e-05,True
+5.3789.H,5.3789,H,Qual o vinho predileto do Lamartine Babo? Merlô.,1,1,-3.841796875,3.947265625,7.7890625,0.00041406950913369656,0.9995859265327454,True
+5.1109.N,5.1109,N,Qual filósofo gostaria de ser um Cavaleiro do Zodíaco? Aristóteles,0,0,4.75390625,-3.93359375,-8.6875,0.9998313188552856,0.00016865275392774493,True
+5.2594.N,5.2594,N,Como se referiam a Jesus quando ele ficava bravo? Assertivo.,0,0,1.7744140625,-1.076171875,-2.8505859375,0.9453489780426025,0.054651033133268356,True
+4.256.H,4.256,H,Que som faz um peixe a cair dum prédio de 20 andares? AAAAAAAAAAAAAAAAAAAATUM!,1,1,-2.71875,3.00390625,5.72265625,0.0032603461295366287,0.9967396855354309,True
+5.604.H,5.604,H,Qual é a loja que no ENEM só chutava a terceira e primeira alternativas? C e A.,1,0,4.5390625,-3.919921875,-8.458984375,0.9997881054878235,0.00021194234432186931,False
+5.1343.H,5.1343,H,O Batman vestiu seu Batblazer e seu Batsapato social. Para onde ele foi? Para o Batzado.,1,1,-3.888671875,3.9296875,7.818359375,0.0004021193308290094,0.9995978474617004,True
+4.544.H,4.544,H,"A Érica e a Ester decidiram adotar uma jovem. Quando ela soube, ficou estérica.",1,0,2.556640625,-2.162109375,-4.71875,0.9911527037620544,0.008847355842590332,False
+5.104.H,5.104,H,Qual lugar do mundo incentiva a caminhada? Cordilheira dos Andes.,1,0,4.5546875,-4.0234375,-8.578125,0.9998118281364441,0.00018814204668160528,False
+5.1162.N,5.1162,N,Qual o bairro de São Paulo que só tem Japoneses? Liberdade,0,0,5.2578125,-4.2890625,-9.546875,0.9999285936355591,7.141901733120903e-05,True
+5.1599.N,5.1599,N,Qual é o nome da loja do músico veterinário? Musicolândia.,0,1,-1.765625,2.619140625,4.384765625,0.012312324717640877,0.9876876473426819,False
+5.3111.H,5.3111,H,O que o Galvão falou para um pássaro? Caca tuuuuua... Taffarel!,1,1,-3.62890625,3.767578125,7.396484375,0.0006130294059403241,0.9993869066238403,True
+5.1221.H,5.1221,H,Qual o jornalista esportivo mais pesado? 1000 ton. Neves.,1,1,-4.25,4.09765625,8.34765625,0.00023689508088864386,0.9997630715370178,True
+5.1282.H,5.1282,H,Qual castanha sempre interpreta personagens maus? Avilã.,1,1,-3.013671875,3.259765625,6.2734375,0.0018821858102455735,0.9981178045272827,True
+5.2987.H,5.2987,H,Qual microorganismo é viciado em drogas? Protousuário.,1,1,-4.12109375,4.09375,8.21484375,0.00027053357916884124,0.9997294545173645,True
+4.664.N,4.664,N,Nunca morei em Hollywood . Mas a Marilyn mora.,0,0,3.4609375,-2.79296875,-6.25390625,0.9980807304382324,0.001919237314723432,True
+5.2435.N,5.2435,N,Quais jogadores de basquete fundaram Brasília? Kobe Bryant e Michael Jordan .,0,0,3.890625,-2.861328125,-6.751953125,0.9988327622413635,0.0011672310065478086,True
+5.587.N,5.587,N,Por que não fico bronzeado em casa? Porque uso protetor facial.,0,0,4.71875,-3.875,-8.59375,0.9998148083686829,0.00018522572645451874,True
+5.1360.H,5.1360,H,Por que o anão foi surfar na cozinha? Porque lá tem micro ondas.,1,0,4.3984375,-3.693359375,-8.091796875,0.9996941089630127,0.00030594569398090243,False
+4.193.H,4.193,H,"Hoje, vinte mulheres convidaram-me para sair. Nunca mais entro no WC das mulheres.",1,0,3.748046875,-3.056640625,-6.8046875,0.9988927245140076,0.0011073390487581491,False
+5.1554.N,5.1554,N,Qual a Miss EUA que foi escolhida por engano? A Sheena Monnin.,0,0,4.0078125,-3.359375,-7.3671875,0.9993687272071838,0.0006312434561550617,True
+5.3287.H,5.3287,H,Qual o ingrediente presente na comida de quem apanhou? RepOlho Roxo.,1,0,2.88671875,-2.1015625,-4.98828125,0.9932287931442261,0.006771210115402937,False
+4.634.H,4.634,H,"Por que é que a apresentadora do Querido, Mudei a Casa foi para o hospital? Porque tinha um problema decoração.",1,1,-1.564453125,2.01171875,3.576171875,0.02722090296447277,0.9727790951728821,True
+5.2693.N,5.2693,N,"Por que o artigo, o substantivo e o adjetivo nunca discutiam? Porque estavam sempre em paralelo.",0,0,4.10546875,-3.384765625,-7.490234375,0.9994418025016785,0.000558200292289257,True
+5.840.N,5.840,N,Qual filme do Eddie Murphy ocupa muita locação? Um Tira da pesada.,0,1,-3.830078125,3.6875,7.517578125,0.0005431519821286201,0.9994568228721619,False
+4.638.H,4.638,H,"O amor é como um jogo de sueca. Ou se tem um bom parceiro, ou o melhor mesmo é ter uma boa mão.",1,1,-1.8046875,1.84765625,3.65234375,0.02527489885687828,0.9747251272201538,True
+5.1221.N,5.1221,N,Qual o jornalista esportivo mais pesado? Milton Neves.,0,0,4.68359375,-3.92578125,-8.609375,0.9998176693916321,0.0001823546044761315,True
+4.163.N,4.163,N,Como é que a mulher do Vasco da Gama o cumprimenta? Com um beijo no lábio.,0,0,5.25,-4.5625,-9.8125,0.9999452829360962,5.475977377500385e-05,True
+5.3709.H,5.3709,H,Qual é o personagem do Chaves que representa a bondade encarnada? Goodinez.,1,0,2.83203125,-2.0546875,-4.88671875,0.9925103187561035,0.0074896239675581455,False
+5.3763.H,5.3763,H,Qual é a profissão mais feia que existe? Ourrives ,1,1,-4.04296875,3.974609375,8.017578125,0.0003295087080914527,0.9996705055236816,True
+5.3494.N,5.3494,N,Qual o programa favorito do proctologista? Programa do Luciano Hulk.,0,1,-0.88623046875,1.6025390625,2.48876953125,0.07664923369884491,0.9233506917953491,False
+4.599.N,4.599,N,Acabei de encomendar duas capas para smartphone na internet . São da Wish.,0,0,2.724609375,-2.10546875,-4.830078125,0.9920772910118103,0.007922627963125706,True
+4.319.N,4.319,N,A camaleoa vira-se para o marido: Volta para a sala ...,0,0,4.44921875,-3.712890625,-8.162109375,0.9997147917747498,0.00028517868486233056,True
+4.281.H,4.281,H,Porque é que a galinha fez um striptease na capoeira? Para chocar os ovos.,1,0,2.2578125,-1.88671875,-4.14453125,0.9843964576721191,0.015603533945977688,False
+4.370.N,4.370,N,"É boa ideia comprar um relógio em forma de peixe? Não, é um gasto de tempo.",0,0,3.91015625,-3.16796875,-7.078125,0.9991573095321655,0.0008426422136835754,True
+4.585.H,4.585,H,"Nunca quis acreditar que o meu pai roubava enquanto trabalhava nas Estradas de Portugal. Mas quando eu chegava a casa, os sinais estavam todos lá.",1,0,2.92578125,-2.580078125,-5.505859375,0.9959535598754883,0.004046455025672913,False
+5.2047.H,5.2047,H,"Qual conto mostra a história de alguém que acha a esposa linda, mas quando ela o procura de noite, ele nega? ah, bela.... dorme, cida. ",1,1,-3.97265625,3.8828125,7.85546875,0.00038747614598833025,0.9996125102043152,True
+5.2458.H,5.2458,H,"Qual é a semelhança entre uma carta de amor de um ex-goleiro brasileiro e uma luta do Mike Tyson? Ambas podem acabar ""com amor, Dida"".",1,1,-3.513671875,3.7421875,7.255859375,0.0007055271998979151,0.9992944002151489,True
+5.3101.H,5.3101,H,Qual herói do cinema é o melhor em fuxicar as redes sociais de seus inimigos? Luke Skystalker.,1,0,4.59765625,-3.951171875,-8.548828125,0.9998063445091248,0.0001937345223268494,False
+5.3670.N,5.3670,N,Qual país que as pessoas não tem o dedo polegar? Barbados,0,0,3.77734375,-3.2109375,-6.98828125,0.9990781545639038,0.0009217804181389511,True
+5.2496.N,5.2496,N,"O que o médico disse para o homem que entrou gemendo de dor no hospital? "" Seja bem vindo "".",0,0,5.078125,-4.41796875,-9.49609375,0.999924898147583,7.513914169976488e-05,True
+4.534.N,4.534,N,Qual é a rádio mais ouvida ao pequeno-almoço? É a Rádio Comercial.,0,0,4.30859375,-3.634765625,-7.943359375,0.9996451139450073,0.0003548858512658626,True
+4.392.H,4.392,H,NOTÍCIA DE ÚLTIMA HORA: Um camião carregado de Viagra despistou-se no IC19. A fila não pára de crescer.,1,0,1.845703125,-1.177734375,-3.0234375,0.9536218643188477,0.046378206461668015,False
+5.2141.H,5.2141,H,Por que tiraram a jogadora de vôlei do time após fazer o ponto? Porque foi cortada,1,1,-2.46875,2.552734375,5.021484375,0.0065515246242284775,0.9934484362602234,True
+4.543.N,4.543,N,Em que unidades se medem os monitores? Em pulgadas.,0,1,-1.189453125,1.568359375,2.7578125,0.05964694544672966,0.9403530955314636,False
+4.83.H,4.83,H,O que é uma roubalheira? É o ato de roubar uma alheira.,1,1,-3.412109375,3.64453125,7.056640625,0.0008609261130914092,0.9991390705108643,True
+5.3169.N,5.3169,N,Que rainha rosna como cantora? Queen Lati Fa.,0,1,-3.029296875,2.92578125,5.955078125,0.002585936803370714,0.9974139928817749,False
+4.206.H,4.206,H,O que diz um castor excitado? Suck my dique!,1,1,-3.865234375,3.96484375,7.830078125,0.00039743640809319913,0.9996026158332825,True
+5.31.H,5.31,H,Qual é o poeta que sempre se atrasa?  Vinícius Demorais.,1,1,-3.5234375,3.810546875,7.333984375,0.0006525407079607248,0.9993475079536438,True
+5.1714.N,5.1714,N,Por que o maquinista deixou o maluco sentar do seu lado? Porque o maluco o motiva.,0,0,4.07421875,-3.140625,-7.21484375,0.9992648959159851,0.0007350447122007608,True
+5.177.H,5.177,H,Qual cantor faz shows em Spa? Zeca Pragordinho.,1,0,1.6767578125,-0.78125,-2.4580078125,0.9211451411247253,0.07885491847991943,False
+5.663.H,5.663,H,Por que tem eleição no mundo das aves? Porque a gaivota.,1,1,-0.2401123046875,0.8212890625,1.0614013671875,0.2570417523384094,0.7429582476615906,True
+5.2559.N,5.2559,N,Qual é o cantor que tá sempre na cena de um crime? Benito de Paula.,0,0,3.3828125,-2.5703125,-5.953125,0.9974090456962585,0.002590979216620326,True
+5.1601.N,5.1601,N,Qual filme conta a história do filho do Shrek? Shrek 3.,0,0,4.62109375,-4.140625,-8.76171875,0.9998433589935303,0.0001565906568430364,True
+5.2609.H,5.2609,H,O que o anão estava fazendo com a bola de futebol? Embaixadinhas.,1,1,-3.962890625,3.958984375,7.921875,0.0003625900426413864,0.9996373653411865,True
+4.442.N,4.442,N,O que é que os bebés já fazem aos 12 meses? Falar.,0,0,4.953125,-4.078125,-9.03125,0.9998804330825806,0.00011959858966292813,True
+5.2468.H,5.2468,H,Qual é o Rapper que toca sempre as mesmas músicas? Rappertido.,1,1,-3.748046875,3.775390625,7.5234375,0.000539980421308428,0.9994600415229797,True
+5.3709.N,5.3709,N,Qual é o personagem do Chaves que representa a bondade encarnada? Chaves.,0,0,5.203125,-4.234375,-9.4375,0.9999203681945801,7.9673009167891e-05,True
+5.2323.H,5.2323,H,Qual tipo de piada geralmente é feito entre dois homens pelados? Troca-trocadilho.,1,0,3.56640625,-2.51953125,-6.0859375,0.997730553150177,0.0022694687359035015,False
+4.160.N,4.160,N,O que diz uma banana suicida? Macacos me comam!,0,0,2.73828125,-1.7373046875,-4.4755859375,0.9887446165084839,0.011255422607064247,True
+5.1861.H,5.1861,H,Qual é o biscoito preferido da filha da fazendeira? A mãe tem gado.,1,1,-3.96484375,3.896484375,7.861328125,0.00038521323585882783,0.9996147155761719,True
+5.3987.H,5.3987,H,"Qual artista pop era porco, gordo, mas era irresistível? Baicon Jackson.",1,0,4.3359375,-3.56640625,-7.90234375,0.9996302127838135,0.0003697388747241348,False
+5.537.H,5.537,H,Onde se guardam as pequenas coisas? No armário da Coizinha.,1,1,-0.77587890625,1.052734375,1.82861328125,0.13840354979038239,0.861596405506134,True
+5.442.N,5.442,N,Qual o salgadinho favorito dos torcedores do Flamengo? Ruffles.,0,0,5.28125,-4.5078125,-9.7890625,0.9999439716339111,5.605828846455552e-05,True
+4.534.H,4.534,H,Qual é a rádio mais ouvida ao pequeno-almoço? É a Rádio Comer-cereal.,1,1,-4.00390625,3.974609375,7.978515625,0.0003426303737796843,0.999657392501831,True
+5.3581.N,5.3581,N,Qual pintor gosta de pintar os personagens de Toy Story usando cores bem vivas? O Andy Warhol.,0,0,5.31640625,-4.29296875,-9.609375,0.9999328851699829,6.709224544465542e-05,True
+5.1249.N,5.1249,N,Por que o veganismo é a política de Estado na Bolívia? Para ninguém comer carne.,0,0,4.7734375,-3.955078125,-8.728515625,0.99983811378479,0.00016187637811526656,True
+4.627.H,4.627,H,Um homem teve um filho nos Estados Unidos. Qual é o filme? American Pai.,1,1,-3.546875,3.71875,7.265625,0.0006986755761317909,0.9993013143539429,True
+4.489.N,4.489,N,Hoje de manhã consegui empilhar catorze panquecas . Aquilo é que foi um pequeno-almoço grande.,0,0,3.6171875,-3.064453125,-6.681640625,0.9987478256225586,0.0012521495809778571,True
+5.2743.N,5.2743,N,Qual o animal que sempre tá de brinks? Suricato,0,1,-4.2265625,4.30859375,8.53515625,0.0001964008843060583,0.9998036026954651,False
+3.3.H,3.3,H,Por que um policial estava interrogando um saco de cimento? Porque ele queria informações concretas.,1,0,3.7734375,-3.013671875,-6.787109375,0.9988730549812317,0.0011269539827480912,False
+4.95.H,4.95,H,Qual é a única profissão que necessita de uma mãozinha para trabalhar? É a manicure.,1,0,4.23046875,-3.6328125,-7.86328125,0.9996155500411987,0.0003844619495794177,False
+5.1059.N,5.1059,N,"Meu celular quebrou em várias partes . Do que eu preciso? De uma bactéria, porque ela conserta celular.",0,1,-2.712890625,2.75390625,5.466796875,0.004206969402730465,0.9957929849624634,False
+5.2099.H,5.2099,H,Qual é o local religioso preferido dos jogadores de basquete? O Vaquicano ,1,1,-4.11328125,4.29296875,8.40625,0.0002234163403045386,0.9997765421867371,True
+5.3664.N,5.3664,N,Em qual faculdade o negão só entrava pelado? Nutrição.,0,0,4.71875,-3.962890625,-8.681640625,0.9998303651809692,0.00016964369569905102,True
+5.1861.N,5.1861,N,Qual o super herói que gosta de ver pessoas transando? Wolverine.,0,0,4.6171875,-3.974609375,-8.591796875,0.9998144507408142,0.00018558780720923096,True
+5.778.N,5.778,N,Por que o cara que não fazia exercícios prestou odonto? Pra ser dentista.,0,0,4.26953125,-3.625,-7.89453125,0.9996273517608643,0.0003726376744452864,True
+5.3848.H,5.3848,H,Qual dublador tbm é psicólogo? Freud Mascarenhas.,1,1,-3.0234375,3.09375,6.1171875,0.0021997978910803795,0.9978001713752747,True
+5.3431.H,5.3431,H,Qual cidade espanhola preferida pelo Faustão ? Sevilha nos Trinta.,1,1,-3.53515625,3.046875,6.58203125,0.001383117400109768,0.9986169338226318,True
+5.62.H,5.62,H,Qual é a atriz que só usa roupa da Zara? Taís Zarauso.,1,1,-3.861328125,3.765625,7.626953125,0.0004869056574534625,0.9995131492614746,True
+4.59.N,4.59,N,"Estão dois pontos a comerem-se, vira-se um: olha lá isto é sério ou é um caso?",0,0,2.986328125,-2.439453125,-5.42578125,0.9956176280975342,0.004382336512207985,True
+5.54.N,5.54,N,Qual é o personagem histórico que fui eu que indiquei? Simone de Beauvoir.,0,0,4.69921875,-4.0390625,-8.73828125,0.9998396635055542,0.0001603035198058933,True
+5.2069.H,5.2069,H,Os imperador inca decretou que as lhamas seriam os únicos animais permitidos em Machu Picchu. Qual é o nome do filme? O Império Contra a Alpaca ,1,1,-1.7841796875,2.4453125,4.2294921875,0.014350838027894497,0.9856491684913635,True
+4.751.H,4.751,H,"Como correu a primeira final de sempre da Liga dos Campeões com patos? Foi bem dispatada, cheia de quacks da bola e acabou empatada.",1,1,-3.802734375,3.943359375,7.74609375,0.00043224156252108514,0.9995678067207336,True
+5.169.N,5.169,N,Em qual programa o Sílvio Santos exagera no laquê? Todos.,0,0,4.87890625,-4.0390625,-8.91796875,0.9998660087585449,0.00013394214329309762,True
+5.1802.H,5.1802,H,Qual é o celular dos veganos? Aipo ne,1,1,-3.892578125,4.1015625,7.994140625,0.0003373201470822096,0.9996626377105713,True
+5.2845.N,5.2845,N,Uma mulher sofre de diarreia crônica . Qual o nome da novela? Maria do Bairro,0,1,-1.712890625,2.46875,4.181640625,0.015043660998344421,0.9849563241004944,False
+5.785.H,5.785,H,Como se chama a mãe que cozinha bem? Mãesterchef.,1,1,-3.859375,3.908203125,7.767578125,0.0004230579943396151,0.999576985836029,True
+5.2016.N,5.2016,N,Que cantora queria comer formiga? A TamanDua Lipa,0,1,-2.443359375,2.517578125,4.9609375,0.00695760827511549,0.9930423498153687,False
+4.428.H,4.428,H,Eu sempre quis comprar um cavalo. Por isso fui a uma quinta e pedi um horsamento.,1,0,0.57421875,-0.2147216796875,-0.7889404296875,0.687603771686554,0.31239622831344604,False
+5.2894.H,5.2894,H,Por que os musicos gostam de tocar a luz de velas? Parafinar os instrumentos ,1,0,0.93701171875,-0.1251220703125,-1.0621337890625,0.7430981397628784,0.25690189003944397,False
+4.595.N,4.595,N,Para que servem óculos verdes? Para ver ao perto.,0,0,1.248046875,-0.450439453125,-1.698486328125,0.8453369140625,0.15466304123401642,True
+5.3526.N,5.3526,N,O que fez o garçom militar? Abandonou o exército.,0,0,4.140625,-3.52734375,-7.66796875,0.9995326995849609,0.00046734808711335063,True
+5.2393.N,5.2393,N,Qual é o canal infantil que só transmite desenho de carro? Car Tum Network.,0,1,-3.28515625,3.45703125,6.7421875,0.0011786719551309943,0.9988213181495667,False
+4.425.H,4.425,H,"Qual é o cão mais fixe? O Dálmata, porque tem muita pinta.",1,0,3.998046875,-3.212890625,-7.2109375,0.9992620348930359,0.0007379195303656161,False
+5.1832.N,5.1832,N,Qual antigo líder alemão é a inspiração do Pelé? Kai-kaiser.,0,1,-3.705078125,3.83203125,7.537109375,0.0005326520767994225,0.9994673132896423,False
+5.1332.N,5.1332,N,Por que o nerd pediu a calculadora em exame? Porque ela dava valor.,0,1,-1.2265625,1.4365234375,2.6630859375,0.06518702954053879,0.9348130226135254,False
+5.153.N,5.153,N,Por que o óculos foi deixado na escada? Porque era um óculos perdido.,0,0,3.5546875,-2.935546875,-6.490234375,0.9984840750694275,0.0015158916357904673,True
+4.313.H,4.313,H,Já abriu a nova discoteca para gatos. Chama-se Barra-cão.,1,1,-4.046875,4.16796875,8.21484375,0.00027053357916884124,0.9997294545173645,True
+4.362.N,4.362,N,"Uma família estava perdida no deserto há mais de dois meses, até que encontraram um rio onde todos tomaram banho, exceto a avó . Qual é o problema? A avó precisa de ajuda.",0,0,5.15234375,-4.5,-9.65234375,0.9999357461929321,6.427060725400224e-05,True
+5.2689.N,5.2689,N,Renata voltou do médico com o braço furado . Qual é o acontecimento histórico? Guerra de canudos.,0,1,-2.263671875,2.5546875,4.818359375,0.008015269413590431,0.9919847846031189,False
+4.382.H,4.382,H,Porque é que o motociclista chegou atrasado ao trabalho? Porque saiu de casa motard.,1,1,-1.724609375,1.9208984375,3.6455078125,0.025443855673074722,0.9745561480522156,True
+4.481.H,4.481,H,Porque é que o corcunda de Notre-Dame não seguiu a carreira de advogado? Porque nunca conseguiu estudar direito.,1,0,4.6796875,-3.8984375,-8.578125,0.9998118281364441,0.00018814204668160528,False
+5.3111.N,5.3111,N,O que o Galvão falou para um pássaro? Vai que é tua...Taffarel!,0,1,-3.130859375,3.49609375,6.626953125,0.0013224405702203512,0.9986775517463684,False
+4.348.H,4.348,H,O que é que os bonecos de neve costumam pôr no leite? Flocos.,1,0,4.75,-4.203125,-8.953125,0.9998706579208374,0.00012931563833262771,False
+5.3946.H,5.3946,H,O quê o seu Madruga usa pra tomar banho? A bucha do 71.,1,1,-3.9921875,3.98828125,7.98046875,0.00034196203341707587,0.9996579885482788,True
+4.170.N,4.170,N,Qual é o jogo preferido das crianças? O futebol.,0,0,5.23828125,-4.2890625,-9.52734375,0.9999271631240845,7.282752630999312e-05,True
+5.1971.N,5.1971,N,Qual padre que toda vez eu vejo tenho ejaculação precoce? Marcelo Rossi.,0,0,4.5546875,-3.640625,-8.1953125,0.9997240900993347,0.0002758678747341037,True
+5.1025.H,5.1025,H,Quem financiou o Ben 10? O BNDEZ,1,0,1.9609375,-1.279296875,-3.240234375,0.9623205661773682,0.037679389119148254,False
+5.2422.N,5.2422,N,Por que em Campinas as pessoas não falam as coisas na lata? Porque lá é impossível fazer algo sem rodeios.,0,0,1.2373046875,-1.146484375,-2.3837890625,0.9155827760696411,0.08441724628210068,True
+5.3546.N,5.3546,N,Qual o seriado de tv do cara que sempre quer um pouco da comida dos outros? Kennan e Kel!,0,0,2.470703125,-2.03125,-4.501953125,0.9890342950820923,0.01096574030816555,True
+5.232.N,5.232,N,Qual é o perfume do zagueiro ruim? Armani.,0,0,4.69921875,-3.876953125,-8.576171875,0.9998114705085754,0.0001885098172351718,True
+4.59.H,4.59,H,"Estão dois pontos a comerem-se, vira-se um: olha lá isto é sério ou é um caso pontual?",1,0,2.791015625,-2.2734375,-5.064453125,0.9937222599983215,0.006277706008404493,False
+4.739.H,4.739,H,Para a semana vou organizar uma festa para pessoas com dificuldade em atingir o clímax. Avisem-me se não conseguirem vir.,1,0,3.171875,-2.46875,-5.640625,0.9964619278907776,0.0035380860790610313,False
+5.2141.N,5.2141,N,Por que tiraram a jogadora de vôlei do time após fazer o ponto? Porque foi machucada,0,0,5.38671875,-4.4296875,-9.81640625,0.9999454021453857,5.454628626466729e-05,True
+5.1288.H,5.1288,H,Qual atriz gosta de chocolate? Fernanda DiaMontenegro.,1,1,-4.15625,4.04296875,8.19921875,0.0002747926628217101,0.9997251629829407,True
+4.149.N,4.149,N,Que nome se dá a uma irritação cutânea no rabo? Prurido anal.,0,1,-4.25,4.1796875,8.4296875,0.0002182420575991273,0.9997817873954773,False
+5.1223.H,5.1223,H,Qual parte do corpo nunca está acordada? Abidorme.,1,1,-3.49609375,3.779296875,7.275390625,0.0006918904837220907,0.9993081092834473,True
+5.1591.N,5.1591,N,Qual é o filme em que um salgado lidera um exército em busca da vitória? Juno.,0,0,4.7421875,-3.962890625,-8.705078125,0.9998342990875244,0.00016571454762015492,True
+5.3364.H,5.3364,H,O que os homens em Rio Branco costumam beber? Conhacre.,1,1,-4.015625,3.91796875,7.93359375,0.0003583672805689275,0.9996416568756104,True
+4.125.H,4.125,H,O que é que os russos dizem quando mandam uma bola ao cão? Babushka!,1,0,1.376953125,-0.442138671875,-1.819091796875,0.8604570627212524,0.13954287767410278,False
+4.454.H,4.454,H,Que dor sente um homem sem um braço? Dor de coto vê-lo.,1,0,1.947265625,-0.544921875,-2.4921875,0.9235922694206238,0.07640768587589264,False
+4.413.N,4.413,N,A minha mulher surda trocou-me por outro homem . Devia ter percebido os avisos ...,0,0,3.609375,-3.1640625,-6.7734375,0.9988574981689453,0.0011424494441598654,True
+4.159.N,4.159,N,Qual é o elemento químico mais comum na tabela periódica ? O tungsténio .,0,1,-0.70654296875,1.0029296875,1.70947265625,0.15323211252689362,0.8467679023742676,False
+5.871.N,5.871,N,Por que o construtor virou comunista depois que se deparou com um prego tão duro que destruiu seu equipamento de trabalho? Porque estragou o martelo.,0,0,5.23828125,-4.2265625,-9.46484375,0.999922513961792,7.752413512207568e-05,True
+4.454.N,4.454,N,Que dor sente um homem com um braço? Dor de cotovelo.,0,0,5.29296875,-4.31640625,-9.609375,0.9999328851699829,6.709224544465542e-05,True
+5.2300.N,5.2300,N,Por que as pessoas estavam testando comidas dentro do ônibus? Porque era um teste do Fantástico.,0,0,0.54833984375,-0.20751953125,-0.755859375,0.6804540753364563,0.3195458948612213,True
+5.984.H,5.984,H,Levei meu carro na feira ao invés de levar para a oficina. Qual é o nome do filme? Laranja Mecânica.,1,0,2.650390625,-2.263671875,-4.9140625,0.9927109479904175,0.0072890776209533215,False
+5.3601.H,5.3601,H,Qual cantora que mais tem acnes? Britney Espinhas.,1,1,-3.357421875,3.634765625,6.9921875,0.0009181902278214693,0.9990818500518799,True
+4.413.H,4.413,H,A minha mulher surda trocou-me por outro homem. Devia ter percebido os sinais...,1,0,3.89453125,-3.34375,-7.23828125,0.9992819428443909,0.0007180297398008406,False
+5.1982.H,5.1982,H,Quem cuida da documentação na floresta? O Tabeleão ,1,0,4.28125,-3.55078125,-7.83203125,0.9996033310890198,0.0003966611984651536,False
+4.708.N,4.708,N,Qual é a cantora preferida dos cirurgiões? É a Mariza.,0,0,3.853515625,-3.396484375,-7.25,0.9992903470993042,0.0007096704212017357,True
+5.3595.N,5.3595,N,Qual o chinelo mais vendido em Salvador? Havaianas.,0,0,5.1171875,-4.26953125,-9.38671875,0.9999161958694458,8.382305531995371e-05,True
+5.1690.H,5.1690,H,Por que o canoísta Isaquias Queiroz foi convidado para ir pro espaço? Porque ele é um astronáutico,1,0,4.27734375,-4.05078125,-8.328125,0.9997584223747253,0.00024156631843652576,False
+4.594.N,4.594,N,Porque é que o professor de matemática se suicidou? Tinha muitos problemas.,0,0,5.2421875,-4.1640625,-9.40625,0.99991774559021,8.220189192797989e-05,True
+4.352.H,4.352,H,Qual é a diferença entre um boneco de neve e uma boneca de neve? As bolas de neve.,1,0,4.921875,-4.28125,-9.203125,0.9998992681503296,0.00010071400174638256,False
+5.4009.H,5.4009,H,Qual o nome da menina que você deveria investir ? Valeria Pena.,1,1,-3.5859375,3.421875,7.0078125,0.0009039677097462118,0.9990960359573364,True
+4.55.N,4.55,N,O que é um omo? É um sabão em pó com o qual se lavam as partes íntimas.,0,0,3.548828125,-2.634765625,-6.18359375,0.9979411959648132,0.002058753278106451,True
+4.381.H,4.381,H,O que acontece quando metes um tomate no micro-ondas? Entalas o outro.,1,0,3.0234375,-2.357421875,-5.380859375,0.9954172372817993,0.00458276504650712,False
+5.3703.H,5.3703,H,Que atriz trabalha como lixeira? Tony Colete.,1,1,-3.986328125,4.0703125,8.056640625,0.0003168894618283957,0.999683141708374,True
+5.240.N,5.240,N,O moço nao estava se sentindo bem . O que ele tinha? Azia.,0,0,4.609375,-4.1171875,-8.7265625,0.9998377561569214,0.00016219282406382263,True
+5.1503.N,5.1503,N,O gaúcho não achava o seu carro no estacionamento . Qual o modelo do carro? Miura!,0,0,4.12109375,-3.517578125,-7.638671875,0.9995187520980835,0.000481235736515373,True
+5.2142.N,5.2142,N,Por que os jogadores de vôlei estão sempre no foco da notícia? Porque eles são bons na ataque,0,1,-3.087890625,3.248046875,6.3359375,0.0017683518817648292,0.9982317090034485,False
+5.217.H,5.217,H,O que usam para fazer as bonecas Barbie? Aparelho de barbear.,1,0,5.3671875,-4.44140625,-9.80859375,0.9999450445175171,5.497407983057201e-05,False
+5.2166.H,5.2166,H,Qual cantor era lobisomem? O uiWando ,1,1,-3.591796875,3.693359375,7.28515625,0.0006851713405922055,0.9993147850036621,True
+5.3045.N,5.3045,N,""" Por que a pessoa não paga pelo absorvente? Porque "" "" quer de graça "" "" . """,0,0,4.3125,-3.208984375,-7.521484375,0.9994589686393738,0.0005410355515778065,True
+5.1059.H,5.1059,H,"Meu celular quebrou em várias partes. Do que eu preciso?  De uma bactéria, porque ela unicelular.",1,1,-1.9931640625,2.4296875,4.4228515625,0.011857672594487667,0.9881423115730286,True
+5.211.H,5.211,H,Qual é o urso que muda de opinião toda hora? Urso Bipolar.,1,1,-3.6796875,3.583984375,7.263671875,0.0007000406621955335,0.9993000030517578,True
+4.508.N,4.508,N,O que é a disfunção eréctil? É a incapacidade de sentir atração pelos candidatos.,0,0,3.8984375,-3.1640625,-7.0625,0.9991440773010254,0.0008559006382711232,True
+5.2820.H,5.2820,H,Cantora que sempre fez dieta? Elis Regime ,1,1,-3.53515625,3.53125,7.06640625,0.0008525666198693216,0.9991474151611328,True
+5.137.N,5.137,N,"Se o Kid Bengala fosse um personagem da Caverna do Dragão, quem o ajudaria a voltar para casa? Mestre dos Magos.",0,0,4.42578125,-3.91796875,-8.34375,0.999762237071991,0.00023782208154443651,True
+5.2074.H,5.2074,H,Qual o cantor que nunca deixa a mulher sair sozinha? Milton Naciumento ,1,1,-3.2421875,3.6796875,6.921875,0.0009850081987679005,0.9990149736404419,True
+4.342.H,4.342,H,Qual é o contrário de menu? Youvestido.,1,1,-4.03125,3.931640625,7.962890625,0.00034802412847056985,0.9996520280838013,True
+5.248.N,5.248,N,Qual foi o dinossauro mais zoeiro que existiu? Velociraptor.,0,0,3.904296875,-3.240234375,-7.14453125,0.9992114305496216,0.0007885458180680871,True
+5.3211.N,5.3211,N,Qual o ator favorito do Thor? Christopher Hemsworth.,0,0,4.34765625,-3.748046875,-8.095703125,0.9996953010559082,0.00030475331004709005,True
+5.1599.H,5.1599,H,Qual é o nome da loja do músico veterinário? Trom Pet.,1,1,-2.943359375,3.19921875,6.142578125,0.00214476534165442,0.9978552460670471,True
+5.2351.N,5.2351,N,Qual é o árbitro que expulsa as pessoas e elas nunca mais podem voltar? O bandeirinha.,0,0,0.34814453125,-0.055755615234375,-0.403900146484375,0.5996243357658386,0.400375634431839,True
+5.521.N,5.521,N,Qual ator que peida tão alto que ressoa? Francisco Xavier.,0,0,4.609375,-3.751953125,-8.361328125,0.9997662901878357,0.00023367909307125956,True
+5.3011.N,5.3011,N,Qual animal gosta de ensinar? Panda.,0,0,5.16796875,-4.13671875,-9.3046875,0.9999090433120728,9.098841110244393e-05,True
+5.1807.H,5.1807,H,Qual animal é cabeleireiro? Serpente,1,0,4.82421875,-4.0078125,-8.83203125,0.9998539686203003,0.00014596008986700326,False
+5.1279.H,5.1279,H,Qual ator mirim não escova os dentes? MaCarie Culkin.,1,0,4.42578125,-3.568359375,-7.994140625,0.9996626377105713,0.0003373201470822096,False
+5.1684.H,5.1684,H,Qual cantor odeia a pia cheia? Caetano vê louça,1,1,-3.7265625,3.76171875,7.48828125,0.0005592909874394536,0.9994407296180725,True
+4.90.N,4.90,N,"Como é que se diz "" copia bem "" em inglês? Copy & paste.",0,1,-0.05108642578125,0.5966796875,0.64776611328125,0.34349310398101807,0.6565069556236267,False
+5.2951.H,5.2951,H,Qual é o personagem de Chaves que gosta de ficar rodando dildos? O Professor Gira Falos. ,1,1,-3.76171875,3.7578125,7.51953125,0.0005420927191153169,0.9994578957557678,True
+4.63.N,4.63,N,O que é que se faz num velório de lésbicas? Um minuto de silêncio.,0,0,4.9140625,-4.04296875,-8.95703125,0.9998711347579956,0.00012881153088528663,True
+5.283.N,5.283,N,O que o coveiro disse quando pediram a ele para gerenciar o cemitério? Isso não é da minha alçada.,0,0,5.1796875,-4.046875,-9.2265625,0.9999016523361206,9.838119149208069e-05,True
+5.3434.H,5.3434,H,Por que o Faustão quer que você coloque o Plinio no seu devido lugar? Pra que tu reclames do Plinplin.,1,1,-3.8828125,3.98828125,7.87109375,0.0003814711526501924,0.9996185302734375,True
+4.562.N,4.562,N,Em que estado se encontra o rio Mississipi? No estado Minnessota.,0,1,-2.8046875,3.134765625,5.939453125,0.002626552479341626,0.9973734617233276,False
+5.2616.H,5.2616,H,Qual ator sempre dá tudo de si? Doei-me Johnson.,1,1,-4.0234375,4.0234375,8.046875,0.0003199982747901231,0.9996800422668457,True
+4.482.H,4.482,H,"O homem já vivei no período Paleolítico, no Mesolítico, no Neolítico... A avaliar pelo stress com que eu ando, devemos estar agora no Ansiolítico.",1,1,-0.87109375,1.416015625,2.287109375,0.09219620376825333,0.9078037738800049,True
+4.698.H,4.698,H,Qual é a semelhança entre o sol e um avô? Ambos fazem qualquer coisa planeta.,1,1,-3.654296875,3.3359375,6.990234375,0.0009199836058542132,0.9990800619125366,True
+4.742.H,4.742,H,O que teria acontecido se Adão e Eva fossem canibais? A Eva teria comido a maçã-de-adão.,1,0,2.572265625,-2.02734375,-4.599609375,0.990044355392456,0.009955651126801968,False
+4.634.N,4.634,N,"Por que é que a apresentadora do Querido, Mudei a Casa foi para o hospital? Porque tinha um problema renal.",0,0,4.4375,-3.943359375,-8.380859375,0.9997708201408386,0.0002291603450430557,True
+5.2511.N,5.2511,N,Qual é a série que conta a história de um anfíbio no alto do Everest? A escalada do sapo.,0,0,2.720703125,-2.029296875,-4.75,0.9914224743843079,0.008577484637498856,True
+5.358.H,5.358,H,Qual cidade incentiva o uso do tato? Toque-o.,1,0,4.64453125,-3.65234375,-8.296875,0.9997507929801941,0.00024923254386521876,False
+5.704.N,5.704,N,Qual cerveja é comum nos navios? Brahma.,0,0,5.02734375,-4.25390625,-9.28125,0.9999068975448608,9.31459289859049e-05,True
+4.536.N,4.536,N,Porque é que o génio recebeu um prémio Nobel? Porque foi o que mais se destacou no seu campo.,0,0,3.26953125,-2.298828125,-5.568359375,0.9961977601051331,0.0038022249937057495,True
+4.611.N,4.611,N,"Como se diz "" tripa de boi "" em português? Intestino delgado.",0,0,3.38671875,-2.84375,-6.23046875,0.9980353713035583,0.001964661292731762,True
+5.1311.H,5.1311,H,Qual cantor sertanejo faliu? Luan Sengrana.,1,1,-2.818359375,3.056640625,5.875,0.0028009265661239624,0.9971990585327148,True
+5.3011.H,5.3011,H,Qual animal gosta de ensinar? LargaTeacher.,1,1,-3.953125,3.875,7.828125,0.000398213102016598,0.9996017813682556,True
+5.28.H,5.28,H,Qual é a modelo mais gorda que existe? XL Bündchen.,1,0,0.92431640625,-0.0968017578125,-1.0211181640625,0.7351903319358826,0.26480966806411743,False
+5.2912.N,5.2912,N,Qual é o prato de carne branca que nenhum cozinheiro acerta? Porco,0,0,4.8359375,-4.40625,-9.2421875,0.9999030828475952,9.68560780165717e-05,True
+4.600.N,4.600,N,O que são quatro pontos pretos no chão? Formigas.,0,0,4.9765625,-3.908203125,-8.884765625,0.999861478805542,0.00013846345245838165,True
+5.2972.H,5.2972,H,Qual a marca de roupa preferida dos esquilos? Alvin Klein.,1,0,4.08984375,-3.3359375,-7.42578125,0.9994046688079834,0.0005953406798653305,False
+4.229.N,4.229,N,A minha amiga asiática ficou doente . Mas eu salvei-a.,0,0,4.125,-3.4609375,-7.5859375,0.9994926452636719,0.0005072812200523913,True
+4.276.N,4.276,N,Uma mulher tropeça e cai em cima de um cão . Qual é o filme? Senta em um cão.,0,0,1.046875,-0.9814453125,-2.0283203125,0.88373863697052,0.11626138538122177,True
+5.871.H,5.871,H,Por que o construtor virou comunista depois que se deparou com um prego tão duro que destruiu seu equipamento de trabalho? Porque foice o martelo.,1,1,-2.3984375,2.89453125,5.29296875,0.005001672077924013,0.9949983358383179,True
+5.239.H,5.239,H,O que o cantor sertanejo foi fazer no RH? Foi ser demitido por justa calça.,1,1,-3.25,3.1171875,6.3671875,0.0017140385461971164,0.9982859492301941,True
+5.230.H,5.230,H,Qual é o ator que admira um dia ensolarado e sem nuvens? Céu Tão Belo.,1,0,2.83984375,-2.240234375,-5.080078125,0.9938190579414368,0.006180981174111366,False
+5.1869.N,5.1869,N,Qual a doença mais bonita que existe? Sarda.,0,0,3.48046875,-2.599609375,-6.080078125,0.9977172613143921,0.00228277500718832,True
+5.58.N,5.58,N,O que o judeu passa no corpo quanto está com dor? Cataflan.,0,0,4.09765625,-3.376953125,-7.474609375,0.9994329810142517,0.0005669856909662485,True
+5.285.N,5.285,N,Qual personagem carnavalesco não é esquecido? Rei Momo,0,0,4.9296875,-4.0078125,-8.9375,0.999868631362915,0.00013135180051904172,True
+5.266.N,5.266,N,Qual número gosta de rádio? 14.,0,0,3.2421875,-2.677734375,-5.919921875,0.9973217844963074,0.0026782178319990635,True
+4.477.H,4.477,H,"Perguntei a um francês se jogava videojogos. ""Wii"".",1,0,4.14453125,-3.470703125,-7.615234375,0.9995073080062866,0.0004926422843709588,False
+5.610.H,5.610,H,Qual o nome que se da a gestação de 10 bebês ao msm tempo? Gravidez!,1,0,4.375,-3.6875,-8.0625,0.9996849298477173,0.00031503866193816066,False
+5.840.H,5.840,H,Qual filme do Eddie Murphy ocupa muita memória? 1 tera da pesada.,1,1,-3.71484375,3.58203125,7.296875,0.0006771942134946585,0.999322772026062,True
+5.3115.H,5.3115,H,Por que o fazendeiro ficou pobre depois de ir ao banheiro? Porque o intestino deu o gado.,1,1,-4.2890625,4.24609375,8.53515625,0.0001964008843060583,0.9998036026954651,True
+5.1486.H,5.1486,H,Qual gata que entrou e logo depois saiu do chat? Hello Kitty.,1,0,4.5390625,-3.708984375,-8.248046875,0.9997382760047913,0.0002617008285596967,False
+5.392.H,5.392,H,Qual apresentador jogava basquete? Chacrinha O'Neal,1,1,-3.2109375,3.271484375,6.482421875,0.001527763088233769,0.998472273349762,True
+5.152.H,5.152,H,Por que antigamente o Brasil era mais cheiroso? Porque era colônia.,1,1,-3.986328125,3.998046875,7.984375,0.0003406293108128011,0.9996594190597534,True
+4.400.N,4.400,N,Que nome se dá a um professor com os dentes grandes? Professor.,0,0,5.16796875,-4.375,-9.54296875,0.99992835521698,7.169852324295789e-05,True
+5.2813.N,5.2813,N,Qual instrumento leva os dentistas à morte? Faca,0,0,4.98046875,-4.109375,-9.08984375,0.999887228012085,0.00011279297905275598,True
+5.16.N,5.16,N,Para onde as pulgas vão quando morrem? Para o céu.,0,0,4.71484375,-4.0390625,-8.75390625,0.9998421669006348,0.00015781863476149738,True
+5.2217.H,5.2217,H,Que terapeuta bebe todo dia? Psicólatra ,1,0,5.04296875,-4.2421875,-9.28515625,0.9999072551727295,9.278282232116908e-05,False
+4.149.H,4.149,H,Que nome se dá a uma irritação cutânea no rabo? Cumichão.,1,1,-4.15234375,4.08984375,8.2421875,0.000263238325715065,0.9997367262840271,True
+5.3548.N,5.3548,N,Qual a empresa especializada na remoção de carpetes? Tira-carpetes.,0,0,4.15625,-3.09375,-7.25,0.9992903470993042,0.0007096704212017357,True
+5.94.N,5.94,N,Qual o material bélico mais carente? Nenhum.,0,0,4.28125,-3.65234375,-7.93359375,0.9996416568756104,0.0003583672805689275,True
+5.1297.H,5.1297,H,Qual candidato é doador de órgãos? Cabo dá seu olho.,1,1,-3.265625,3.333984375,6.599609375,0.0013590500457212329,0.9986409544944763,True
+5.2687.H,5.2687,H,Qual é a banda que não toca em esferas nem em cones? Incubus,1,0,2.32421875,-1.3310546875,-3.6552734375,0.9747971296310425,0.02520282194018364,False
+5.1073.H,5.1073,H,"Qual filme conta a história do casal mais perdido do mundo em ação? ""Procurando; né, mô?""",1,1,-2.072265625,2.404296875,4.4765625,0.011244559660553932,0.9887554049491882,True
+5.266.H,5.266,H,Qual número gosta de rádio? O 20.,1,0,3.642578125,-3.0078125,-6.650390625,0.9987081289291382,0.0012918456923216581,False
+5.153.H,5.153,H,Por que o óculos foi deixado na escada? Porque era um óculos degrau.,1,1,-3.896484375,3.83203125,7.728515625,0.00043990332051180303,0.9995600581169128,True
+5.1524.N,5.1524,N,Como se chamava o cara que roubava discos do Exaltasamba? Claptonmaníaco.,0,1,-3.75390625,3.681640625,7.435546875,0.0005895585636608303,0.9994105100631714,False
+5.261.N,5.261,N,Qual é o cantor que se suicidou? Frank Sinatra.,0,0,5.1484375,-4.3046875,-9.453125,0.9999215602874756,7.843789353501052e-05,True
+5.1593.H,5.1593,H,Qual é o filme da Xuxa que se passa em um hospital? Xuxa e os Doentes.,1,0,4.40234375,-3.505859375,-7.908203125,0.9996323585510254,0.00036757951602339745,False
+5.681.H,5.681,H,Qual matéria da escola pode machucar? Tabuada.,1,0,4.5703125,-3.53515625,-8.10546875,0.999698281288147,0.00030179257737472653,False
+5.3848.N,5.3848,N,Qual dublador tbm é psicólogo? Charles Emmanuel.,0,1,-2.416015625,2.361328125,4.77734375,0.008348053321242332,0.9916519522666931,False
+5.1791.H,5.1791,H,Qual é o nome do motorista de transporte escolar que está sempre atrasado? Van delay,1,1,-4.02734375,3.974609375,8.001953125,0.0003346960002090782,0.9996652603149414,True
+5.1872.N,5.1872,N,Qual o nome do programa de quem tem pele mole? Bro Show.,0,1,0.307373046875,0.44873046875,0.141357421875,0.46471938490867615,0.5352806448936462,False
+5.1736.N,5.1736,N,Qual é a cantora favorita do Tony Hawk? Lady Gaga.,0,0,4.5,-3.701171875,-8.201171875,0.9997257590293884,0.0002742566866800189,True
+5.1088.N,5.1088,N,Qual cidade vive resfriada? Alegrete,0,0,4.84375,-3.873046875,-8.716796875,0.9998362064361572,0.00016378422151319683,True
+4.141.H,4.141,H,Qual é a sobremesa mais popular na Rússia? O Putin flan.,1,1,-3.40625,3.615234375,7.021484375,0.0008917038212530315,0.9991082549095154,True
+5.1398.N,5.1398,N,Qual é o carro em que todo mundo gosta de comemorar o aniversário? A limosine.,0,1,-3.701171875,3.703125,7.404296875,0.0006082616746425629,0.9993916749954224,False
+4.150.N,4.150,N,Qual é a temperatura de um leão morto? 37º. Porque ele é um mamífero.,0,0,4.80078125,-3.958984375,-8.759765625,0.9998431205749512,0.00015689678548369557,True
+5.2567.H,5.2567,H,Por que a lata de cerveja foi se benzer? Porque ela tinha sido a malte suada.,1,1,-4.2734375,4.10546875,8.37890625,0.00022960825299378484,0.9997703433036804,True
+5.2824.H,5.2824,H,Como o Batman dorme? De Bruce,1,1,-1.5361328125,1.6455078125,3.181640625,0.0398624949157238,0.9601374864578247,True
+5.1870.H,5.1870,H,Que médico só trabalha dentro de casa? Indoorcrinologista ,1,0,3.16796875,-2.71875,-5.88671875,0.997231662273407,0.0027683854568749666,False
+5.724.N,5.724,N,Por que o 14 é melhor que o 15? Porque ele é menor.,0,0,4.67578125,-3.7890625,-8.46484375,0.999789297580719,0.000210704340133816,True
+4.599.H,4.599,H,Acabei de encomendar duas fatias de pão na internet. São da Wish.,1,0,1.3916015625,-0.83203125,-2.2236328125,0.9023517370223999,0.09764823317527771,False
+5.1998.H,5.1998,H,Qual é o animal que mais suja crianças? Guache nim ,1,1,-3.90234375,3.744140625,7.646484375,0.00047749257646501064,0.9995225667953491,True
+5.639.H,5.639,H,Qual é o caranguejo que só sai à noite? O guaia moon.,1,1,-3.92578125,3.93359375,7.859375,0.00038596606464125216,0.9996140599250793,True
+5.2894.N,5.2894,N,Por que os musicos gostam de tocar a luz de velas? Para criar um clima com os instrumentos,0,0,4.29296875,-3.388671875,-7.681640625,0.9995390176773071,0.000461004936369136,True
+4.672.H,4.672,H,Qual é o melhor óleo para lubrificar o sexo? Óleo Need Is Love.,1,1,-3.859375,4.0234375,7.8828125,0.0003770285693462938,0.9996229410171509,True
+4.280.H,4.280,H,Qual é o animal mais religioso? É o Papa-formigas.,1,1,-3.7421875,3.87890625,7.62109375,0.0004897656617686152,0.9995102882385254,True
+5.1766.H,5.1766,H,O que acontece quando Dani Rojas fica atirando pelas costas? Uma Dani ficada no rabo do adversário. ,1,1,-3.330078125,3.416015625,6.74609375,0.0011740822810679674,0.9988259673118591,True
+4.728.H,4.728,H,Que nome se dá a uma gorda atrativa? Bomba calórica.,1,0,4.9140625,-4.2109375,-9.125,0.9998910427093506,0.00010889690747717395,False
+5.1444.H,5.1444,H,Como eu sabia que a gasolina era batizada? Por que quem me atendeu era um frei tista.,1,1,-1.64453125,2.076171875,3.720703125,0.02364434115588665,0.9763556718826294,True
+4.17.H,4.17,H,Em que local do planeta se encontram mais leprosos? Nas ilhas Caimão.,1,1,-3.619140625,3.5,7.119140625,0.0008088073809631169,0.9991912245750427,True
+5.2435.H,5.2435,H,Quais jogadores de basquete fundaram Brasília? Kobe e Shaq.,1,1,-1.9130859375,2.53515625,4.4482421875,0.011563828215003014,0.988436222076416,True
+4.474.N,4.474,N,Que nome se dá ao caixão de um cavalheiro? Caixão para homem. .,0,1,-3.611328125,3.78515625,7.396484375,0.0006130294059403241,0.9993869066238403,False
+5.1238.N,5.1238,N,Qual o time de basquete que sempre sabe o poder de luta do adversário? O mais preparado.,0,0,3.796875,-3.580078125,-7.376953125,0.9993749260902405,0.0006251128506846726,True
+4.564.N,4.564,N,"Como é que se diz "" Albufeira "" em árabe? Albufeira.",0,0,4.50390625,-3.712890625,-8.216796875,0.9997299313545227,0.0002700058394111693,True
+5.3578.H,5.3578,H,O que o advogado deixou para os filhos? Seu legaldo.,1,1,-3.66015625,3.66796875,7.328125,0.000656372751109302,0.9993435740470886,True
+5.2410.N,5.2410,N,"Como os cachorros chineses dizem "" oi ""? "" au au "".",0,0,3.158203125,-2.60546875,-5.763671875,0.996870219707489,0.003129736054688692,True
+5.1303.N,5.1303,N,Qual o chá preferido dos britânicos para se acalmar? Erva-Cidreira.,0,0,2.96484375,-2.392578125,-5.357421875,0.995309054851532,0.00469093257561326,True
+4.637.H,4.637,H,O que faz uma hortaliça surda? Finge couve.,1,1,-4.22265625,4.10546875,8.328125,0.00024156631843652576,0.9997584223747253,True
+5.1684.N,5.1684,N,O juiz condenou um réu por um crime articulado dentro de uma loja . Por quê? Porque o réu matou o lojista.,0,1,-3.818359375,3.58984375,7.408203125,0.000605891749728471,0.9993940591812134,False
+4.644.N,4.644,N,"Para quem não viu o filme ontem à noite, no fim o Edward fica com a Bella.",0,0,4.2890625,-3.546875,-7.8359375,0.9996048808097839,0.00039511534851044416,True
+5.1317.H,5.1317,H,Qual cantora sempre se desculpa? Evita Perdão.,1,1,-2.21875,2.595703125,4.814453125,0.008046386763453484,0.9919535517692566,True
+5.1098.N,5.1098,N,Qual a sobremesa oficial da Marvel? A maçã.,0,0,4.91015625,-4.2578125,-9.16796875,0.9998956918716431,0.00010431732516735792,True
+4.481.N,4.481,N,Porque é que o corcunda de Notre-Dame não seguiu a carreira de advogado? Porque nunca conseguiu estudar.,0,0,4.80078125,-3.962890625,-8.763671875,0.9998437166213989,0.00015628519759047776,True
+4.739.N,4.739,N,Para a semana vou organizar uma festa para pessoas . Avisem-me se não conseguirem vir.,0,0,3.49609375,-2.75390625,-6.25,0.9980732202529907,0.0019267346942797303,True
+5.2927.N,5.2927,N,Qual a fruta que bate em você? Jaca,0,0,4.44140625,-3.59765625,-8.0390625,0.9996775388717651,0.0003225071995984763,True
+4.646.H,4.646,H,Qual é a posição preferida dos relógios. De quartzo.,1,0,1.390625,-1.0458984375,-2.4365234375,0.91957026720047,0.08042967319488525,False
+4.382.N,4.382,N,Porque é que o motociclista chegou atrasado ao trabalho? Porque saiu de casa tarde.,0,0,4.70703125,-3.875,-8.58203125,0.999812662601471,0.00018740874656941742,True
+4.100.H,4.100,H,A São estava com prisão de ventre mas mesmo assim foi à sanita. Qual é o filme? Tentação.,1,0,4.5625,-3.76171875,-8.32421875,0.9997574687004089,0.00024251153809018433,False
+5.907.N,5.907,N,"Qual Cavaleiro do Zodíaco calou a boca de um Street Fighter? O "" Shaka "".",0,0,2.025390625,-1.130859375,-3.15625,0.9591543078422546,0.04084571823477745,True
+5.2845.H,5.2845,H,Uma mulher sofre de diarreia crônica. Qual o nome da novela? Maria do Barro,1,0,3.94921875,-3.146484375,-7.095703125,0.9991720914840698,0.0008279717876575887,False
+5.3181.N,5.3181,N,Por que o Mickey possui pouquíssimos bens? Porque ele é pobre.,0,0,4.9609375,-4.203125,-9.1640625,0.9998952150344849,0.00010472557187313214,True
+5.3350.H,5.3350,H,"Por que o time do inferno ganhou o jogo contra o céu? ""Porque a gente atentamos o tempo todo e demo o melhor de si"".",1,0,0.88720703125,-0.66064453125,-1.5478515625,0.824603259563446,0.17539678514003754,False
+4.261.H,4.261,H,Porque é que os peixes não jogam voleibol? Porque têm medo da rede.,1,0,3.8359375,-2.775390625,-6.611328125,0.9986567497253418,0.0013432380510494113,False
+4.585.N,4.585,N,"Nunca quis acreditar que o meu pai roubava enquanto trabalhava nas Estradas de Portugal . Mas quando eu chegava a casa, os indícios  estavam todos lá.",0,0,3.95703125,-3.369140625,-7.326171875,0.9993423819541931,0.0006576552405022085,True
+5.1503.H,5.1503,H,"O gaúcho não achava o seu carro no estacionamento. Qual o modelo do carro? Cadê, tche!",1,1,-3.2734375,3.39453125,6.66796875,0.0012693642638623714,0.9987305998802185,True
+5.1972.N,5.1972,N,Qual o padre preferido do Faustão? Padre Marcelo Rossi!!,0,0,4.26953125,-3.328125,-7.59765625,0.9994986057281494,0.0005013742484152317,True
+5.962.H,5.962,H,Qual elefante da Disney usa fertilizante pra cuidar do solo? Adumbo.,1,1,-3.765625,3.892578125,7.658203125,0.0004719322023447603,0.9995280504226685,True
+5.1393.N,5.1393,N,Qual é a banda de pagode mais famosa no mundo dos animes? ASIAN KUNG-FU GENERATION .,0,1,-3.580078125,3.763671875,7.34375,0.0006462032906711102,0.99935382604599,False
+5.2665.H,5.2665,H,Quem é responsável pela locomoção dos pentelhos? Transporte púbico.,1,1,-2.978515625,3.529296875,6.5078125,0.0014895172789692879,0.9985104203224182,True
+5.1475.N,5.1475,N,Qual pico mais gelado que existe? O everest.,0,1,-3.173828125,3.134765625,6.30859375,0.001817283220589161,0.9981827735900879,False
+1.5.N,1.5,N,Por que a galinha bateu a cabeça contra a parede? Para ficar com um machucado.,0,0,4.9375,-4.07421875,-9.01171875,0.9998780488967896,0.00012195716408314183,True
+5.976.H,5.976,H,Qual passarinho adora televisão? Bem TV.,1,1,-3.357421875,3.42578125,6.783203125,0.0011313597206026316,0.9988686442375183,True
+5.2412.N,5.2412,N,Qual é o doce que luta artes marciais? O arroz doce,0,0,5.05078125,-4.25390625,-9.3046875,0.9999090433120728,9.098841110244393e-05,True
+5.415.N,5.415,N,Qual é o restaurante favorito dos maconheiros? O beco.,0,0,3.646484375,-2.734375,-6.380859375,0.9983091354370117,0.0016908030956983566,True
+4.330.N,4.330,N,Porque é que os bêbados gostam de passar a Ponte 25 de Abril? Porque lá há muito ar puro.,0,0,4.29296875,-3.521484375,-7.814453125,0.9995962977409363,0.0004036925674881786,True
+4.348.N,4.348,N,O que é que os bonecos de peluche costumam pôr no leite? Flocos.,0,0,4.64453125,-4.09375,-8.73828125,0.9998396635055542,0.0001603035198058933,True
+4.327.N,4.327,N,Qual é a panela que se usa quando se está triste? Panela.,0,0,5.32421875,-4.5703125,-9.89453125,0.99994957447052,5.044728459324688e-05,True
+5.2373.N,5.2373,N,Por que a mãe tinha que largar o bebê quando colocava sua bolsa? Porque era bolsa frontal.,0,0,2.048828125,-1.87109375,-3.919921875,0.9805434346199036,0.01945657655596733,True
+5.2985.H,5.2985,H,Qual animal é coach? O cão guru.,1,1,-1.7109375,1.859375,3.5703125,0.027376487851142883,0.9726234674453735,True
+4.663.H,4.663,H,Por que é que a professora usa óculos escuros na aula? Porque os seus alunos são brilhantes.,1,0,3.40234375,-2.66015625,-6.0625,0.9976769089698792,0.002323162741959095,False
+4.154.N,4.154,N,O que é que os carteiros fazem nos tempos livres? Nada.,0,0,5.08203125,-4.1953125,-9.27734375,0.9999065399169922,9.35104617383331e-05,True
+5.4027.H,5.4027,H,Qual o nome do parente que mais gosta de você? A Tia Dora.,1,0,4.33203125,-3.6328125,-7.96484375,0.999652624130249,0.00034734528162516654,False
+5.71.H,5.71,H,Qual é o cachorro que mergulha muito? Pitchibum.,1,1,-3.888671875,4.03515625,7.923828125,0.0003618827904574573,0.9996380805969238,True
+4.283.H,4.283,H,Qual é o carro que consegue transportar mais porcos? É o Nissan na vara.,1,1,-3.62109375,3.4140625,7.03515625,0.0008796061738394201,0.9991204142570496,True
+5.167.N,5.167,N,"O que o padrinho da faca disse? "" Oi, afilhado "".",0,0,4.51953125,-4.02734375,-8.546875,0.9998058676719666,0.0001941131631610915,True
+5.385.H,5.385,H,Qual gênero literário não pode ter filhos? Mistéril.,1,1,-3.826171875,3.77734375,7.603515625,0.000498446577694267,0.9995015859603882,True
+5.785.N,5.785,N,Como se chama a mãe que cozinha bem? Mutitarefa.,0,0,0.85791015625,-0.27392578125,-1.1318359375,0.756177544593811,0.24382245540618896,True
+5.202.H,5.202,H,Por que o Sílvio Santos só entra em casa depois que a mulher dele o aplaude? Porque a porta só abre com reconhecimento de Íris.,1,1,-2.41796875,2.3671875,4.78515625,0.008283627219498158,0.9917163252830505,True
+5.1613.H,5.1613,H,"Como se faz para uma laranja virar uma cobra? Faz cosquinha nela, aí o suco ri.",1,1,-4.140625,4.12890625,8.26953125,0.00025613975594751537,0.9997438788414001,True
+5.368.H,5.368,H,Um lider religioso no pantanal matogrossense. Qual o nome do filme?  Crocodilo Gandhi,1,0,3.326171875,-2.748046875,-6.07421875,0.9977038502693176,0.002296159043908119,False
+4.28.N,4.28,N,Voltei a dizer à minha mãe que queria ser futebolista . Ela diz que estou sempre a bater na mesma tecla.,0,0,3.681640625,-3.197265625,-6.87890625,0.9989718198776245,0.0010282107396051288,True
+5.1627.H,5.1627,H,Qual é a atriz mais dramática do mundo? A tristeza,1,0,4.765625,-4.07421875,-8.83984375,0.9998551607131958,0.00014482441474683583,False
+5.2197.H,5.2197,H,Porque o frango usava smoking? Porque era chicken no último ! ,1,1,-3.8671875,3.916015625,7.783203125,0.0004165018326602876,0.9995835423469543,True
+4.346.H,4.346,H,Que nome se dá a alguém que não acredita nas alterações climáticas? Persona non greta.,1,1,-3.322265625,3.517578125,6.83984375,0.0010691264178603888,0.9989308714866638,True
+5.31.N,5.31,N,Qual é o poeta que sempre se atrasa? Fernando Pessoa.,0,0,4.41015625,-3.880859375,-8.291015625,0.9997492432594299,0.00025069675757549703,True
+5.1912.N,5.1912,N,Qual chá preferido dos pedreiros? Cidreira.,0,1,-4.0625,4.05859375,8.12109375,0.0002971151261590421,0.9997028708457947,False
+4.163.H,4.163,H,Como é que a mulher do Vasco da Gama o cumprimenta? Com um beijo no astro-lábio.,1,0,4.6171875,-3.875,-8.4921875,0.9997950196266174,0.00020502213737927377,False
+5.1352.H,5.1352,H,Qual é a doença preferida dos pastores? Salmo nela.,1,1,-2.740234375,3.2578125,5.998046875,0.0024774454068392515,0.9975225329399109,True
+4.33.N,4.33,N,Qual é a parte da mulher que cheira a creme? O nariz.,0,0,4.0234375,-3.619140625,-7.642578125,0.9995206594467163,0.0004793605476152152,True
+5.1116.N,5.1116,N,Por que os jacarés só andavam em dois? Porque são répteis.,0,0,4.828125,-3.98828125,-8.81640625,0.9998517036437988,0.0001482583029428497,True
+4.474.H,4.474,H,Que nome se dá ao caixão de um cavalheiro? Sir Cófago.,1,1,-3.25,3.609375,6.859375,0.001048469333909452,0.9989515542984009,True
+5.1974.N,5.1974,N,Por que o cara entrou com seu veículo no mar? Porque era barco,0,1,-0.462890625,0.94384765625,1.40673828125,0.1967490315437317,0.8032509684562683,False
+5.2952.H,5.2952,H,Qual é o nome do programa que o Sílvio Santos passou a fazer no mar? Roda a Roda Jetski. ,1,1,-2.83984375,3.353515625,6.193359375,0.0020387868862599134,0.997961163520813,True
+5.2099.N,5.2099,N,Qual é o local religioso preferido dos jogadores de basquete? A quadra,0,0,5.0546875,-4.1796875,-9.234375,0.9999023675918579,9.761565161170438e-05,True
+5.2506.H,5.2506,H,Qual é o biscoito mais temido da mitologia? Cream Kraken.,1,1,-2.296875,2.6171875,4.9140625,0.0072890776209533215,0.9927109479904175,True
+5.4009.N,5.4009,N,Qual o nome da menina que você deveria investir? Jeniffer Lawrence.,0,0,3.958984375,-3.4609375,-7.419921875,0.9994012117385864,0.0005988371558487415,True
+4.464.N,4.464,N,Onde se encontram os piores vinhos italianos? Massamá.,0,1,-2.087890625,2.68359375,4.771484375,0.008396700024604797,0.9916033148765564,False
+4.326.H,4.326,H,Porque é que os homens são mais burros ao pé das mulheres? Porque passam de homo sapiens para homo erectus.,1,0,1.9150390625,-1.22265625,-3.1376953125,0.9584211707115173,0.04157886654138565,False
+5.3765.H,5.3765,H,Qual é o jogo favorito da Ivete Sangalo? Golden Axé,1,1,-3.529296875,3.603515625,7.1328125,0.0007978335488587618,0.9992021918296814,True
+4.442.H,4.442,H,O que é que os bebés já fazem aos 12 meses? 1 ano.,1,0,4.70703125,-4.1171875,-8.82421875,0.9998528957366943,0.00014710471441503614,False
+5.2373.H,5.2373,H,Por que a mãe tinha que largar o bebê quando colocava sua bolsa? Porque era bolsa tiracolo.,1,0,4.5078125,-3.779296875,-8.287109375,0.9997482895851135,0.0002516777312848717,False
+5.2643.N,5.2643,N,Qual é o nome de um cabeleireiro? Salão de Beleza.,0,0,5.390625,-4.578125,-9.96875,0.9999531507492065,4.683888619183563e-05,True
+5.3768.N,5.3768,N,Onde o Jabba come? No restaurante,0,0,5.171875,-4.390625,-9.5625,0.999929666519165,7.031184213701636e-05,True
+5.610.N,5.610,N,Qual o nome que se da a viagem de 10 bebês ao msm tempo? Gravidez!,0,0,4.359375,-3.734375,-8.09375,0.9996947050094604,0.00030534894904121757,True
+5.418.N,5.418,N,Quantos chocolates são necessários para voar? Muitos,0,0,4.71484375,-3.865234375,-8.580078125,0.9998123049736023,0.00018777504737954587,True
+4.398.H,4.398,H,"Era um vez um esquilo tão pequeno, tão pequeno, que em vez de chamar esquilo, chamava-se esgrama.",1,1,-3.59375,3.626953125,7.220703125,0.0007307537016458809,0.9992693066596985,True
+5.100.N,5.100,N,Qual a data mais importante do calendário grego? Dia de natal.,0,0,5.078125,-4.21484375,-9.29296875,0.9999079704284668,9.20608508749865e-05,True
+5.147.H,5.147,H,"Com o que é feita, fundamentalmente, a porta do quartel? Com batentes.",1,0,5.0390625,-3.986328125,-9.025390625,0.9998797178268433,0.00012030132347717881,False
+5.230.N,5.230,N,Qual é o ator que admira um dia ensolarado e sem nuvens? Tony Ramos.,0,0,4.125,-3.447265625,-7.572265625,0.9994857311248779,0.0005142607842572033,True
+5.2016.H,5.2016,H,Que cantora adora comer formiga? A TamanDua Lipa ,1,1,-2.107421875,2.33984375,4.447265625,0.011574993841350079,0.9884250164031982,True
+5.1832.H,5.1832,H,Qual é a aparesentadora mais descoordenada que existe? Abcissa Guimarães,1,1,-3.091796875,2.935546875,6.02734375,0.0024060888681560755,0.9975939393043518,True
+5.2647.H,5.2647,H,Qual apresentador é o mais duas caras? Falso Silva.,1,1,-3.048828125,2.9765625,6.025390625,0.0024107815697789192,0.9975892305374146,True
+5.426.N,5.426,N,Qual criatura mitológica criou um calendário só com 11 signos? Humano.,0,0,4.99609375,-4.1875,-9.18359375,0.9998972415924072,0.00010270020720781758,True
+5.117.N,5.117,N,Qual menina viveu uma aventura digna dos contos de fadas? Alice no país das Maravilhas.,0,0,5.109375,-4.34375,-9.453125,0.9999215602874756,7.843789353501052e-05,True
+5.2069.N,5.2069,N,Os imperador inca decretou que as lhamas seriam os únicos animais permitidos em Machu Picchu . Qual é o nome do filme? O Império Contra Ataca,0,0,1.8212890625,-1.1533203125,-2.974609375,0.9514138102531433,0.04858620837330818,True
+5.1782.H,5.1782,H,Em que período da história foi inventado o primeiro carro popular? No período Páliolítico.,1,1,-3.185546875,2.955078125,6.140625,0.00214894930832088,0.9978510141372681,True
+5.2813.H,5.2813,H,Qual instrumento leva os dentistas à morte? Óbitorador ,1,0,2.966796875,-2.333984375,-5.30078125,0.9950370192527771,0.004962942097336054,False
+5.1238.H,5.1238,H,Qual o time de basquete que sempre sabe o poder de luta do adversário? Orlando Mede Ki.,1,1,-3.296875,3.412109375,6.708984375,0.0012184162624180317,0.9987816214561462,True
+5.2488.H,5.2488,H,Qual é o bloco do índio que não bebe nem fuma? Mim careta.,1,1,-4.296875,4.1328125,8.4296875,0.0002182420575991273,0.9997817873954773,True
+4.562.H,4.562,H,Em que estado se encontra o rio Mississipi? No estado líquido.,1,0,4.390625,-3.548828125,-7.939453125,0.9996436834335327,0.00035627433680929244,False
+5.3504.N,5.3504,N,Qual executivo sempre cochila depois do almoço? O gerente.,0,0,4.8203125,-4.07421875,-8.89453125,0.9998629093170166,0.000137118055135943,True
+5.3504.H,5.3504,H,Qual executivo sempre cochila depois do almoço? O de gestão.,1,0,3.439453125,-3.1171875,-6.556640625,0.9985814094543457,0.0014186347834765911,False
+5.2567.N,5.2567,N,Por que a lata de cerveja foi se benzer? Porque ela tinha sido amaldiçoada.,0,0,4.359375,-3.5859375,-7.9453125,0.9996458292007446,0.00035419364576227963,True
+5.2597.N,5.2597,N,Qual seria a profissão perfeita para o Tony Tornado? Promotor de festas.,0,0,4.53515625,-3.791015625,-8.326171875,0.9997579455375671,0.0002420384407741949,True
+5.2956.N,5.2956,N,Qual é o seriado mexicano sobre um chinês tomando chá? Chaves.,0,0,5.10546875,-4.13671875,-9.2421875,0.9999030828475952,9.68560780165717e-05,True
+5.2927.H,5.2927,H,Qual a fruta que bate em você? Fruta pão,1,1,-1.6630859375,1.4794921875,3.142578125,0.04138471558690071,0.958615243434906,True
+5.3224.H,5.3224,H,Qual comediante comentou sobre a Páscoa em seu texto? Hassumcitou.,1,1,-2.86328125,3.388671875,6.251953125,0.0019229825120419264,0.9980770349502563,True
+5.2368.H,5.2368,H,Qual rockeiro não usa drogas e nem sacaneia os outros? O Bom Jovem,1,1,-0.469482421875,1.15234375,1.621826171875,0.16495317220687866,0.8350468277931213,True
+4.598.H,4.598,H,Estou a pensar começar uma relação com a minha calculadora. Ao menos ela sabe dar-me o devido valor.,1,0,3.927734375,-3.373046875,-7.30078125,0.9993255138397217,0.0006745559512637556,False
+4.154.H,4.154,H,O que é que os carteiros fazem nos tempos livres? Jogam às cartas.,1,1,-0.51708984375,0.92529296875,1.4423828125,0.1911766231060028,0.8088233470916748,True
+5.2511.H,5.2511,H,Qual é a série que conta a história de um anfíbio no alto do Everest? Rã na Montanha.,1,1,-3.09375,3.28515625,6.37890625,0.0016941033536568284,0.9983059167861938,True
+5.104.N,5.104,N,Qual lugar do mundo incentiva a caminhada? Himalaia.,0,0,4.73046875,-4.01171875,-8.7421875,0.999840259552002,0.000159678646014072,True
+4.256.N,4.256,N,Que som faz um peixe a cair dum prédio de 20 andares? Nenhum!,0,0,4.6953125,-3.884765625,-8.580078125,0.9998123049736023,0.00018777504737954587,True
+5.907.H,5.907,H,"Qual Cavaleiro do Zodíaco calou a boca de um Street Fighter? O ""Shhh, Ryu"".",1,1,-1.43359375,2.134765625,3.568359375,0.02742854133248329,0.9725714921951294,True
+5.1791.N,5.1791,N,Sabe por que a Gisele Bündchen só anda com roupa amassada? Porque ela cansou de desfilar.,0,0,5.08203125,-4.1171875,-9.19921875,0.9998989105224609,0.0001011081476463005,True
+5.1222.H,5.1222,H,Qual o jornalista esportivo mais inteligente? Clever Machado.,1,0,4.234375,-3.29296875,-7.52734375,0.9994621872901917,0.0005378764471970499,False
+5.2559.H,5.2559,H,Qual é o cantor que tá sempre na cena de um crime? Perito de Paula.,1,1,-3.998046875,3.76171875,7.759765625,0.00042637469596229494,0.9995736479759216,True
+5.2507.H,5.2507,H,Qual é o aparelho que nunca para de mexer? A balança.,1,0,4.44921875,-3.9375,-8.38671875,0.9997721314430237,0.0002278218453284353,False
+5.2325.N,5.2325,N,"O que a mãe religiosa disse para o pai agnóstico sobre o filho deles? "" Cuida, que o filho é descrente "".",0,0,4.484375,-3.87890625,-8.36328125,0.9997667670249939,0.0002332232252229005,True
+5.2972.N,5.2972,N,Qual a marca de roupa preferida dos esquilos? The north face.,0,1,-2.2890625,2.064453125,4.353515625,0.012698199599981308,0.9873018264770508,False
+5.4006.H,5.4006,H,Por que Caim matou Abel? Porque Abel era Fera.,1,0,4.625,-3.744140625,-8.369140625,0.9997681975364685,0.0002318610204383731,False
+5.53.N,5.53,N,Como são classificados os gatos e cachorros no México? Astecas.,0,0,4.84765625,-4.125,-8.97265625,0.999873161315918,0.00012681477528531104,True
+5.3181.H,5.3181,H,Por que o Mickey possui pouquíssimos bens? Porque ele é Minniemalista.,1,1,-2.951171875,3.12890625,6.080078125,0.00228277500718832,0.9977172613143921,True
+5.368.N,5.368,N,Um lider religioso no pantanal matogrossense . Qual o nome do personagem? Crocodilo Gandhi,0,0,3.787109375,-3.2265625,-7.013671875,0.9991012811660767,0.0008986912434920669,True
+5.3666.H,5.3666,H,Qual dublador que não toma banho? Fede Mascarenhas.,1,1,-1.9814453125,1.974609375,3.9560546875,0.018779069185256958,0.9812209606170654,True
+4.508.H,4.508,H,O que é a disfunção eléctil? É a incapacidade de sentir atração pelos candidatos das eleições.,1,0,2.95703125,-2.615234375,-5.572265625,0.9962126016616821,0.003787457710132003,False
+4.645.H,4.645,H,"Se um dia te oferecerem uns óculos sem lentes, tem cuidado! Pode ser armação.",1,0,2.1484375,-2.15234375,-4.30078125,0.9866234660148621,0.013376603834331036,False
+5.1352.N,5.1352,N,Qual é a doença preferida dos pastores?.,0,0,4.390625,-3.45703125,-7.84765625,0.9996095299720764,0.0003905139456037432,True
+4.106.N,4.106,N,Qual é a flor que os homens mais gostam de oferecer às mulheres? Tulipas.,0,0,4.65234375,-3.916015625,-8.568359375,0.9998100399971008,0.00018998804443981498,True
+5.3492.N,5.3492,N,"Qual a banda que, quando nasceu, era alimentada por criminosas? Legião Urbana.",0,0,4.90625,-4.2109375,-9.1171875,0.9998902082443237,0.0001097509084502235,True
+5.4035.H,5.4035,H,"Por que o nariz, às vezes, sente cheiro de arrogância? Por causa da humildade relativa do ar.",1,1,-2.919921875,2.919921875,5.83984375,0.002900857711210847,0.9970991611480713,True
+5.1.H,5.1,H,Qual X-Men nunca falta ao trabalho? No turno.,1,1,-1.2802734375,1.83984375,3.1201171875,0.042285025119781494,0.9577149748802185,True
+4.630.N,4.630,N,Por que é que os surfistas comem a comida fria? Porque detestam comida quente.,0,0,4.8984375,-3.916015625,-8.814453125,0.9998514652252197,0.00014854811888653785,True
+5.1332.H,5.1332,H,Por que o nerd pediu a calculadora em namoro? Porque ela dava valor.,1,0,2.712890625,-2.48828125,-5.201171875,0.9945201277732849,0.005479908548295498,False
+5.2882.H,5.2882,H,Personagem que adora Leite? Milk Mouse ,1,1,-0.323974609375,1.3681640625,1.692138671875,0.1554947942495346,0.8445051908493042,True
+4.595.H,4.595,H,Para que servem óculos verdes? Para verde perto.,1,1,-3.5703125,3.533203125,7.103515625,0.0008215338457375765,0.9991784691810608,True
+4.615.H,4.615,H,"A eletricidade está tão cara, tão cara, que a EDP decidiu mudar o nome para Luz Vuitton.",1,1,-0.2496337890625,0.91064453125,1.1602783203125,0.2386167198419571,0.7613832950592041,True
+4.728.N,4.728,N,Que nome se dá a uma Sobremesa atrativa? Bomba calórica .,0,0,4.8203125,-4.1484375,-8.96875,0.9998726844787598,0.00012731103925034404,True
+5.129.H,5.129,H,Qual cantora ganhou uma patente em 2018? Major Este Ano.,1,1,-2.830078125,3.369140625,6.19921875,0.002026899950578809,0.9979731440544128,True
+5.3237.H,5.3237,H,Qual queijo favorito da Iveje Sangalo? Axéddar.,1,1,-3.96875,3.970703125,7.939453125,0.00035627433680929244,0.9996436834335327,True
+4.67.N,4.67,N,Porque é que as galinhas não gostam de ralis? Porque não vêem nada com o pó.,0,1,-3.33203125,3.291015625,6.623046875,0.0013276092940941453,0.998672366142273,False
+4.160.H,4.160,H,O que diz uma banana suicida? Macacos me mordam!,1,0,2.998046875,-2.0234375,-5.021484375,0.9934484362602234,0.0065515246242284775,False
+5.442.H,5.442,H,Qual o salgadinho favorito dos torcedores do Flamengo? Baconzico.,1,0,4.73828125,-4.09375,-8.83203125,0.9998539686203003,0.00014596008986700326,False
+5.1912.H,5.1912,H,Qual cantora tem um supermercado? Wallmart nália,1,1,-3.88671875,3.736328125,7.623046875,0.0004888104740530252,0.9995112419128418,True
+5.1249.H,5.1249,H,Por que o veganismo é a política de Estado na Bolívia? Para ninguém comer huevo.,1,1,-3.9296875,4.0078125,7.9375,0.0003569705877453089,0.9996429681777954,True
+5.3509.N,5.3509,N,Qual é o cantor que teve problemas respiratórios? Erasma Carlos.,0,0,4.90234375,-3.9140625,-8.81640625,0.9998517036437988,0.0001482583029428497,True
+4.33.H,4.33,H,Qual é a parte da mulher que cheira a banana? O nariz.,1,0,4.20703125,-3.677734375,-7.884765625,0.9996236562728882,0.00037629317375831306,False
+5.962.N,5.962,N,Qual elefante da Disney usa fertilizante pra cuidar do solo? Coronel Hathi.,0,1,0.0207672119140625,0.412841796875,0.3920745849609375,0.40321797132492065,0.5967820286750793,False
+5.2385.N,5.2385,N,Por que o atrito e a resistência do ar foram ao psicólogo? Porque eles são muito requisitados,0,0,4.27734375,-3.412109375,-7.689453125,0.9995425939559937,0.0004574190534185618,True
+5.2259.H,5.2259,H,Qual a semelhança entre o trovão e a privada? Os dois vem sempre acompanhado de uma descarga,1,1,-3.806640625,3.677734375,7.484375,0.0005614786641672254,0.999438464641571,True
+5.2616.N,5.2616,N,Qual ator sempre dá tudo de si? Don Johnson.,0,0,4.55859375,-3.96484375,-8.5234375,0.9998013377189636,0.00019871554104611278,True
+5.1344.H,5.1344,H,Qual Trapalhão ajudou Frodo em sua jornada? O Renato Aragorn.,1,1,-2.64453125,2.8046875,5.44921875,0.004281254485249519,0.995718777179718,True
+5.912.N,5.912,N,Qual é a parte do computador que não é do bem? O teclado.,0,0,4.76953125,-4.08203125,-8.8515625,0.9998568296432495,0.0001431373821105808,True
+4.559.H,4.559,H,Porque é que os diabéticos não usam o Google Chrome? Porque não podem aceitar cookies.,1,0,4.52734375,-3.740234375,-8.267578125,0.9997434020042419,0.0002566404000390321,False
+5.1802.N,5.1802,N,Por que ninguém na Terra consegue entender a língua nativa do Super-Homem? Porque é alienígena.,0,0,4.14453125,-3.5390625,-7.68359375,0.9995399713516235,0.00046010586083866656,True
+5.522.H,5.522,H,Qual país que sofre com as enchentes? Aquador.,1,1,-2.6875,3.33203125,6.01953125,0.0024249141570180655,0.9975751042366028,True
+5.169.H,5.169,H,Em qual programa o Sílvio Santos exagera no laquê? Topetudo por Dinheiro.,1,1,-3.4140625,3.4296875,6.84375,0.0010649625910446048,0.9989350438117981,True
+4.235.H,4.235,H,"Era uma vez um homem tão pequeno, tão pequeno, que em vez de praticar natação, praticava na tacinha.",1,1,-1.5537109375,1.978515625,3.5322265625,0.028409065678715706,0.9715908765792847,True
+5.147.N,5.147,N,"Com o que é feita, fundamentalmente, a porta do quartel? De ferro.",0,0,5.0078125,-4.140625,-9.1484375,0.9998936653137207,0.00010637458763085306,True
+4.500.N,4.500,N,Porque é que o João Silva tem Instagram mas não tem Facebook? Porque ele prefere ter seguidores em vez de amigos.,0,0,4.921875,-4.18359375,-9.10546875,0.9998888969421387,0.0001110444645746611,True
+5.2422.H,5.2422,H,Por que em Barretos as pessoas não falam as coisas na lata?  Porque lá é impossível fazer algo sem rodeios.,1,1,-0.82373046875,0.85205078125,1.67578125,0.15765488147735596,0.8423450589179993,True
+5.3668.H,5.3668,H,Por que o frango caipira não tem problemas jurídicos de identidade? Porque ele não tem hormônimos.,1,1,-0.8193359375,1.71484375,2.5341796875,0.07349652051925659,0.9265034794807434,True
+4.55.H,4.55,H,O que é um omossexual? É um sabão em pó com o qual se lavam as partes íntimas.,1,1,-1.0361328125,1.5322265625,2.568359375,0.07120272517204285,0.9287972450256348,True
+5.1554.H,5.1554,H,Qual a Miss EUA que foi escolhida por engano? A Miss Take.,1,1,-0.98193359375,1.673828125,2.65576171875,0.06563477963209152,0.9343652725219727,True
+4.567.H,4.567,H,"O que é que a mulher do comunista diz quando o viagra perde o efeito? Foice o martelo, camarada.",1,0,1.87109375,-1.2509765625,-3.1220703125,0.9577940106391907,0.04220600053668022,False
+4.11.N,4.11,N,Qual é o animal mais romântico? É a amêijoa . Porque dorme em conjunto.,0,1,-1.443359375,2.087890625,3.53125,0.02843603305518627,0.971563994884491,False
+5.522.N,5.522,N,Qual país que sofre com as enchentes? Equador.,0,0,5.11328125,-4.04296875,-9.15625,0.9998944997787476,0.00010554686741670594,True
+5.1109.H,5.1109,H,Qual filósofo gostaria de ser um Cavaleiro do Zodíaco? Áriestóteles,1,1,-3.94140625,4.1015625,8.04296875,0.0003212502342648804,0.9996787309646606,True
+5.1223.N,5.1223,N,Qual parte do corpo nunca está acordada? Pé.,0,0,4.01953125,-3.373046875,-7.392578125,0.9993845224380493,0.0006154273287393153,True
+4.129.N,4.129,N,Que nome se dá a uma freira no convento? Católica apostólica.,0,0,3.833984375,-3.421875,-7.255859375,0.9992944002151489,0.0007055271998979151,True
+5.1398.H,5.1398,H,Qual é o carro em que todo mundo gosta de comemorar o aniversário? O Fiesta.,1,0,3.642578125,-2.931640625,-6.57421875,0.9986060261726379,0.0013939500786364079,False
+5.4027.N,5.4027,N,Qual o nome do parente que mais gosta de você? A Tia Maria.,0,0,4.83203125,-4.23046875,-9.0625,0.9998840093612671,0.00011591933434829116,True
+5.1690.N,5.1690,N,Qual o jogo favorito de um ator famoso de Hollywood? O Fortnite? LOL!,0,1,-3.087890625,3.353515625,6.44140625,0.0015916259726509452,0.9984083771705627,False
+5.2226.H,5.2226,H,Por que se ouvia uma nota quando neandertal batia em suas presas ? Porque usava uma Clava de Sol,1,1,-3.564453125,3.626953125,7.19140625,0.0007524627144448459,0.9992475509643555,True
+5.392.N,5.392,N,Qual jogador jogava basquete? Shaquille O'Neal,0,0,4.53125,-3.794921875,-8.326171875,0.9997579455375671,0.0002420384407741949,True
+5.3523.H,5.3523,H,Em qual brincadeira eu só aceito gente inteligente? Tiro lesa.,1,1,-3.83203125,3.76171875,7.59375,0.0005033356137573719,0.9994966983795166,True
+5.1403.N,5.1403,N,Por que o próximo técnico da seleção jogara contra a parede? Porque ele é Pós-Tite.,0,1,-3.318359375,3.310546875,6.62890625,0.0013198636006563902,0.9986801743507385,False
+5.2778.H,5.2778,H,Qual jogo do Windows só funciona se você fizer tudo o que ele quer? O Campo Mimado,1,1,-2.05859375,2.708984375,4.767578125,0.008429287001490593,0.9915707111358643,True
+5.1358.H,5.1358,H,Qual é o trabalho que você se vê fazendo? Limpar espelhos.,1,0,4.61328125,-3.55859375,-8.171875,0.9997175335884094,0.0002824080875143409,False
+5.58.H,5.58,H,O que o judeu passa no corpo quanto está com dor? Shalompas.,1,1,-3.24609375,3.421875,6.66796875,0.0012693642638623714,0.9987305998802185,True
+4.262.N,4.262,N,Que nome se dá a um pássaro aleijado? Infeliz.,0,0,5.02734375,-4.15234375,-9.1796875,0.9998968839645386,0.00010310211655450985,True
+5.3618.N,5.3618,N,Qual os piores inimigos dos MINIons??? Os heróis,0,0,4.0546875,-3.380859375,-7.435546875,0.9994105100631714,0.0005895585636608303,True
+5.1282.N,5.1282,N,Qual castanha sempre interpreta personagens maus? Do pará.,0,0,2.849609375,-2.70703125,-5.556640625,0.9961530566215515,0.0038468718994408846,True
+5.3944.N,5.3944,N,Por que o cara resolveu dormir no bueiro? Porque ele tava bêbado.,0,0,4.63671875,-3.884765625,-8.521484375,0.9998008608818054,0.0001991039316635579,True
+5.1205.H,5.1205,H,Por que o pessoal do Nordeste se orgulha do GPS?  Porque ele fala: Você chegou Nor Destino.,1,0,1.830078125,-0.99169921875,-2.82177734375,0.9438413381576538,0.056158650666475296,False
+4.363.H,4.363,H,O que é que a tinta faz nos dias de chuva? Fica no choco.,1,1,-3.970703125,3.947265625,7.91796875,0.00036400865064933896,0.9996359348297119,True
+5.1061.H,5.1061,H,Qual doença temos que coletar esperma? Cataporra.,1,1,-3.013671875,3.537109375,6.55078125,0.0014269596431404352,0.9985730648040771,True
+5.3721.N,5.3721,N,qual jornalista sempre levava bebidas pros colegas? Carlos Lacerda,0,0,4.90234375,-4.234375,-9.13671875,0.9998923540115356,0.0001076283588190563,True
+5.3911.H,5.3911,H,Qual a cidade paulista as pessoas rezam e fazem artesanato? Em Budas Artes.,1,1,-3.12890625,3.361328125,6.490234375,0.0015158916357904673,0.9984840750694275,True
+5.1971.H,5.1971,H,Porque a fada madrinha estava com um isqueiro na mão indo em direção a uma vela no candelabro? Pra acenderela ,1,1,-3.2421875,3.48828125,6.73046875,0.001192549243569374,0.998807430267334,True
+5.3825.H,5.3825,H,Qual o mês do Popó? Junho de Aço.,1,1,-3.900390625,4.0390625,7.939453125,0.00035627433680929244,0.9996436834335327,True
+1.4.H,1.4,H,O que uma impressora falou para a outra? Essa folha é sua ou é impressão minha?,1,0,4.859375,-4.17578125,-9.03515625,0.9998809099197388,0.0001191323681268841,False
+5.910.N,5.910,N,Qual é a reta que canta muito? A Ella Fitzgerald.,0,0,4.8046875,-4.03125,-8.8359375,0.999854564666748,0.0001453911536373198,True
+5.1387.N,5.1387,N,Qual cantora escreveu Sitio do Picapau Amarelo? A Katy Perry.,0,0,4.84375,-4.08203125,-8.92578125,0.9998670816421509,0.00013289992057252675,True
+5.3164.N,5.3164,N,Qual pintor estava sempre bêbado? Salvador Dalí.,0,0,4.71484375,-3.78125,-8.49609375,0.9997958540916443,0.000204223018954508,True
+5.122.H,5.122,H,Como chama a cerveja que você só toma de 2 em 2 anos? Beer nal.,1,1,-3.9765625,3.82421875,7.80078125,0.00040924749919213355,0.9995908141136169,True
+5.2488.N,5.2488,N,Qual é o bloco do índio que não bebe nem fuma? Bloquinho infantil.,0,0,4.35546875,-3.7734375,-8.12890625,0.9997051358222961,0.00029480361263267696,True
+4.342.N,4.342,N,Qual é o contrário de nu? Vestido.,0,0,5.06640625,-4.265625,-9.33203125,0.9999114274978638,8.853434701450169e-05,True
+5.2113.N,5.2113,N,O que você chama de hamster com 3 pernas? Hamster,0,0,4.71875,-4.15234375,-8.87109375,0.9998595714569092,0.00014036924403626472,True
+5.1783.N,5.1783,N,"O que o narrador Silvio Luiz falou sobre o programa Masterchef? "" Olho no lance! """,0,0,4.6796875,-3.755859375,-8.435546875,0.9997830986976624,0.00021696732437703758,True
+5.3001.N,5.3001,N,Qual microorganismo sofre bullying? A bactéria.,0,0,4.8125,-4.06640625,-8.87890625,0.9998606443405151,0.0001392770209349692,True
+4.336.N,4.336,N,"Hoje davam chuva só para o continente, mas há bocado passei pelo Funchal e também estava a chover.",0,0,3.546875,-2.875,-6.421875,0.9983769655227661,0.001622966956347227,True
+5.3231.N,5.3231,N,Por que o rapaz não mostrou os slides em sua apresentação na empresa? Porque ele esqueceu de levar.,0,0,5.12890625,-4.21484375,-9.34375,0.9999125003814697,8.750299457460642e-05,True
+5.2693.H,5.2693,H,"Por que o artigo, o substantivo e o adjetivo nunca discutiam? Porque estavam sempre em concordância.",1,0,4.40625,-3.767578125,-8.173828125,0.9997181296348572,0.0002818572102114558,False
+5.780.H,5.780,H,Qual a mulher que mais gostava de andar de avião? Simone de É Bom Voar.,1,1,-2.6015625,2.6484375,5.25,0.005220125894993544,0.9947799444198608,True
+5.2269.H,5.2269,H,Qual país em que todo mundo ta sempre na academia ? Só malia,1,1,-4.234375,4.02734375,8.26171875,0.00025814815307967365,0.9997418522834778,True
+5.336.H,5.336,H,Qual o meio de transporte mais usado na Bahia? Uber imbau,1,1,-4.16796875,4.2421875,8.41015625,0.0002225455391453579,0.9997774958610535,True
+5.691.N,5.691,N,Qual é o nome da hiena que se aposentou? Joana.,0,0,4.7890625,-4.1171875,-8.90625,0.9998644590377808,0.00013552079326473176,True
+5.956.H,5.956,H,Como o ciclista reage a uma notícia ruim? Ele leva um bike.,1,1,-2.7421875,3.048828125,5.791015625,0.003045574063435197,0.9969544410705566,True
+5.3770.N,5.3770,N,Qual é o site de informações criado pelo Chewbacca? Star Wars,0,0,4.59375,-3.986328125,-8.580078125,0.9998123049736023,0.00018777504737954587,True
+5.1616.H,5.1616,H,Qual é a pacifista que é um gênio da matemática? Madre Teresa de Calcular.,1,1,-3.7109375,3.666015625,7.376953125,0.0006251128506846726,0.9993749260902405,True
+5.1107.H,5.1107,H,Qual filósofo precisa de um exorcismo? O Demócrito.,1,0,4.80078125,-3.712890625,-8.513671875,0.9997993111610413,0.00020066523575223982,False
+5.3591.H,5.3591,H,"O que o Fred Flintstone disse quando percebeu que instalou um programa indesejado? Ih, aba da Baidu.",1,1,-4.18359375,4.24609375,8.4296875,0.0002182420575991273,0.9997817873954773,True
+4.363.N,4.363,N,O que é que a Ana faz nos dias de chuva? Fica em casa.,0,0,5.01953125,-4.35546875,-9.375,0.9999151229858398,8.481103577651083e-05,True
+5.2155.N,5.2155,N,"Qual o filme odiado do Kiko? Harry Potter e o Cálice Cálice Cálice, você me deixa looouco!",0,1,-3.8671875,3.8046875,7.671875,0.0004655269149225205,0.9995344877243042,False
+5.2665.N,5.2665,N,Quem é responsável pela locomoção dos cidadãos? Transporte público.,0,0,4.875,-4.33984375,-9.21484375,0.9999004602432251,9.95407608570531e-05,True
+4.170.H,4.170,H,Qual é o jogo preferido das vesículas? O biliar.,1,1,-1.98046875,2.287109375,4.267578125,0.013821962289512157,0.9861780405044556,True
+5.2060.N,5.2060,N,Qual o personagem de star wars que vive espirrando? Anakin skywalker,0,0,4.88671875,-4.21875,-9.10546875,0.9998888969421387,0.0001110444645746611,True
+5.1162.H,5.1162,H,Qual o bairro de São Paulo que só tem Japoneses? Japaquara,1,0,4.9765625,-4.1171875,-9.09375,0.9998875856399536,0.00011235326383030042,False
+4.330.H,4.330,H,Porque é que os bêbados gostam de passar a Ponte 25 de Abril? Porque lá há muito engarrafamento.,1,0,5.046875,-4.04296875,-9.08984375,0.999887228012085,0.00011279297905275598,False
+5.3165.N,5.3165,N,Qual pintor ganhou mais dinheiro com sua arte? Picasso.,0,0,5.3515625,-4.21484375,-9.56640625,0.9999299049377441,7.003773498581722e-05,True
+4.345.N,4.345,N,O que diz um porco quando atende o telemóvel? Tou?,0,1,-2.4375,2.775390625,5.212890625,0.005416410975158215,0.9945835471153259,False
+4.672.N,4.672,N,Qual é o melhor óleo para lubrificar o sexo? Óleo corporal.,0,0,3.71875,-2.9296875,-6.6484375,0.9987056255340576,0.0012943680630996823,True
+5.3591.N,5.3591,N,"O que o Fred Flintstone disse quando percebeu que instalou um programa indesejado? Ah, não.",0,0,4.8046875,-3.8671875,-8.671875,0.9998286962509155,0.00017130820197053254,True
+5.3237.N,5.3237,N,Qual queijo favorito da Iveje Sangalo? Pecorino.,0,0,0.9912109375,-0.22509765625,-1.21630859375,0.771413266658783,0.22858671844005585,True
+5.2323.N,5.2323,N,Qual tipo de piada geralmente é feito entre dois homens pelados? Trocadilho.,0,1,-3.47265625,3.4140625,6.88671875,0.0010202174307778478,0.9989797472953796,False
+4.345.H,4.345,H,O que diz um porco quando atende o telemóvel? Tou-cinho?,1,1,-4.0078125,3.857421875,7.865234375,0.00038371203118003905,0.999616265296936,True
+4.96.N,4.96,N,Que nome se dá a um cacto engraçado? Cacti.,0,0,4.859375,-4.1171875,-8.9765625,0.9998736381530762,0.00012632041762117296,True
+5.432.H,5.432,H,Por que o passarinho perdeu os movimentos? Porque ele teve um ave-C.,1,1,-4.1875,4.27734375,8.46484375,0.000210704340133816,0.999789297580719,True
+5.2446.H,5.2446,H,Qual é a cantora favorita do Tony Hawk? Skate Perry.,1,1,-3.1015625,3.41015625,6.51171875,0.0014837189810350537,0.9985162615776062,True
+2.8.H,2.8,H,Sabe por que o argumento do Dumbo foi completamente ignorado? Porque era irrelefante.,1,0,0.77880859375,-0.703125,-1.48193359375,0.814864456653595,0.18513552844524384,False
+5.3577.N,5.3577,N,Qual doença comum entre os viciados em vídeos? Youtuberculose.,0,1,-0.183349609375,1.05859375,1.241943359375,0.22409790754318237,0.7759020924568176,False
+5.2343.N,5.2343,N,Qual jornalista esportivo é ainda adolescente? Dudu Camargo.,0,0,4.890625,-4.0234375,-8.9140625,0.9998655319213867,0.00013446628872770816,True
+5.2189.H,5.2189,H,Quem é a cantora que trabalha com transporte público nos Estados Unidos? Van USA ,1,1,-3.625,3.79296875,7.41796875,0.0006000071880407631,0.9994000196456909,True
+4.539.H,4.539,H,"Será que os meus amigos vão passar férias a países do médio oriente? Uns, Irão. Os outros, Paquistão.",1,0,4.0703125,-3.349609375,-7.419921875,0.9994012117385864,0.0005988371558487415,False
+5.808.N,5.808,N,Por que o caminhão só andava com as rodas de trás? Porque ele gostava de empinar.,0,0,3.275390625,-2.58203125,-5.857421875,0.9971495270729065,0.002850455464795232,True
+4.559.N,4.559,N,Porque é que os conspiracionistas não usam o Google Chrome? Porque não podem aceitar cookies.,0,0,4.3515625,-3.50390625,-7.85546875,0.9996125102043152,0.00038747614598833025,True
+5.2415.N,5.2415,N,Qual é a cidade que quer converter um instrumento musical? Itaquaquecetuba.,0,0,3.142578125,-2.15625,-5.298828125,0.9950273633003235,0.004972596187144518,True
+5.771.N,5.771,N,Por que a ideia ficou cansada depois da reforma? Porque perdeu o acento.,0,0,2.759765625,-2.3671875,-5.126953125,0.9941003918647766,0.005899603012949228,True
+5.2210.N,5.2210,N,Qual é o filme dirigido por Jordan Peele e Sérgio Mallandro? ET!,0,0,4.86328125,-4.140625,-9.00390625,0.9998770952224731,0.0001229135668836534,True
+5.2217.N,5.2217,N,Que terapeuta bebe todo dia? Psicólogo,0,0,4.8125,-4.046875,-8.859375,0.9998579025268555,0.00014202363672666252,True
+4.61.N,4.61,N,Uma mulher manda-se dum prédio e acerta num homem que ia a passar . Qual é o filme? Vertigo.,0,0,4.46484375,-3.57421875,-8.0390625,0.9996775388717651,0.0003225071995984763,True
+5.3721.H,5.3721,H,qual jornalista sempre levava bebidas pros colegas? Carlos Trazvontila ,1,1,-4.09375,4.01171875,8.10546875,0.00030179257737472653,0.999698281288147,True
+4.751.N,4.751,N,"Como correu a primeira final de sempre da Liga dos Campeões com patos? Foi bem disputada, cheia de craques da bola e acabou com a vitória do  Real Madrid.",0,0,2.529296875,-1.6845703125,-4.2138671875,0.9854264259338379,0.014573536813259125,True
+5.2595.N,5.2595,N,Qual animal que gosta muito de você? Cachorro.,0,0,4.9453125,-4.33984375,-9.28515625,0.9999072551727295,9.278282232116908e-05,True
+5.54.H,5.54,H,Qual é o personagem histórico que fui eu que indiquei? Pero Vaz de indica minha.,1,1,-3.875,3.6875,7.5625,0.0005193048855289817,0.999480664730072,True
+5.1570.N,5.1570,N,"Uma pessoa com o apelido Lu, foi para a padaria com suas duas irmãs Ana . Qual o nome da pessoa? Luciana",0,0,4.78125,-4.26953125,-9.05078125,0.999882698059082,0.0001172855991171673,True
+4.573.N,4.573,N,Porque é que os cemitérios têm paredes? Porque as pessoas estão lá dentro.,0,0,3.78515625,-2.837890625,-6.623046875,0.998672366142273,0.0013276092940941453,True
+5.150.H,5.150,H,"Qual a expressão que hora é de uma pessoa, hora é de todo mundo? Minha Nossa.",1,1,-1.4892578125,1.8271484375,3.31640625,0.0350126251578331,0.9649873375892639,True
+4.198.N,4.198,N,"Porque é que a febre tifóide é tão perigosa? Porque ou tu a curas, ou ela agrava-se mesmo.",0,0,4.49609375,-3.48046875,-7.9765625,0.9996566772460938,0.00034329999471083283,True
+5.868.N,5.868,N,Por que o oftamologista foi pra Disney? Pra comprar minnie eye-pads.,0,1,-3.779296875,4.171875,7.951171875,0.0003521250910125673,0.999647855758667,False
+5.2046.N,5.2046,N,Por que o responsável não compra nas Casas Bahia? Porque não gasta dinheiro em carnês,0,0,3.443359375,-3.046875,-6.490234375,0.9984840750694275,0.0015158916357904673,True
+5.1620.N,5.1620,N,Qual é a comida que quase tirou nota dez? Lasanha.,0,0,4.8125,-4.15234375,-8.96484375,0.9998722076416016,0.0001278092822758481,True
+5.3958.H,5.3958,H,Qual o esporte favorito dos escoceses? Whisky na neve.,1,0,2.580078125,-2.166015625,-4.74609375,0.9913892149925232,0.008610767312347889,False
+4.622.H,4.622,H,Que tamanho de roupa vestem as videntes? Tamanho médium.,1,1,-2.271484375,2.59765625,4.869140625,0.007621430326253176,0.9923785924911499,True
+5.2967.N,5.2967,N,Qual a carreira que causa dor e depressão? Ai triste!,0,1,-2.017578125,2.224609375,4.2421875,0.014172364957630634,0.9858275651931763,False
+5.2312.H,5.2312,H,Qual é o nome da banda favorita das pessoas cansadas? Exausta samba,1,1,-3.578125,3.873046875,7.451171875,0.0005804235697723925,0.9994195699691772,True
+5.1869.H,5.1869,H,Que parte do corpo cuida das coisas? To no zelo,1,1,-3.005859375,2.974609375,5.98046875,0.0025212683249264956,0.9974787831306458,True
+4.288.N,4.288,N,Um homem foi apanhado a roubar um carro . Apanhou 12 meses.,0,0,2.98828125,-2.5703125,-5.55859375,0.996160626411438,0.0038393947761505842,True
+4.356.N,4.356,N,O Rodolfo adoeceu e o Pai Natal não vai conseguir entregar as prendas . Teve uma insuficiência cardíaca .,0,0,4.44140625,-3.89453125,-8.3359375,0.9997603297233582,0.00023968686582520604,True
+4.262.H,4.262,H,Que nome se dá a um pássaro aleijado? Comdor.,1,1,-3.091796875,3.357421875,6.44921875,0.0015792594058439136,0.9984207153320312,True
+5.211.N,5.211,N,Qual é o urso que muda de opinião toda hora? Urso Pandas.,0,1,-3.375,3.4140625,6.7890625,0.0011247574584558606,0.9988752007484436,False
+3.3.N,3.3,N,Por que um policial estava interrogando um saco de cimento? Porque ele queria informações verdadeiras.,0,0,4.1796875,-3.353515625,-7.533203125,0.99946528673172,0.000534735678229481,True
+5.3946.N,5.3946,N,O quê o seu Madruga usa pra tomar banho? A bucha.,0,0,4.2734375,-3.466796875,-7.740234375,0.9995651841163635,0.0004347805224824697,True
+4.528.H,4.528,H,Como é que os professores de matemática se mantêm em forma? Com Geometria.,1,0,4.71875,-3.705078125,-8.423828125,0.9997804760932922,0.00021952427050564438,False
+5.1601.H,5.1601,H,Qual filme conta a história do filho do Shrek? Ogrito.,1,0,1.958984375,-0.9111328125,-2.8701171875,0.9463493227958679,0.05365070328116417,False
+5.521.H,5.521,H,Qual ator que peida tão alto que ressoa? Francisco Cu Oco.,1,1,-2.708984375,2.47265625,5.181640625,0.005587385967373848,0.9944126009941101,True
+5.2967.H,5.2967,H,Qual a doença que causa dor e depressão? Ai triste!,1,1,-0.25390625,0.98828125,1.2421875,0.2240554541349411,0.7759445905685425,True
+5.633.N,5.633,N,Quais vilões se preocupam mais com as poses para foto do que com o destino do seu planeta? Os Tumblrcats.,0,1,-3.513671875,3.8671875,7.380859375,0.0006226772093214095,0.9993773102760315,False
+5.681.N,5.681,N,Qual matéria da escola pode machucar? Matemática.,0,0,4.9140625,-4.01953125,-8.93359375,0.9998681545257568,0.00013186581782065332,True
+4.83.N,4.83,N,O que é uma roubalheira? É o ato de roubar uma casa.,0,0,4.96484375,-3.818359375,-8.783203125,0.9998466968536377,0.00015326279390137643,True
+5.1046.N,5.1046,N,Qual o canal para fumantes infantis? Discovery Kids.,0,0,5.1796875,-4.19140625,-9.37109375,0.9999148845672607,8.514296496286988e-05,True
+5.2196.N,5.2196,N,Qual é o Personagem histórico favorito do português? Pedro Álvares Cabral,0,0,4.6875,-4.08984375,-8.77734375,0.9998458623886108,0.0001541633391752839,True
+5.429.N,5.429,N,Qual o chocolate que dá mais energia? Serenata de amor.,0,1,-0.60498046875,1.0283203125,1.63330078125,0.16337868571281433,0.8366213440895081,False
+5.432.N,5.432,N,Por que o passarinho perdeu os movimentos? Porque ele teve um derrame.,0,0,4.1171875,-3.375,-7.4921875,0.9994428753852844,0.0005571117508225143,True
+5.1093.N,5.1093,N,Qual doença que todos filósofos têm? Gripe.,0,0,4.46875,-3.7265625,-8.1953125,0.9997240900993347,0.0002758678747341037,True
+5.2956.H,5.2956,H,Qual é o seriado mexicano sobre um chinês tomando chá? Chá po Lin. ,1,1,-3.93359375,3.958984375,7.892578125,0.0003733659686986357,0.999626636505127,True
+5.766.H,5.766,H,Qual o bairro de SP favorito do Schwarzenegger?  A Bela Vista Baby.,1,1,-2.9296875,3.2421875,6.171875,0.002082970691844821,0.9979169964790344,True
+4.521.N,4.521,N,Eu não sou supersticioso . Sou só um pouco inseguro.,0,0,4.140625,-3.638671875,-7.779296875,0.9995818734169006,0.0004181312979198992,True
+5.3508.N,5.3508,N,Qual rapper é também um ótimo detetive? Djonga.,0,0,3.953125,-3.09375,-7.046875,0.9991306662559509,0.0008693673880770802,True
+5.2594.H,5.2594,H,Como se referiam a Jesus quando ele ficava bravo? INRItado.,1,1,-3.890625,3.8671875,7.7578125,0.00042720790952444077,0.9995728135108948,True
+5.1777.H,5.1777,H,Qual cantor romântico adora jogar Far Cry? Armado Batista.,1,1,-3.552734375,3.421875,6.974609375,0.0009344576974399388,0.9990655779838562,True
+5.1602.N,5.1602,N,Qual é a novela em que Antônio Fagundes faz uso de entorpecentes? O Rei Do Gado.,0,0,5.16796875,-4.140625,-9.30859375,0.9999094009399414,9.063370089279488e-05,True
+5.3127.H,5.3127,H,Qual programa onde você fala com um carro? Conversa Kombi al.,1,1,-3.5078125,3.630859375,7.138671875,0.0007931760628707707,0.9992068409919739,True
+5.2225.N,5.2225,N,Por que a mulher chorou muito quando roubaram uma de suas joias? Porque foi uma pedra preciosa,0,0,4.78125,-3.8671875,-8.6484375,0.9998247027397156,0.0001753699325490743,True
+4.313.N,4.313,N,Já abriu a nova discoteca . Chama-se Barracão.,0,0,3.6484375,-2.97265625,-6.62109375,0.9986698627471924,0.0013302015140652657,True
+5.1056.H,5.1056,H,Por que a cachorra modernista não latiu? Porque ela Tarsilambendo.,1,1,-3.64453125,3.720703125,7.365234375,0.0006324767600744963,0.9993675351142883,True
+5.1492.N,5.1492,N,Por que o cowboy largou tudo para trabalhar na KGB? Porque ele era um espião.,0,0,4.48046875,-3.9609375,-8.44140625,0.9997842907905579,0.00021569999807979912,True
+4.98.H,4.98,H,O que é um ponto amarelo no trânsito? É uma limãosine.,1,1,-4.03515625,4.0625,8.09765625,0.00030415886431001127,0.999695897102356,True
+5.3385.N,5.3385,N,Qual atriz tá com o demônio no corpo? Zezé Polessa.,0,0,4.6796875,-3.96875,-8.6484375,0.9998247027397156,0.0001753699325490743,True
+5.3726.H,5.3726,H,Qual humorista não usa microfone de mão? Helio de Lapela,1,1,-3.904296875,3.953125,7.857421875,0.0003867203777190298,0.999613344669342,True
+5.728.H,5.728,H,"Qual é o nome da doença que acomete vítimas de sequestro que não têm espelho no cativeiro? Síndrome de ""ESTOU COMO?""",1,1,-1.732421875,2.212890625,3.9453125,0.01897803694009781,0.9810219407081604,True
+5.385.N,5.385,N,Qual gênero literário não pode ter filhos? Terror.,0,0,4.54296875,-3.693359375,-8.236328125,0.9997351765632629,0.0002647848450578749,True
+5.1641.H,5.1641,H,Qual é a cidade que tem um monte de patos? Jeri Quá-Quara.,1,1,-2.421875,2.712890625,5.134765625,0.005853960290551186,0.9941459894180298,True
+5.2578.N,5.2578,N,Qual o programa favorito dos gaúchos? Faustão.,0,0,5.234375,-4.28515625,-9.51953125,0.9999265670776367,7.339867443079129e-05,True
+4.485.N,4.485,N,Há duas formas de os deputados saírem do parlamento: Há com boleia e há sem boleia.,0,1,0.201904296875,0.34521484375,0.143310546875,0.4642335772514343,0.5357664227485657,False
+4.740.H,4.740,H,O que diz um mineiro antes de usar a picareta? Cavai disto!,1,1,-4.00390625,3.818359375,7.822265625,0.00040055232238955796,0.9995995163917542,True
+5.1444.N,5.1444,N,Como eu sabia que a gasolina era batizada? Por que quem me atendeu era um frentista.,0,0,4.83984375,-4.30078125,-9.140625,0.9998928308486938,0.00010720880527514964,True
+4.232.N,4.232,N,Qual é a banda preferida dos desempregados? Linkin Park.,0,0,4.25,-3.140625,-7.390625,0.9993833303451538,0.0006166297243908048,True
+5.1378.H,5.1378,H,Por que eu não faço acupuntura? Porque é a maior furada.,1,0,0.82763671875,-0.5927734375,-1.42041015625,0.8054026961326599,0.1945972889661789,False
+4.121.H,4.121,H,"Como é que se diz ""fim"" em japonês? Sakabô.",1,0,4.734375,-3.787109375,-8.521484375,0.9998008608818054,0.0001991039316635579,False
+5.2113.H,5.2113,H,O que você chama de hamster com 3 pernas? Hamputado,1,1,-4.21875,4.0390625,8.2578125,0.00025915823061950505,0.9997407793998718,True
+5.2059.H,5.2059,H,Qual é o vírus baixa renda? Corote vírus ,1,1,-3.345703125,3.443359375,6.7890625,0.0011247574584558606,0.9988752007484436,True
+5.3287.N,5.3287,N,Qual o ingrediente principal na comida de quem apanhou? RepOlho Roxo.,0,0,2.689453125,-1.880859375,-4.5703125,0.9897513389587402,0.010248602367937565,True
+5.3770.H,5.3770,H,Qual é o site de informações criado pelo Chewbacca? Wookieleaks ,1,1,-3.724609375,3.986328125,7.7109375,0.0004477008478716016,0.999552309513092,True
+4.203.H,4.203,H,Comprei uns sapatos com lâmpadas LED na sola. Pode-se dizer que emitem luz solar.,1,0,4.26953125,-3.373046875,-7.642578125,0.9995206594467163,0.0004793605476152152,False
+5.2643.H,5.2643,H,Qual é o nome de um cabeleireiro? Saulão de Beleza.,1,1,-2.6953125,3.0859375,5.78125,0.00307536986656487,0.9969245791435242,True
+4.245.H,4.245,H,Que nome se dá a um homem que via mas agora já não vê? Tobias.,1,0,3.80859375,-3.037109375,-6.845703125,0.9989370703697205,0.0010628867894411087,False
+5.481.N,5.481,N,Por que a jogadora de voleibol foi internada no hospício? Porque ela não estava batendo bem.,0,1,-0.47705078125,0.64013671875,1.1171875,0.2465333640575409,0.7534666657447815,False
+4.397.N,4.397,N,Porque é que os portugueses emigram para o Canadá? Porque querem.,0,0,4.98046875,-3.9296875,-8.91015625,0.999864935874939,0.00013499251508619636,True
+5.3577.H,5.3577,H,Qual doença comum entre os viciados em internet? Youtuberculose.,1,1,-0.7998046875,1.62109375,2.4208984375,0.08159290254116058,0.9184070825576782,True
+4.657.N,4.657,N,O Aníbal foi ao Campeonato do Mundo e apareceu na TV . Ficou conhecido naquele Mundial.,0,0,4.1171875,-3.619140625,-7.736328125,0.9995635151863098,0.0004364814085420221,True
+4.324.N,4.324,N,Quais são as escadas que demoram mais a subir? São as escadas em pedra.,0,0,4.46484375,-3.896484375,-8.361328125,0.9997662901878357,0.00023367909307125956,True
+5.1595.N,5.1595,N,O que acontece quando uma turma de cegos se forma? Um baile de formatura,0,0,5.22265625,-4.26171875,-9.484375,0.9999239444732666,7.602479308843613e-05,True
+5.1043.N,5.1043,N,Qual é o pokémon da umbanda? O Olorum,0,0,0.461669921875,0.2183837890625,-0.2432861328125,0.5605233311653137,0.4394766688346863,True
+5.1641.N,5.1641,N,Qual é a cidade que tem um monte de patos? Pirassununga.,0,0,4.32421875,-3.67578125,-8.0,0.9996646642684937,0.00033535013790242374,True
+5.778.H,5.778,H,Por que o cara que não fazia exercícios prestou odonto?  Pra ser dentário.,1,1,-0.82080078125,1.16796875,1.98876953125,0.12038709968328476,0.879612922668457,True
+4.336.H,4.336,H,"Hoje davam chuva só para o continente, mas há bocado passei pelo Lidl e também estava a chover.",1,0,2.1171875,-1.689453125,-3.806640625,0.978260338306427,0.021739592775702477,False
+5.3060.N,5.3060,N,Qual o nome do assassino voador? Drone.,0,0,4.52734375,-3.9296875,-8.45703125,0.9997876286506653,0.00021235659369267523,True
+4.346.N,4.346,N,Que nome se dá a alguém que não acredita nas alterações climáticas? Pessoa teimosa.,0,0,5.0234375,-4.42578125,-9.44921875,0.9999212026596069,7.87448589107953e-05,True
+4.367.H,4.367,H,Porque é que a Branca de Neve desmaiou ao comer a maçã? Apanhou sidra.,1,1,-3.62890625,3.634765625,7.263671875,0.0007000406621955335,0.9993000030517578,True
+5.3350.N,5.3350,N,"Por que o time do inferno ganhou o jogo contra o céu? "" Porque a gente batalhou o tempo todo e superamos o melhor de si "".",0,0,2.734375,-1.9638671875,-4.6982421875,0.9909709692001343,0.009029013104736805,True
+4.360.H,4.360,H,Porque é que o panado se divorciou? Porque a mulher não servia panada.,1,1,-3.39453125,3.28515625,6.6796875,0.0012545945355668664,0.998745322227478,True

@@ -1,0 +1,83 @@
+{
+  "runtime": {
+    "duration_seconds": 184.5426224520197,
+    "peak_allocated_gb": 6.436258316040039,
+    "peak_reserved_gb": 6.74609375
+  },
+  "test_classification_report": {
+    "accuracy": 0.75,
+    "macro avg": {
+      "f1-score": 0.749026502461456,
+      "precision": 0.7539400173201316,
+      "recall": 0.75,
+      "support": 1140.0
+    },
+    "non_pun": {
+      "f1-score": 0.7646573080099092,
+      "precision": 0.7223088923556942,
+      "recall": 0.8122807017543859,
+      "support": 570.0
+    },
+    "pun": {
+      "f1-score": 0.7333956969130028,
+      "precision": 0.7855711422845691,
+      "recall": 0.6877192982456141,
+      "support": 570.0
+    },
+    "weighted avg": {
+      "f1-score": 0.749026502461456,
+      "precision": 0.7539400173201316,
+      "recall": 0.75,
+      "support": 1140.0
+    }
+  },
+  "test_confusion_matrix": [
+    [
+      463,
+      107
+    ],
+    [
+      178,
+      392
+    ]
+  ],
+  "test_instance": {
+    "accuracy": 0.75,
+    "f1_macro": 0.749026502461456,
+    "f1_non_pun": 0.7646573080099092,
+    "f1_pun": 0.7333956969130028,
+    "f1_weighted": 0.749026502461456,
+    "fn": 178,
+    "fp": 107,
+    "precision_macro": 0.7539400173201316,
+    "precision_non_pun": 0.7223088923556942,
+    "precision_pun": 0.7855711422845691,
+    "precision_weighted": 0.7539400173201316,
+    "recall_macro": 0.75,
+    "recall_non_pun": 0.8122807017543859,
+    "recall_pun": 0.6877192982456141,
+    "recall_weighted": 0.75,
+    "tn": 463,
+    "tp": 392
+  },
+  "test_pair": {
+    "max_pair_margin": 12.314453125,
+    "mean_pair_margin": 4.746082505008631,
+    "median_pair_margin": 4.80865478515625,
+    "min_pair_margin": -10.201171875,
+    "pair_count": 570,
+    "pair_exact_match": 0.5333333333333333,
+    "pair_ranking_accuracy": 0.8350877192982457,
+    "pair_ties": 0,
+    "std_pair_margin": 4.703472402545504
+  },
+  "training": {
+    "best_epoch": 4,
+    "best_validation_f1_macro": 0.7709116541353384,
+    "epochs_trained": 6,
+    "optimizer_steps": 2993,
+    "planned_training_steps": 2994,
+    "skipped_optimizer_steps": 1,
+    "warmup_steps": 299
+  }
+}

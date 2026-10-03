@@ -1,0 +1,131 @@
+{
+  "attempt": 1,
+  "best_epoch": 6,
+  "best_validation_f1_macro": 0.7959259259259259,
+  "code": {
+    "git_available": false,
+    "git_branch": null,
+    "git_commit": null,
+    "git_dirty": null
+  },
+  "completed_at_utc": "2026-10-03T07:17:07.869476+00:00",
+  "duration_seconds": 185.69898622704204,
+  "environment": {
+    "accelerate_version": "1.14.0",
+    "cuda_version": "13.0",
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 5090",
+    "numpy_version": "2.5.3",
+    "pandas_version": "2.3.2",
+    "python_version": "3.12.14",
+    "scikit_learn_version": "1.9.0",
+    "torch_version": "2.13.0+cu130",
+    "transformers_version": "5.15.0"
+  },
+  "experiment_id": "68736fecf3f03d25e1bf10cbe8ba75c081e238f71572d385f0296f6783943fd9",
+  "fingerprint": {
+    "config": {
+      "amp_growth_interval": 10000,
+      "amp_init_scale": 32.0,
+      "early_stopping_patience": 2,
+      "eval_batch_size": 8,
+      "id2label": {
+        "0": "0",
+        "1": "1"
+      },
+      "label2id": {
+        "0": 0,
+        "1": 1
+      },
+      "learning_rate": 2e-05,
+      "lr_scheduler_type": "linear",
+      "max_grad_norm": 1.0,
+      "max_length": 256,
+      "method": "true_pair",
+      "metric_for_best_model": "f1_macro",
+      "model_name": "neuralmind/bert-large-portuguese-cased",
+      "model_revision": "aa302f6ea73b759f7df9cad58bd272127b67ec28",
+      "num_epochs": 6,
+      "pair_batch_size": 4,
+      "pair_loss_weight": 1.0,
+      "warmup_ratio": 0.1,
+      "weight_decay": 0.01
+    },
+    "config_hash": "17f331592565c6164d107c773a663e4290632e64194e8598974bb157fc4d8e76",
+    "dataset_hash": "9ce99da3bd3c0afda70f6d676fc22c54e49d0829cdc88be60b0a15fded3d53d6",
+    "source_hash": "b78772d152618e132dbec0407fe5ba716f53264a2953fcb360e16114c7a5d472",
+    "version": 1
+  },
+  "method": "true_pair",
+  "model": {
+    "max_length": 256,
+    "name": "neuralmind/bert-large-portuguese-cased",
+    "revision": "aa302f6ea73b759f7df9cad58bd272127b67ec28"
+  },
+  "model_seed": 21,
+  "pairing": {
+    "pairing_algorithm": "true_counterfactual_pair",
+    "shuffle_seed": null,
+    "shuffle_seed_source": null,
+    "strategy": "true_pair",
+    "test_uses_true_pairs": true,
+    "train_pair_count": 1995,
+    "validation_uses_true_pairs": true
+  },
+  "run_dir": "/workspace/pair-aware/results/true_pair/split_13/model_seed_21",
+  "seed_control": {
+    "controls": [
+      "python_rng",
+      "numpy_rng",
+      "torch_rng",
+      "model_initialization",
+      "training_stochasticity",
+      "train_dataloader_order"
+    ],
+    "seed": 21
+  },
+  "split_metadata": {
+    "class_distribution": {
+      "test": {
+        "0": 570,
+        "1": 570
+      },
+      "train": {
+        "0": 1995,
+        "1": 1995
+      },
+      "validation": {
+        "0": 285,
+        "1": 285
+      }
+    },
+    "cross_split_pairs": 0,
+    "cross_split_rate": 0.0,
+    "seed": 13,
+    "strategy": "pair_controlled",
+    "test_examples": 1140,
+    "total_examples": 5700,
+    "total_pairs": 2850,
+    "train_examples": 3990,
+    "validation_examples": 570
+  },
+  "split_seed": 13,
+  "started_at_utc": "2026-10-03T07:14:02.129082+00:00",
+  "status": "completed",
+  "training": {
+    "amp_growth_interval": 10000,
+    "amp_init_scale": 32.0,
+    "early_stopping_patience": 2,
+    "eval_batch_size": 8,
+    "learning_rate": 2e-05,
+    "lr_scheduler_type": "linear",
+    "max_grad_norm": 1.0,
+    "metric_for_best_model": "f1_macro",
+    "num_epochs": 6,
+    "pair_batch_size": 4,
+    "pair_loss_weight": 1.0,
+    "texts_per_training_batch": 8,
+    "warmup_ratio": 0.1,
+    "weight_decay": 0.01
+  }
+}
