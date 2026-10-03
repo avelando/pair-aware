@@ -8,6 +8,8 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 
+import src.training.common as common_module
+
 from src.training.common import (
     _create_optimizer_parameter_groups,
     backward_and_step,
@@ -17,6 +19,7 @@ from src.training.common import (
     move_batch_to_device,
     save_model_state,
     uses_amp,
+    uses_grad_scaler,
 )
 from src.training.instance_level import train_instance_level_model
 from src.training.pair_aware import (
@@ -130,6 +133,33 @@ class TrainingTest(unittest.TestCase):
                 torch.device("cpu")
             )
         )
+
+    def test_precision_controls_amp_and_grad_scaler(self):
+        device = torch.device("cuda")
+
+        with patch.object(
+            common_module,
+            "TRAINING_PRECISION",
+            "fp16",
+        ):
+            self.assertTrue(uses_amp(device))
+            self.assertTrue(uses_grad_scaler(device))
+
+        with patch.object(
+            common_module,
+            "TRAINING_PRECISION",
+            "bf16",
+        ):
+            self.assertTrue(uses_amp(device))
+            self.assertFalse(uses_grad_scaler(device))
+
+        with patch.object(
+            common_module,
+            "TRAINING_PRECISION",
+            "fp32",
+        ):
+            self.assertFalse(uses_amp(device))
+            self.assertFalse(uses_grad_scaler(device))
 
     def test_cpu_grad_scaler_is_disabled(self):
         scaler = create_grad_scaler(

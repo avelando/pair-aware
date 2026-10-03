@@ -1,0 +1,264 @@
+diff --git a/.gitignore b/.gitignore
+index b5d87be..cae4bc9 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -8,4 +8,5 @@ __pycache__/
+ 
+ *.pt
+ *.pth
+-*.log
+\ No newline at end of file
++*.log
++/results_precision/
+diff --git a/src/config.py b/src/config.py
+index ebbd2c0..b326442 100644
+--- a/src/config.py
++++ b/src/config.py
+@@ -1,6 +1,20 @@
++import os
++
+ MODEL_NAME = "neuralmind/bert-large-portuguese-cased"
+ MODEL_REVISION = "aa302f6ea73b759f7df9cad58bd272127b67ec28"
+ 
++PRECISIONS = ("fp16", "bf16", "fp32")
++TRAINING_PRECISION = os.environ.get(
++    "PAIR_AWARE_PRECISION",
++    "fp16",
++).lower()
++
++if TRAINING_PRECISION not in PRECISIONS:
++    raise ValueError(
++        f"Invalid training precision: {TRAINING_PRECISION}. "
++        f"Expected one of {PRECISIONS}."
++    )
++
+ SPLIT_SEEDS = (13, 21, 40, 42, 73, 101)
+ MODEL_SEEDS = (13, 21, 40, 42, 73, 101)
+ 
+diff --git a/src/experiments/fingerprint.py b/src/experiments/fingerprint.py
+index ca4070b..5bbce66 100644
+--- a/src/experiments/fingerprint.py
++++ b/src/experiments/fingerprint.py
+@@ -21,6 +21,7 @@ from src.config import (
+     PAIR_BATCH_SIZE,
+     PAIR_LOSS_WEIGHT,
+     SPLIT_NAMES,
++    TRAINING_PRECISION,
+     WARMUP_RATIO,
+     WEIGHT_DECAY,
+ )
+@@ -82,6 +83,7 @@ def get_config_snapshot(method):
+         "method": method,
+         "model_name": MODEL_NAME,
+         "model_revision": MODEL_REVISION,
++        "training_precision": TRAINING_PRECISION,
+         "max_length": MAX_LENGTH,
+         "num_epochs": NUM_EPOCHS,
+         "learning_rate": LEARNING_RATE,
+diff --git a/src/experiments/run_instance_level.py b/src/experiments/run_instance_level.py
+index 01be2ad..81364f4 100644
+--- a/src/experiments/run_instance_level.py
++++ b/src/experiments/run_instance_level.py
+@@ -20,6 +20,7 @@ from src.config import (
+     MODEL_SEEDS,
+     NUM_EPOCHS,
+     SPLIT_SEEDS,
++    TRAINING_PRECISION,
+     WARMUP_RATIO,
+     WEIGHT_DECAY,
+ )
+@@ -137,6 +138,7 @@ def create_run_metadata(
+             "max_grad_norm": MAX_GRAD_NORM,
+             "early_stopping_patience": EARLY_STOPPING_PATIENCE,
+             "metric_for_best_model": METRIC_FOR_BEST_MODEL,
++            "precision": TRAINING_PRECISION,
+             "amp_init_scale": AMP_INIT_SCALE,
+             "amp_growth_interval": AMP_GROWTH_INTERVAL,
+         },
+diff --git a/src/experiments/run_pair_aware.py b/src/experiments/run_pair_aware.py
+index bc428dd..202d74c 100644
+--- a/src/experiments/run_pair_aware.py
++++ b/src/experiments/run_pair_aware.py
+@@ -23,6 +23,7 @@ from src.config import (
+     PAIR_LOSS_WEIGHT,
+     PAIRING_STRATEGIES,
+     SPLIT_SEEDS,
++    TRAINING_PRECISION,
+     WARMUP_RATIO,
+     WEIGHT_DECAY,
+ )
+@@ -201,6 +202,7 @@ def create_run_metadata(
+             "max_grad_norm": MAX_GRAD_NORM,
+             "early_stopping_patience": EARLY_STOPPING_PATIENCE,
+             "metric_for_best_model": METRIC_FOR_BEST_MODEL,
++            "precision": TRAINING_PRECISION,
+             "pair_loss_weight": PAIR_LOSS_WEIGHT,
+             "amp_init_scale": AMP_INIT_SCALE,
+             "amp_growth_interval": AMP_GROWTH_INTERVAL,
+diff --git a/src/paths.py b/src/paths.py
+index b17d99a..8a289ef 100644
+--- a/src/paths.py
++++ b/src/paths.py
+@@ -1,11 +1,17 @@
+ from pathlib import Path
+ 
++from src.config import TRAINING_PRECISION
++
+ PROJECT_ROOT = Path(__file__).resolve().parent.parent
+ 
+ DATA_ROOT = PROJECT_ROOT / "data"
+ PAIR_CONTROLLED_DATA_ROOT = DATA_ROOT / "pair_controlled"
+ 
+-RESULTS_ROOT = PROJECT_ROOT / "results"
++RESULTS_ROOT = (
++    PROJECT_ROOT
++    / "results_precision"
++    / TRAINING_PRECISION
++)
+ SUMMARY_PATH = RESULTS_ROOT / "summary.csv"
+ SUMMARY_BY_SPLIT_PATH = RESULTS_ROOT / "summary_by_split.csv"
+ SUMMARY_BY_METHOD_PATH = RESULTS_ROOT / "summary_by_method.csv"
+diff --git a/src/training/common.py b/src/training/common.py
+index 7522f7a..1c6da94 100644
+--- a/src/training/common.py
++++ b/src/training/common.py
+@@ -1,3 +1,5 @@
++from contextlib import nullcontext
++
+ import gc
+ 
+ import torch
+@@ -11,6 +13,7 @@ from src.config import (
+     LR_SCHEDULER_TYPE,
+     MAX_GRAD_NORM,
+     NUM_EPOCHS,
++    TRAINING_PRECISION,
+     WARMUP_RATIO,
+     WEIGHT_DECAY,
+ )
+@@ -27,7 +30,20 @@ def get_device():
+ 
+ 
+ def uses_amp(device):
+-    return device.type == "cuda"
++    return (
++        device.type == "cuda"
++        and TRAINING_PRECISION in {
++            "fp16",
++            "bf16",
++        }
++    )
++
++
++def uses_grad_scaler(device):
++    return (
++        device.type == "cuda"
++        and TRAINING_PRECISION == "fp16"
++    )
+ 
+ 
+ def create_dataloader(
+@@ -169,15 +185,24 @@ def create_grad_scaler(device):
+         device.type,
+         init_scale=AMP_INIT_SCALE,
+         growth_interval=AMP_GROWTH_INTERVAL,
+-        enabled=uses_amp(device),
++        enabled=uses_grad_scaler(device),
+     )
+ 
+ 
+ def autocast_context(device):
++    if not uses_amp(device):
++        return nullcontext()
++
++    dtype = (
++        torch.float16
++        if TRAINING_PRECISION == "fp16"
++        else torch.bfloat16
++    )
++
+     return torch.autocast(
+         device_type=device.type,
+-        dtype=torch.float16,
+-        enabled=uses_amp(device),
++        dtype=dtype,
++        enabled=True,
+     )
+ 
+ 
+diff --git a/tests/test_fingerprint.py b/tests/test_fingerprint.py
+index fbb9fd1..424599d 100644
+--- a/tests/test_fingerprint.py
++++ b/tests/test_fingerprint.py
+@@ -27,6 +27,16 @@ class FingerprintTest(unittest.TestCase):
+             snapshot,
+         )
+ 
++    def test_config_snapshot_contains_training_precision(self):
++        snapshot = fingerprint_module.get_config_snapshot(
++            "instance_level"
++        )
++
++        self.assertEqual(
++            snapshot["training_precision"],
++            fingerprint_module.TRAINING_PRECISION,
++        )
++
+     def test_pair_config_snapshot_contains_pair_parameters(self):
+         snapshot = fingerprint_module.get_config_snapshot(
+             "true_pair"
+diff --git a/tests/test_training.py b/tests/test_training.py
+index 992ab92..9476080 100644
+--- a/tests/test_training.py
++++ b/tests/test_training.py
+@@ -8,6 +8,8 @@ import numpy as np
+ import torch
+ import torch.nn.functional as F
+ 
++import src.training.common as common_module
++
+ from src.training.common import (
+     _create_optimizer_parameter_groups,
+     backward_and_step,
+@@ -17,6 +19,7 @@ from src.training.common import (
+     move_batch_to_device,
+     save_model_state,
+     uses_amp,
++    uses_grad_scaler,
+ )
+ from src.training.instance_level import train_instance_level_model
+ from src.training.pair_aware import (
+@@ -131,6 +134,33 @@ class TrainingTest(unittest.TestCase):
+             )
+         )
+ 
++    def test_precision_controls_amp_and_grad_scaler(self):
++        device = torch.device("cuda")
++
++        with patch.object(
++            common_module,
++            "TRAINING_PRECISION",
++            "fp16",
++        ):
++            self.assertTrue(uses_amp(device))
++            self.assertTrue(uses_grad_scaler(device))
++
++        with patch.object(
++            common_module,
++            "TRAINING_PRECISION",
++            "bf16",
++        ):
++            self.assertTrue(uses_amp(device))
++            self.assertFalse(uses_grad_scaler(device))
++
++        with patch.object(
++            common_module,
++            "TRAINING_PRECISION",
++            "fp32",
++        ):
++            self.assertFalse(uses_amp(device))
++            self.assertFalse(uses_grad_scaler(device))
++
+     def test_cpu_grad_scaler_is_disabled(self):
+         scaler = create_grad_scaler(
+             torch.device("cpu")

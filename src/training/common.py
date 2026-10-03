@@ -1,3 +1,5 @@
+from contextlib import nullcontext
+
 import gc
 
 import torch
@@ -11,6 +13,7 @@ from src.config import (
     LR_SCHEDULER_TYPE,
     MAX_GRAD_NORM,
     NUM_EPOCHS,
+    TRAINING_PRECISION,
     WARMUP_RATIO,
     WEIGHT_DECAY,
 )
@@ -27,7 +30,20 @@ def get_device():
 
 
 def uses_amp(device):
-    return device.type == "cuda"
+    return (
+        device.type == "cuda"
+        and TRAINING_PRECISION in {
+            "fp16",
+            "bf16",
+        }
+    )
+
+
+def uses_grad_scaler(device):
+    return (
+        device.type == "cuda"
+        and TRAINING_PRECISION == "fp16"
+    )
 
 
 def create_dataloader(
@@ -169,15 +185,24 @@ def create_grad_scaler(device):
         device.type,
         init_scale=AMP_INIT_SCALE,
         growth_interval=AMP_GROWTH_INTERVAL,
-        enabled=uses_amp(device),
+        enabled=uses_grad_scaler(device),
     )
 
 
 def autocast_context(device):
+    if not uses_amp(device):
+        return nullcontext()
+
+    dtype = (
+        torch.float16
+        if TRAINING_PRECISION == "fp16"
+        else torch.bfloat16
+    )
+
     return torch.autocast(
         device_type=device.type,
-        dtype=torch.float16,
-        enabled=uses_amp(device),
+        dtype=dtype,
+        enabled=True,
     )
 
 

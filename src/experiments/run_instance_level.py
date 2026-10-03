@@ -20,6 +20,7 @@ from src.config import (
     MODEL_SEEDS,
     NUM_EPOCHS,
     SPLIT_SEEDS,
+    TRAINING_PRECISION,
     WARMUP_RATIO,
     WEIGHT_DECAY,
 )
@@ -137,6 +138,7 @@ def create_run_metadata(
             "max_grad_norm": MAX_GRAD_NORM,
             "early_stopping_patience": EARLY_STOPPING_PATIENCE,
             "metric_for_best_model": METRIC_FOR_BEST_MODEL,
+            "precision": TRAINING_PRECISION,
             "amp_init_scale": AMP_INIT_SCALE,
             "amp_growth_interval": AMP_GROWTH_INTERVAL,
         },

@@ -21,6 +21,7 @@ from src.config import (
     PAIR_BATCH_SIZE,
     PAIR_LOSS_WEIGHT,
     SPLIT_NAMES,
+    TRAINING_PRECISION,
     WARMUP_RATIO,
     WEIGHT_DECAY,
 )
@@ -82,6 +83,7 @@ def get_config_snapshot(method):
         "method": method,
         "model_name": MODEL_NAME,
         "model_revision": MODEL_REVISION,
+        "training_precision": TRAINING_PRECISION,
         "max_length": MAX_LENGTH,
         "num_epochs": NUM_EPOCHS,
         "learning_rate": LEARNING_RATE,
