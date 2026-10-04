@@ -23,6 +23,7 @@ from src.config import (
     PAIR_LOSS_WEIGHT,
     PAIRING_STRATEGIES,
     SPLIT_SEEDS,
+    TRAINING_PRECISION,
     WARMUP_RATIO,
     WEIGHT_DECAY,
 )
@@ -201,6 +202,7 @@ def create_run_metadata(
             "max_grad_norm": MAX_GRAD_NORM,
             "early_stopping_patience": EARLY_STOPPING_PATIENCE,
             "metric_for_best_model": METRIC_FOR_BEST_MODEL,
+            "precision": TRAINING_PRECISION,
             "pair_loss_weight": PAIR_LOSS_WEIGHT,
             "amp_init_scale": AMP_INIT_SCALE,
             "amp_growth_interval": AMP_GROWTH_INTERVAL,

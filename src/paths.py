@@ -1,11 +1,17 @@
 from pathlib import Path
 
+from src.config import EXPERIMENT_VERSION, TRAINING_PRECISION
+
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 DATA_ROOT = PROJECT_ROOT / "data"
 PAIR_CONTROLLED_DATA_ROOT = DATA_ROOT / "pair_controlled"
 
-RESULTS_ROOT = PROJECT_ROOT / "results"
+RESULTS_ROOT = (
+    PROJECT_ROOT
+    / f"results_{EXPERIMENT_VERSION}"
+    / TRAINING_PRECISION
+)
 SUMMARY_PATH = RESULTS_ROOT / "summary.csv"
 SUMMARY_BY_SPLIT_PATH = RESULTS_ROOT / "summary_by_split.csv"
 SUMMARY_BY_METHOD_PATH = RESULTS_ROOT / "summary_by_method.csv"

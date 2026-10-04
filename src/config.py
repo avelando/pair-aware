@@ -1,5 +1,21 @@
+import os
+
 MODEL_NAME = "neuralmind/bert-large-portuguese-cased"
 MODEL_REVISION = "aa302f6ea73b759f7df9cad58bd272127b67ec28"
+
+EXPERIMENT_VERSION = "v2"
+
+PRECISIONS = ("fp16", "bf16", "fp32")
+TRAINING_PRECISION = os.environ.get(
+    "PAIR_AWARE_PRECISION",
+    "bf16",
+).lower()
+
+if TRAINING_PRECISION not in PRECISIONS:
+    raise ValueError(
+        f"Invalid training precision: {TRAINING_PRECISION}. "
+        f"Expected one of {PRECISIONS}."
+    )
 
 SPLIT_SEEDS = (13, 21, 40, 42, 73, 101)
 MODEL_SEEDS = (13, 21, 40, 42, 73, 101)

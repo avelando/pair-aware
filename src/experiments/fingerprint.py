@@ -7,6 +7,7 @@ from src.config import (
     AMP_INIT_SCALE,
     EARLY_STOPPING_PATIENCE,
     EVAL_BATCH_SIZE,
+    EXPERIMENT_VERSION,
     ID2LABEL,
     INSTANCE_TRAIN_BATCH_SIZE,
     LABEL2ID,
@@ -21,6 +22,7 @@ from src.config import (
     PAIR_BATCH_SIZE,
     PAIR_LOSS_WEIGHT,
     SPLIT_NAMES,
+    TRAINING_PRECISION,
     WARMUP_RATIO,
     WEIGHT_DECAY,
 )
@@ -79,9 +81,11 @@ def _hash_files(paths, root):
 
 def get_config_snapshot(method):
     common = {
+        "experiment_version": EXPERIMENT_VERSION,
         "method": method,
         "model_name": MODEL_NAME,
         "model_revision": MODEL_REVISION,
+        "training_precision": TRAINING_PRECISION,
         "max_length": MAX_LENGTH,
         "num_epochs": NUM_EPOCHS,
         "learning_rate": LEARNING_RATE,

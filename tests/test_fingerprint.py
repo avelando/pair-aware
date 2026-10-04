@@ -27,6 +27,16 @@ class FingerprintTest(unittest.TestCase):
             snapshot,
         )
 
+    def test_config_snapshot_contains_training_precision(self):
+        snapshot = fingerprint_module.get_config_snapshot(
+            "instance_level"
+        )
+
+        self.assertEqual(
+            snapshot["training_precision"],
+            fingerprint_module.TRAINING_PRECISION,
+        )
+
     def test_pair_config_snapshot_contains_pair_parameters(self):
         snapshot = fingerprint_module.get_config_snapshot(
             "true_pair"

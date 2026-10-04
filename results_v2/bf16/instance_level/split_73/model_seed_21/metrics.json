@@ -1,0 +1,83 @@
+{
+  "runtime": {
+    "duration_seconds": 148.92888570402283,
+    "peak_allocated_gb": 6.4362568855285645,
+    "peak_reserved_gb": 6.74609375
+  },
+  "test_classification_report": {
+    "accuracy": 0.7736842105263158,
+    "macro avg": {
+      "f1-score": 0.7734827223969614,
+      "precision": 0.7746614609073836,
+      "recall": 0.7736842105263158,
+      "support": 1140.0
+    },
+    "non_pun": {
+      "f1-score": 0.7802385008517888,
+      "precision": 0.7582781456953642,
+      "recall": 0.8035087719298246,
+      "support": 570.0
+    },
+    "pun": {
+      "f1-score": 0.7667269439421338,
+      "precision": 0.7910447761194029,
+      "recall": 0.743859649122807,
+      "support": 570.0
+    },
+    "weighted avg": {
+      "f1-score": 0.7734827223969613,
+      "precision": 0.7746614609073835,
+      "recall": 0.7736842105263158,
+      "support": 1140.0
+    }
+  },
+  "test_confusion_matrix": [
+    [
+      458,
+      112
+    ],
+    [
+      146,
+      424
+    ]
+  ],
+  "test_instance": {
+    "accuracy": 0.7736842105263158,
+    "f1_macro": 0.7734827223969614,
+    "f1_non_pun": 0.7802385008517888,
+    "f1_pun": 0.7667269439421338,
+    "f1_weighted": 0.7734827223969613,
+    "fn": 146,
+    "fp": 112,
+    "precision_macro": 0.7746614609073836,
+    "precision_non_pun": 0.7582781456953642,
+    "precision_pun": 0.7910447761194029,
+    "precision_weighted": 0.7746614609073835,
+    "recall_macro": 0.7736842105263158,
+    "recall_non_pun": 0.8035087719298246,
+    "recall_pun": 0.743859649122807,
+    "recall_weighted": 0.7736842105263158,
+    "tn": 458,
+    "tp": 424
+  },
+  "test_pair": {
+    "max_pair_margin": 8.5546875,
+    "mean_pair_margin": 3.2819823549504865,
+    "median_pair_margin": 3.3262939453125,
+    "min_pair_margin": -6.625,
+    "pair_count": 570,
+    "pair_exact_match": 0.5719298245614035,
+    "pair_ranking_accuracy": 0.8421052631578947,
+    "pair_ties": 1,
+    "std_pair_margin": 3.053396832269414
+  },
+  "training": {
+    "best_epoch": 3,
+    "best_validation_f1_macro": 0.7684210526315789,
+    "epochs_trained": 5,
+    "optimizer_steps": 2495,
+    "planned_training_steps": 2994,
+    "skipped_optimizer_steps": 0,
+    "warmup_steps": 299
+  }
+}
