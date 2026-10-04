@@ -11,6 +11,7 @@ from src.config import (
     PAIR_LOSS_WEIGHT,
 )
 from src.evaluation.metrics import evaluate_instance_logits
+from src.pair_loss import validate_pair_loss_weight
 from src.training.common import (
     autocast_context,
     backward_and_step,
@@ -57,7 +58,9 @@ def compute_pair_aware_loss(
     model,
     batch,
     device,
+    pair_loss_weight=PAIR_LOSS_WEIGHT,
 ):
+    pair_loss_weight = validate_pair_loss_weight(pair_loss_weight)
     h_inputs = _move_pair_inputs(
         batch,
         "h_",
@@ -162,11 +165,10 @@ def compute_pair_aware_loss(
         -pair_margins
     ).mean()
 
-    total_loss = (
-        classification_loss
-        + PAIR_LOSS_WEIGHT
-        * pair_loss
-    )
+    total_loss = classification_loss
+
+    if pair_loss_weight > 0.0:
+        total_loss = classification_loss + pair_loss_weight * pair_loss
 
     return {
         "total_loss": total_loss,
@@ -184,7 +186,9 @@ def train_pair_aware_epoch(
     scheduler,
     scaler,
     device,
+    pair_loss_weight=PAIR_LOSS_WEIGHT,
 ):
+    pair_loss_weight = validate_pair_loss_weight(pair_loss_weight)
     model.train()
 
     total_loss_sum = 0.0
@@ -208,6 +212,7 @@ def train_pair_aware_epoch(
                     model=model,
                     batch=batch,
                     device=device,
+                    pair_loss_weight=pair_loss_weight,
                 )
             )
 
@@ -336,7 +341,9 @@ def train_pair_aware_model(
     checkpoint_path,
     device,
     progress_callback=None,
+    pair_loss_weight=PAIR_LOSS_WEIGHT,
 ):
+    pair_loss_weight = validate_pair_loss_weight(pair_loss_weight)
     checkpoint_path = Path(
         checkpoint_path
     )
@@ -379,6 +386,7 @@ def train_pair_aware_model(
                 scheduler=scheduler,
                 scaler=scaler,
                 device=device,
+                pair_loss_weight=pair_loss_weight,
             )
         )
 

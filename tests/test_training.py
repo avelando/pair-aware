@@ -904,7 +904,7 @@ class TrainingTest(unittest.TestCase):
             ), patch(
                 "src.training.pair_aware.train_pair_aware_epoch",
                 side_effect=train_results,
-            ), patch(
+            ) as epoch_mock, patch(
                 "src.training.pair_aware.predict_instances",
                 return_value=(
                     np.zeros((2, 2)),
@@ -927,7 +927,11 @@ class TrainingTest(unittest.TestCase):
                     progress_callback=(
                         progress_callback
                     ),
+                    pair_loss_weight=0.25,
                 )
+
+        for call in epoch_mock.call_args_list:
+            self.assertEqual(call.kwargs["pair_loss_weight"], 0.25)
 
         self.assertEqual(
             result["best_epoch"],

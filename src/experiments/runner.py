@@ -13,6 +13,7 @@ from src.experiments.lifecycle import (
     start_run_attempt,
 )
 from src.paths import get_run_dir
+from src.pair_loss import resolve_pair_loss_weight
 from src.results.io import is_run_completed
 
 
@@ -54,11 +55,14 @@ def run_experiment(
     model_seed,
     execute,
     force=False,
+    pair_loss_weight=None,
 ):
+    pair_loss_weight = resolve_pair_loss_weight(method, pair_loss_weight)
     run_dir = get_run_dir(
         method,
         split_seed,
         model_seed,
+        pair_loss_weight=pair_loss_weight,
     )
 
     experiment_fingerprint = (
@@ -66,6 +70,7 @@ def run_experiment(
             method,
             split_seed,
             model_seed,
+            pair_loss_weight=pair_loss_weight,
         )
     )
 

@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from src.config import EXPERIMENT_VERSION, TRAINING_PRECISION
+from src.pair_loss import format_pair_loss_weight, resolve_pair_loss_weight
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
@@ -41,10 +42,15 @@ def get_split_dir(split_seed):
     return PAIR_CONTROLLED_DATA_ROOT / f"seed_{split_seed}"
 
 
-def get_run_dir(method, split_seed, model_seed):
+def get_run_dir(method, split_seed, model_seed, pair_loss_weight=None):
+    pair_loss_weight = resolve_pair_loss_weight(method, pair_loss_weight)
+    method_dir = RESULTS_ROOT / method
+
+    if pair_loss_weight is not None:
+        method_dir = method_dir / f"lambda_{format_pair_loss_weight(pair_loss_weight)}"
+
     return (
-        RESULTS_ROOT
-        / method
+        method_dir
         / f"split_{split_seed}"
         / f"model_seed_{model_seed}"
     )

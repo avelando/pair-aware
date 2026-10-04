@@ -27,6 +27,7 @@ from src.config import (
     WEIGHT_DECAY,
 )
 from src.paths import PROJECT_ROOT, get_split_dir
+from src.pair_loss import resolve_pair_loss_weight
 
 
 FINGERPRINT_VERSION = 1
@@ -79,7 +80,8 @@ def _hash_files(paths, root):
     return digest.hexdigest()
 
 
-def get_config_snapshot(method):
+def get_config_snapshot(method, pair_loss_weight=None):
+    pair_loss_weight = resolve_pair_loss_weight(method, pair_loss_weight)
     common = {
         "experiment_version": EXPERIMENT_VERSION,
         "method": method,
@@ -116,7 +118,7 @@ def get_config_snapshot(method):
             PAIR_BATCH_SIZE
         )
         common["pair_loss_weight"] = (
-            PAIR_LOSS_WEIGHT
+            pair_loss_weight
         )
         return common
 
@@ -125,10 +127,10 @@ def get_config_snapshot(method):
     )
 
 
-def get_config_hash(method):
+def get_config_hash(method, pair_loss_weight=None):
     return _sha256_text(
         _canonical_json(
-            get_config_snapshot(method)
+            get_config_snapshot(method, pair_loss_weight=pair_loss_weight)
         )
     )
 
@@ -158,12 +160,15 @@ def _source_paths(method):
 
     relative_paths = [
         "config.py",
+        "pair_loss.py",
+        "paths.py",
         "data/datasets.py",
         "data/loading.py",
         "data/pairing.py",
         "data/validation.py",
         "evaluation/metrics.py",
         "evaluation/predictions.py",
+        "experiments/fingerprint.py",
         "experiments/lifecycle.py",
         "experiments/runner.py",
         "models/factory.py",
@@ -211,9 +216,10 @@ def build_experiment_fingerprint(
     method,
     split_seed,
     model_seed,
+    pair_loss_weight=None,
 ):
     config_snapshot = (
-        get_config_snapshot(method)
+        get_config_snapshot(method, pair_loss_weight=pair_loss_weight)
     )
 
     config_hash = _sha256_text(

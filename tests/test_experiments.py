@@ -292,9 +292,12 @@ class ExperimentsTest(unittest.TestCase):
                 ),
                 attempt=1,
                 device=torch.device("cuda"),
+                pair_loss_weight=0.25,
             )
 
         pairing = metadata["pairing"]
+
+        self.assertEqual(metadata["training"]["pair_loss_weight"], 0.25)
 
         self.assertEqual(
             metadata["method"],
@@ -436,6 +439,7 @@ class ExperimentsTest(unittest.TestCase):
                 "split_seed": 13,
                 "model_seed": 21,
                 "force": True,
+                "pair_loss_weight": 0.25,
             },
         )()
 
@@ -463,6 +467,7 @@ class ExperimentsTest(unittest.TestCase):
             split_seed=13,
             model_seed=21,
             force=True,
+            pair_loss_weight=0.25,
         )
 
 if __name__ == "__main__":

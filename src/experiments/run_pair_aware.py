@@ -59,6 +59,7 @@ from src.models.factory import (
     create_sequence_classifier,
     create_tokenizer,
 )
+from src.pair_loss import format_pair_loss_weight, validate_pair_loss_weight
 from src.results.io import (
     mark_run_completed,
     prepare_run_directory,
@@ -123,7 +124,9 @@ def create_run_metadata(
     experiment_fingerprint,
     attempt,
     device,
+    pair_loss_weight=PAIR_LOSS_WEIGHT,
 ):
+    pair_loss_weight = validate_pair_loss_weight(pair_loss_weight)
     pairing_metadata = {
         "strategy": method,
         "train_pair_count": int(
@@ -203,7 +206,7 @@ def create_run_metadata(
             "early_stopping_patience": EARLY_STOPPING_PATIENCE,
             "metric_for_best_model": METRIC_FOR_BEST_MODEL,
             "precision": TRAINING_PRECISION,
-            "pair_loss_weight": PAIR_LOSS_WEIGHT,
+            "pair_loss_weight": pair_loss_weight,
             "amp_init_scale": AMP_INIT_SCALE,
             "amp_growth_interval": AMP_GROWTH_INTERVAL,
         },
@@ -233,13 +236,16 @@ def _execute_pair_aware(
     run_dir,
     experiment_fingerprint,
     attempt,
+    pair_loss_weight=PAIR_LOSS_WEIGHT,
 ):
+    pair_loss_weight = validate_pair_loss_weight(pair_loss_weight)
     artifact_paths = prepare_run_directory(
         run_dir
     )
 
     run_name = (
         f"{method}/"
+        f"lambda_{format_pair_loss_weight(pair_loss_weight)}/"
         f"split_{split_seed}/"
         f"model_seed_{model_seed}"
     )
@@ -291,6 +297,7 @@ def _execute_pair_aware(
         ),
         attempt=attempt,
         device=device,
+        pair_loss_weight=pair_loss_weight,
     )
 
     write_json(
@@ -385,6 +392,7 @@ def _execute_pair_aware(
                 progress_callback=(
                     progress_tracker.update_epoch
                 ),
+                pair_loss_weight=pair_loss_weight,
             )
         )
 
@@ -495,7 +503,7 @@ def _execute_pair_aware(
                 "warmup_steps": training_result[
                     "warmup_steps"
                 ],
-                "pair_loss_weight": PAIR_LOSS_WEIGHT,
+                "pair_loss_weight": pair_loss_weight,
             },
             "test_instance": instance_metrics,
             "test_pair": pair_metrics,
@@ -569,6 +577,7 @@ def _execute_pair_aware(
         return {
             "status": "completed",
             "method": method,
+            "pair_loss_weight": pair_loss_weight,
             "split_seed": split_seed,
             "model_seed": model_seed,
             "run_dir": str(run_dir),
@@ -645,6 +654,7 @@ def run_pair_aware(
     split_seed,
     model_seed,
     force=False,
+    pair_loss_weight=PAIR_LOSS_WEIGHT,
 ):
     validate_run_arguments(
         method,
@@ -652,9 +662,12 @@ def run_pair_aware(
         model_seed,
     )
 
+    pair_loss_weight = validate_pair_loss_weight(pair_loss_weight)
+
     execute = partial(
         _execute_pair_aware,
         method=method,
+        pair_loss_weight=pair_loss_weight,
     )
 
     return run_experiment(
@@ -663,6 +676,7 @@ def run_pair_aware(
         model_seed=model_seed,
         execute=execute,
         force=force,
+        pair_loss_weight=pair_loss_weight,
     )
 
 
@@ -690,6 +704,12 @@ def parse_args():
     )
 
     parser.add_argument(
+        "--pair-loss-weight",
+        type=validate_pair_loss_weight,
+        default=PAIR_LOSS_WEIGHT,
+    )
+
+    parser.add_argument(
         "--force",
         action="store_true",
     )
@@ -705,6 +725,7 @@ def main():
         split_seed=args.split_seed,
         model_seed=args.model_seed,
         force=args.force,
+        pair_loss_weight=args.pair_loss_weight,
     )
 
     print(
