@@ -1,0 +1,33 @@
+{
+  "attempt": 1,
+  "average_epoch_seconds": 29.172878972254694,
+  "best_epoch": 2,
+  "best_validation_f1_macro": 0.7298112557097303,
+  "completed_at_utc": "2026-10-03T23:19:21.936498+00:00",
+  "elapsed_seconds": 118.67345939297229,
+  "epoch": 4,
+  "epoch_metrics": {
+    "epoch": 4,
+    "grad_scale": 1.0,
+    "learning_rate": 7.4063079777365495e-06,
+    "optimizer_steps": 499,
+    "skipped_optimizer_steps": 0,
+    "train_loss": 0.2978319555296934,
+    "validation_accuracy": 0.724561403508772,
+    "validation_f1_macro": 0.7229849156944259
+  },
+  "epochs_without_improvement": 2,
+  "eta_seconds": 0.0,
+  "experiment_id": "ca871c56835015a9dbc6f2465b38d98c4230cc094fd5f7dc0ab5ca4d74ff8949",
+  "last_epoch_seconds": 28.857297988026403,
+  "method": "instance_level",
+  "model_seed": 42,
+  "phase": "completed",
+  "progress_fraction": 1.0,
+  "split_seed": 40,
+  "started_at_utc": "2026-10-03T23:17:23.263044+00:00",
+  "status": "completed",
+  "stopped_early": true,
+  "total_epochs": 6,
+  "updated_at_utc": "2026-10-03T23:19:21.936502+00:00"
+}
