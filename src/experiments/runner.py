@@ -14,6 +14,7 @@ from src.experiments.lifecycle import (
 )
 from src.paths import get_run_dir
 from src.pair_loss import resolve_pair_loss_weight
+from src.evaluation.scope import validate_evaluation_scope
 from src.results.io import is_run_completed
 
 
@@ -38,6 +39,7 @@ def build_skipped_result(
     model_seed,
     run_dir,
     experiment_id,
+    evaluation_scope="full",
 ):
     return {
         "status": "skipped",
@@ -46,6 +48,7 @@ def build_skipped_result(
         "model_seed": model_seed,
         "run_dir": str(run_dir),
         "experiment_id": experiment_id,
+        "evaluation_scope": evaluation_scope,
     }
 
 
@@ -56,13 +59,16 @@ def run_experiment(
     execute,
     force=False,
     pair_loss_weight=None,
+    evaluation_scope="full",
 ):
+    evaluation_scope = validate_evaluation_scope(evaluation_scope)
     pair_loss_weight = resolve_pair_loss_weight(method, pair_loss_weight)
     run_dir = get_run_dir(
         method,
         split_seed,
         model_seed,
         pair_loss_weight=pair_loss_weight,
+        evaluation_scope=evaluation_scope,
     )
 
     experiment_fingerprint = (
@@ -71,6 +77,7 @@ def run_experiment(
             split_seed,
             model_seed,
             pair_loss_weight=pair_loss_weight,
+            evaluation_scope=evaluation_scope,
         )
     )
 
@@ -94,6 +101,7 @@ def run_experiment(
             model_seed,
             run_dir,
             experiment_id,
+            evaluation_scope=evaluation_scope,
         )
 
     with run_lock(
@@ -114,6 +122,7 @@ def run_experiment(
                 model_seed,
                 run_dir,
                 experiment_id,
+                evaluation_scope=evaluation_scope,
             )
 
         attempt = start_run_attempt(

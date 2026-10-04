@@ -440,6 +440,7 @@ class ExperimentsTest(unittest.TestCase):
                 "model_seed": 21,
                 "force": True,
                 "pair_loss_weight": 0.25,
+                "evaluation_scope": "validation",
             },
         )()
 
@@ -468,6 +469,7 @@ class ExperimentsTest(unittest.TestCase):
             model_seed=21,
             force=True,
             pair_loss_weight=0.25,
+            evaluation_scope="validation",
         )
 
 if __name__ == "__main__":

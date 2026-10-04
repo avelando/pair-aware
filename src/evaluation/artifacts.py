@@ -2,6 +2,7 @@ import numpy as np
 
 from src.evaluation.metrics import evaluate_instance_predictions, evaluate_pair_predictions
 from src.evaluation.predictions import build_complete_pair_predictions, build_instance_predictions
+from src.evaluation.scope import get_evaluation_split_names
 
 
 def evaluate_split_predictions(dataframe, logits, labels, split_name):
@@ -42,4 +43,21 @@ def evaluate_split_predictions(dataframe, logits, labels, split_name):
         "confusion_matrix": matrix.tolist(),
         "predictions": predictions,
         "pair_predictions": pair_predictions,
+    }
+
+
+def evaluate_run_splits(split_data, predict_split, evaluation_scope="full"):
+    results = {}
+    for split_name in get_evaluation_split_names(evaluation_scope):
+        dataframe = split_data[split_name]
+        logits, labels = predict_split(split_name, dataframe)
+        results[split_name] = evaluate_split_predictions(dataframe, logits, labels, split_name)
+    return results
+
+
+def build_evaluation_metrics(results):
+    return {
+        f"{split_name}_{section}": result[section]
+        for split_name, result in results.items()
+        for section in ("instance", "pair", "classification_report", "confusion_matrix")
     }

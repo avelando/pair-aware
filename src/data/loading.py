@@ -4,6 +4,7 @@ from pathlib import Path
 import pandas as pd
 
 from src.config import SPLIT_NAMES
+from src.evaluation.scope import validate_split_names
 from src.paths import get_split_dir
 
 
@@ -32,7 +33,8 @@ def read_jsonl(file_path):
     return pd.DataFrame(rows)
 
 
-def load_split_directory(split_seed):
+def load_split_directory(split_seed, split_names=SPLIT_NAMES):
+    split_names = validate_split_names(split_names)
     split_dir = get_split_dir(split_seed)
 
     if not split_dir.is_dir():
@@ -40,7 +42,7 @@ def load_split_directory(split_seed):
 
     split_data = {}
 
-    for split_name in SPLIT_NAMES:
+    for split_name in split_names:
         split_path = split_dir / f"{split_name}.jsonl"
         split_data[split_name] = read_jsonl(split_path)
 

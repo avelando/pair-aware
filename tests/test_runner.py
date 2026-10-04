@@ -57,6 +57,7 @@ class RunnerTest(unittest.TestCase):
                 "model_seed": 13,
                 "run_dir": str(self.run_dir),
                 "experiment_id": "experiment-id",
+                "evaluation_scope": "full",
             },
         )
 

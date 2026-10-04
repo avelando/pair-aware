@@ -12,14 +12,15 @@ import torch
 import src.experiments.run_instance_level as instance_module
 import src.experiments.run_pair_aware as pair_module
 from src.experiments.fingerprint import get_config_snapshot
+from src.evaluation.scope import get_training_split_names
 from src.results.io import get_run_artifact_paths, is_run_completed
 
 
 class ValidationExportsTest(unittest.TestCase):
-    def execute_run(self, method, run_dir, misaligned=False):
+    def execute_run(self, method, run_dir, misaligned=False, evaluation_scope="full"):
         module = instance_module if method == "instance_level" else pair_module
         splits = {}
-        for index, name in enumerate(("train", "validation", "test")):
+        for index, name in enumerate(get_training_split_names(evaluation_scope)):
             first = 1 + index * 2
             splits[name] = pd.DataFrame({
                 "id": [f"{first}.H", f"{first}.N", f"{first + 1}.H", f"{first + 1}.N"],
@@ -58,7 +59,7 @@ class ValidationExportsTest(unittest.TestCase):
         fingerprint = {
             "experiment_id": "export-test", "fingerprint_version": 1,
             "config_hash": "config", "dataset_hash": "data", "source_hash": "source",
-            "config": get_config_snapshot(method, weight),
+            "config": get_config_snapshot(method, weight, evaluation_scope=evaluation_scope),
         }
 
         with ExitStack() as stack:
@@ -86,6 +87,7 @@ class ValidationExportsTest(unittest.TestCase):
             arguments = {
                 "split_seed": 13, "model_seed": 40, "run_dir": run_dir,
                 "experiment_fingerprint": fingerprint, "attempt": 1,
+                "evaluation_scope": evaluation_scope,
             }
             if method == "instance_level":
                 result = module._execute_instance_level(**arguments)
@@ -113,6 +115,20 @@ class ValidationExportsTest(unittest.TestCase):
                 self.assertEqual(metrics["validation_instance"]["f1_macro"], 1.0)
                 self.assertEqual(metrics["validation_pair"]["pair_ranking_accuracy"], 1.0)
                 self.assertEqual(metrics["test_instance"]["f1_macro"], 0.5)
+
+    def test_validation_only_runs_complete_without_test_data_or_predictions(self):
+        for method in ("instance_level", "true_pair", "shuffled_pair"):
+            with self.subTest(method=method), tempfile.TemporaryDirectory() as directory:
+                result, evaluated = self.execute_run(method, Path(directory), evaluation_scope="validation")
+                paths = get_run_artifact_paths(directory)
+                metrics = json.loads(paths["metrics"].read_text())
+                self.assertEqual(evaluated, ["validation"])
+                self.assertEqual(result["evaluation_scope"], "validation")
+                self.assertNotIn("test_f1_macro", result)
+                self.assertFalse(any(name.startswith("test_") for name in metrics))
+                self.assertFalse(paths["predictions"].exists())
+                self.assertFalse(paths["pair_predictions"].exists())
+                self.assertTrue(paths["checkpoint"].exists())
 
     def test_misaligned_validation_labels_prevent_completion(self):
         with tempfile.TemporaryDirectory() as directory:

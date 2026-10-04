@@ -9,6 +9,7 @@ from src.config import (
     EXPECTED_SPLIT_COUNTS,
 )
 from src.evaluation.predictions import COMPLETE_PAIR_PREDICTION_COLUMNS, INSTANCE_PREDICTION_COLUMNS
+from src.evaluation.scope import validate_evaluation_scope
 
 
 RUN_ARTIFACT_NAMES = {
@@ -34,6 +35,10 @@ FINAL_ARTIFACT_NAMES = (
     "validation_pair_predictions",
     "completed",
 )
+
+VALIDATION_FINAL_ARTIFACT_NAMES = tuple(
+    name for name in FINAL_ARTIFACT_NAMES if name not in {"predictions", "pair_predictions"}
+) + ("checkpoint",)
 
 
 def get_run_artifact_paths(run_dir):
@@ -209,7 +214,11 @@ def is_run_completed(
     )
 
     try:
-        for name in FINAL_ARTIFACT_NAMES:
+        metadata = _read_json(paths["metadata"])
+        evaluation_scope = validate_evaluation_scope(metadata.get("evaluation_scope", "full"))
+        final_artifacts = FINAL_ARTIFACT_NAMES if evaluation_scope == "full" else VALIDATION_FINAL_ARTIFACT_NAMES
+
+        for name in final_artifacts:
             path = paths[name]
 
             if not path.is_file():
@@ -228,10 +237,6 @@ def is_run_completed(
         ):
             return False
 
-        metadata = _read_json(
-            paths["metadata"]
-        )
-
         metrics = _read_json(
             paths["metrics"]
         )
@@ -246,27 +251,20 @@ def is_run_completed(
         ):
             return False
 
-        if not {
-            "validation_instance",
-            "validation_pair",
-            "test_instance",
-            "test_pair",
-        }.issubset(metrics):
+        required_metrics = {"validation_instance", "validation_pair"}
+        if evaluation_scope == "full":
+            required_metrics.update({"test_instance", "test_pair"})
+        elif any(name.startswith("test_") for name in metrics):
+            return False
+        elif paths["predictions"].exists() or paths["pair_predictions"].exists():
+            return False
+
+        if not required_metrics.issubset(metrics):
             return False
 
         history = pd.read_csv(
             paths["history"],
             usecols=["epoch"],
-        )
-
-        predictions = pd.read_csv(
-            paths["predictions"],
-            usecols=["id"],
-        )
-
-        pair_predictions = pd.read_csv(
-            paths["pair_predictions"],
-            usecols=["pair_id"],
         )
 
         validation_predictions = pd.read_csv(
@@ -317,11 +315,13 @@ def is_run_completed(
         if history.empty:
             return False
 
-        if len(predictions) != EXPECTED_SPLIT_COUNTS["test"]:
-            return False
-
-        if len(pair_predictions) != EXPECTED_PAIR_COUNTS["test"]:
-            return False
+        if evaluation_scope == "full":
+            predictions = pd.read_csv(paths["predictions"], usecols=["id"])
+            pair_predictions = pd.read_csv(paths["pair_predictions"], usecols=["pair_id"])
+            if len(predictions) != EXPECTED_SPLIT_COUNTS["test"]:
+                return False
+            if len(pair_predictions) != EXPECTED_PAIR_COUNTS["test"]:
+                return False
 
     except (
         AttributeError,

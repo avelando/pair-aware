@@ -45,6 +45,7 @@ class ResultsIOTest(unittest.TestCase):
         self,
         run_dir,
         experiment_id="experiment-1",
+        evaluation_scope="full",
     ):
         paths = prepare_run_directory(
             run_dir
@@ -54,6 +55,7 @@ class ResultsIOTest(unittest.TestCase):
             {
                 "status": "completed",
                 "experiment_id": experiment_id,
+                "evaluation_scope": evaluation_scope,
             },
             paths["metadata"],
         )
@@ -119,6 +121,15 @@ class ResultsIOTest(unittest.TestCase):
         )
         write_dataframe(validation_predictions, paths["validation_predictions"])
         write_dataframe(build_complete_pair_predictions(validation_predictions), paths["validation_pair_predictions"])
+
+        if evaluation_scope == "validation":
+            metrics = json.loads(paths["metrics"].read_text())
+            del metrics["test_instance"]
+            del metrics["test_pair"]
+            write_json(metrics, paths["metrics"])
+            paths["predictions"].unlink()
+            paths["pair_predictions"].unlink()
+            paths["checkpoint"].write_bytes(b"checkpoint")
 
         mark_run_completed(
             run_dir
@@ -558,6 +569,34 @@ class ResultsIOTest(unittest.TestCase):
                 del metrics[section]
                 write_json(metrics, paths["metrics"])
                 self.assertFalse(is_run_completed(directory))
+
+    def test_validation_only_run_is_completed_without_test_artifacts(self):
+        with tempfile.TemporaryDirectory() as directory:
+            self.create_completed_run(directory, evaluation_scope="validation")
+            self.assertTrue(is_run_completed(directory))
+
+    def test_validation_only_run_requires_checkpoint(self):
+        with tempfile.TemporaryDirectory() as directory:
+            paths = self.create_completed_run(directory, evaluation_scope="validation")
+            paths["checkpoint"].unlink()
+            self.assertFalse(is_run_completed(directory))
+
+    def test_validation_only_run_rejects_test_outputs(self):
+        for artifact in ("metrics", "predictions", "pair_predictions"):
+            with self.subTest(artifact=artifact), tempfile.TemporaryDirectory() as directory:
+                paths = self.create_completed_run(directory, evaluation_scope="validation")
+                if artifact == "metrics":
+                    metrics = json.loads(paths["metrics"].read_text())
+                    metrics["test_instance"] = {"f1_macro": 1.0}
+                    write_json(metrics, paths["metrics"])
+                else:
+                    paths[artifact].write_text("test output")
+                self.assertFalse(is_run_completed(directory))
+
+    def test_invalid_evaluation_scope_is_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            self.create_completed_run(directory, evaluation_scope="invalid")
+            self.assertFalse(is_run_completed(directory))
 
     def test_remove_checkpoint_deletes_checkpoint_only(self):
         with tempfile.TemporaryDirectory() as directory:

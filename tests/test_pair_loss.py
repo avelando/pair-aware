@@ -92,8 +92,8 @@ class PairLossParameterTest(unittest.TestCase):
             runner_module, "SKIP_COMPLETED_RUNS", True
         ):
             result = runner_module.run_experiment("true_pair", 13, 40, execute=None, pair_loss_weight=0.0)
-        directory_mock.assert_called_once_with("true_pair", 13, 40, pair_loss_weight=0.0)
-        fingerprint_mock.assert_called_once_with("true_pair", 13, 40, pair_loss_weight=0.0)
+        directory_mock.assert_called_once_with("true_pair", 13, 40, pair_loss_weight=0.0, evaluation_scope="full")
+        fingerprint_mock.assert_called_once_with("true_pair", 13, 40, pair_loss_weight=0.0, evaluation_scope="full")
         self.assertEqual(result["status"], "skipped")
         self.assertEqual(result["run_dir"], str(run_dir))
 

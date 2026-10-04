@@ -28,6 +28,7 @@ from src.config import (
 )
 from src.paths import PROJECT_ROOT, get_split_dir
 from src.pair_loss import resolve_pair_loss_weight
+from src.evaluation.scope import get_training_split_names, validate_evaluation_scope, validate_split_names
 
 
 FINGERPRINT_VERSION = 1
@@ -80,10 +81,12 @@ def _hash_files(paths, root):
     return digest.hexdigest()
 
 
-def get_config_snapshot(method, pair_loss_weight=None):
+def get_config_snapshot(method, pair_loss_weight=None, evaluation_scope="full"):
     pair_loss_weight = resolve_pair_loss_weight(method, pair_loss_weight)
+    evaluation_scope = validate_evaluation_scope(evaluation_scope)
     common = {
         "experiment_version": EXPERIMENT_VERSION,
+        "evaluation_scope": evaluation_scope,
         "method": method,
         "model_name": MODEL_NAME,
         "model_revision": MODEL_REVISION,
@@ -127,22 +130,23 @@ def get_config_snapshot(method, pair_loss_weight=None):
     )
 
 
-def get_config_hash(method, pair_loss_weight=None):
+def get_config_hash(method, pair_loss_weight=None, evaluation_scope="full"):
     return _sha256_text(
         _canonical_json(
-            get_config_snapshot(method, pair_loss_weight=pair_loss_weight)
+            get_config_snapshot(method, pair_loss_weight=pair_loss_weight, evaluation_scope=evaluation_scope)
         )
     )
 
 
-def get_dataset_fingerprint(split_seed):
+def get_dataset_fingerprint(split_seed, split_names=SPLIT_NAMES):
+    split_names = validate_split_names(split_names)
     split_dir = get_split_dir(
         split_seed
     )
 
     paths = [
         split_dir / f"{split_name}.jsonl"
-        for split_name in SPLIT_NAMES
+        for split_name in split_names
     ]
 
     paths.append(
@@ -169,6 +173,7 @@ def _source_paths(method):
         "evaluation/artifacts.py",
         "evaluation/metrics.py",
         "evaluation/predictions.py",
+        "evaluation/scope.py",
         "experiments/fingerprint.py",
         "experiments/lifecycle.py",
         "experiments/runner.py",
@@ -218,9 +223,11 @@ def build_experiment_fingerprint(
     split_seed,
     model_seed,
     pair_loss_weight=None,
+    evaluation_scope="full",
 ):
+    evaluation_scope = validate_evaluation_scope(evaluation_scope)
     config_snapshot = (
-        get_config_snapshot(method, pair_loss_weight=pair_loss_weight)
+        get_config_snapshot(method, pair_loss_weight=pair_loss_weight, evaluation_scope=evaluation_scope)
     )
 
     config_hash = _sha256_text(
@@ -231,7 +238,8 @@ def build_experiment_fingerprint(
 
     dataset_hash = (
         get_dataset_fingerprint(
-            split_seed
+            split_seed,
+            split_names=get_training_split_names(evaluation_scope),
         )
     )
 

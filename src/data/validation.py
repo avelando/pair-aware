@@ -6,6 +6,7 @@ from src.config import (
     EXPECTED_SPLIT_COUNTS,
     SPLIT_NAMES,
 )
+from src.evaluation.scope import validate_split_names
 
 
 REQUIRED_COLUMNS = {
@@ -173,8 +174,9 @@ def validate_split(split_df, split_name, run_name):
     }
 
 
-def validate_input_splits(split_data, run_name):
-    missing_splits = set(SPLIT_NAMES) - set(split_data)
+def validate_input_splits(split_data, run_name, split_names=SPLIT_NAMES):
+    split_names = validate_split_names(split_names)
+    missing_splits = set(split_names) - set(split_data)
 
     if missing_splits:
         raise ValueError(
@@ -187,13 +189,13 @@ def validate_input_splits(split_data, run_name):
             split_name,
             run_name,
         )
-        for split_name in SPLIT_NAMES
+        for split_name in split_names
     }
 
     all_ids = set()
     all_pair_ids = set()
 
-    for split_name in SPLIT_NAMES:
+    for split_name in split_names:
         split_ids = validated[split_name]["ids"]
         split_pair_ids = validated[split_name]["pair_ids"]
 
@@ -211,11 +213,11 @@ def validate_input_splits(split_data, run_name):
         all_pair_ids.update(split_pair_ids)
 
     expected_total_examples = sum(
-        EXPECTED_SPLIT_COUNTS.values()
+        EXPECTED_SPLIT_COUNTS[split_name] for split_name in split_names
     )
 
     expected_total_pairs = sum(
-        EXPECTED_PAIR_COUNTS.values()
+        EXPECTED_PAIR_COUNTS[split_name] for split_name in split_names
     )
 
     if len(all_ids) != expected_total_examples:
