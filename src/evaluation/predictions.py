@@ -35,6 +35,17 @@ PAIR_PREDICTION_COLUMNS = (
     "exact_match",
 )
 
+COMPLETE_PAIR_PREDICTION_COLUMNS = PAIR_PREDICTION_COLUMNS + (
+    "pun_true_label",
+    "pun_logit_non_pun",
+    "pun_logit_pun",
+    "pun_probability_non_pun",
+    "non_pun_true_label",
+    "non_pun_logit_non_pun",
+    "non_pun_logit_pun",
+    "non_pun_probability_non_pun",
+)
+
 
 def _to_numpy(values):
     if hasattr(values, "detach"):
@@ -274,3 +285,30 @@ def build_pair_predictions(
         pair_rows,
         columns=PAIR_PREDICTION_COLUMNS,
     )
+
+
+def build_complete_pair_predictions(instance_predictions):
+    missing_columns = set(INSTANCE_PREDICTION_COLUMNS) - set(instance_predictions.columns)
+
+    if missing_columns:
+        raise ValueError(f"Missing instance prediction columns: {sorted(missing_columns)}.")
+
+    pairs = build_pair_predictions(instance_predictions)
+    member_columns = (
+        "true_label",
+        "logit_non_pun",
+        "logit_pun",
+        "probability_non_pun",
+    )
+
+    for suffix, prefix in (("H", "pun"), ("N", "non_pun")):
+        members = instance_predictions.loc[
+            instance_predictions["suffix"] == suffix,
+            ["id", *member_columns],
+        ].rename(columns={
+            "id": f"{prefix}_id",
+            **{column: f"{prefix}_{column}" for column in member_columns},
+        })
+        pairs = pairs.merge(members, on=f"{prefix}_id", how="left", validate="one_to_one")
+
+    return pairs.loc[:, COMPLETE_PAIR_PREDICTION_COLUMNS]

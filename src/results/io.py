@@ -1,12 +1,14 @@
 import json
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
 from src.config import (
     EXPECTED_PAIR_COUNTS,
     EXPECTED_SPLIT_COUNTS,
 )
+from src.evaluation.predictions import COMPLETE_PAIR_PREDICTION_COLUMNS, INSTANCE_PREDICTION_COLUMNS
 
 
 RUN_ARTIFACT_NAMES = {
@@ -15,6 +17,8 @@ RUN_ARTIFACT_NAMES = {
     "history": "history.csv",
     "predictions": "predictions.csv",
     "pair_predictions": "pair_predictions.csv",
+    "validation_predictions": "validation_predictions.csv",
+    "validation_pair_predictions": "validation_pair_predictions.csv",
     "checkpoint": "checkpoint.pt",
     "progress": "progress.json",
     "completed": "completed",
@@ -26,6 +30,8 @@ FINAL_ARTIFACT_NAMES = (
     "history",
     "predictions",
     "pair_predictions",
+    "validation_predictions",
+    "validation_pair_predictions",
     "completed",
 )
 
@@ -241,6 +247,8 @@ def is_run_completed(
             return False
 
         if not {
+            "validation_instance",
+            "validation_pair",
             "test_instance",
             "test_pair",
         }.issubset(metrics):
@@ -260,6 +268,51 @@ def is_run_completed(
             paths["pair_predictions"],
             usecols=["pair_id"],
         )
+
+        validation_predictions = pd.read_csv(
+            paths["validation_predictions"],
+            usecols=list(INSTANCE_PREDICTION_COLUMNS),
+            dtype={"id": str, "pair_id": str, "suffix": str},
+        )
+
+        validation_pairs = pd.read_csv(
+            paths["validation_pair_predictions"],
+            usecols=list(COMPLETE_PAIR_PREDICTION_COLUMNS),
+            dtype={"pair_id": str, "pun_id": str, "non_pun_id": str},
+        )
+
+        if len(validation_predictions) != EXPECTED_SPLIT_COUNTS["validation"]:
+            return False
+        if len(validation_pairs) != EXPECTED_PAIR_COUNTS["validation"]:
+            return False
+        if validation_predictions["id"].isna().any() or validation_predictions["id"].duplicated().any():
+            return False
+        if validation_pairs["pair_id"].isna().any() or validation_pairs["pair_id"].duplicated().any():
+            return False
+        if set(validation_predictions["pair_id"]) != set(validation_pairs["pair_id"]):
+            return False
+
+        id_to_pair = validation_predictions.set_index("id")["pair_id"]
+        for suffix, prefix in (("H", "pun"), ("N", "non_pun")):
+            expected_ids = set(validation_predictions.loc[validation_predictions["suffix"] == suffix, "id"])
+            if set(validation_pairs[f"{prefix}_id"]) != expected_ids:
+                return False
+            if not validation_pairs[f"{prefix}_id"].map(id_to_pair).equals(validation_pairs["pair_id"]):
+                return False
+
+        numeric_columns = [
+            "logit_non_pun", "logit_pun", "pun_score",
+            "probability_non_pun", "probability_pun",
+        ]
+        if not np.isfinite(validation_predictions[numeric_columns].to_numpy(dtype=float)).all():
+            return False
+        pair_numeric_columns = [
+            "pair_margin", "pun_score", "non_pun_score",
+            "pun_logit_non_pun", "pun_logit_pun", "non_pun_logit_non_pun", "non_pun_logit_pun",
+            "pun_probability", "non_pun_probability", "pun_probability_non_pun", "non_pun_probability_non_pun",
+        ]
+        if not np.isfinite(validation_pairs[pair_numeric_columns].to_numpy(dtype=float)).all():
+            return False
 
         if history.empty:
             return False

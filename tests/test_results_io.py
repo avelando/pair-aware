@@ -7,6 +7,7 @@ from unittest.mock import patch
 import numpy as np
 import pandas as pd
 
+from src.evaluation.predictions import build_complete_pair_predictions, build_instance_predictions
 from src.results.io import (
     RUN_ARTIFACT_NAMES,
     get_run_artifact_paths,
@@ -59,6 +60,8 @@ class ResultsIOTest(unittest.TestCase):
 
         write_json(
             {
+                "validation_instance": {"f1_macro": 1.0},
+                "validation_pair": {"pair_ranking_accuracy": 1.0},
                 "test_instance": {
                     "accuracy": 1.0,
                 },
@@ -104,6 +107,18 @@ class ResultsIOTest(unittest.TestCase):
             ),
             paths["pair_predictions"],
         )
+
+        validation_dataframe = pd.DataFrame({
+            "id": ["3.H", "3.N", "4.H", "4.N"],
+            "text": ["h3", "n3", "h4", "n4"],
+            "label": [1, 0, 1, 0],
+        })
+        validation_predictions = build_instance_predictions(
+            validation_dataframe,
+            np.array([[0.0, 1.0], [1.0, 0.0], [0.0, 1.0], [1.0, 0.0]]),
+        )
+        write_dataframe(validation_predictions, paths["validation_predictions"])
+        write_dataframe(build_complete_pair_predictions(validation_predictions), paths["validation_pair_predictions"])
 
         mark_run_completed(
             run_dir
@@ -326,6 +341,8 @@ class ResultsIOTest(unittest.TestCase):
             "history",
             "predictions",
             "pair_predictions",
+            "validation_predictions",
+            "validation_pair_predictions",
             "completed",
         ):
             with self.subTest(
@@ -490,6 +507,57 @@ class ResultsIOTest(unittest.TestCase):
                     run_dir
                 )
             )
+
+    def test_validation_artifact_schema_is_required(self):
+        for name, column in (("validation_predictions", "probability_pun"), ("validation_pair_predictions", "pun_logit_pun")):
+            with self.subTest(name=name), tempfile.TemporaryDirectory() as directory:
+                paths = self.create_completed_run(directory)
+                frame = pd.read_csv(paths[name]).drop(columns=[column])
+                write_dataframe(frame, paths[name])
+                self.assertFalse(is_run_completed(directory))
+
+    def test_validation_artifact_counts_are_required(self):
+        for name in ("validation_predictions", "validation_pair_predictions"):
+            with self.subTest(name=name), tempfile.TemporaryDirectory() as directory:
+                paths = self.create_completed_run(directory)
+                frame = pd.read_csv(paths[name]).iloc[:-1]
+                write_dataframe(frame, paths[name])
+                self.assertFalse(is_run_completed(directory))
+
+    def test_validation_identifiers_must_be_unique(self):
+        for name, column in (("validation_predictions", "id"), ("validation_pair_predictions", "pair_id")):
+            with self.subTest(name=name), tempfile.TemporaryDirectory() as directory:
+                paths = self.create_completed_run(directory)
+                frame = pd.read_csv(paths[name])
+                frame.loc[1, column] = frame.loc[0, column]
+                write_dataframe(frame, paths[name])
+                self.assertFalse(is_run_completed(directory))
+
+    def test_validation_pair_members_must_match_their_pairs(self):
+        with tempfile.TemporaryDirectory() as directory:
+            paths = self.create_completed_run(directory)
+            frame = pd.read_csv(paths["validation_pair_predictions"])
+            frame["pun_id"] = frame["pun_id"].iloc[::-1].to_numpy()
+            write_dataframe(frame, paths["validation_pair_predictions"])
+            self.assertFalse(is_run_completed(directory))
+
+    def test_validation_scores_must_be_finite(self):
+        for name, column in (("validation_predictions", "logit_pun"), ("validation_pair_predictions", "pair_margin")):
+            with self.subTest(name=name), tempfile.TemporaryDirectory() as directory:
+                paths = self.create_completed_run(directory)
+                frame = pd.read_csv(paths[name])
+                frame.loc[0, column] = float("inf")
+                write_dataframe(frame, paths[name])
+                self.assertFalse(is_run_completed(directory))
+
+    def test_validation_metric_sections_are_required(self):
+        for section in ("validation_instance", "validation_pair"):
+            with self.subTest(section=section), tempfile.TemporaryDirectory() as directory:
+                paths = self.create_completed_run(directory)
+                metrics = json.loads(paths["metrics"].read_text())
+                del metrics[section]
+                write_json(metrics, paths["metrics"])
+                self.assertFalse(is_run_completed(directory))
 
     def test_remove_checkpoint_deletes_checkpoint_only(self):
         with tempfile.TemporaryDirectory() as directory:

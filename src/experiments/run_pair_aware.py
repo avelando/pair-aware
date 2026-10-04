@@ -37,6 +37,7 @@ from src.data.loading import (
 )
 from src.data.pairing import build_pairs
 from src.data.validation import validate_input_splits
+from src.evaluation.artifacts import evaluate_split_predictions
 from src.evaluation.metrics import (
     evaluate_instance_logits,
     evaluate_pair_predictions,
@@ -400,6 +401,19 @@ def _execute_pair_aware(
             "evaluation"
         )
 
+        validation_logits, validation_labels = predict_instances(
+            model=model,
+            dataloader=validation_loader,
+            device=device,
+        )
+
+        validation_result = evaluate_split_predictions(
+            dataframe=split_data["validation"],
+            logits=validation_logits,
+            labels=validation_labels,
+            split_name="validation",
+        )
+
         (
             test_logits,
             test_labels,
@@ -505,6 +519,10 @@ def _execute_pair_aware(
                 ],
                 "pair_loss_weight": pair_loss_weight,
             },
+            "validation_instance": validation_result["instance"],
+            "validation_pair": validation_result["pair"],
+            "validation_confusion_matrix": validation_result["confusion_matrix"],
+            "validation_classification_report": validation_result["classification_report"],
             "test_instance": instance_metrics,
             "test_pair": pair_metrics,
             "test_confusion_matrix": (
@@ -542,6 +560,16 @@ def _execute_pair_aware(
         write_json(
             metrics,
             artifact_paths["metrics"],
+        )
+
+        write_dataframe(
+            validation_result["predictions"],
+            artifact_paths["validation_predictions"],
+        )
+
+        write_dataframe(
+            validation_result["pair_predictions"],
+            artifact_paths["validation_pair_predictions"],
         )
 
         if not KEEP_CHECKPOINTS:

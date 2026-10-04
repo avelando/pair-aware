@@ -166,6 +166,7 @@ def _source_paths(method):
         "data/loading.py",
         "data/pairing.py",
         "data/validation.py",
+        "evaluation/artifacts.py",
         "evaluation/metrics.py",
         "evaluation/predictions.py",
         "experiments/fingerprint.py",
