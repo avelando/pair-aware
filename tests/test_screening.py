@@ -94,8 +94,9 @@ class ScreeningTest(unittest.TestCase):
     def test_screening_dispatches_all_tasks_with_validation_scope(self):
         with patch.object(
             grid_module, "execute_grid_run", return_value={"status": "skipped"},
-        ) as execute, redirect_stdout(io.StringIO()):
+        ) as execute, patch.object(screening_module, "generate_screening_selection") as select, redirect_stdout(io.StringIO()):
             result = screening_module.run_screening()
+        select.assert_called_once_with()
         self.assertEqual(execute.call_count, 108)
         self.assertEqual(result["skipped_runs"], 108)
         self.assertEqual(result["failed_runs"], 0)
