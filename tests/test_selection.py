@@ -183,7 +183,7 @@ class SelectionTest(unittest.TestCase):
                 ("metadata", lambda obj: obj.update(experiment_id="stale"), RuntimeError),
                 ("metadata", lambda obj: obj["fingerprint"].update(config_hash="stale"), RuntimeError),
                 ("metrics", lambda obj: obj.update(test_instance={"f1_macro": 1.0}), RuntimeError),
-                ("metrics", lambda obj: obj["validation_instance"].update(f1_macro=0.5), ValueError),
+                ("metrics", lambda obj: obj["validation_instance"].update(f1_macro=0.5), RuntimeError),
             ):
                 path = first_paths[artifact]
                 original = path.read_bytes()
@@ -201,7 +201,7 @@ class SelectionTest(unittest.TestCase):
             pairs = pd.read_csv(path)
             pairs.loc[0, "pair_margin"] += 1.0
             write_dataframe(pairs, path)
-            with self.assertRaises(ValueError):
+            with self.assertRaises(RuntimeError):
                 selection_module.generate_screening_selection(root / "invalid")
             path.write_bytes(original)
             first_paths["checkpoint"].unlink()

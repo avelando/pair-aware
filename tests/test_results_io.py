@@ -84,31 +84,15 @@ class ResultsIOTest(unittest.TestCase):
             paths["history"],
         )
 
-        write_dataframe(
-            pd.DataFrame(
-                {
-                    "id": [
-                        "1.H",
-                        "1.N",
-                        "2.H",
-                        "2.N",
-                    ]
-                }
-            ),
-            paths["predictions"],
+        test_dataframe = pd.DataFrame({
+            "id": ["1.H", "1.N", "2.H", "2.N"],
+            "text": ["h1", "n1", "h2", "n2"], "label": [1, 0, 1, 0],
+        })
+        test_predictions = build_instance_predictions(
+            test_dataframe, np.array([[0, 1], [1, 0], [0, 1], [1, 0]]),
         )
-
-        write_dataframe(
-            pd.DataFrame(
-                {
-                    "pair_id": [
-                        "1",
-                        "2",
-                    ]
-                }
-            ),
-            paths["pair_predictions"],
-        )
+        write_dataframe(test_predictions, paths["predictions"])
+        write_dataframe(build_complete_pair_predictions(test_predictions), paths["pair_predictions"])
 
         validation_dataframe = pd.DataFrame({
             "id": ["3.H", "3.N", "4.H", "4.N"],

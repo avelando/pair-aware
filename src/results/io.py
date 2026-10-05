@@ -8,7 +8,8 @@ from src.config import (
     EXPECTED_PAIR_COUNTS,
     EXPECTED_SPLIT_COUNTS,
 )
-from src.evaluation.predictions import COMPLETE_PAIR_PREDICTION_COLUMNS, INSTANCE_PREDICTION_COLUMNS
+from src.evaluation.calibration import EVALUATION_PROTOCOL
+from src.evaluation.integrity import verify_run_prediction_exports
 from src.evaluation.scope import validate_evaluation_scope
 
 
@@ -264,6 +265,8 @@ def is_run_completed(
 
         protocol = metadata.get("fingerprint", {}).get("config", {}).get("evaluation_protocol")
         if protocol is not None:
+            if protocol != EVALUATION_PROTOCOL:
+                return False
             splits = ("validation", "test") if evaluation_scope == "full" else ("validation",)
             sections = (
                 "calibration", "instance_calibrated", "pair_calibrated",
@@ -282,71 +285,20 @@ def is_run_completed(
             usecols=["epoch"],
         )
 
-        validation_predictions = pd.read_csv(
-            paths["validation_predictions"],
-            usecols=list(INSTANCE_PREDICTION_COLUMNS) + (
-                ["score_threshold", "calibrated_predicted_label", "calibrated_correct"] if protocol is not None else []
-            ),
-            dtype={"id": str, "pair_id": str, "suffix": str},
-        )
-
-        validation_pairs = pd.read_csv(
-            paths["validation_pair_predictions"],
-            usecols=list(COMPLETE_PAIR_PREDICTION_COLUMNS) + (
-                ["score_threshold", "pun_calibrated_predicted_label", "non_pun_calibrated_predicted_label", "calibrated_exact_match"]
-                if protocol is not None else []
-            ),
-            dtype={"pair_id": str, "pun_id": str, "non_pun_id": str},
-        )
-
-        if len(validation_predictions) != EXPECTED_SPLIT_COUNTS["validation"]:
-            return False
-        if len(validation_pairs) != EXPECTED_PAIR_COUNTS["validation"]:
-            return False
-        if validation_predictions["id"].isna().any() or validation_predictions["id"].duplicated().any():
-            return False
-        if validation_pairs["pair_id"].isna().any() or validation_pairs["pair_id"].duplicated().any():
-            return False
-        if set(validation_predictions["pair_id"]) != set(validation_pairs["pair_id"]):
-            return False
-
-        id_to_pair = validation_predictions.set_index("id")["pair_id"]
-        for suffix, prefix in (("H", "pun"), ("N", "non_pun")):
-            expected_ids = set(validation_predictions.loc[validation_predictions["suffix"] == suffix, "id"])
-            if set(validation_pairs[f"{prefix}_id"]) != expected_ids:
-                return False
-            if not validation_pairs[f"{prefix}_id"].map(id_to_pair).equals(validation_pairs["pair_id"]):
-                return False
-
-        numeric_columns = [
-            "logit_non_pun", "logit_pun", "pun_score",
-            "probability_non_pun", "probability_pun",
-        ]
-        if not np.isfinite(validation_predictions[numeric_columns].to_numpy(dtype=float)).all():
-            return False
-        pair_numeric_columns = [
-            "pair_margin", "pun_score", "non_pun_score",
-            "pun_logit_non_pun", "pun_logit_pun", "non_pun_logit_non_pun", "non_pun_logit_pun",
-            "pun_probability", "non_pun_probability", "pun_probability_non_pun", "non_pun_probability_non_pun",
-        ]
-        if not np.isfinite(validation_pairs[pair_numeric_columns].to_numpy(dtype=float)).all():
-            return False
-
         if history.empty:
             return False
 
-        if evaluation_scope == "full":
-            predictions = pd.read_csv(paths["predictions"], usecols=["id"])
-            pair_predictions = pd.read_csv(paths["pair_predictions"], usecols=["pair_id"])
-            if len(predictions) != EXPECTED_SPLIT_COUNTS["test"]:
-                return False
-            if len(pair_predictions) != EXPECTED_PAIR_COUNTS["test"]:
-                return False
+        verify_run_prediction_exports(
+            paths, evaluation_scope, EXPECTED_SPLIT_COUNTS, EXPECTED_PAIR_COUNTS,
+            metrics, calibrated=protocol is not None,
+        )
 
     except (
         AttributeError,
         json.JSONDecodeError,
+        KeyError,
         OSError,
+        OverflowError,
         pd.errors.EmptyDataError,
         pd.errors.ParserError,
         TypeError,

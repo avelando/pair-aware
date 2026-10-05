@@ -174,6 +174,7 @@ def _source_paths(method):
         "data/validation.py",
         "evaluation/artifacts.py",
         "evaluation/calibration.py",
+        "evaluation/integrity.py",
         "evaluation/metrics.py",
         "evaluation/predictions.py",
         "evaluation/scope.py",
