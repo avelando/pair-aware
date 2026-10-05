@@ -262,6 +262,21 @@ def is_run_completed(
         if not required_metrics.issubset(metrics):
             return False
 
+        protocol = metadata.get("fingerprint", {}).get("config", {}).get("evaluation_protocol")
+        if protocol is not None:
+            splits = ("validation", "test") if evaluation_scope == "full" else ("validation",)
+            sections = (
+                "calibration", "instance_calibrated", "pair_calibrated",
+                "classification_report_calibrated", "confusion_matrix_calibrated",
+            )
+            if not all(f"{split}_{section}" in metrics for split in splits for section in sections):
+                return False
+            threshold = metrics.get("validation_threshold", {})
+            if threshold.get("fit_split") != "validation" or threshold.get("comparison") != ">":
+                return False
+            if not np.isfinite(float(threshold.get("score_threshold", float("nan")))):
+                return False
+
         history = pd.read_csv(
             paths["history"],
             usecols=["epoch"],
@@ -269,13 +284,18 @@ def is_run_completed(
 
         validation_predictions = pd.read_csv(
             paths["validation_predictions"],
-            usecols=list(INSTANCE_PREDICTION_COLUMNS),
+            usecols=list(INSTANCE_PREDICTION_COLUMNS) + (
+                ["score_threshold", "calibrated_predicted_label", "calibrated_correct"] if protocol is not None else []
+            ),
             dtype={"id": str, "pair_id": str, "suffix": str},
         )
 
         validation_pairs = pd.read_csv(
             paths["validation_pair_predictions"],
-            usecols=list(COMPLETE_PAIR_PREDICTION_COLUMNS),
+            usecols=list(COMPLETE_PAIR_PREDICTION_COLUMNS) + (
+                ["score_threshold", "pun_calibrated_predicted_label", "non_pun_calibrated_predicted_label", "calibrated_exact_match"]
+                if protocol is not None else []
+            ),
             dtype={"pair_id": str, "pun_id": str, "non_pun_id": str},
         )
 

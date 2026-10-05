@@ -27,6 +27,7 @@ from src.config import (
     WEIGHT_DECAY,
 )
 from src.paths import PROJECT_ROOT, get_split_dir
+from src.evaluation.calibration import EVALUATION_PROTOCOL
 from src.pair_loss import resolve_pair_loss_weight
 from src.evaluation.scope import get_training_split_names, validate_evaluation_scope, validate_split_names
 
@@ -87,6 +88,7 @@ def get_config_snapshot(method, pair_loss_weight=None, evaluation_scope="full"):
     common = {
         "experiment_version": EXPERIMENT_VERSION,
         "evaluation_scope": evaluation_scope,
+        "evaluation_protocol": dict(EVALUATION_PROTOCOL),
         "method": method,
         "model_name": MODEL_NAME,
         "model_revision": MODEL_REVISION,
@@ -171,6 +173,7 @@ def _source_paths(method):
         "data/pairing.py",
         "data/validation.py",
         "evaluation/artifacts.py",
+        "evaluation/calibration.py",
         "evaluation/metrics.py",
         "evaluation/predictions.py",
         "evaluation/scope.py",
