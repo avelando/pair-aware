@@ -33,6 +33,8 @@ class GridTest(unittest.TestCase):
                 "method": "instance_level",
                 "split_seed": 13,
                 "model_seed": 13,
+                "pair_loss_weight": None,
+                "evaluation_scope": "full",
             },
         )
 
@@ -42,6 +44,8 @@ class GridTest(unittest.TestCase):
                 "method": "shuffled_pair",
                 "split_seed": 101,
                 "model_seed": 101,
+                "pair_loss_weight": 1.0,
+                "evaluation_scope": "full",
             },
         )
 
@@ -67,21 +71,29 @@ class GridTest(unittest.TestCase):
                     "method": "true_pair",
                     "split_seed": 13,
                     "model_seed": 21,
+                    "pair_loss_weight": 1.0,
+                    "evaluation_scope": "full",
                 },
                 {
                     "method": "true_pair",
                     "split_seed": 13,
                     "model_seed": 40,
+                    "pair_loss_weight": 1.0,
+                    "evaluation_scope": "full",
                 },
                 {
                     "method": "shuffled_pair",
                     "split_seed": 13,
                     "model_seed": 21,
+                    "pair_loss_weight": 1.0,
+                    "evaluation_scope": "full",
                 },
                 {
                     "method": "shuffled_pair",
                     "split_seed": 13,
                     "model_seed": 40,
+                    "pair_loss_weight": 1.0,
+                    "evaluation_scope": "full",
                 },
             ],
         )
@@ -162,6 +174,7 @@ class GridTest(unittest.TestCase):
             split_seed=13,
             model_seed=21,
             force=True,
+            evaluation_scope="full",
         )
 
         pair_mock.assert_not_called()
@@ -198,6 +211,8 @@ class GridTest(unittest.TestCase):
             split_seed=21,
             model_seed=40,
             force=False,
+            pair_loss_weight=1.0,
+            evaluation_scope="full",
         )
 
         instance_mock.assert_not_called()
