@@ -1,4 +1,5 @@
 import argparse
+from functools import partial
 from time import perf_counter
 
 import torch
@@ -30,15 +31,8 @@ from src.data.loading import (
     load_split_directory,
 )
 from src.data.validation import validate_input_splits
-from src.evaluation.artifacts import evaluate_split_predictions
-from src.evaluation.metrics import (
-    evaluate_instance_logits,
-    evaluate_pair_predictions,
-)
-from src.evaluation.predictions import (
-    build_instance_predictions,
-    build_pair_predictions,
-)
+from src.evaluation.artifacts import build_evaluation_metrics, evaluate_run_splits
+from src.evaluation.scope import EVALUATION_SCOPES, get_training_split_names, validate_evaluation_scope
 from src.experiments.progress import RunProgressTracker
 from src.experiments.runner import (
     run_experiment,
@@ -94,9 +88,12 @@ def create_run_metadata(
     experiment_fingerprint,
     attempt,
     device,
+    evaluation_scope="full",
 ):
+    evaluation_scope = validate_evaluation_scope(evaluation_scope)
     return {
         "status": "running",
+        "evaluation_scope": evaluation_scope,
         "method": METHOD,
         "split_seed": split_seed,
         "model_seed": model_seed,
@@ -168,7 +165,9 @@ def _execute_instance_level(
     run_dir,
     experiment_fingerprint,
     attempt,
+    evaluation_scope="full",
 ):
+    evaluation_scope = validate_evaluation_scope(evaluation_scope)
     artifact_paths = prepare_run_directory(
         run_dir
     )
@@ -179,14 +178,10 @@ def _execute_instance_level(
         f"model_seed_{model_seed}"
     )
 
-    split_data = load_split_directory(
-        split_seed
-    )
+    split_names = get_training_split_names(evaluation_scope)
+    split_data = load_split_directory(split_seed, split_names=split_names)
 
-    validate_input_splits(
-        split_data,
-        run_name,
-    )
+    validate_input_splits(split_data, run_name, split_names=split_names)
 
     split_metadata = load_metadata(
         split_seed
@@ -214,6 +209,7 @@ def _execute_instance_level(
         ),
         attempt=attempt,
         device=device,
+        evaluation_scope=evaluation_scope,
     )
 
     write_json(
@@ -240,12 +236,6 @@ def _execute_instance_level(
             max_length=MAX_LENGTH,
         )
 
-        test_dataset = InstanceDataset(
-            dataframe=split_data["test"],
-            tokenizer=tokenizer,
-            max_length=MAX_LENGTH,
-        )
-
         train_loader = create_dataloader(
             dataset=train_dataset,
             batch_size=INSTANCE_TRAIN_BATCH_SIZE,
@@ -255,12 +245,6 @@ def _execute_instance_level(
 
         validation_loader = create_dataloader(
             dataset=validation_dataset,
-            batch_size=EVAL_BATCH_SIZE,
-            shuffle=False,
-        )
-
-        test_loader = create_dataloader(
-            dataset=test_dataset,
             batch_size=EVAL_BATCH_SIZE,
             shuffle=False,
         )
@@ -309,79 +293,15 @@ def _execute_instance_level(
             "evaluation"
         )
 
-        validation_logits, validation_labels = predict_instances(
-            model=model,
-            dataloader=validation_loader,
-            device=device,
-        )
+        def predict_split(split_name, dataframe):
+            if split_name == "validation":
+                loader = validation_loader
+            else:
+                dataset = InstanceDataset(dataframe=dataframe, tokenizer=tokenizer, max_length=MAX_LENGTH)
+                loader = create_dataloader(dataset=dataset, batch_size=EVAL_BATCH_SIZE, shuffle=False)
+            return predict_instances(model=model, dataloader=loader, device=device)
 
-        validation_result = evaluate_split_predictions(
-            dataframe=split_data["validation"],
-            logits=validation_logits,
-            labels=validation_labels,
-            split_name="validation",
-        )
-
-        (
-            test_logits,
-            test_labels,
-        ) = predict_instances(
-            model=model,
-            dataloader=test_loader,
-            device=device,
-        )
-
-        expected_test_labels = (
-            split_data["test"][
-                "label"
-            ]
-            .astype(int)
-            .tolist()
-        )
-
-        predicted_test_labels = (
-            test_labels
-            .astype(int)
-            .tolist()
-        )
-
-        if (
-            predicted_test_labels
-            != expected_test_labels
-        ):
-            raise RuntimeError(
-                "Test labels returned by the dataloader "
-                "do not match the test dataframe order."
-            )
-
-        (
-            instance_metrics,
-            classification_report,
-            confusion_matrix,
-            _,
-        ) = evaluate_instance_logits(
-            test_labels,
-            test_logits,
-        )
-
-        instance_predictions = (
-            build_instance_predictions(
-                split_data["test"],
-                test_logits,
-            )
-        )
-
-        pair_predictions = (
-            build_pair_predictions(
-                instance_predictions
-            )
-        )
-
-        pair_metrics = (
-            evaluate_pair_predictions(
-                pair_predictions
-            )
-        )
+        evaluation_results = evaluate_run_splits(split_data, predict_split, evaluation_scope)
 
         peak_allocated_gb = float(
             torch.cuda.max_memory_allocated(
@@ -426,18 +346,7 @@ def _execute_instance_level(
                     "warmup_steps"
                 ],
             },
-            "validation_instance": validation_result["instance"],
-            "validation_pair": validation_result["pair"],
-            "validation_confusion_matrix": validation_result["confusion_matrix"],
-            "validation_classification_report": validation_result["classification_report"],
-            "test_instance": instance_metrics,
-            "test_pair": pair_metrics,
-            "test_confusion_matrix": (
-                confusion_matrix.tolist()
-            ),
-            "test_classification_report": (
-                classification_report
-            ),
+            **build_evaluation_metrics(evaluation_results),
             "runtime": {
                 "duration_seconds": duration_seconds,
                 "peak_allocated_gb": peak_allocated_gb,
@@ -450,33 +359,14 @@ def _execute_instance_level(
             artifact_paths["history"],
         )
 
-        write_dataframe(
-            instance_predictions,
-            artifact_paths[
-                "predictions"
-            ],
-        )
-
-        write_dataframe(
-            pair_predictions,
-            artifact_paths[
-                "pair_predictions"
-            ],
-        )
+        for split_name, evaluation in evaluation_results.items():
+            prefix = "validation_" if split_name == "validation" else ""
+            write_dataframe(evaluation["predictions"], artifact_paths[f"{prefix}predictions"])
+            write_dataframe(evaluation["pair_predictions"], artifact_paths[f"{prefix}pair_predictions"])
 
         write_json(
             metrics,
             artifact_paths["metrics"],
-        )
-
-        write_dataframe(
-            validation_result["predictions"],
-            artifact_paths["validation_predictions"],
-        )
-
-        write_dataframe(
-            validation_result["pair_predictions"],
-            artifact_paths["validation_pair_predictions"],
         )
 
         if not KEEP_CHECKPOINTS:
@@ -511,6 +401,7 @@ def _execute_instance_level(
 
         return {
             "status": "completed",
+            "evaluation_scope": evaluation_scope,
             "method": METHOD,
             "split_seed": split_seed,
             "model_seed": model_seed,
@@ -524,18 +415,14 @@ def _execute_instance_level(
             "best_validation_f1_macro": training_result[
                 "best_validation_f1_macro"
             ],
-            "test_accuracy": instance_metrics[
-                "accuracy"
-            ],
-            "test_f1_macro": instance_metrics[
-                "f1_macro"
-            ],
-            "pair_ranking_accuracy": pair_metrics[
-                "pair_ranking_accuracy"
-            ],
-            "pair_exact_match": pair_metrics[
-                "pair_exact_match"
-            ],
+            "validation_pair_ranking_accuracy": evaluation_results["validation"]["pair"]["pair_ranking_accuracy"],
+            "validation_pair_exact_match": evaluation_results["validation"]["pair"]["pair_exact_match"],
+            **({
+                "test_accuracy": evaluation_results["test"]["instance"]["accuracy"],
+                "test_f1_macro": evaluation_results["test"]["instance"]["f1_macro"],
+                "pair_ranking_accuracy": evaluation_results["test"]["pair"]["pair_ranking_accuracy"],
+                "pair_exact_match": evaluation_results["test"]["pair"]["pair_exact_match"],
+            } if evaluation_scope == "full" else {}),
             "duration_seconds": duration_seconds,
         }
 
@@ -587,7 +474,9 @@ def run_instance_level(
     split_seed,
     model_seed,
     force=False,
+    evaluation_scope="full",
 ):
+    evaluation_scope = validate_evaluation_scope(evaluation_scope)
     validate_run_seeds(
         split_seed,
         model_seed,
@@ -597,8 +486,9 @@ def run_instance_level(
         method=METHOD,
         split_seed=split_seed,
         model_seed=model_seed,
-        execute=_execute_instance_level,
+        execute=partial(_execute_instance_level, evaluation_scope=evaluation_scope),
         force=force,
+        evaluation_scope=evaluation_scope,
     )
 
 
@@ -619,6 +509,8 @@ def parse_args():
         choices=MODEL_SEEDS,
     )
 
+    parser.add_argument("--evaluation-scope", choices=EVALUATION_SCOPES, default="full")
+
     parser.add_argument(
         "--force",
         action="store_true",
@@ -634,7 +526,10 @@ def main():
         split_seed=args.split_seed,
         model_seed=args.model_seed,
         force=args.force,
+        evaluation_scope=args.evaluation_scope,
     )
+
+    print(f"Evaluation scope: {args.evaluation_scope}")
 
     print(
         f"Status: {result['status']}"
@@ -656,25 +551,26 @@ def main():
             f"{result['best_validation_f1_macro']:.6f}"
         )
 
-        print(
-            f"Test accuracy: "
-            f"{result['test_accuracy']:.6f}"
-        )
+        if args.evaluation_scope == "full":
+            print(
+                f"Test accuracy: "
+                f"{result['test_accuracy']:.6f}"
+            )
 
-        print(
-            f"Test macro F1: "
-            f"{result['test_f1_macro']:.6f}"
-        )
+            print(
+                f"Test macro F1: "
+                f"{result['test_f1_macro']:.6f}"
+            )
 
-        print(
-            f"Pair ranking accuracy: "
-            f"{result['pair_ranking_accuracy']:.6f}"
-        )
+            print(
+                f"Pair ranking accuracy: "
+                f"{result['pair_ranking_accuracy']:.6f}"
+            )
 
-        print(
-            f"Pair exact match: "
-            f"{result['pair_exact_match']:.6f}"
-        )
+            print(
+                f"Pair exact match: "
+                f"{result['pair_exact_match']:.6f}"
+            )
 
         print(
             f"Duration seconds: "

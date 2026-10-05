@@ -37,15 +37,8 @@ from src.data.loading import (
 )
 from src.data.pairing import build_pairs
 from src.data.validation import validate_input_splits
-from src.evaluation.artifacts import evaluate_split_predictions
-from src.evaluation.metrics import (
-    evaluate_instance_logits,
-    evaluate_pair_predictions,
-)
-from src.evaluation.predictions import (
-    build_instance_predictions,
-    build_pair_predictions,
-)
+from src.evaluation.artifacts import build_evaluation_metrics, evaluate_run_splits
+from src.evaluation.scope import EVALUATION_SCOPES, get_training_split_names, validate_evaluation_scope
 from src.experiments.progress import RunProgressTracker
 from src.experiments.runner import (
     run_experiment,
@@ -126,7 +119,9 @@ def create_run_metadata(
     attempt,
     device,
     pair_loss_weight=PAIR_LOSS_WEIGHT,
+    evaluation_scope="full",
 ):
+    evaluation_scope = validate_evaluation_scope(evaluation_scope)
     pair_loss_weight = validate_pair_loss_weight(pair_loss_weight)
     pairing_metadata = {
         "strategy": method,
@@ -134,7 +129,7 @@ def create_run_metadata(
             train_pair_count
         ),
         "validation_uses_true_pairs": True,
-        "test_uses_true_pairs": True,
+        "test_uses_true_pairs": evaluation_scope == "full",
     }
 
     if method == "shuffled_pair":
@@ -160,6 +155,7 @@ def create_run_metadata(
 
     return {
         "status": "running",
+        "evaluation_scope": evaluation_scope,
         "method": method,
         "split_seed": split_seed,
         "model_seed": model_seed,
@@ -238,7 +234,9 @@ def _execute_pair_aware(
     experiment_fingerprint,
     attempt,
     pair_loss_weight=PAIR_LOSS_WEIGHT,
+    evaluation_scope="full",
 ):
+    evaluation_scope = validate_evaluation_scope(evaluation_scope)
     pair_loss_weight = validate_pair_loss_weight(pair_loss_weight)
     artifact_paths = prepare_run_directory(
         run_dir
@@ -251,14 +249,10 @@ def _execute_pair_aware(
         f"model_seed_{model_seed}"
     )
 
-    split_data = load_split_directory(
-        split_seed
-    )
+    split_names = get_training_split_names(evaluation_scope)
+    split_data = load_split_directory(split_seed, split_names=split_names)
 
-    validate_input_splits(
-        split_data,
-        run_name,
-    )
+    validate_input_splits(split_data, run_name, split_names=split_names)
 
     split_metadata = load_metadata(
         split_seed
@@ -299,6 +293,7 @@ def _execute_pair_aware(
         attempt=attempt,
         device=device,
         pair_loss_weight=pair_loss_weight,
+        evaluation_scope=evaluation_scope,
     )
 
     write_json(
@@ -329,12 +324,6 @@ def _execute_pair_aware(
             )
         )
 
-        test_dataset = InstanceDataset(
-            dataframe=split_data["test"],
-            tokenizer=tokenizer,
-            max_length=MAX_LENGTH,
-        )
-
         train_loader = create_dataloader(
             dataset=train_dataset,
             batch_size=PAIR_BATCH_SIZE,
@@ -348,12 +337,6 @@ def _execute_pair_aware(
                 batch_size=EVAL_BATCH_SIZE,
                 shuffle=False,
             )
-        )
-
-        test_loader = create_dataloader(
-            dataset=test_dataset,
-            batch_size=EVAL_BATCH_SIZE,
-            shuffle=False,
         )
 
         model = (
@@ -401,79 +384,15 @@ def _execute_pair_aware(
             "evaluation"
         )
 
-        validation_logits, validation_labels = predict_instances(
-            model=model,
-            dataloader=validation_loader,
-            device=device,
-        )
+        def predict_split(split_name, dataframe):
+            if split_name == "validation":
+                loader = validation_loader
+            else:
+                dataset = InstanceDataset(dataframe=dataframe, tokenizer=tokenizer, max_length=MAX_LENGTH)
+                loader = create_dataloader(dataset=dataset, batch_size=EVAL_BATCH_SIZE, shuffle=False)
+            return predict_instances(model=model, dataloader=loader, device=device)
 
-        validation_result = evaluate_split_predictions(
-            dataframe=split_data["validation"],
-            logits=validation_logits,
-            labels=validation_labels,
-            split_name="validation",
-        )
-
-        (
-            test_logits,
-            test_labels,
-        ) = predict_instances(
-            model=model,
-            dataloader=test_loader,
-            device=device,
-        )
-
-        expected_test_labels = (
-            split_data["test"][
-                "label"
-            ]
-            .astype(int)
-            .tolist()
-        )
-
-        returned_test_labels = (
-            test_labels
-            .astype(int)
-            .tolist()
-        )
-
-        if (
-            returned_test_labels
-            != expected_test_labels
-        ):
-            raise RuntimeError(
-                "Test labels returned by the dataloader "
-                "do not match the test dataframe order."
-            )
-
-        (
-            instance_metrics,
-            classification_report,
-            confusion_matrix,
-            _,
-        ) = evaluate_instance_logits(
-            test_labels,
-            test_logits,
-        )
-
-        instance_predictions = (
-            build_instance_predictions(
-                split_data["test"],
-                test_logits,
-            )
-        )
-
-        pair_predictions = (
-            build_pair_predictions(
-                instance_predictions
-            )
-        )
-
-        pair_metrics = (
-            evaluate_pair_predictions(
-                pair_predictions
-            )
-        )
+        evaluation_results = evaluate_run_splits(split_data, predict_split, evaluation_scope)
 
         peak_allocated_gb = float(
             torch.cuda.max_memory_allocated(
@@ -519,18 +438,7 @@ def _execute_pair_aware(
                 ],
                 "pair_loss_weight": pair_loss_weight,
             },
-            "validation_instance": validation_result["instance"],
-            "validation_pair": validation_result["pair"],
-            "validation_confusion_matrix": validation_result["confusion_matrix"],
-            "validation_classification_report": validation_result["classification_report"],
-            "test_instance": instance_metrics,
-            "test_pair": pair_metrics,
-            "test_confusion_matrix": (
-                confusion_matrix.tolist()
-            ),
-            "test_classification_report": (
-                classification_report
-            ),
+            **build_evaluation_metrics(evaluation_results),
             "runtime": {
                 "duration_seconds": duration_seconds,
                 "peak_allocated_gb": peak_allocated_gb,
@@ -543,33 +451,14 @@ def _execute_pair_aware(
             artifact_paths["history"],
         )
 
-        write_dataframe(
-            instance_predictions,
-            artifact_paths[
-                "predictions"
-            ],
-        )
-
-        write_dataframe(
-            pair_predictions,
-            artifact_paths[
-                "pair_predictions"
-            ],
-        )
+        for split_name, evaluation in evaluation_results.items():
+            prefix = "validation_" if split_name == "validation" else ""
+            write_dataframe(evaluation["predictions"], artifact_paths[f"{prefix}predictions"])
+            write_dataframe(evaluation["pair_predictions"], artifact_paths[f"{prefix}pair_predictions"])
 
         write_json(
             metrics,
             artifact_paths["metrics"],
-        )
-
-        write_dataframe(
-            validation_result["predictions"],
-            artifact_paths["validation_predictions"],
-        )
-
-        write_dataframe(
-            validation_result["pair_predictions"],
-            artifact_paths["validation_pair_predictions"],
         )
 
         if not KEEP_CHECKPOINTS:
@@ -604,6 +493,7 @@ def _execute_pair_aware(
 
         return {
             "status": "completed",
+            "evaluation_scope": evaluation_scope,
             "method": method,
             "pair_loss_weight": pair_loss_weight,
             "split_seed": split_seed,
@@ -618,18 +508,14 @@ def _execute_pair_aware(
             "best_validation_f1_macro": training_result[
                 "best_validation_f1_macro"
             ],
-            "test_accuracy": instance_metrics[
-                "accuracy"
-            ],
-            "test_f1_macro": instance_metrics[
-                "f1_macro"
-            ],
-            "pair_ranking_accuracy": pair_metrics[
-                "pair_ranking_accuracy"
-            ],
-            "pair_exact_match": pair_metrics[
-                "pair_exact_match"
-            ],
+            "validation_pair_ranking_accuracy": evaluation_results["validation"]["pair"]["pair_ranking_accuracy"],
+            "validation_pair_exact_match": evaluation_results["validation"]["pair"]["pair_exact_match"],
+            **({
+                "test_accuracy": evaluation_results["test"]["instance"]["accuracy"],
+                "test_f1_macro": evaluation_results["test"]["instance"]["f1_macro"],
+                "pair_ranking_accuracy": evaluation_results["test"]["pair"]["pair_ranking_accuracy"],
+                "pair_exact_match": evaluation_results["test"]["pair"]["pair_exact_match"],
+            } if evaluation_scope == "full" else {}),
             "duration_seconds": duration_seconds,
         }
 
@@ -683,7 +569,9 @@ def run_pair_aware(
     model_seed,
     force=False,
     pair_loss_weight=PAIR_LOSS_WEIGHT,
+    evaluation_scope="full",
 ):
+    evaluation_scope = validate_evaluation_scope(evaluation_scope)
     validate_run_arguments(
         method,
         split_seed,
@@ -696,6 +584,7 @@ def run_pair_aware(
         _execute_pair_aware,
         method=method,
         pair_loss_weight=pair_loss_weight,
+        evaluation_scope=evaluation_scope,
     )
 
     return run_experiment(
@@ -705,6 +594,7 @@ def run_pair_aware(
         execute=execute,
         force=force,
         pair_loss_weight=pair_loss_weight,
+        evaluation_scope=evaluation_scope,
     )
 
 
@@ -737,6 +627,8 @@ def parse_args():
         default=PAIR_LOSS_WEIGHT,
     )
 
+    parser.add_argument("--evaluation-scope", choices=EVALUATION_SCOPES, default="full")
+
     parser.add_argument(
         "--force",
         action="store_true",
@@ -754,7 +646,10 @@ def main():
         model_seed=args.model_seed,
         force=args.force,
         pair_loss_weight=args.pair_loss_weight,
+        evaluation_scope=args.evaluation_scope,
     )
+
+    print(f"Evaluation scope: {args.evaluation_scope}")
 
     print(
         f"Status: {result['status']}"
@@ -780,25 +675,26 @@ def main():
             f"{result['best_validation_f1_macro']:.6f}"
         )
 
-        print(
-            f"Test accuracy: "
-            f"{result['test_accuracy']:.6f}"
-        )
+        if args.evaluation_scope == "full":
+            print(
+                f"Test accuracy: "
+                f"{result['test_accuracy']:.6f}"
+            )
 
-        print(
-            f"Test macro F1: "
-            f"{result['test_f1_macro']:.6f}"
-        )
+            print(
+                f"Test macro F1: "
+                f"{result['test_f1_macro']:.6f}"
+            )
 
-        print(
-            f"Pair ranking accuracy: "
-            f"{result['pair_ranking_accuracy']:.6f}"
-        )
+            print(
+                f"Pair ranking accuracy: "
+                f"{result['pair_ranking_accuracy']:.6f}"
+            )
 
-        print(
-            f"Pair exact match: "
-            f"{result['pair_exact_match']:.6f}"
-        )
+            print(
+                f"Pair exact match: "
+                f"{result['pair_exact_match']:.6f}"
+            )
 
         print(
             f"Duration seconds: "
