@@ -220,5 +220,73 @@ class V3Test(unittest.TestCase):
             pipeline.parse_args()
 
 
+    def test_reference_previews_distinguish_requests_from_unique_runs(self):
+        with patch.object(pipeline, "run_references") as run, patch.object(pipeline, "write_json") as write:
+            for weight, unique in ((0.25, 288), (1.0, 216)):
+                result = pipeline.run_v3(dry_run=True, preview_weight=weight, include_references=True)
+                self.assertEqual(result["planned_runs"], 288)
+                self.assertEqual(result["unique_planned_runs"], unique)
+                self.assertEqual(result["references"]["planned_runs"], 108)
+        run.assert_not_called()
+        write.assert_not_called()
+
+    def test_reference_phase_runs_after_confirmation_with_frozen_selection(self):
+        with self.environment() as (root, selection, decision, events, screen, confirm):
+            def collect(**arguments):
+                events.append("references")
+                self.assertEqual(arguments["selection_path"], selection)
+                self.assertTrue(arguments["fail_fast"])
+                return {
+                    **self.phase_result(pipeline.build_reference_grid()), "selection": decision,
+                    "reference_result_path": "reference_result.json",
+                }
+
+            with patch.object(pipeline, "run_references", side_effect=collect):
+                result = pipeline.run_v3(output_root=root / "pipeline", include_references=True)
+            self.assertEqual(events, ["screening", "selection", "confirmation", "references"])
+            self.assertEqual(result["planned_runs"], 288)
+            self.assertEqual(result["completed_runs"], 288)
+            self.assertTrue(result["include_references"])
+            self.assertEqual(result["phases"]["references"]["planned_runs"], 108)
+
+    def test_interrupted_reference_phase_preserves_selection_on_resume(self):
+        with self.environment(reuse=True) as (root, selection, decision, events, screen, confirm):
+            with patch.object(pipeline, "run_references", side_effect=KeyboardInterrupt()):
+                with self.assertRaises(KeyboardInterrupt):
+                    pipeline.run_v3(output_root=root / "pipeline", include_references=True)
+            saved = json.loads((root / "pipeline" / "pipeline_status.json").read_text())
+            self.assertEqual(saved["phase"], "references")
+            self.assertEqual(saved["selection"], decision)
+            with patch.object(pipeline, "run_references", return_value={
+                **self.phase_result(pipeline.build_reference_grid(), skipped=True),
+                "selection": decision, "reference_result_path": "reference_result.json",
+            }):
+                result = pipeline.run_v3(output_root=root / "pipeline", include_references=True)
+            self.assertEqual(result["status"], "completed")
+            self.assertEqual(result["skipped_runs"], 216)
+            screen.assert_not_called()
+
+    def test_changed_selection_and_incomplete_references_are_rejected(self):
+        for mutation in (lambda obj: obj.update(completed_runs=107), lambda obj: obj["selection"].update(selection_sha256="changed")):
+            with self.environment(reuse=True) as (root, selection, decision, events, screen, confirm):
+                result = {
+                    **self.phase_result(pipeline.build_reference_grid()), "selection": dict(decision),
+                    "reference_result_path": "reference_result.json",
+                }
+                mutation(result)
+                with patch.object(pipeline, "run_references", return_value=result):
+                    with self.assertRaises(RuntimeError):
+                        pipeline.run_v3(output_root=root / "pipeline", include_references=True)
+
+    def test_cli_reference_preview_lists_all_three_grids(self):
+        result = subprocess.run(
+            [sys.executable, "-m", "src.experiments.run_v3", "--dry-run", "--include-references", "--preview-weight", "1.0"],
+            cwd=PROJECT_ROOT, capture_output=True, text=True,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("Total planned runs: 288", result.stdout)
+        self.assertIn("Unique planned runs: 216", result.stdout)
+
+
 if __name__ == "__main__":
     unittest.main()

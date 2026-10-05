@@ -8,6 +8,7 @@ from src.experiments.lifecycle import run_lock
 from src.experiments.retry import DEFAULT_MAX_RETRIES, validate_max_retries
 from src.experiments.run_confirmation import build_confirmation_grid, run_confirmation
 from src.experiments.run_grid import print_grid_result
+from src.experiments.run_references import build_reference_grid, run_references
 from src.experiments.run_screening import build_screening_grid, run_screening
 from src.paths import RESULTS_ROOT
 from src.results.confirmation import DEFAULT_SELECTION_PATH, load_screening_selection
@@ -36,16 +37,28 @@ def _same_selection(first, second):
     return all(first.get(key) == second.get(key) for key in ("selected_pair_loss_weight", "selection_sha256"))
 
 
-def run_v3(dry_run=False, preview_weight=None, max_retries=DEFAULT_MAX_RETRIES, output_root=PIPELINE_ROOT):
+def _count_unique_runs(*grids):
+    return len({tuple(sorted(task.items())) for grid in grids for task in grid})
+
+
+def run_v3(
+    dry_run=False, preview_weight=None, max_retries=DEFAULT_MAX_RETRIES,
+    output_root=PIPELINE_ROOT, include_references=False,
+):
     validate_max_retries(max_retries)
     if preview_weight is not None and not dry_run:
         raise ValueError("A preview weight can only be used with --dry-run.")
     screening_tasks = build_screening_grid()
+    reference_tasks = build_reference_grid() if include_references else []
+    phase_count = 3 if include_references else 2
     if dry_run:
         weight = PAIR_LOSS_WEIGHT if preview_weight is None else preview_weight
         confirmation_tasks = build_confirmation_grid(weight)
         return {
-            "status": "preview", "execution_mode": "sequential", "planned_runs": len(screening_tasks) + len(confirmation_tasks),
+            "status": "preview", "execution_mode": "sequential", "planned_runs": len(screening_tasks) + len(confirmation_tasks) + len(reference_tasks),
+            "include_references": include_references,
+            "unique_planned_runs": _count_unique_runs(screening_tasks, confirmation_tasks, reference_tasks),
+            "references": {"planned_runs": len(reference_tasks), "tasks": reference_tasks},
             "preview_pair_loss_weight": confirmation_tasks[0]["pair_loss_weight"],
             "screening": {"planned_runs": len(screening_tasks), "tasks": screening_tasks},
             "confirmation": {"planned_runs": len(confirmation_tasks), "tasks": confirmation_tasks},
@@ -62,6 +75,7 @@ def run_v3(dry_run=False, preview_weight=None, max_retries=DEFAULT_MAX_RETRIES, 
         state = {
             "pipeline_version": PIPELINE_VERSION, "execution_mode": "sequential", "status": "running",
             "phase": "screening", "started_at_utc": _utc_now(), "max_retries": max_retries,
+            "include_references": include_references,
             "pipeline_source_sha256": _hash_file(__file__), "phases": {},
         }
         if frozen is not None:
@@ -70,7 +84,7 @@ def run_v3(dry_run=False, preview_weight=None, max_retries=DEFAULT_MAX_RETRIES, 
         write_json(state, status_path)
         try:
             phase_start = perf_counter()
-            print("Phase 1/2: validation-only screening", flush=True)
+            print(f"Phase 1/{phase_count}: validation-only screening", flush=True)
             if frozen is not None and not DEFAULT_SELECTION_PATH.is_file():
                 raise RuntimeError("The frozen selection file is missing; restore it before resuming.")
             if DEFAULT_SELECTION_PATH.is_file():
@@ -94,7 +108,7 @@ def run_v3(dry_run=False, preview_weight=None, max_retries=DEFAULT_MAX_RETRIES, 
             state["phase"] = "confirmation"
             write_json(state, status_path)
             print(f"Selected pair loss weight: {decision['selected_pair_loss_weight']}", flush=True)
-            print("Phase 2/2: true-pair and shuffled-pair confirmation", flush=True)
+            print(f"Phase 2/{phase_count}: true-pair and shuffled-pair confirmation", flush=True)
             phase_start = perf_counter()
             confirmation_tasks = build_confirmation_grid(decision["selected_pair_loss_weight"])
             confirmation = run_confirmation(
@@ -110,9 +124,31 @@ def run_v3(dry_run=False, preview_weight=None, max_retries=DEFAULT_MAX_RETRIES, 
                 "duration_seconds": perf_counter() - phase_start,
                 "result_path": confirmation["confirmation_result_path"],
             }
+            if include_references:
+                state["phase"] = "references"
+                write_json(state, status_path)
+                print("Phase 3/3: instance-level and lambda-one reference collection", flush=True)
+                phase_start = perf_counter()
+                references = run_references(
+                    selection_path=DEFAULT_SELECTION_PATH, dry_run=False,
+                    fail_fast=True, max_retries=max_retries,
+                )
+                _check_phase(references, reference_tasks)
+                if (
+                    not _same_selection(decision, references.get("selection", {}))
+                    or _hash_file(DEFAULT_SELECTION_PATH) != decision["selection_sha256"]
+                ):
+                    raise RuntimeError("The references do not match the frozen selection.")
+                state["phases"]["references"] = {
+                    "status": "completed", "planned_runs": len(reference_tasks),
+                    "completed_runs": references["completed_runs"], "skipped_runs": references["skipped_runs"],
+                    "duration_seconds": perf_counter() - phase_start,
+                    "result_path": references["reference_result_path"],
+                }
             state.update({
+                "unique_planned_runs": _count_unique_runs(screening_tasks, confirmation_tasks, reference_tasks),
                 "status": "completed", "phase": "completed", "completed_at_utc": _utc_now(),
-                "duration_seconds": perf_counter() - start, "planned_runs": len(screening_tasks) + len(confirmation_tasks),
+                "duration_seconds": perf_counter() - start, "planned_runs": len(screening_tasks) + len(confirmation_tasks) + len(reference_tasks),
                 "completed_runs": sum(phase["completed_runs"] for phase in state["phases"].values()),
                 "skipped_runs": sum(phase["skipped_runs"] for phase in state["phases"].values()),
             })
@@ -131,6 +167,7 @@ def run_v3(dry_run=False, preview_weight=None, max_retries=DEFAULT_MAX_RETRIES, 
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--include-references", action="store_true")
     parser.add_argument("--preview-weight", type=float)
     parser.add_argument("--max-retries", type=int, default=DEFAULT_MAX_RETRIES)
     args = parser.parse_args()
@@ -142,7 +179,10 @@ def parse_args():
 def main():
     args = parse_args()
     try:
-        result = run_v3(dry_run=args.dry_run, preview_weight=args.preview_weight, max_retries=args.max_retries)
+        result = run_v3(
+            dry_run=args.dry_run, preview_weight=args.preview_weight,
+            max_retries=args.max_retries, include_references=args.include_references,
+        )
     except KeyboardInterrupt:
         raise SystemExit(130) from None
     print(f"Execution mode: {result['execution_mode']}")
@@ -153,7 +193,11 @@ def main():
         print_grid_result(result["screening"], dry_run=True)
         print("Confirmation:")
         print_grid_result(result["confirmation"], dry_run=True)
+        if args.include_references:
+            print("References:")
+            print_grid_result(result["references"], dry_run=True)
         print(f"Total planned runs: {result['planned_runs']}")
+        print(f"Unique planned runs: {result['unique_planned_runs']}")
     else:
         print(f"Status: {result['status']}")
         print(f"Completed runs: {result['completed_runs']}")
