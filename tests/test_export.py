@@ -49,6 +49,7 @@ class ExportTest(unittest.TestCase):
             self.assertIn("src/config.py", names)
             self.assertIn("tests/test_export.py", names)
             self.assertIn("uv.lock", names)
+            self.assertIn("results_v2/bf16/instance_level/split_13/model_seed_13/metadata.json", names)
             self.assertEqual(len([name for name in names if name.startswith("runs/")]), 22)
             self.assertTrue(all(not Path(name).is_absolute() for name in names))
             self.assertFalse(any("checkpoint" in name or name.endswith("run.lock") for name in names))

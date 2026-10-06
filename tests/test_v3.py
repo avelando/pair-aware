@@ -55,6 +55,7 @@ class V3Test(unittest.TestCase):
                 }
 
             stack.enter_context(patch.object(pipeline, "DEFAULT_SELECTION_PATH", selection_path))
+            stack.enter_context(patch.object(pipeline, "run_preflight", return_value={"status": "completed", "report_path": "preflight_report.json"}))
             screen = stack.enter_context(patch.object(pipeline, "run_screening", side_effect=screening))
             confirm = stack.enter_context(patch.object(pipeline, "run_confirmation", side_effect=confirmation))
             stack.enter_context(patch.object(pipeline, "load_screening_selection", side_effect=select))
@@ -385,6 +386,44 @@ class V3Test(unittest.TestCase):
         with patch.object(pipeline, "export_v3_results") as export:
             pipeline.run_v3(dry_run=True, include_references=True)
         export.assert_not_called()
+
+
+    def test_preflight_runs_before_training_and_is_saved_in_pipeline_status(self):
+        with self.environment() as (root, selection, decision, events, screen, confirm):
+            def check(**arguments):
+                events.append("preflight")
+                self.assertEqual(arguments, {"include_references": False, "output_root": root / "pipeline" / "preflight"})
+                return {"status": "completed", "report_path": "preflight_report.json"}
+
+            with patch.object(pipeline, "run_preflight", side_effect=check):
+                result = pipeline.run_v3(output_root=root / "pipeline")
+            self.assertEqual(events[0], "preflight")
+            self.assertEqual(result["preflight"]["status"], "completed")
+
+    def test_failed_preflight_blocks_training_and_preserves_frozen_selection(self):
+        with self.environment(reuse=True) as (root, selection, decision, events, screen, confirm):
+            write_json({"pipeline_version": 1, "execution_mode": "sequential", "selection": decision}, root / "pipeline" / "pipeline_status.json")
+            with patch.object(pipeline, "run_preflight", side_effect=RuntimeError("BF16 unavailable")):
+                with self.assertRaises(RuntimeError):
+                    pipeline.run_v3(output_root=root / "pipeline")
+            screen.assert_not_called()
+            confirm.assert_not_called()
+            saved = json.loads((root / "pipeline" / "pipeline_status.json").read_text())
+            self.assertEqual((saved["status"], saved["phase"]), ("failed", "preflight"))
+            self.assertEqual(saved["selection"], decision)
+
+    def test_incomplete_preflight_blocks_training(self):
+        with self.environment() as (root, selection, decision, events, screen, confirm):
+            with patch.object(pipeline, "run_preflight", return_value={"status": "running"}):
+                with self.assertRaises(RuntimeError):
+                    pipeline.run_v3(output_root=root / "pipeline")
+            screen.assert_not_called()
+            confirm.assert_not_called()
+
+    def test_preview_never_checks_the_gpu_or_dependencies(self):
+        with patch.object(pipeline, "run_preflight") as check:
+            pipeline.run_v3(dry_run=True, include_references=True)
+        check.assert_not_called()
 
 
 if __name__ == "__main__":

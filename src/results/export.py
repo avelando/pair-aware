@@ -115,6 +115,14 @@ def _snapshot_files(manifest_path):
     for name in (".python-version", "LICENSE", "LICENSE.md", "LICENSE.txt"):
         if (PROJECT_ROOT / name).is_file():
             add(PROJECT_ROOT / name, name)
+    for path in sorted((PROJECT_ROOT / "results_v2" / "bf16").glob("*/split_*/model_seed_*/metadata.json")):
+        add(path, path.relative_to(PROJECT_ROOT).as_posix())
+    for path in (
+        RESULTS_ROOT / "pipeline" / "preflight" / "preflight_report.json",
+        RESULTS_ROOT / "preflight" / "preflight_report.json",
+    ):
+        if path.is_file():
+            add(path, path.relative_to(PROJECT_ROOT).as_posix())
     identities = []
     for index, entry in enumerate(plan):
         task = {key: entry[key] for key in TASK_KEYS}

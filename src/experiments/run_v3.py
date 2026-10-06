@@ -5,6 +5,7 @@ from time import perf_counter
 
 from src.config import PAIR_LOSS_WEIGHT
 from src.experiments.lifecycle import run_lock
+from src.experiments.preflight import run_preflight
 from src.experiments.retry import DEFAULT_MAX_RETRIES, validate_max_retries
 from src.experiments.run_confirmation import build_confirmation_grid, run_confirmation
 from src.experiments.run_grid import print_grid_result
@@ -76,7 +77,7 @@ def run_v3(
             raise ValueError("Invalid frozen selection in the pipeline status.")
         state = {
             "pipeline_version": PIPELINE_VERSION, "execution_mode": "sequential", "status": "running",
-            "phase": "screening", "started_at_utc": _utc_now(), "max_retries": max_retries,
+            "phase": "preflight", "started_at_utc": _utc_now(), "max_retries": max_retries,
             "include_references": include_references,
             "pipeline_source_sha256": _hash_file(__file__), "phases": {},
         }
@@ -85,6 +86,13 @@ def run_v3(
         start = perf_counter()
         write_json(state, status_path)
         try:
+            print("Checking the frozen BF16 execution environment", flush=True)
+            checked = run_preflight(include_references=include_references, output_root=output_root / "preflight")
+            if checked.get("status") != "completed":
+                raise RuntimeError("Preflight did not complete successfully.")
+            state["preflight"] = checked
+            state["phase"] = "screening"
+            write_json(state, status_path)
             phase_start = perf_counter()
             print(f"Phase 1/{phase_count}: validation-only screening", flush=True)
             if frozen is not None and not DEFAULT_SELECTION_PATH.is_file():
