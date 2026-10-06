@@ -58,6 +58,16 @@ class V3Test(unittest.TestCase):
             screen = stack.enter_context(patch.object(pipeline, "run_screening", side_effect=screening))
             confirm = stack.enter_context(patch.object(pipeline, "run_confirmation", side_effect=confirmation))
             stack.enter_context(patch.object(pipeline, "load_screening_selection", side_effect=select))
+            def collect(**arguments):
+                tasks = pipeline.build_screening_grid() + pipeline.build_confirmation_grid(0.25)
+                if arguments["include_references"]:
+                    tasks += pipeline.build_reference_grid()
+                return {
+                    "status": "completed", "selection": dict(decision),
+                    "row_count": pipeline._count_unique_runs(tasks), "manifest_path": "collection_manifest.json",
+                }
+
+            stack.enter_context(patch.object(pipeline, "collect_v3_results", side_effect=collect))
             stack.enter_context(redirect_stdout(io.StringIO()))
             yield root, selection_path, decision, events, screen, confirm
 
@@ -286,6 +296,46 @@ class V3Test(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn("Total planned runs: 288", result.stdout)
         self.assertIn("Unique planned runs: 216", result.stdout)
+
+
+    def test_collection_runs_after_all_training_phases(self):
+        with self.environment(reuse=True) as (root, selection, decision, events, screen, confirm):
+            def collect(**arguments):
+                events.append("collection")
+                self.assertEqual(arguments, {"selection_path": selection, "include_references": False})
+                return {"status": "completed", "selection": decision, "row_count": 180, "manifest_path": "collection_manifest.json"}
+
+            with patch.object(pipeline, "collect_v3_results", side_effect=collect):
+                result = pipeline.run_v3(output_root=root / "pipeline")
+            self.assertEqual(events, ["selection", "confirmation", "collection"])
+            self.assertEqual(result["collection"]["row_count"], 180)
+
+    def test_failed_collection_preserves_selection_and_does_not_complete_pipeline(self):
+        with self.environment(reuse=True) as (root, selection, decision, events, screen, confirm):
+            with patch.object(pipeline, "collect_v3_results", side_effect=RuntimeError("invalid source predictions")):
+                with self.assertRaises(RuntimeError):
+                    pipeline.run_v3(output_root=root / "pipeline")
+            saved = json.loads((root / "pipeline" / "pipeline_status.json").read_text())
+            self.assertEqual(saved["phase"], "collection")
+            self.assertEqual(saved["status"], "failed")
+            self.assertEqual(saved["selection"], decision)
+            result = pipeline.run_v3(output_root=root / "pipeline")
+            self.assertEqual(result["status"], "completed")
+            screen.assert_not_called()
+
+    def test_incomplete_collection_is_rejected(self):
+        with self.environment(reuse=True) as (root, selection, decision, events, screen, confirm):
+            with patch.object(pipeline, "collect_v3_results", return_value={
+                "status": "completed", "selection": decision, "row_count": 179,
+            }):
+                with self.assertRaises(RuntimeError):
+                    pipeline.run_v3(output_root=root / "pipeline")
+
+    def test_preview_never_collects_or_reads_result_files(self):
+        with patch.object(pipeline, "collect_v3_results") as collect:
+            result = pipeline.run_v3(dry_run=True, include_references=True)
+        collect.assert_not_called()
+        self.assertEqual(result["unique_planned_runs"], 216)
 
 
 if __name__ == "__main__":
