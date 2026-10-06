@@ -1,0 +1,16 @@
+{
+  "archive_path": "/workspace/pair-aware/results_v3/bf16/export/v3-results.tar.gz",
+  "archive_sha256": "b76f1b151974d798c4d3f37005502c7444da8560025860072226c6a85d6cc8f0",
+  "checkpoints_included": false,
+  "checksum_path": "/workspace/pair-aware/results_v3/bf16/export/v3-results.tar.gz.sha256",
+  "export_source_sha256": "94a00b8fc222f68c64ec2e82b196830d94dafb24b2ff15f632b0f50b10f4b4c8",
+  "export_version": 1,
+  "file_count": 2311,
+  "row_count": 288,
+  "selection": {
+    "selected_pair_loss_weight": 2.0,
+    "selection_path": "/workspace/pair-aware/results_v3/bf16/screening/selection.json",
+    "selection_sha256": "1d0b00eb2d6ab080fa657b9c364c36520ff9798e966bbc89f3b74ece298721dc"
+  },
+  "status": "completed"
+}

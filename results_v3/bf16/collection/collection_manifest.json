@@ -1,0 +1,26 @@
+{
+  "collection_source_sha256": "3d711801b68b2d7b873a294fa03ddabd5b85301d85d5398dccbe7b07bf5ecbe7",
+  "collection_version": 1,
+  "expected_runs": 288,
+  "include_references": true,
+  "outputs": {
+    "artifacts": {
+      "path": "/workspace/pair-aware/results_v3/bf16/collection/artifacts.csv",
+      "row_count": 2088,
+      "sha256": "21800068dfcb7d074bed42dbe0fa6a642d602ca0a54fae129941569becf6e38c"
+    },
+    "runs": {
+      "path": "/workspace/pair-aware/results_v3/bf16/collection/runs.csv",
+      "row_count": 288,
+      "sha256": "c1fabbee05a1db286be52cf5614580f1fb43703d5a06a67940e94d9495e04269"
+    }
+  },
+  "row_count": 288,
+  "selection": {
+    "selected_pair_loss_weight": 2.0,
+    "selection_path": "/workspace/pair-aware/results_v3/bf16/screening/selection.json",
+    "selection_sha256": "1d0b00eb2d6ab080fa657b9c364c36520ff9798e966bbc89f3b74ece298721dc"
+  },
+  "source_predictions_verified": true,
+  "status": "completed"
+}
