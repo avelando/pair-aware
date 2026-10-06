@@ -68,6 +68,14 @@ class V3Test(unittest.TestCase):
                 }
 
             stack.enter_context(patch.object(pipeline, "collect_v3_results", side_effect=collect))
+            def export(**arguments):
+                saved = json.loads((root / "pipeline" / "pipeline_status.json").read_text())
+                return {
+                    "status": "completed", "selection": dict(decision), "row_count": saved["collection"]["row_count"],
+                    "archive_path": "v3-results.tar.gz", "archive_sha256": "verified",
+                }
+
+            stack.enter_context(patch.object(pipeline, "export_v3_results", side_effect=export))
             stack.enter_context(redirect_stdout(io.StringIO()))
             yield root, selection_path, decision, events, screen, confirm
 
@@ -336,6 +344,47 @@ class V3Test(unittest.TestCase):
             result = pipeline.run_v3(dry_run=True, include_references=True)
         collect.assert_not_called()
         self.assertEqual(result["unique_planned_runs"], 216)
+
+
+    def test_export_runs_after_collection_and_is_saved_in_pipeline_status(self):
+        with self.environment(reuse=True) as (root, selection, decision, events, screen, confirm):
+            def export(**arguments):
+                events.append("export")
+                saved = json.loads((root / "pipeline" / "pipeline_status.json").read_text())
+                self.assertEqual(saved["phase"], "export")
+                self.assertEqual(arguments, {"collection_manifest": "collection_manifest.json"})
+                return {"status": "completed", "selection": decision, "row_count": 180, "archive_path": "v3-results.tar.gz"}
+
+            with patch.object(pipeline, "export_v3_results", side_effect=export):
+                result = pipeline.run_v3(output_root=root / "pipeline")
+            self.assertEqual(events[-1], "export")
+            self.assertEqual(result["export"]["archive_path"], "v3-results.tar.gz")
+
+    def test_failed_export_preserves_selection_and_allows_resume(self):
+        with self.environment(reuse=True) as (root, selection, decision, events, screen, confirm):
+            with patch.object(pipeline, "export_v3_results", side_effect=RuntimeError("changed artifact")):
+                with self.assertRaises(RuntimeError):
+                    pipeline.run_v3(output_root=root / "pipeline")
+            saved = json.loads((root / "pipeline" / "pipeline_status.json").read_text())
+            self.assertEqual((saved["status"], saved["phase"]), ("failed", "export"))
+            self.assertEqual(saved["selection"], decision)
+            self.assertEqual(pipeline.run_v3(output_root=root / "pipeline")["status"], "completed")
+            screen.assert_not_called()
+
+    def test_export_with_a_different_selection_or_incomplete_rows_is_rejected(self):
+        for result in (
+            {"status": "completed", "selection": {"selection_sha256": "changed"}, "row_count": 180},
+            {"status": "completed", "row_count": 179},
+        ):
+            with self.environment(reuse=True) as (root, selection, decision, events, screen, confirm):
+                with patch.object(pipeline, "export_v3_results", return_value=result):
+                    with self.assertRaises(RuntimeError):
+                        pipeline.run_v3(output_root=root / "pipeline")
+
+    def test_preview_never_creates_a_result_archive(self):
+        with patch.object(pipeline, "export_v3_results") as export:
+            pipeline.run_v3(dry_run=True, include_references=True)
+        export.assert_not_called()
 
 
 if __name__ == "__main__":

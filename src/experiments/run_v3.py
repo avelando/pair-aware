@@ -14,6 +14,7 @@ from src.paths import RESULTS_ROOT
 from src.results.collection import collect_v3_results
 from src.results.confirmation import DEFAULT_SELECTION_PATH, load_screening_selection
 from src.results.io import write_json
+from src.results.export import export_v3_results
 from src.results.selection import _hash_file, _read_json
 
 
@@ -157,6 +158,17 @@ def run_v3(
             ):
                 raise RuntimeError("The result collection does not match the complete frozen experiment grid.")
             state["collection"] = collection
+            state["phase"] = "export"
+            write_json(state, status_path)
+            print("Exporting verified result archive", flush=True)
+            exported = export_v3_results(collection_manifest=collection["manifest_path"])
+            if (
+                exported.get("status") != "completed" or not _same_selection(decision, exported.get("selection", {}))
+                or exported.get("row_count") != collection["row_count"]
+                or _hash_file(DEFAULT_SELECTION_PATH) != decision["selection_sha256"]
+            ):
+                raise RuntimeError("The result export does not match the frozen experiment collection.")
+            state["export"] = exported
             state.update({
                 "unique_planned_runs": _count_unique_runs(screening_tasks, confirmation_tasks, reference_tasks),
                 "status": "completed", "phase": "completed", "completed_at_utc": _utc_now(),
@@ -216,6 +228,8 @@ def main():
         print(f"Reused runs: {result['skipped_runs']}")
         print(f"Pipeline status: {result['status_path']}")
         print(f"Collection manifest: {result['collection']['manifest_path']}")
+        print(f"Result archive: {result['export']['archive_path']}")
+        print(f"Archive SHA-256: {result['export']['archive_sha256']}")
 
 
 if __name__ == "__main__":
